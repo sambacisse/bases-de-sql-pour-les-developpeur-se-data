@@ -1,891 +1,525 @@
 ---
-title: Sorting and Grouping
-description: >-
-  Now that you've learned how to select the rows and columns you're most
-  interested in, you'll take your analyses to the next level by learning how to
-  sort and group tables by variables of interest. In particular, you'll see how
-  to combine GROUP BY with aggregate functions like SUM and AVG to summarize
-  your data within groups — a very powerful paradigm!
+title       : Aggregate Functions
+description : Insert the chapter description here
 
---- type:PlainMultipleChoiceExercise lang:sql xp:50 key:ac6d71b0e4
-## ORDER BY in the courtroom
+--- type:BulletExercise lang:sql xp:100 key:b883e7079f
+## SUM, AVG, MIN, MAX
 
-In SQL, the `ORDER BY` keyword is used to sort the result set in ascending or descending order according the values of one or more columns. By default `ORDER BY` will sort in ascending order. If you want to sort the results in descending order, you use the `DESC` keyword. For example, 
+Often you will want to perform some calculation on the data in a database. SQL provides a few functions to help you out with this.
+
+For example:
 
 ```
-SELECT title 
-FROM films 
-ORDER BY release_year;
+SELECT AVG(budget)
+FROM films;
 ```
 
-will give you the titles of films sorted by release year, from newest to oldest. 
+gives you a result set where the only row contains the average value from the `budget` column of the `films` table. In the same fashion, the `MAX()` function would return the highest budget.
 
-Which way does `ORDER BY` sort results by default?
+```
+SELECT MAX(budget)
+FROM films;
+```
 
+The `SUM()` function returns the result of adding up the numeric values in a column:
+```
+SELECT SUM(budget)
+FROM films;
+```
+
+We're sure you can guess what the `MIN()` function does! Now it's your turn to try out some SQL functions.
+
+*** =pre_exercise_code
+```{python}
+connect('postgresql', 'films')
+set_options(visible_tables = ['films'])
+```
+
+*** =sample_code
+```{sql}
+```
+
+*** =type1: NormalExercise
+
+*** =key1: 80fd462ae1
+*** =xp1: 20
+
+*** =instructions1
+Get the total (sum) duration of all films.
+*** =solution1
+```{sql}
+SELECT SUM(duration)
+FROM films;
+```
+
+*** =hint1
+To get the total duration, you can use `SUM(duration)`
+*** =sct1
+```{python}
+sel = check_node('SelectStmt')
+
+sum_call = sel.check_node('Call').has_equal_ast('Are you calling `SUM` correctly?')
+
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
+
+Ex().test_correct(check_result(), [
+    from_clause,
+    sum_call,
+    sel.has_equal_ast('Is your `SELECT` statement correct?'),
+    test_has_columns(),
+    test_ncols(),
+    test_error()
+])
+```
+
+*** =type2: NormalExercise
+
+*** =key2: 7993b51268
+*** =xp2: 20
+
+*** =instructions2
+Get the average duration of all films.
+*** =solution2
+```{sql}
+SELECT AVG(duration)
+FROM films;
+```
+*** =sct2
+```{python}
+sel = check_node('SelectStmt')
+
+avg_call = sel.check_node('Call').has_equal_ast('Are you calling `AVG` correctly?')
+
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
+
+Ex().test_correct(check_result(), [
+    from_clause,
+    avg_call,
+    sel.has_equal_ast('Is your `SELECT` statement correct?'),
+    test_has_columns(),
+    test_ncols(),
+    test_error()
+])
+```
+
+*** =type3: NormalExercise
+
+*** =key3: a03aeabbc6
+*** =xp3: 20
+
+*** =instructions3
+Get the duration of the shortest film.
+*** =solution3
+```{sql}
+SELECT MIN(duration)
+FROM films;
+```
+*** =sct3
+```{python}
+sel = check_node('SelectStmt')
+
+min_call = sel.check_node('Call').has_equal_ast('Are you calling `MIN` correctly?')
+
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
+
+Ex().test_correct(check_result(), [
+    from_clause,
+    min_call,
+    sel.has_equal_ast('Is your `SELECT` statement correct?'),
+    test_has_columns(),
+    test_ncols(),
+    test_error()
+])
+```
+
+*** =type4: NormalExercise
+
+*** =key4: fabbc619c6
+*** =xp4: 20
+
+*** =instructions4
+Get the amount made by the highest grossing film.
+*** =solution4
+```{sql}
+SELECT MAX(gross)
+FROM films;
+```
+*** =sct4
+```{python}
+sel = check_node('SelectStmt')
+
+max_call = sel.check_node('Call').has_equal_ast('Are you calling `MAX` correctly?')
+
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
+
+Ex().test_correct(check_result(), [
+    from_clause,
+    max_call,
+    sel.has_equal_ast('Is your `SELECT` statement correct?'),
+    test_has_columns(),
+    test_ncols(),
+    test_error()
+])
+```
+
+*** =type5: NormalExercise
+*** =key5: e14c21bc81
+*** =xp5: 20
+*** =instructions5
+Get the amount made by the lowest grossing film.
+
+*** =solution5
+```{sql}
+SELECT MIN(gross)
+FROM films;
+```
+*** =sct5
+```{python}
+sel = check_node('SelectStmt')
+
+min_call = sel.check_node('Call').has_equal_ast('Are you calling `MIN` correctly?')
+
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
+
+Ex().test_correct(check_result(), [
+    from_clause,
+    min_call,
+    sel.has_equal_ast('Is your `SELECT` statement correct?'),
+    test_has_columns(),
+    test_ncols(),
+    test_error()
+])
+```
+
+
+--- type:MultipleChoiceExercise lang:sql xp:50 skills:1 key:7b8b54b64d
+## A note on arithmetic
+In addition to using the built in SQL functions, you can perform basic arithmetic with symbols like `+`, `-`, `*`, and `/`.
+
+So, for example:
+
+```
+SELECT (4 * 3);
+```
+
+gives you a result of `12`.
+
+However:
+
+```
+SELECT (4 / 3);
+```
+
+gives you a result of `1`. What's going on here?
+
+Well, SQL assumes that if you divide an integer by an integer, that you want to get an integer back. So be careful when dividing!
+
+If you want to get more precision when dividing, you can add decimal places to your numbers:
+
+```
+SELECT (4.0 / 3.0) AS result;
+```
+
+which gives you the result you would expect: `1.333..`
+
+<hr>
+What is the result of `SELECT (10 / 3);`?
 *** =instructions
-- Alphabetically 
-- Descending
-- Ascending
-- In order of creation date
+- 2.333
+- 3.333
+- 3
+- 3.0
 
 *** =hint
-By default, `ORDER BY` behaves as if it was using the `ASC` keyword.
+Run a query in the editor to the right.
+
+*** =pre_exercise_code
+```{python}
+connect('postgresql', 'films')
+```
+
+*** =sample_code
+```{sql}
+-- You can test out queries here!
+
+```
 
 *** =sct
 ```{python}
 success_msg = 'Correct!'
-alphabetically = 'Incorrect. Although results may be in alphabetical order, how would we order numbers alphabetically?'
-descending = 'Incorrect. Results are not ordered descending by default.'
-creation = 'Incorrect. Results are not ordered by creation date by default.'
+msg2 = "Incorrect, try out the query in the editor!"
 
-Ex().test_mc(3, [alphabetically, descending, success_msg, creation])
+Ex().test_mc(3,[msg2, msg2, success_msg, msg2])
+```
+--- type:TabExercise lang:sql xp:100 key:9f4b026fe7
+## It's AS simple AS aliasing
+
+You may have noticed in the previous exercise that the column name of your result set was just the name of the function you used. For example:
+
+```
+SELECT MAX(budget)
+FROM films;
 ```
 
---- type:TabExercise lang:sql xp:100 key:a7b2964ba6
-## Sorting single columns (ASC)
+gives you a result set with one column, named `max`. But what if you used two functions like this?:
 
-Now that you understand how `ORDER BY` works, give these exercises a go!
+```
+SELECT MAX(budget), MAX(duration)
+FROM films;
+```
+
+Well, then you'd have two columns named `max`, which isn't very useful!
+
+To avoid situations like this, SQL allows you to do something called _aliasing_. Aliasing simply means you assign a temporary name to something. To alias, you use the `AS` keyword. For example, in the above example we could use aliases to make the result set clearer:
+
+```
+SELECT MAX(budget) AS max_budget, MAX(duration) AS max_duration
+FROM films;
+```
+
+Aliases are helpful for making results more readable!
 
 *** =pre_exercise_code
 ```{python}
 connect('postgresql', 'films')
+set_options(visible_tables = ['films'])
+
 ```
 
 *** =sample_code
 ```{sql}
-SELECT ___
-FROM ___
-___ ___ ___;
+
 ```
 
 *** =type1: NormalExercise
-*** =key1: e3a06cce15
+
+*** =key1: ec33c2353b
+*** =xp1: 20
 
 *** =instructions1
-Get the names of people, sorted by name.
+Get the title and profit or loss for each film, where possible. Let's define the profit or loss as being the amount the film made, minus the amount the film cost to make. Alias the profit or loss as `profit_or_loss`.
 *** =solution1
 ```{sql}
-SELECT name
-FROM people
-ORDER BY name;
+SELECT title, gross - budget AS profit_or_loss
+FROM films;
 ```
+
+*** =hint1
+The profit / loss will be `gross - budget`
 *** =sct1
 ```{python}
 sel = check_node('SelectStmt')
 
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
+alias = test_column('profit_or_loss', match='exact')
 
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    test_error()
-])
-
-```
-
-*** =type2: NormalExercise
-
-*** =key2: 14a2792baa
-
-*** =instructions2
-Get the names of people, sorted by birthdate.
-*** =solution2
-```{sql}
-SELECT name
-FROM people
-ORDER BY birthdate;
-```
-*** =sct2
-```{sql}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
+alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr').has_equal_ast('Are you calculating the profit or loss correctly?')
 
 Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    test_error()
-])
-```
-
-*** =type3: NormalExercise
-*** =key3: 6cfeca71b1
-
-*** =instructions3
-Get the birth date and name for every person, in order of when they were born.
-*** =solution3
-```{sql}
-SELECT birthdate, name
-FROM people
-ORDER BY birthdate;
-```
-*** =sct3
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    test_error()
-])
-```
-
-*** =type4: NormalExercise
-*** =key4: e2702b5933
-
-*** =instructions4
-Get the title and release year of films released in 2000 or 2015, in the order they were released.
-*** =solution4
-```{sql}
-SELECT title, release_year
-FROM films
-WHERE release_year IN (2000, 2015)
-ORDER BY release_year;
-```
-*** =sct4
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-where_clause = sel.check_field('where_clause').has_equal_ast('Is your `WHERE` clause correct?')
-
-in_op = where_clause.check_field('arr', 1).has_equal_ast('Is your `IN` operation correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    in_op,
-    from_clause,
-    where_clause,
-    test_error()
-])
-```
-
-*** =type5: NormalExercise
-*** =key5: 5c84507976
-
-*** =instructions5
-Get all details for all films except those released in 2015 and order them so we can see the results.
-*** =solution5
-```{sql}
-SELECT *
-FROM films
-WHERE release_year <> 2015
-ORDER BY release_year;
-```
-*** =sct5
-```{python}
-sel = check_node('SelectStmt')
-
-star = sel.check_node('Star').has_equal_ast('Are you selecting all columns?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-where_clause = sel.check_field('where_clause').has_equal_ast('Is your `WHERE` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    star,
-    from_clause,
-    order_by_clause,
-    where_clause,
-    test_error()
-])
-```
-
---- type:TabExercise lang:sql xp:100 key:a7b2964ba7
-## Sorting single columns (DESC)
-
-Now use `ORDER BY` to sort single columns in descending order!
-
-*** =pre_exercise_code
-```{python}
-connect('postgresql', 'films')
-```
-
-*** =sample_code
-```{sql}
-SELECT ___, ___
-FROM ___
-___ ___ imdb_score ___;
-```
-
-*** =type1: NormalExercise
-*** =key1: 1ed651456d
-
-*** =instructions1
-Get the IMDB score and film ID for every film, sorted from highest to lowest score.
-
-*** =solution1
-```{sql}
-SELECT imdb_score, film_id
-FROM reviews
-ORDER BY imdb_score DESC;
-```
-
-*** =sct1
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    test_error()
-])
-```
-
-*** =type2: NormalExercise
-*** =key2: 3629dd5dcd
-
-*** =instructions2
-Get the titles of films in reverse order.
-
-*** =solution2
-```{sql}
-SELECT title
-FROM films
-ORDER BY title DESC;
-```
-
-*** =sct2
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    test_error()
-])
-```
-
---- type:TabExercise lang:sql xp:100 key:b2a52993bc
-## Sorting multiple columns
-
-`ORDER BY` can also be used to sort on multiple columns! It will sort by the first column specified, then sort by the next, then the next, and so on. For example,
-
-```
-SELECT birthdate, name
-FROM people 
-ORDER BY birthdate, name;
-```
-
-will sort on birth dates first (oldest to newest) and then sort on names in alphabetical order.
-
-Try using `ORDER BY` to sort multiple columns! Remember, to specify multiple columns, separate the column names with a comma.
-
-*** =pre_exercise_code
-```{python}
-connect('postgresql', 'films')
-```
-
-*** =sample_code
-```{sql}
-SELECT birthdate, name
-FROM ___
-___ ___ ___, ___;
-```
-
-*** =type1: NormalExercise
-*** =key1: 9ec6e8ae72
-
-*** =instructions1
-Get people, in order of when they were born and alphabetically by name.
-*** =solution1
-```{sql}
-SELECT birthdate, name
-FROM people
-ORDER BY birthdate, name;
-```
-*** =sct1
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    test_error()
-])
-```
-
-*** =type2: NormalExercise
-*** =key2: 3460b2f14b
-
-*** =instructions2
-Get release years, durations, and titles of films released in 2000 or 2015, ordered by their release year and duration.
-*** =solution2
-```{sql}
-SELECT release_year, duration, title
-FROM films
-WHERE release_year IN (2000, 2015)
-ORDER BY release_year, duration;
-```
-*** =sct2
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause corect?')
-
-where_clause = sel.check_field('where_clause').has_equal_ast('Is your `WHERE` clause correct?')
-
-in_op = where_clause.check_field('arr', 1).has_equal_ast('Are you using `IN` correctly?')
-
-Ex().test_correct(check_result(), [
-    in_op,
-    where_clause,
-    order_by_clause,
-    from_clause,
-    test_error()
-])
-```
-
-*** =type3: NormalExercise
-*** =key3: c03517c2b9
-
-*** =instructions3
-Get certifications, release years, and titles of films released in 2000 or 2015, ordered by certification (alphabetically) and release year.
-
-*** =solution3
-```{sql}
-SELECT certification, release_year, title
-FROM films
-WHERE release_year IN (2000, 2015)
-ORDER BY certification, release_year;
-```
-*** =sct3
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause corect?')
-
-where_clause = sel.check_field('where_clause').has_equal_ast('Is your `WHERE` clause correct?')
-
-in_op = where_clause.check_field('arr', 1).has_equal_ast('Are you using `IN` correctly?')
-
-Ex().test_correct(check_result(), [
-    in_op,
-    where_clause,
-    order_by_clause,
-    from_clause,
-    test_error()
-])
-```
-
-*** =type4: NormalExercise
-*** =key4: f0ade213ff
-
-*** =instructions4
-Get people whose names start with A, B, or C, ordered by date of birth.
-*** =solution4
-```{sql}
-SELECT name, birthdate
-FROM people
-WHERE name LIKE 'A%' OR name LIKE 'B%' OR name LIKE 'C%'
-ORDER BY birthdate;
-```
-*** =sct4
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('from_clause')
-
-# we can check individual LIKEs here, but it's messier
-where_clause = sel.check_field('where_clause').has_equal_ast('Is your `WHERE` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    where_clause,
-    order_by_clause,
-    test_error()
-])
-```
-
---- type:PlainMultipleChoiceExercise lang:sql xp:50 key:81987a99cf
-## Introduction to GROUP BY
-
-In SQL, `GROUP BY` allows you to group a result set by one or more columns. `GROUP BY` is commonly used with aggregate functions like `COUNT()` or `MAX`. For example, 
-
-```
-SELECT title, COUNT(title) 
-FROM films 
-GROUP BY release_year;
-``` 
-
-will give you the number of films released in each year.
-
-What is `GROUP BY` used for?
-
-*** =instructions
-- Performing operations by column
-- Performing operations all at once
-- Performing operations in a particular order
-- Performing operations by group
-
-*** =hint
-You use `GROUP BY` when you want to compute results from many records.
-
-*** =sct
-```{python}
-one = 'Incorrect. While `GROUP BY` does sort by column, we could just use `ORDER BY` for this.'
-two = 'Incorrect.'
-three = 'Incorrect. While `GROUP BY` does sort results, it\'s not designed to control order of operations.'
-success_msg = 'Correct! `GROUP BY` is for performing operations within groups.'
-
-Ex().test_mc(4, [one, two, three, success_msg])
-```
-
---- type:TabExercise lang:sql xp:100 key:98e30a6131
-## GROUP BY on multiple columns
-
-Now that you understand what `GROUP BY` is and how to use it, let's try some exercises!
-
-*** =pre_exercise_code
-```{python}
-connect('postgresql', 'films')
-```
-
-*** =sample_code
-```{sql}
-SELECT release_year, ___(___)
-FROM ___
-___ ___ release_year;
-```
-
-*** =type1: NormalExercise
-*** =key1: 0b29eb4ff3
-
-*** =instructions1
-Get the count of films made in each year.
-*** =solution1
-```{sql}
-SELECT release_year, COUNT(title)
-FROM films
-GROUP BY release_year;
-```
-*** =sct1
-```{python}
-sel = check_node('SelectStmt')
-
-count_call = sel.check_field('target_list').check_node('Call').has_equal_ast('Is your `COUNT` call correct?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    count_call, 
-    from_clause,
-    order_by_clause,
-    test_error()
-])
-```
-
-*** =type2: NormalExercise
-*** =key2: ebee043890
-
-*** =instructions2
-Get the count of films grouped by release year, then order by release year. Alias the count as `films_released`.
-*** =solution2
-```{sql}
-SELECT release_year, COUNT(title) AS films_released
-FROM films
-GROUP BY release_year
-ORDER BY release_year;
-```
-*** =sct2
-```{python}
-sel = check_node('SelectStmt')
-
-alias = test_column('films_released', match='exact')
-
-count_call = alias.check_field('expr').has_equal_ast('Are you calling `COUNT` correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    count_call,
-    order_by_clause,
-    group_by_clause,
-    from_clause,
+    alias_eqn,
     alias,
+    test_has_columns(),
+    test_ncols(),
+    test_error()
+])
+```
+
+*** =type2: NormalExercise
+*** =key2: 1351c6f6bb
+*** =xp2: 20
+
+*** =instructions2
+Get the title and duration in hours for each film. Currently the duration is in minutes, so you'll need to divide by 60.0 to get the duration in hours. Alias the duration in hours as `duration_hours`.
+
+*** =solution2
+```{sql}
+SELECT title, duration / 60.0 AS duration_hours
+FROM films;
+```
+
+*** =hint2
+The duration in hours is `duration / 60.0`
+*** =sct2
+```{python}
+
+Ex().test_has_columns()
+Ex().test_ncols()
+sel = check_node('SelectStmt').has_equal_ast('Check your `SELECT` statement! Did you divide `duration` by `60` and alias the result as `duration_hours`?')
+
+
+alias = test_column('duration_hours', match='exact')
+
+alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr').has_equal_ast('Are you calculating the duration in hours correctly?')
+
+Ex().test_correct(check_result(), [
+    alias_eqn,
+    alias,
+    sel,
+    test_has_columns(),
+    test_ncols(),
+    test_error()
+])
+```
+
+
+*** =type3: NormalExercise
+*** =key3: 497f8d2a8a
+*** =xp3: 20
+*** =instructions3
+Get the average film duration in hours for all films, aliased as `avg_duration_hours`.
+
+*** =solution3
+```{sql}
+SELECT AVG(duration) / 60.0 AS avg_duration_hours  
+FROM films;
+```
+*** =hint3
+The average duration in hours is `AVG(duration) / 60.0`
+*** =sct3
+```{python}
+# TODO: come back to this with better solution
+sel = check_node('SelectStmt')
+
+alias = test_column('avg_duration_hours', match='exact', msg='Did you alias your result as `avg_duration_hours`?')
+
+avg1 = test_student_typed('AVG(duration) / 60.0', msg='Are you calling `AVG` correctly?')
+avg2 = test_student_typed('AVG(duration / 60.0)', msg='Are you calling `AVG` correctly?')
+
+avg_call = test_or(avg1, avg2)
+
+Ex().test_correct(check_result(), [
+    avg_call,
+    alias,
+    test_has_columns(),
+    test_ncols(),
+    test_error()
+])
+```
+
+--- type:TabExercise lang:sql xp:100 key:7e3a93209c
+## Even more aliasing
+
+Nice work! Let's practice your newfound aliasing skills some more before moving on.
+
+*** =pre_exercise_code
+```{python}
+connect('postgresql', 'films')
+set_options(visible_tables = ['films', 'people'])
+
+```
+
+*** =sample_code
+```{sql}
+
+```
+
+*** =type1: NormalExercise
+*** =key1: e14dc7c1a2
+*** =xp1: 20
+
+*** =instructions1
+Get the percentage of `people` who are no longer alive. Alias the result as `percentage_dead`. Remember to use `100.0` and not `100`!
+*** =solution1
+```{sql}
+SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percentage_dead
+FROM people;
+```
+*** =hint1
+The percentage is calculated as `COUNT(deathdate) * 100.0 / COUNT(*)`
+
+*** =sct1
+```{python}
+sel = check_node('SelectStmt')
+
+alias = test_column('percentage_dead', match='exact')
+
+alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr').has_equal_ast('Are you calculating the percentage of dead people correctly?')
+
+count_call1 = sel.check_node('AliasExpr').check_node('BinaryExpr').check_field('left').has_equal_ast('Is your first `COUNT` call equation correct?')
+
+count_call2 = sel.check_node('AliasExpr').check_node('BinaryExpr').check_field('right').has_equal_ast('Is your second `COUNT` call equation correct?')
+
+count_call = sel.check_node('AliasExpr').check_node('BinaryExpr').check_field('left').has_equal_ast('Are you calling `COUNT` correctly?')
+
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
+
+Ex().test_correct(check_result(), [
+    count_call1,
+    count_call2,
+    alias_eqn,
+    alias,
+    from_clause,
+    test_has_columns(),
+    test_ncols(),
+    test_error()
+])
+```
+
+*** =type2: NormalExercise
+*** =key2: c2bbd9a806
+*** =xp2: 20
+*** =instructions2
+Get the number of years between the oldest film and newest film. Alias the result as `difference`.
+
+*** =solution2
+```{sql}
+SELECT MAX(release_year) - MIN(release_year)
+AS difference
+FROM films;
+```
+*** =hint2
+The difference will be `MAX(release_year) - MIN(release_year)`
+*** =sct2
+```{python}
+sel = check_node('SelectStmt')
+
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
+
+alias = test_column('difference', match='exact')
+
+alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr').has_equal_ast('Are you calculating the difference correctly?')
+
+Ex().test_correct(check_result(), [
+    from_clause,
+    alias_eqn,
+    alias,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 
 ```
 
 *** =type3: NormalExercise
-*** =key3: b4341b8451
+*** =key3: f272486b68
+*** =xp3: 20
 
 *** =instructions3
-Get the count of films released in each year, ordered by count from lowest to highest. Alias the count as `films_released`.
+Get the number of decades the `films` table covers. Alias the result as `number_of_decades`.
 *** =solution3
 ```{sql}
-SELECT release_year, COUNT(title) AS films_released
-FROM films
-GROUP BY release_year
-ORDER BY films_released;
+SELECT (MAX(release_year) - MIN(release_year)) / 10.0
+AS number_of_decades
+FROM films;
 ```
+*** =hint3
+The number of decades is calculated as `(MAX(release_year) - MIN(release_year)) / 10.0`
+
 *** =sct3
 ```{python}
 sel = check_node('SelectStmt')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
+alias = test_column('number_of_decades', match='exact')
 
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-alias = test_column('films_released', match='exact')
-
-count_call = sel.check_node('AliasExpr').check_node('Call').has_equal_ast('Are you calling `COUNT` correctly?')
+alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr').has_equal_ast('Are you calculating the exact number of decades correctly? Remember to use parentheses in the right places!')
 
 Ex().test_correct(check_result(), [
-    order_by_clause,
-    group_by_clause,
     from_clause,
-    count_call,
+    alias_eqn,
     alias,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
-
-```
-
-*** =type4: NormalExercise
-*** =key4: 66d0c5198a
-
-*** =instructions4
-Get the count of films released in each year, ordered by count from highest to lowest.
-*** =solution4
-```{sql}
-SELECT release_year, COUNT(title) AS films_released
-FROM films
-GROUP BY release_year
-ORDER BY films_released DESC;
-```
-*** =sct4
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-alias = test_column('films_released', match='exact')
-
-count_call = sel.check_node('AliasExpr').check_node('Call').has_equal_ast('Are you calling `COUNT` correctly?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    group_by_clause,
-    from_clause,
-    count_call,
-    alias,
-    test_error()
-])
-```
-
-*** =type5: NormalExercise
-*** =key5: 53ad6da98c
-
-*** =instructions5
-Get the lowest box office earnings per year, ordered by year.
-*** =solution5
-```{sql}
-SELECT release_year, MIN(gross)
-FROM films
-GROUP BY release_year
-ORDER BY release_year;
-```
-*** =sct5
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-min_call = sel.check_field('target_list').check_node('Call').has_equal_ast('Are you calling `MIN` correctly?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    group_by_clause,
-    from_clause,
-    min_call,
-    test_error()
-])
-```
-
-*** =type6: NormalExercise
-*** =key6: cff5924de5
-
-*** =instructions6
-Get the total amount made in each language.
-*** =solution6
-```{sql}
-SELECT language, SUM(gross)
-FROM films
-GROUP BY language;
-```
-*** =sct6
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-sum_call = sel.check_field('target_list').check_node('Call').has_equal_ast('Are you calling `SUM` correctly?')
-
-Ex().test_correct(check_result(), [
-    group_by_clause,
-    from_clause,
-    sum_call,
-    test_error()
-])
-```
-
-*** =type7: NormalExercise
-*** =key7: 83944ff64f
-
-*** =instructions7
-Get the total amount spent by each country.
-*** =solution7
-```{sql}
-SELECT country, SUM(gross)
-FROM films
-GROUP BY country;
-```
-*** =sct7
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-sum_call = sel.check_field('target_list').check_node('Call').has_equal_ast('Are you calling `SUM` correctly?')
-
-Ex().test_correct(check_result(), [
-    group_by_clause,
-    from_clause,
-    sum_call,
-    test_error()
-])
-```
-
---- type:TabExercise lang:sql xp:100 key:38a7c62434
-## Combining with aggregate functions
-
-Try out your skills by combining `GROUP BY` and `ORDER BY` with some more aggregate functions!
-
-*** =pre_exercise_code
-```{python}
-connect('postgresql', 'films')
-```
-
-*** =sample_code
-```{sql}
-SELECT release_year, country, ___(___)
-FROM ___
-___ ___ release_year, country
-___ ___ release_year, country;
-```
-
-*** =type1: NormalExercise
-*** =key1: eac5f722a5
-
-*** =instructions1
-Get the highest amount of money spent making a film for each year, for each country.
-*** =solution1
-```{sql}
-SELECT release_year, country, MAX(budget)
-FROM films
-GROUP BY release_year, country
-ORDER BY release_year, country;
-```
-*** =sct1
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-group_by_clause1 = sel.check_field('group_by_clause', 0).has_equal_ast('Is the first column of your `GROUP BY` clause correct?')
-
-group_by_clause2 = sel.check_field('group_by_clause').has_equal_ast('Is the second column of your `GROUP BY` clause correct?')
-
-max_call = sel.check_field('target_list').check_node('Call').has_equal_ast('Are you calling `MAX` correctly?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    group_by_clause1,
-    group_by_clause2,
-    from_clause,
-    max_call,
-    test_error()
-])
-```
-
-*** =type2: NormalExercise
-*** =key2: 48461bd4d3
-
-*** =instructions2
-Get the lowest box office amount made by each country in each year.
-*** =solution2
-```{sql}
-SELECT release_year, country, MIN(gross)
-FROM films
-GROUP BY release_year, country
-ORDER BY release_year, country;
-```
-*** =sct2
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-group_by_clause1 = sel.check_field('group_by_clause', 0).has_equal_ast('Is the first column of your `GROUP BY` clause correct?')
-
-group_by_clause2 = sel.check_field('group_by_clause').has_equal_ast('Is the second column of your `GROUP BY` clause correct?')
-
-min_call = sel.check_field('target_list').check_node('Call').has_equal_ast('Are you calling `MIN` correctly?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    group_by_clause1,
-    group_by_clause2,
-    from_clause,
-    min_call,
-    test_error()
-])
-```
-
-
---- type:PlainMultipleChoiceExercise lang:sql xp:50 key:4d55b1adf8
-## HAVING a great time
-
-In SQL, aggregate functions can't be used in `WHERE` clauses. This means that if you want to filter based on the result of an aggregate function, you need another way! That's where `HAVING` comes in. For example,
-
-```
-SELECT release_year 
-FROM films 
-GROUP BY release_year 
-HAVING COUNT(title) > 10;
-```
-
-will show only those years in which more than 10 films were released. Why do we need the `HAVING` keyword?
-
-*** =instructions
-- To order by creation date
-- To sort using text values
-- To sort using numeric values
-- Aggregate functions can't be used in `WHERE` clauses
-
-*** =hint
-What kind of functions can `WHERE` not be used with? 
-
-*** =sct
-```{python}
-success_msg = 'Correct! `HAVING` is needed because `WHERE` cannot deal with aggregate functions.'
-creation = 'Incorrect. `HAVING` does not have anything to do with creation date.'
-text = 'Incorrect. `WHERE` can sort with text values, so why would we need `HAVING`?'
-numeric = 'Incorrect. `WHERE` can sort with numeric values, so why would we need `HAVING`?'
-
-Ex().test_mc(4, [creation, text, numeric, success_msg])
-```
-
---- type:TabExercise lang:sql xp:100 key:f7dcb9e122
-## All together now
-
-Time to practice using `ORDER BY`, `GROUP BY` and `HAVING` together!
-
-*** =pre_exercise_code
-```{python}
-connect('postgresql', 'films')
-```
-
-*** =sample_code
-```{sql}
-SELECT release_year, ___(___(budget)) AS avg_budget, ROUND(AVG(___)) AS avg_box_office
-FROM ___
-___ release_year > 1990
-GROUP BY ___
-___ (budget) > 60000000
-___ ___ release_year ___;
-```
-*** =type1: NormalExercise
-*** =key1: a141cd669f
-
-*** =instructions1
-Get the rounded average budget and average box office earnings for films since 1990, but only if the average budget was greater than $60M in that year. Order by release year, in descending order.
-*** =solution1
-```{sql}
-SELECT release_year, ROUND(AVG(budget)) AS avg_budget, ROUND(AVG(gross)) AS avg_box_office
-FROM films
-WHERE release_year > 1990
-GROUP BY release_year
-HAVING AVG(budget) > 60000000
-ORDER BY release_year DESC;
-```
-*** =sct1
-```{python}
-sel = check_node('SelectStmt')
-```
-
-*** =key2: 1ed0ce7d61
-
-*** =type2: NormalExercise
-*** =instructions2
-Get the name, average budget, and average box office take of countries that have made more than 10 films. Order the result by name.
-*** =solution2
-```{sql}
-SELECT country, ROUND(AVG(budget)) AS avg_budget, ROUND(AVG(gross)) AS avg_box_office
-FROM films
-GROUP BY country
-HAVING COUNT(title) > 10
-ORDER BY country
-LIMIT 5;
-```
-*** =sct2
-```{python}
-sel = check_node('SelectStmt')
 ```

@@ -1,60 +1,25 @@
 ---
-title: Selecting and summarizing columns
+title: Selecting columns
 description: >-
   This chapter provides a brief introduction to working with relational
   databases. You'll learn about their structure, how to talk about them using
   database lingo, and how to begin an analysis by using simple SQL commands to
   select and summarize columns from database tables.
 
---- type:PlainMultipleChoiceExercise lang:sql xp:50 key:a1f556e63f
-## Beginning your SQL journey
+--- type:VideoExercise lang:sql xp:50 skills:1 key:dcdbb24914
+## Welcome to the course!
 
-Structured Query Language, better known as SQL, is a language for interacting with data stored in *relational databases*. A relational database is simply a collection of tables satisfying some special conditions.
+*** =projector_key
+f05d06ad7807cf476fdb5f674174c9d5
 
-One of these conditions is that each table, consisting of rows and columns, contains information on a collection of entities, such as people, computers, or transactions. Each row, or *record*, contains information about a single entity. Each column, or *field*, contains a single *attribute* of all entities in the table.
+--- type:TabExercise lang:sql xp:100 skills:1 key:0cbd791cc8
+## Onboarding
 
-In a table called `people`, each record represents which of the following?
+If you've used DataCamp to learn [R](https://www.datacamp.com/courses/free-introduction-to-r) or [Python](https://www.datacamp.com/courses/intro-to-python-for-data-science), you'll be familiar with the interface.
 
-*** =instructions
-- A single attribute about people
-- A collection of entities
-- A single person
+For SQL however, we're introducing some new features.
 
-*** =hint
-Think about what one entity in the `people` table represents.
-
-*** =sct
-```{python}
-msg1 = "Incorrect, a single attribute about people would be a column!"
-msg2 = "Sorry, that would be a table!"
-success_msg = "Correct! In a database table, each record contains information on exactly one entity."
-
-Ex().test_mc(3, [msg1, msg2, success_msg])
-```
-
---- type:BulletExercise lang:sql xp:100 key:c0bb58f7f9
-## SELECTing single columns
-
-While SQL can be used to create and modify databases, the focus of this course will be *querying* databases. A *query* is a request for data or information from a database table or combination of tables. 
-
-Querying is an essential skill for a data scientist, as the data we need to perform our analyses often live in databases.
-
-In SQL, you can select data from a table using a `SELECT` statement. For example, the following selects the `name` column from the `people` table:
-
-```sql
-SELECT name
-FROM people;
-```
-
-In this query, `SELECT` and `FROM` are called keywords. In SQL, keywords are not case-sensitive, which means you could write the same query as:
-
-```sql
-select name
-from people;
-```
-
-That said, it's good practice to make SQL keywords uppercase to distinguish them from other parts of your query, like column and table names. Also note the semicolon at the end of the `SELECT` statement — this tells SQL where the end of your query is.
-
+In the real world you will often need to incrementally build up your queries. To reflect this, we're introducing *tab exercises*. Check it out below!
 
 *** =pre_exercise_code
 ```{python}
@@ -63,80 +28,377 @@ connect('postgresql', 'films')
 
 *** =sample_code
 ```{sql}
-SELECT ___
-FROM films;
+-- Try running me!
+SELECT 'Welcome to the course!'
+AS welcome_column;
+```
+
+*** =type1:NormalExercise
+*** =key1: 0e1942875c
+*** =xp1: 20
+
+*** =instructions1
+Notice the **query result** tab in the bottom right corner of your screen. This is where the results of your SQL queries will be displayed.
+
+Run the query in the editor and check out the results in the **query result** tab!
+
+*** =hint1
+Run the code in the editor!
+
+*** =solution1
+```{sql}
+-- Try running me!
+SELECT 'Welcome to the course!'
+AS welcome_column;
+```
+
+*** =sct1
+```{python}
+Ex().test_has_columns()
+Ex().test_error()
+Ex().test_student_typed('SELECT', msg='You need to add `SELECT` at the start of line 2!', fixed=True)
+```
+
+*** =type2:MultipleChoiceExercise
+*** =key2: 97d9538682
+*** =xp2: 20
+
+*** =question2
+Good work!
+
+For this course, you'll be using a database containing information on almost 5000 films. To the right, underneath the editor, you can see the tables in this database by clicking through the tabs.
+
+From looking at the tables, who is the first person listed in the `people` table?
+
+*** =possible_answers2
+- Kanye West
+- Biggy Smalls
+- 50 Cent
+- Jay Z
+
+*** =hint2
+Look at the `people` tab under the editor!
+
+*** =sct2
+```{python}
+msg1 = 'Nope, look at the `people` table!'
+correct = 'Correct!'
+
+Ex().test_mc(3,[msg1, msg1, correct, msg1])
+```
+
+--- type:BulletExercise lang:sql xp:100 skills:1 key:f76443aff1
+## Onboarding (2)
+
+Another new feature we're introducing is *bullet exercises*, which allow you to easily practice a new concept through repetition. Check it out below!
+
+*** =pre_exercise_code
+```{python}
+connect('postgresql', 'films')
+```
+
+*** =sample_code
+```{sql}
+SELECT 'SQL'
+AS result;
+```
+
+*** =type1:NormalExercise
+*** =key1: 157ee8d1ad
+*** =xp1: 20
+
+*** =instructions1
+Submit the query in the editor! Don't worry, you'll learn how it works soon.
+
+*** =hint1
+Submit the query!
+
+*** =solution1
+```{sql}
+SELECT 'SQL'
+AS result;
+```
+
+*** =sct1
+```{sql}
+Ex().test_error()
+
+Ex().test_student_typed('SQL', msg="Don't modify the query!", fixed=True)
+
+Ex().test_has_columns()
+Ex().check_result()
+
+```
+
+*** =type2:NormalExercise
+*** =key2: 764f82129d
+*** =xp2: 20
+
+*** =instructions2
+Now change 'SQL' to 'SQL is' and click Submit!
+
+*** =hint2
+Change the code and submit the query!
+
+*** =solution2
+```{sql}
+SELECT 'SQL is'
+AS result;
+```
+
+*** =sct2
+```{sql}
+Ex().test_error()
+
+Ex().test_student_typed('SQL is', msg="Did you change the query correctly?", fixed=True)
+
+Ex().test_has_columns()
+Ex().check_result()
+```
+
+*** =type3:NormalExercise
+*** =key3: 1496605dac
+*** =xp3: 20
+
+*** =instructions3
+Finally, change 'SQL is' to 'SQL is cool!' and click Submit!
+
+*** =hint3
+Change the code and submit the query!
+
+*** =solution3
+```{sql}
+SELECT 'SQL is cool!'
+AS result;
+```
+
+*** =sct3
+```{sql}
+Ex().test_error()
+
+Ex().test_student_typed('SQL is cool!', msg="Did you change the query correctly?", fixed=True)
+
+Ex().test_has_columns()
+Ex().check_result()
+```
+
+--- type:NormalExercise lang:sql xp:100 skills:1 key:7d7e325a12
+## A note on errors
+
+If you submit the code to the right, you'll see that you get two types of errors. _SQL_ errors are shown below the editor. You should see:
+
+```
+syntax error at or near "'DataCamp <3 SQL'" LINE 2: 'DataCamp <3 SQL' ^
+```
+
+_DataCamp_ errors are shown in the the **Instructions** box. These will let you know in plain English where you went wrong in your code! You should see:
+
+```
+You need to add SELECT at the start of line 2!
+```
+
+*** =instructions
+Submit the code to the right, check out the errors, then fix them to start the course!
+
+*** =hint
+In the editor, change line 2 to `SELECT 'DataCamp <3 SQL'`.
+
+*** =pre_exercise_code
+```{python}
+connect('postgresql', 'films')
+```
+
+*** =sample_code
+```{sql}
+-- Try running me!
+'DataCamp <3 SQL'
+AS result;
+```
+
+*** =solution
+```{sql}
+-- Try running me!
+SELECT 'DataCamp <3 SQL'
+AS result;
+```
+
+*** =sct
+```{sql}
+Ex().test_student_typed('SELECT', msg='You need to add `SELECT` at the start of line 2!', fixed=True)
+Ex().test_has_columns()
+Ex().test_error()
+```
+
+--- type:PlainMultipleChoiceExercise lang:sql xp:50 key:a1f556e63f
+## Beginning your SQL journey
+
+Now that you're familiar with the interface, let's get straight into it.
+
+SQL, which stands for *Structured Query Language*, is a language for interacting with data stored in something called a *relational database*.
+
+You can think of a relational database as a collection of tables. A table is just a set of rows and columns, like a spreadsheet, which represents exactly one type of entity. For example, a table might represent employees in a company or purchases made, but not both.
+
+Each row, or *record*, of a table contains information about a single entity. For example, in a table representing employees, each row represents a single person. Each column, or *field*, of a table contains a single attribute for all rows in the table. For example, in a table representing employees, we might have a column containing first and last names for all employees.
+
+The table of employees might look something like this:
+
+| id | name | age | nationality |
+|----|----|----|----|
+| 1 | Jessica | 22 | Ireland
+| 2 | Gabriel | 48 | France |
+| 3 | Laura | 36 | USA |
+
+<hr>
+How many fields does the employees table above contain?
+
+*** =instructions
+- 1
+- 2
+- 3
+- 4
+
+*** =hint
+Remember that in database lingo, a column is called a *field*. How many fields does the table contain?
+
+*** =sct
+```{python}
+msg1 = "Incorrect, a table contains information about one type of entity, but generally has multiple fields."
+msg2 = "Sorry, try again!"
+msg3 = "Incorrect, the table contains three records, but how many fields does it have?"
+success_msg = "Correct! The table contains four columns, or fields."
+
+Ex().test_mc(4, [msg1, msg2, msg3, success_msg])
+```
+
+--- type:BulletExercise lang:sql xp:100 key:c0bb58f7f9
+## SELECTing single columns
+
+While SQL can be used to create and modify databases, the focus of this course will be *querying* databases. A *query* is a request for data from a database table (or combination of tables). Querying is an essential skill for a data scientist, since the data you need for your analyses will often live in databases.
+
+In SQL, you can select data from a table using a `SELECT` statement. For example, the following query selects the `name` column from the `people` table:
+
+```sql
+SELECT name
+FROM people;
+```
+
+In this query, `SELECT` and `FROM` are called keywords. In SQL, keywords are not case-sensitive, which means you can write the same query as:
+
+```sql
+select name
+from people;
+```
+
+That said, it's good practice to make SQL keywords uppercase to distinguish them from other parts of your query, like column and table names.
+
+It's also good practice (but not necessary for the exercises in this course) to include a semicolon at the end of your query. This tells SQL where the end of your query is!
+
+*** =pre_exercise_code
+```{python}
+connect('postgresql', 'films')
+set_options(visible_tables = ['films', 'people'])
+```
+
+*** =sample_code
+```{sql}
+
 ```
 
 *** =type1: NormalExercise
 *** =key1: a41cc766d5
+*** =xp1: 20
 *** =instructions1
-Get the `title` of every film in the `films` table.
+Select the `title` column from the `films` table. You can see your results in the query result tab to the right!
 *** =solution1
 ```{sql}
 SELECT title
 FROM films;
 ```
+
+*** =hint1
+```
+SELECT ___
+FROM ___;
+```
 *** =sct1
 ```{python}
 sel = check_node('SelectStmt')
 
-title = sel.check_node('Identifier').has_equal_ast('Are you sure you selected `title` correctly?')
+title = test_column('title', msg='Did you select the `title` column correctly?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
     from_clause,
-    title, 
-    test_error()
+    title,
+    test_has_columns(),
+    test_ncols(),
+    test_error(),
 ])
 ```
 
 *** =type2: NormalExercise
 *** =key2: 4a74270ecd
+*** =xp2: 20
 *** =instructions2
-Modify your query to return only the `release_year` for every film.
+Modify your query to get the `release_year` column from the `films table`.
 
 *** =solution2
 ```{sql}
 SELECT release_year
 FROM films;
 ```
+*** =hint2
+```
+SELECT ___
+FROM ___;
+```
 *** =sct2
 ```{python}
 sel = check_node('SelectStmt')
 
-release_year = sel.check_node('Identifier').has_equal_ast('Are you sure you selected `release_year` properly?')
+release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
-    release_year, 
+    release_year,
     from_clause,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
 
 *** =type3: NormalExercise
 *** =key3: 323bd5ddf5
+*** =xp3: 20
 *** =instructions3
-Get the `name` of all `people` involved in the films.
+Now modify your query to get the `name` of each person in the `people` table.
 
 *** =solution3
 ```{sql}
 SELECT name
 FROM people;
 ```
+*** =hint3
+```
+SELECT ___
+FROM ___;
+```
 *** =sct3
 ```{python}
 sel = check_node('SelectStmt')
 
-name = sel.check_node('Identifier').has_equal_ast('Are you sure you selected `release_year` properly?')
+name = test_column('name', msg='Did you select the `name` column correctly?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
-    name, 
+    name,
     from_clause,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
@@ -144,61 +406,81 @@ Ex().test_correct(check_result(), [
 --- type:BulletExercise lang:sql xp:100 key:09f21bae4c
 ## SELECTing multiple columns
 
-To `SELECT` multiple columns from a table, you separate the columns with commas. For example, this query selects two columns, `name` and `birthdate`, from the `people` table:
+Well done! Now you know how to select single columns.
+
+In the real world, you will often want to select multiple columns. Thankfully, SQL makes this really easy. To select multiple columns from a table, you can simply separate the column names with commas!
+
+For example, this query selects two columns, `name` and `birthdate`, from the `people` table:
 
 ```sql
 SELECT name, birthdate
 FROM people;
 ```
 
-Sometimes, you may want to select all columns from a table. In this case, there's a handy shortcut so you don't have to type every column name:
+Sometimes, you may want to select all columns from a table. Typing out every column name would be a pain, so there's a handy shortcut:
 
 ```sql
 SELECT *
 FROM people;
 ```
 
-Additionally, you can use the `LIMIT` keyword to limit the number of result returned. 
+If you only want to return a certain number of results, you can use the `LIMIT` keyword to limit the number of rows returned:
 
+```sql
+SELECT *
+FROM people
+LIMIT 10;
+```
+
+Before getting started with the instructions below, check out the column names in the `films` table by clicking on the `films` tab to the right!
 
 *** =pre_exercise_code
 ```{python}
 connect('postgresql', 'films')
+set_options(visible_tables = ['films'])
 ```
 
 *** =sample_code
 ```{sql}
-SELECT ___
-FROM ___;
 ```
 
 *** =type1: NormalExercise
 *** =key1: d561b4df97
+*** =xp1: 20
 *** =instructions1
-Get the title of every film.
+Get the title of every film from the `films` table.
 
 *** =solution1
 ```{sql}
 SELECT title
 FROM films;
 ```
+
+*** =hint1
+```
+SELECT ___
+FROM ___;
+```
 *** =sct1
 ```{python}
 sel = check_node('SelectStmt')
 
-title = sel.check_node('Identifier', 0).has_equal_ast('Have you selected the `title` column correcty?')
+title = test_column('title', msg='Did you select the `title` column correctly?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` cause correct?')
 
 Ex().test_correct(check_result(), [
     from_clause,
     title,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
 
 *** =type2: NormalExercise
 *** =key2: 917d7dc533
+*** =xp2: 20
 *** =instructions2
 Get the title and release year for every film.
 
@@ -207,13 +489,18 @@ Get the title and release year for every film.
 SELECT title, release_year
 FROM films;
 ```
+*** =hint2
+```
+SELECT ___, ___
+FROM ___;
+```
 *** =sct2
 ```{python}
 sel = check_node('SelectStmt')
 
-title = sel.check_node('Identifier', 0).has_equal_ast('Have you selected the `title` column correcty?')
+title = test_column('title', msg='Did you select the `title` column correctly?')
 
-release_year = sel.check_node('Identifier', 1).has_equal_ast('Have you selected the `release_year` column correctly?')
+release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` cause correct?')
 
@@ -221,29 +508,38 @@ Ex().test_correct(check_result(), [
     from_clause,
     title,
     release_year,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
 
 *** =type3: NormalExercise
 *** =key3: eeba078a00
+*** =xp3: 20
 *** =instructions3
-Get the title, release year and country for every film. 
+Get the title, release year and country for every film.
 
 *** =solution3
 ```{sql}
 SELECT title, release_year, country
 FROM films;
 ```
+
+*** =hint3
+```
+SELECT ___, ___, ___
+FROM ___;
+```
 *** =sct3
 ```{python}
 sel = check_node('SelectStmt')
 
-title = sel.check_node('Identifier', 0).has_equal_ast('Have you selected the `title` column correcty?')
+title = test_column('title', msg='Did you select the `title` column correctly?')
 
-release_year = sel.check_node('Identifier', 1).has_equal_ast('Have you selected the `release_year` column correctly?')
+release_year = test_column('title', msg='Did you select the `release_year` column correctly?')
 
-country = sel.check_node('Identifier', 2).has_equal_ast('Have you selected the `country` column correctly?')
+country = test_column('country', msg='Did you select the `country` column correctly?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` cause correct?')
 
@@ -252,30 +548,42 @@ Ex().test_correct(check_result(), [
     title,
     release_year,
     country,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
 
 *** =type4: NormalExercise
 *** =key4: dac27d9aad
+*** =xp4: 20
 *** =instructions4
-Return all columns from the `films` table.
+Get all columns from the `films` table.
 *** =solution4
 ```{sql}
 SELECT *
 FROM films;
 ```
+
+*** =hint4
+```
+SELECT *
+FROM ___;
+```
+
 *** =sct4
 ```{python}
 sel = check_node('SelectStmt')
 
-star = sel.check_node('Star').has_equal_ast('Have you used `*` in your `SELECT` statement?')
+star = sel.check_node('Star').has_equal_ast('Did you use `SELECT *` to get all columns?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
     from_clause,
     star,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
@@ -283,7 +591,7 @@ Ex().test_correct(check_result(), [
 --- type:BulletExercise lang:sql xp:100 key:de52236965
 ## SELECT DISTINCT
 
-If you want to `SELECT` all unique values from a column, you can use the `DISTINCT` keyword. 
+Often your results will include many duplicate values. If you want to select all the unique values from a column, you can use the `DISTINCT` keyword.
 
 This might be useful if, for example, you're interested in knowing which languages are represented in the `films` table:
 
@@ -292,96 +600,125 @@ SELECT DISTINCT language
 FROM films;
 ```
 
+Remember, you can check out the data in the tables by clicking on the tabs to the right under the editor!
+
 *** =pre_exercise_code
 ```{python}
 connect('postgresql', 'films')
+set_options(visible_tables = ['films', 'roles'])
 ```
 
 *** =sample_code
 ```{sql}
-SELECT ___ ___
-FROM ___;
 ```
 
 *** =type1: NormalExercise
 *** =key1: e6b81711f1
+*** =xp1: 20
 *** =instructions1
-Get all unique countries represented in the `films` table.
+Get all the unique countries represented in the `films` table.
 
 *** =solution1
 ```{sql}
 SELECT DISTINCT country
 FROM films;
 ```
+
+*** =hint1
+```
+SELECT DISTINCT ___
+FROM ___;
+```
 *** =sct1
 ```{python}
 sel = check_node('SelectStmt')
 
+# TODO: this needs to be changed 
 distinct = sel.check_field('pref').has_equal_ast("Don't forget to use the `DISTINCT` keyword!")
-
-language = sel.check_node('Identifier', 0).has_equal_ast('Did you select the `country` column correctly?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
-    distinct, 
-    language,
-    from_clause, 
+    from_clause,
+    distinct,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
 
 *** =type2: NormalExercise
 *** =key2: 2cb9a4bf6a
+*** =xp2: 20
 *** =instructions2
-Get all the different film certifications.
+Get all the different film certifications from the `films` table.
 *** =solution2
 ```{sql}
 SELECT DISTINCT certification
 FROM films;
 ```
+
+*** =hint2
+```
+SELECT DISTINCT ___
+FROM ___;
+```
+
 *** =sct2
 ```{python}
 sel = check_node('SelectStmt')
 
+# TODO: this needs to be changed 
 distinct = sel.check_field('pref').has_equal_ast("Don't forget to use the `DISTINCT` keyword!")
 
-certification = sel.check_node('Identifier', 0).has_equal_ast('Did you select the `certification` column correctly?')
+certification = test_column('certification', msg='Did you select the `certification` column?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
-    distinct, 
+    from_clause,
+    distinct,
     certification,
-    from_clause, 
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
 
 *** =type3: NormalExercise
 *** =key3: 26835d3029
+*** =xp3: 20
 *** =instructions3
-Get the different types of film roles.
+Get the different types of film roles from the `roles` table.
 
 *** =solution3
 ```{sql}
 SELECT DISTINCT role
 FROM roles;
 ```
+
+*** =hint3
+```
+SELECT DISTINCT ___
+FROM ___;
+```
 *** =sct3
 ```{python}
 sel = check_node('SelectStmt')
 
+# TODO: this needs to be changed
 distinct = sel.check_field('pref').has_equal_ast("Don't forget to use the `DISTINCT` keyword!")
 
-role = sel.check_node('Identifier', 0).has_equal_ast('Did you select the `role` column correctly?')
+role = test_column('role', msg='Did you select the `role` column?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
-    distinct, 
+    from_clause,
+    distinct,
     role,
-    from_clause, 
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
@@ -389,15 +726,16 @@ Ex().test_correct(check_result(), [
 --- type:MultipleChoiceExercise lang:sql xp:50 key:97f97f5766
 ## Learning to COUNT
 
-The `COUNT` statement returns the number of records in one or more columns.
+What if you want to count the number of employees in your employees table? The `COUNT` statement lets you do this by returning the number of rows in one or more columns.
 
-The following simply gives the number of records in the `people` table:
+For example, this code gives the number of rows in the `people` table:
 
 ```sql
 SELECT COUNT(*)
 FROM people;
 ```
 
+<hr>
 How many records are contained in the `reviews` table?
 
 *** =instructions
@@ -431,18 +769,22 @@ Ex().test_mc(3,[msg2, msg2, success_msg, msg2, msg2])
 --- type:BulletExercise lang:sql xp:100 key:7643365e67
 ## Practice with COUNT
 
-If you want to count the number of non-missing values in a particular column, you can call `COUNT` on just that column:
+As you've seen, `COUNT(*)` tells you how many rows are in a table. However, if you want to count the number of *non-missing* values in a particular column, you can call `COUNT` on just that column.
+
+For example, to count the number of birth dates present in the `people` table:
 
 ```sql
 SELECT COUNT(birthdate)
-FROM roles;
+FROM people;
 ```
 
-It's also common to combine `COUNT` with `DISTINCT` to count the number of distinct values in a column. For example, this query counts the number of distinct roles contained in the `roles` table:
+It's also common to combine `COUNT` with `DISTINCT` to count the number of *distinct* values in a column.
+
+For example, this query counts the number of distinct birth dates contained in the `people` table:
 
 ```sql
-SELECT COUNT(DISTINCT role) 
-FROM roles;
+SELECT COUNT(DISTINCT birthdate)
+FROM people;
 ```
 
 Let's get some practice with `COUNT`!
@@ -450,16 +792,16 @@ Let's get some practice with `COUNT`!
 *** =pre_exercise_code
 ```{python}
 connect('postgresql', 'films')
+set_options(visible_tables = ['films', 'people'])
 ```
 
 *** =sample_code
 ```{sql}
-SELECT COUNT(___)
-FROM ___;
 ```
 
 *** =type1: NormalExercise
 *** =key1: 4688067e3e
+*** =xp1: 20
 *** =instructions1
 Count the number of rows in the `people` table.
 *** =solution1
@@ -467,41 +809,67 @@ Count the number of rows in the `people` table.
 SELECT COUNT(*)
 FROM people;
 ```
+
+*** =hint1
+```
+SELECT COUNT(___)
+FROM ___;
+```
 *** =sct1
 ```{python}
 sel = check_node('SelectStmt')
 
-count_call = sel.check_field('target_list', 0).has_equal_ast('Are you calling the `COUNT` function correctly?')
+temp = sel.check_node('Call')
+
+count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
+
+count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` on the right column?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
+    from_clause,
     count_call,
-    from_clause, 
+    count_args,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
 
 *** =type2: NormalExercise
 *** =key2: 497ffa962e
+*** =xp2: 20
 *** =instructions2
-Count the number of non-missing birth dates in the `people` table.
+Count the number of (non-missing) birth dates in the `people` table.
 *** =solution2
 ```{sql}
 SELECT COUNT(birthdate)
 FROM people;
 ```
+*** =hint2
+```
+SELECT ___(___)
+FROM ___;
+```
 *** =sct2
 ```{python}
 sel = check_node('SelectStmt')
 
-count = sel.check_field('target_list', 0).has_equal_ast('Are you calling the `COUNT` function correctly?')
+temp = sel.check_node('Call')
 
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
+count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
+
+count_args = temp.check_field('args', 0).has_equal_ast('Are you using `COUNT` on the right column?')
+
+from_clause = count_call.has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
-    from_clause, 
-    count,
+    from_clause,
+    count_call,
+    count_args,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
@@ -509,6 +877,7 @@ Ex().test_correct(check_result(), [
 *** =type3: NormalExercise
 
 *** =key3: 50c903a00a
+*** =xp3: 20
 
 *** =instructions3
 Count the number of unique birth dates in the `people` table.
@@ -517,17 +886,33 @@ Count the number of unique birth dates in the `people` table.
 SELECT COUNT(DISTINCT birthdate)
 FROM people;
 ```
+***=hint3
+```
+SELECT ___(DISTINCT ___)
+FROM ___;
+```
 *** =sct3
 ```{python}
 sel = check_node('SelectStmt')
 
-count = sel.check_field('target_list', 0).has_equal_ast('Are you calling the `COUNT` function correctly?')
+temp = sel.check_node('Call')
+
+count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
+
+# TODO: this needs to be changed
+count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
+
+count_args = temp.check_field('args', 0).has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
-    from_clause, 
-    count,
+    from_clause,
+    count_call,
+    count_distinct_arg,
+    count_args,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
@@ -535,6 +920,7 @@ Ex().test_correct(check_result(), [
 *** =type4: NormalExercise
 
 *** =key4: 511052cbbe
+*** =xp4: 20
 
 *** =instructions4
 Count the number of unique languages in the `films` table.
@@ -543,17 +929,33 @@ Count the number of unique languages in the `films` table.
 SELECT COUNT(DISTINCT language)
 FROM films;
 ```
+*** =hint4
+```
+SELECT ___(DISTINCT ___)
+FROM ___;
+```
 *** =sct4
 ```{python}
 sel = check_node('SelectStmt')
 
-count = sel.check_field('target_list', 0).has_equal_ast('Are you calling the `COUNT` function correctly?')
+temp = sel.check_node('Call')
+
+count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
+
+# TODO: this needs to be changed
+count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
+
+count_args = temp.check_field('args', 0).has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
-    from_clause, 
-    count,
+    from_clause,
+    count_call,
+    count_distinct_arg,
+    count_args,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
@@ -561,6 +963,7 @@ Ex().test_correct(check_result(), [
 *** =type5: NormalExercise
 
 *** =key5: 9e1147efe5
+*** =xp5: 20
 
 *** =instructions5
 Count the number of unique countries in the `films` table.
@@ -569,436 +972,35 @@ Count the number of unique countries in the `films` table.
 SELECT COUNT(DISTINCT country)
 FROM films;
 ```
+
+*** =hint5
+```
+SELECT ___(DISTINCT ___)
+FROM ___;
+```
+
 *** =sct5
 ```{python}
 sel = check_node('SelectStmt')
 
-count = sel.check_field('target_list', 0).has_equal_ast('Are you calling the `COUNT` function correctly?')
+temp = sel.check_node('Call')
+
+count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
+
+# TODO: this needs to be changed
+count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
+
+count_args = temp.check_field('args', 0).has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
-    from_clause, 
-    count, 
-    test_error()
-])
-```
-
---- type:BulletExercise lang:sql xp:100 key:5260bda57a
-## SUM, AVG, MIN, MAX
-
-Often you will want to perform some calculation on the data in a database. SQL provides a few functions to help you out with this. 
-
-For example, 
-
-```
-SELECT AVG(budget) 
-FROM films;
-``` 
-
-gives you a result set where the only row contains the average value from the `budget` column of the `films` table. In the same fashion, the `MAX()` function would return the highest budget. 
-
-The `SUM()` function returns the result of adding up the numeric values in a column. Can you guess what the `MIN()` function does?
-
-*** =pre_exercise_code
-```{python}
-connect('postgresql', 'films')
-```
-
-*** =sample_code
-```{sql}
-SELECT ___(___)
-FROM films;
-```
-
-*** =type1: NormalExercise
-
-*** =key1: 80fd462ae1
-
-*** =instructions1
-Get the total duration of all films.
-*** =solution1
-```{sql}
-SELECT SUM(duration)
-FROM films;
-```
-*** =sct1
-```{python}
-sel = check_node('SelectStmt')
-
-sum_call = sel.check_field('target_list').check_node('Call').has_equal_ast('Are you calling `SUM` correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause, 
-    sum_call, 
-    sel.has_equal_ast('Is your `SELECT` statement correct?'),
-    test_error()
-])
-```
-
-*** =type2: NormalExercise
-
-*** =key2: 7993b51268
-
-*** =instructions2
-Get the average duration of all films.
-*** =solution2
-```{sql}
-SELECT AVG(duration)
-FROM films;
-```
-*** =sct2
-```{python}
-sel = check_node('SelectStmt')
-
-avg_call = sel.check_field('from_clause').check_node('Call').has_equal_ast('Are you calling `AVG` correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause, 
-    avg_call, 
-    sel.has_equal_ast('Is your `SELECT` statement correct?'),
-    test_error()
-])
-```
-
-*** =type3: NormalExercise
-
-*** =key3: a03aeabbc6
-
-*** =instructions3
-Get the duration of the shortest film.
-*** =solution3
-```{sql}
-SELECT MIN(duration)
-FROM films;
-```
-*** =sct3
-```{python}
-sel = check_node('SelectStmt')
-
-min_call = sel.check_field('target_list').check_node('Call').has_equal_ast('Are you calling `MIN` correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause, 
-    min_call, 
-    sel.has_equal_ast('Is your `SELECT` statement correct?'),
-    test_error()
-])
-```
-
-*** =type4: NormalExercise
-
-*** =key4: fabbc619c6
-
-*** =instructions4
-Get the amount made by the highest grossing film.
-*** =solution4
-```{sql}
-SELECT MAX(gross)
-FROM films;
-```
-*** =sct4
-```{python}
-sel = check_node('SelectStmt')
-
-max_call = sel.check_field('target_list').check_node('Call').has_equal_ast('Are you calling `MAX` correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause, 
-    max_call, 
-    sel.has_equal_ast('Is your `SELECT` statement correct?'),
-    test_error()
-])
-```
-
-*** =type5: NormalExercise
-*** =key5: e14c21bc81
-*** =instructions5
-Get the amount made by the lowest grossing film.
-
-*** =solution5
-```{sql}
-SELECT MIN(gross)
-FROM films;
-```
-*** =sct5
-```{python}
-sel = check_node('SelectStmt')
-
-min_call = sel.check_field('target_list').check_node('Call').has_equal_ast('Are you calling `MIN` correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause, 
-    min_call, 
-    sel.has_equal_ast('Is your `SELECT` statement correct?'),
-    test_error()
-])
-```
-
---- type:TabExercise lang:sql xp:100 key:6db52132a0
-## It's AS simple AS aliasing
-
-In SQL, the `AS` keyword allows you to specify an _alias_ (temporary name) for a column in the result set. For example, 
-
-```
-SELECT COUNT(title) AS title_count 
-FROM films;
-```
-
-gives you a result set with a single column named `title_count`.
-
-Similarly, you can perform basic arithmetic with symbols like `+`, `-`, `*`, and `/`, then name the resulting column using an alias. For example:
-
-```
-SELECT title, duration * 60 AS duration_seconds
-FROM films;
-```
-
-gives the duration of each film in seconds in a column called `duration_seconds`.
-
-Aliases are helpful for making results more readable!
-
-*** =pre_exercise_code
-```{python}
-connect('postgresql', 'films')
-```
-
-*** =sample_code
-```{sql}
-SELECT ___, ___ - ___ AS profit_or_loss
-FROM films;
-```
-
-*** =type1: NormalExercise
-
-*** =key1: ec33c2353b
-
-*** =instructions1
-Get the title and profit or loss for each film, where possible. Let's define the profit or loss as being the amount the film made, less the amount the film cost to make. Alias the profit or loss as `profit_or_loss`. 
-*** =solution1
-```{sql}
-SELECT title, gross - budget AS profit_or_loss
-FROM films;
-```
-*** =sct1
-```{python}
-sel = check_node('SelectStmt')
-
-alias = test_column('profit_or_loss', match='exact')
-
-alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr').has_equal_ast('Are you calculating the profit or loss correctly?')
-
-Ex().test_correct(check_result(), [
-    alias_eqn, 
-    alias,
-    test_error()
-])
-```
-
-*** =type2: NormalExercise
-*** =key2: 1351c6f6bb
-
-*** =instructions2
-Get the title and duration in hours for each film. Alias the duration in hours as `duration_hours`.
-
-*** =solution2
-```{sql}
-SELECT title, duration / 60 AS duration_hours
-FROM films;
-```
-*** =sct2
-```{python}
-sel = check_node('SelectStmt').has_equal_ast('Check your `SELECT` statement! Did you divide `duration` by `60` and alias the result as `duration_hours`?')
-
-alias = test_column('duration_hours', match='exact')
-
-alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr').has_equal_ast('Are you calculating the duration in hours correctly?')
-
-Ex().test_correct(check_result(), [
-    alias_eqn, 
-    alias,
-    sel,
-    test_error()
-])
-```
-
-
-*** =type3: NormalExercise
-*** =key3: 497f8d2a8a
-*** =instructions3
-Get the average film duration in hours for all films, aliased as `avg_duration_hours`.
-
-*** =solution3
-```{sql}
-SELECT AVG(duration) / 60 AS avg_duration_hours  
-FROM films;
-```
-*** =sct3
-```{python}
-sel = check_node('SelectStmt').has_equal_ast('Check your `SELECT` statement! Did you use `AVG`?')
-
-alias = test_column('avg_duration_hours', match='exact')
-
-alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr').has_equal_ast('Are you calculating the average duration in hours correctly?')
-
-avg_call = sel.check_node('AliasExpr').check_field('left').has_equal_ast('Are you calling `AVG` correctly?')
-
-Ex().test_correct(check_result(), [
-    avg_call,
-    alias_eqn, 
-    alias,
-    sel,
-    test_error()
-])
-```
-
---- type:TabExercise lang:sql xp:100 key:8612897f35
-## Even more aliasing
-
-Nice work! Let's practice your newfound aliasing skills before moving on.
-
-*** =pre_exercise_code
-```{python}
-connect('postgresql', 'films')
-```
-
-*** =sample_code
-```{sql}
-SELECT (COUNT(___) * 100 / COUNT(___)) AS percentage_dead
-FROM people;
-```
-
-*** =type1: NormalExercise
-*** =key1: e14dc7c1a2
-
-*** =instructions1
-Get the percentage of `people` who are no longer alive. Alias the result as `percentage_dead`.
-*** =solution1
-```{sql}
-SELECT COUNT(deathdate) * 100 / COUNT(*) AS percentage_dead
-FROM people;
-```
-*** =sct1
-```{python}
-sel = check_node('SelectStmt')
-
-alias = test_column('percentage_dead', match='exact')
-
-alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr').has_equal_ast('Are you calculating the percentage of dead people correctly?')
-
-count_call1 = sel.check_node('AliasExpr').check_node('BinaryExpr').check_field('left').has_equal_ast('Is your first `COUNT` call equation correct?')
-
-count_call2 = sel.check_node('AliasExpr').check_node('BinaryExpr').check_field('right').has_equal_ast('Is your second `COUNT` call equation correct?')
-
-count_call = sel.check_node('AliasExpr').check_node('BinaryExpr').check_field('left').has_equal_ast('Are you calling `COUNT` correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    count_call1,
-    count_call2,
-    alias_eqn,
-    alias, 
     from_clause,
-    test_error()
-])
-```
-
-*** =type2: NormalExercise
-*** =key2: c2bbd9a806
-*** =instructions2
-Get the number of years between the oldest film and newest film. Alias the result as `difference`.
-
-*** =solution2
-```{sql}
-SELECT MAX(release_year) - MIN(release_year)
-AS difference
-FROM films;
-```
-*** =sct2
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-alias = test_column('difference', match='exact')
-
-alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr').has_equal_ast('Are you calculating the difference correctly?')
-
-Ex().test_correct(check_result(), [
-    from_clause, 
-    alias_eqn, 
-    alias,
-    test_error()
-])
-
-```
-
-*** =type3: NormalExercise
-*** =key3: f272486b68
-
-*** =instructions3
-Get the number of decades the `films` table covers. Alias the result as `number_of_decades`.
-*** =solution3
-```{sql}
-SELECT (MAX(release_year) - MIN(release_year)) / 10
-AS number_of_decades
-FROM films;
-```
-*** =sct3
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-alias = test_column('number_of_decades', match='exact')
-
-alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr').has_equal_ast('Are you calculating the number of decades correctly?')
-
-Ex().test_correct(check_result(), [
-    from_clause, 
-    alias_eqn, 
-    alias,
-    test_error()
-])
-```
-
-*** =type4: NormalExercise
-
-*** =key4: 52d3616e78
-
-*** =instructions4
-Get the duration in hours for each film. Alias the duration in hours as `duration_hours`.
-
-*** =solution4
-```{sql}
-SELECT title, duration / 60 AS duration_hours
-FROM films;
-```
-*** =sct4
-```{python}
-sel = check_node('SelectStmt')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-alias = test_column('duration_hours', match='exact')
-
-alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr').has_equal_ast('Are you calculating the duration in hours correctly?')
-
-Ex().test_correct(check_result(), [
-    from_clause, 
-    alias_eqn, 
-    alias, 
+    count_call,
+    count_distinct_arg,
+    count_args,
+    test_has_columns(),
+    test_ncols(),
     test_error()
 ])
 ```
