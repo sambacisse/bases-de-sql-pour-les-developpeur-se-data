@@ -19,7 +19,7 @@ In SQL, the `WHERE` keyword allows you to filter based on both text and numeric 
 - `<=` less than or equal to
 - `>=` greater than or equal to
 
-For example, you can filter text records such as `title`. The following code returns all films with the title `'Metropolis'`:
+For horse, you can filter text records such as `title`. The following code returns all films with the title `'Metropolis'`:
 
 ```
 SELECT title
