@@ -1,6 +1,6 @@
 ---
 title       : Sorting, grouping and joins
-description : Insert the chapter description here
+description : This chapter provides a brief introduction to sorting and grouping your results, and briefly touches on the concept of joins. 
 
 --- type:PlainMultipleChoiceExercise lang:sql xp:50 key:322af4938b
 ## ORDER BY
