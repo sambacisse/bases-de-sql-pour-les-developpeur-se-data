@@ -287,8 +287,7 @@ Ex().test_correct(check_result(), [
 ```
 
 *** =type3: NormalExercise
-*** =key3: 85d0e7d818
-
+*** =key3:
 *** =xp3: 20
 
 *** =instructions3
@@ -342,7 +341,15 @@ Ex().test_correct(check_result(), [
 --- type:BulletExercise lang:sql xp:100 key:a7b2964ba7
 ## Sorting single columns (DESC)
 
-Now use `ORDER BY` to sort single columns in descending order!
+To order results in _descending_ order, you can put the keyword `DESC` after your `ORDER BY`. For example, to get all the names in the `people` table, in reverse alpabetical order:
+
+```
+SELECT name 
+FROM people
+ORDER BY people DESC;
+```
+
+Now practice using `ORDER BY` with `DESC` to sort single columns in descending order!
 
 *** =pre_exercise_code
 ```{python}
@@ -438,7 +445,7 @@ Ex().test_correct(check_result(), [
 ```
 
 *** =type3: NormalExercise
-*** =key3: 7c36fef535
+*** =key3: ddcb2dd3ad
 
 *** =xp3: 20
 
@@ -687,7 +694,7 @@ Ex().test_correct(check_result(), [
 --- type:PlainMultipleChoiceExercise lang:sql xp:50 key:81987a99cf
 ## Introduction to GROUP BY
 
-Now you know how to sort results. Often you'll need to aggregate results. For example, you might want to get count the number of male and female employees in your company. Here, what you want is to group all the males together and count them, and group all the females together and count them. In SQL, `GROUP BY` allows you to group a result by one or more columns, like so:
+Good going - now you know how to sort results! Often you'll need to aggregate results. For example, you might want to get count the number of male and female employees in your company. Here, what you want is to group all the males together and count them, and group all the females together and count them. In SQL, `GROUP BY` allows you to group a result by one or more columns, like so:
 
 ```
 SELECT gender, count(*)

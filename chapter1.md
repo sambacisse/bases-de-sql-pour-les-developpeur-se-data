@@ -362,8 +362,8 @@ release_year = test_column('release_year', msg='Did you select the `release_year
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
-    release_year,
     from_clause,
+    release_year,
     test_has_columns(),
     test_ncols(),
     test_error()
@@ -395,8 +395,8 @@ name = test_column('name', msg='Did you select the `name` column correctly?')
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
-    name,
     from_clause,
+    name,
     test_has_columns(),
     test_ncols(),
     test_error()
@@ -408,7 +408,7 @@ Ex().test_correct(check_result(), [
 
 Well done! Now you know how to select single columns.
 
-In the real world, you will often want to select multiple columns. Thankfully, SQL makes this really easy. To select multiple columns from a table, you can simply separate the column names with commas!
+In the real world, you will often want to select multiple columns. Luckily, SQL makes this really easy. To select multiple columns from a table, simply separate the column names with commas!
 
 For example, this query selects two columns, `name` and `birthdate`, from the `people` table:
 
@@ -636,10 +636,13 @@ sel = check_node('SelectStmt')
 # TODO: this needs to be changed 
 distinct = sel.check_field('pref').has_equal_ast("Don't forget to use the `DISTINCT` keyword!")
 
+country = test_column('country', msg='Did you select the `country` column?')
+
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
     from_clause,
+    country,
     distinct,
     test_has_columns(),
     test_ncols(),
@@ -677,8 +680,8 @@ from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` claus
 
 Ex().test_correct(check_result(), [
     from_clause,
-    distinct,
     certification,
+    distinct,
     test_has_columns(),
     test_ncols(),
     test_error()
@@ -831,6 +834,7 @@ Ex().test_correct(check_result(), [
     from_clause,
     count_call,
     count_args,
+    count_call,
     test_has_columns(),
     test_ncols(),
     test_error()
@@ -860,7 +864,7 @@ temp = sel.check_node('Call')
 
 count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
 
-count_args = temp.check_field('args', 0).has_equal_ast('Are you using `COUNT` on the right column?')
+count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` on the right column?')
 
 from_clause = count_call.has_equal_ast('Is your `FROM` clause correct?')
 
@@ -897,19 +901,18 @@ sel = check_node('SelectStmt')
 
 temp = sel.check_node('Call')
 
-count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
+count_call = temp.check_field('name').has_equal_ast('Are you using `COUNT` with `DISTINCT`?')
 
 # TODO: this needs to be changed
-count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
+# count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
 
-count_args = temp.check_field('args', 0).has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
+count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
     from_clause,
     count_call,
-    count_distinct_arg,
     count_args,
     test_has_columns(),
     test_ncols(),
@@ -940,19 +943,18 @@ sel = check_node('SelectStmt')
 
 temp = sel.check_node('Call')
 
-count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
+count_call = temp.check_field('name').has_equal_ast('Are you using `COUNT` with `DISTINCT`?')
 
 # TODO: this needs to be changed
-count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
+# count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
 
-count_args = temp.check_field('args', 0).has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
+count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
     from_clause,
     count_call,
-    count_distinct_arg,
     count_args,
     test_has_columns(),
     test_ncols(),
@@ -985,19 +987,18 @@ sel = check_node('SelectStmt')
 
 temp = sel.check_node('Call')
 
-count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
+count_call = temp.check_field('name').has_equal_ast('Are you using `COUNT` with `DISTINCT`?')
 
 # TODO: this needs to be changed
-count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
+# count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
 
-count_args = temp.check_field('args', 0).has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
+count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 Ex().test_correct(check_result(), [
     from_clause,
     count_call,
-    count_distinct_arg,
     count_args,
     test_has_columns(),
     test_ncols(),

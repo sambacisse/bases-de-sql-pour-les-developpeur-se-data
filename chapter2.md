@@ -58,7 +58,7 @@ Ex().test_mc(2, [msg2, success_msg, msg2, msg2])
 --- type:BulletExercise lang:sql xp:100 key:b90db25f34
 ## Simple filtering of numeric values
 
-As you learned in the previous exercise, the `WHERE` clause can be be used to filter numeric records, such as years or ages.
+As you learned in the previous exercise, the `WHERE` clause can also be used to filter numeric records, such as years or ages.
 
 For example, the following query selects all details for films with a budget over ten thousand dollars:
 
@@ -597,7 +597,7 @@ Ex().test_correct(check_result(), [
 --- type:TabExercise lang:sql xp:100 key:ecc1838fc7
 ## WHERE AND OR
 
-What if you want to select rows based on multiple conditions where some, but not necessarily all, of the conditions need to be met? For this, SQL has the `OR` clause.
+What if you want to select rows based on multiple conditions where some but not _all_ of the conditions need to be met? For this, SQL has the `OR` clause.
 
 For example, the following returns all films released in *either* 1994 or 2000:
 
@@ -1052,7 +1052,7 @@ Ex().test_correct(check_result(), [
 
 *** =type4: NormalExercise
 
-*** =key4: a5bba4c09d
+*** =key4: 73d020dfab
 
 *** =xp4: 20
 
@@ -1510,7 +1510,7 @@ FROM companies
 WHERE name LIKE 'DataC_mp';
 ```
 
-You can also use the `NOT LIKE' operator to find records that *don't* match the pattern you specify.
+You can also use the `NOT LIKE` operator to find records that *don't* match the pattern you specify.
 
 Got it? Let's practice!
 

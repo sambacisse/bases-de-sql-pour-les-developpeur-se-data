@@ -1,6 +1,6 @@
 ---
 title       : Aggregate Functions
-description : This chapter builds on the first two by teaching you how to use aggregate functions to gain useful insights from your data. Additionally, you'll learn about arithmetic in SQL, and how to use aliases to make your results more readable! 
+description : This chapter builds on the first two by teaching you how to use aggregate functions to summarize your data and gain useful insights. Additionally, you'll learn about arithmetic in SQL, and how to use aliases to make your results more readable! 
 
 
 --- type:BulletExercise lang:sql xp:100 key:b883e7079f
@@ -194,7 +194,7 @@ Ex().test_correct(check_result(), [
 --- type:BulletExercise lang:sql xp:100 key:e60103b3f1
 ## SUM, AVG, MIN, MAX (2)
 
-something something
+Good work. Aggregate functions are important to understand, so let's get some more practice!
 
 *** =pre_exercise_code
 ```{python}
@@ -208,7 +208,7 @@ set_options(visible_tables = ['films'])
 
 *** =type1: NormalExercise
 
-*** =key1: fb0e8eca25
+*** =key1: c8173b7d3e
 
 *** =xp1: 20
 
@@ -247,7 +247,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 
-*** =key2: 20de6d5d9e
+*** =key2: 24c0ab68ad
 
 *** =xp2: 20
 
@@ -285,7 +285,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 
-*** =key3: f9237aa85e
+*** =key3: 19838082cb
 
 *** =xp3: 20
 
@@ -323,7 +323,7 @@ Ex().test_correct(check_result(), [
 
 *** =type4: NormalExercise
 
-*** =key4: 780dd1ce4d
+*** =key4: a49b98de42
 
 *** =xp4: 20
 
@@ -364,6 +364,18 @@ Ex().test_correct(check_result(), [
 --- type:TabExercise lang:sql xp:100 key:b44bd43288
 ## SUM, AVG, MIN, MAX with WHERE
 
+Aggregate functions can be combined with the `WHERE` clause to gain further insights from your data. 
+
+For example, to get the total budget of movies made in the year 2010 or later:
+
+```
+SELECT SUM(budget)
+FROM films
+WHERE release_year >= 2010;
+```
+
+Now it's your turn!
+
 *** =pre_exercise_code
 ```{python}
 connect('postgresql', 'films')
@@ -376,7 +388,7 @@ set_options(visible_tables = ['films'])
 
 *** =type1: NormalExercise
 
-*** =key1: 7b34206462
+*** =key1: b986f33a10
 
 *** =xp1: 20
 
@@ -422,7 +434,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 
-*** =key2: afb3c42093
+*** =key2: 65e81175c5
 
 *** =xp2: 20
 
@@ -471,7 +483,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 
-*** =key3: 6ff63e076e
+*** =key3: 3ca90a8536
 
 *** =xp3: 20
 
@@ -516,7 +528,7 @@ Ex().test_correct(check_result(), [
 
 *** =type4: NormalExercise
 
-*** =key4: 1a985e9070
+*** =key4: d2e630e656
 
 *** =xp4: 20
 
