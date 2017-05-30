@@ -287,7 +287,8 @@ Ex().test_correct(check_result(), [
 ```
 
 *** =type3: NormalExercise
-*** =key3:
+*** =key3: 6359addbf8
+
 *** =xp3: 20
 
 *** =instructions3
