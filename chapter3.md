@@ -4,7 +4,7 @@ description : This chapter builds on the first two by teaching you how to use ag
 
 
 --- type:BulletExercise lang:sql xp:100 key:b883e7079f
-## SUM, AVG, MIN, MAX
+## Aggregate functions
 
 Often, you will want to perform some calculation on the data in a database. SQL provides a few functions, called *aggregate functions*, to help you out with this.
 
@@ -192,7 +192,7 @@ Ex().test_correct(check_result(), [
 ```
 
 --- type:BulletExercise lang:sql xp:100 key:e60103b3f1
-## SUM, AVG, MIN, MAX (2)
+## Aggregate functions practice
 
 Good work. Aggregate functions are important to understand, so let's get some more practice!
 
@@ -361,8 +361,8 @@ Ex().test_correct(check_result(), [
 ```
 
 
---- type:TabExercise lang:sql xp:100 key:b44bd43288
-## SUM, AVG, MIN, MAX with WHERE
+--- type:BulletExercise lang:sql xp:100 key:b44bd43288
+## Combining aggregate functions with WHERE
 
 Aggregate functions can be combined with the `WHERE` clause to gain further insights from your data. 
 
@@ -599,13 +599,13 @@ What's going on here?
 
 SQL assumes that if you divide an integer by an integer, you want to get an integer back. So be careful when dividing!
 
-If you want more precision when dividing, you can add decimal places to your numbers:
+If you want more precision when dividing, you can add decimal places to your numbers. For example, 
 
 ```
 SELECT (4.0 / 3.0) AS result;
 ```
 
-This gives you the result you would expect: `1.333`.
+gives you the result you would expect: `1.333`.
 
 <hr>
 What is the result of `SELECT (10 / 3);`?
@@ -640,7 +640,7 @@ Ex().test_mc(3,[msg2, msg2, success_msg, msg2])
 --- type:BulletExercise lang:sql xp:100 key:9f4b026fe7
 ## It's AS simple AS aliasing
 
-You may have noticed in the first exercise of this chapter that the column name of your result was just the name of the function you used. For example:
+You may have noticed in the first exercise of this chapter that the column name of your result was just the name of the function you used. For example,
 
 ```
 SELECT MAX(budget)
@@ -656,12 +656,13 @@ FROM films;
 
 Well, then you'd have two columns named `max`, which isn't very useful!
 
-To avoid situations like this, SQL allows you to do something called _aliasing_. Aliasing simply means you assign a temporary name to something. To alias, you use the `AS` keyword, which you've already seen earlier in this course. 
+To avoid situations like this, SQL allows you to do something called _aliasing_. Aliasing simply means you assign a temporary name to something. To alias, you use the `AS` keyword, which you've already seen earlier in this course.
 
 For example, in the above example we could use aliases to make the result clearer:
 
 ```
-SELECT MAX(budget) AS max_budget, MAX(duration) AS max_duration
+SELECT MAX(budget) AS max_budget, 
+       MAX(duration) AS max_duration
 FROM films;
 ```
 
