@@ -177,7 +177,7 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:TabExercise lang:sql xp:100 key:357ec9bc3d
+--- type:BulletExercise lang:sql xp:100 key:357ec9bc3d
 ## Sorting single columns (2)
 
 Let's get some more practice with `ORDER BY`!
