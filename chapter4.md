@@ -9,9 +9,7 @@ Congratulations on making it this far! You now know how to select and filter you
 
 In this chapter you'll learn how to sort and group your results to gain further insight. Let's go!
 
-In SQL, the `ORDER BY` keyword is used to sort the result in ascending or descending order according the values of one or more columns.
-
-By default `ORDER BY` will sort in ascending order. If you want to sort the results in descending order, you can use the `DESC` keyword. For example:
+In SQL, the `ORDER BY` keyword is used to sort results in ascending or descending order according the values of one or more columns. By default `ORDER BY` will sort in ascending order. If you want to sort the results in descending order, you can use the `DESC` keyword. For example,
 
 ```
 SELECT title
@@ -19,7 +17,7 @@ FROM films
 ORDER BY release_year;
 ```
 
-will give you the titles of films sorted by release year, from newest to oldest.
+gives you the titles of films sorted by release year, from newest to oldest.
 
 <hr>
 Which way does `ORDER BY` sort results by default?
@@ -493,7 +491,7 @@ Ex().test_correct(check_result(), [
 
 Good work!
 
-`ORDER BY` can also be used to sort on multiple columns. It will sort by the first column specified, then sort by the next, then the next, and so on. For example:
+`ORDER BY` can also be used to sort on multiple columns. It will sort by the first column specified, then sort by the next, then the next, and so on. For example,
 
 ```
 SELECT birthdate, name
@@ -501,7 +499,7 @@ FROM people
 ORDER BY birthdate, name;
 ```
 
-will sort on birth dates first (oldest to newest) and then sort on the names in alphabetical order. **The order of columns is important!**
+sorts on birth dates first (oldest to newest) and then sorts on the names in alphabetical order. **The order of columns is important!**
 
 Try using `ORDER BY` to sort multiple columns! Remember, to specify multiple columns you can separate the column names with a comma.
 
@@ -703,7 +701,7 @@ FROM employees
 GROUP BY gender;
 ```
 
-which gives for example:
+which gives, for example:
 
 | gender | count |
 |----|----|
@@ -744,7 +742,7 @@ As you saw, these kinds of calculations, done by *aggregate functions*, make `GR
 
 SQL will return an error if you try to `SELECT` a field that is not in your `GROUP BY` clause without using it to calculate some kind of value about the entire group.
 
-Note that you can combine `GROUP BY` with `ORDER BY` to group your results, calculate something about them, and then order your results. For example:
+Note that you can combine `GROUP BY` with `ORDER BY` to group your results, calculate something about them, and then order your results. For example,
 
 ```
 SELECT gender, count(*)
@@ -753,7 +751,7 @@ GROUP BY gender
 ORDER BY count DESC;
 ```
 
-gives for example:
+might return something like
 
 | gender | count |
 |----|----|
@@ -765,7 +763,6 @@ because there are more females at our company than males.
 Note also that `ORDER BY` always goes after `GROUP BY`!
 
 Now that you understand what `GROUP BY` is and how to use it, let's try some exercises!
-
 
 *** =pre_exercise_code
 ```{python}
@@ -1226,7 +1223,7 @@ GROUP BY release_year
 WHERE COUNT(title) > 10;
 ```
 
-This means that if you want to filter based on the result of an aggregate function, you need another way! That's where the `HAVING` clause comes in. For example:
+This means that if you want to filter based on the result of an aggregate function, you need another way! That's where the `HAVING` clause comes in. For example,
 
 ```
 SELECT release_year
@@ -1235,7 +1232,7 @@ GROUP BY release_year
 HAVING COUNT(title) > 10;
 ```
 
-will show only those years in which more than 10 films were released.
+shows only those years in which more than 10 films were released.
 
 <hr>
 What does the `HAVING` keyword let you do?

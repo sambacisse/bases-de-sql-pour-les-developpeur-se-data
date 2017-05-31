@@ -8,7 +8,7 @@ description : This chapter builds on the first two by teaching you how to use ag
 
 Often, you will want to perform some calculation on the data in a database. SQL provides a few functions, called *aggregate functions*, to help you out with this.
 
-For example:
+For example,
 
 ```
 SELECT AVG(budget)

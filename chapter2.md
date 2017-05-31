@@ -420,7 +420,7 @@ Ex().test_correct(check_result(), [
 
 Often, you'll want to select data based on multiple conditions. You can build up your `WHERE` queries by combining multiple conditions with the `AND` keyword.
 
-For example:
+For example,
 
 ```
 SELECT title
