@@ -488,8 +488,6 @@ Ex().test_correct(check_result(), [
 --- type:BulletExercise lang:sql xp:100 key:b2a52993bc
 ## Sorting multiple columns
 
-Good work!
-
 `ORDER BY` can also be used to sort on multiple columns. It will sort by the first column specified, then sort by the next, then the next, and so on. For example,
 
 ```
@@ -500,7 +498,7 @@ ORDER BY birthdate, name;
 
 sorts on birth dates first (oldest to newest) and then sorts on the names in alphabetical order. **The order of columns is important!**
 
-Try using `ORDER BY` to sort multiple columns! Remember, to specify multiple columns you can separate the column names with a comma.
+Try using `ORDER BY` to sort multiple columns! Remember, to specify multiple columns you separate the column names with a comma.
 
 *** =pre_exercise_code
 ```{python}
@@ -651,7 +649,7 @@ Ex().test_correct(check_result(), [
 *** =xp4: 20
 
 *** =instructions4
-Get the names and birthdates of people ordered by birth date ane name.
+Get the names and birthdates of people ordered by birth date and name.
 *** =solution4
 ```{sql}
 SELECT name, birthdate
@@ -690,9 +688,9 @@ Ex().test_correct(check_result(), [
 ```
 
 --- type:PlainMultipleChoiceExercise lang:sql xp:50 key:81987a99cf
-## Introduction to GROUP BY
+## GROUP BY
 
-Good going - now you know how to sort results! Often you'll need to aggregate results. For example, you might want to get count the number of male and female employees in your company. Here, what you want is to group all the males together and count them, and group all the females together and count them. In SQL, `GROUP BY` allows you to group a result by one or more columns, like so:
+Now you know how to sort results! Often you'll need to aggregate results. For example, you might want to get count the number of male and female employees in your company. Here, what you want is to group all the males together and count them, and group all the females together and count them. In SQL, `GROUP BY` allows you to group a result by one or more columns, like so:
 
 ```
 SELECT gender, count(*)
@@ -700,7 +698,7 @@ FROM employees
 GROUP BY gender;
 ```
 
-which gives, for example:
+This might give, for example:
 
 | gender | count |
 |----|----|
@@ -708,9 +706,7 @@ which gives, for example:
 | female | 19 |
 
 <br>
-Commonly, `GROUP BY` is used with _aggregate functions_ like `COUNT()` or `MAX()`.
-
-Note that `GROUP BY` always goes after the `FROM` clause!
+Commonly, `GROUP BY` is used with _aggregate functions_ like `COUNT()` or `MAX()`. Note that `GROUP BY` always goes after the `FROM` clause!
 
 <hr>
 What is `GROUP BY` used for?
@@ -722,7 +718,7 @@ What is `GROUP BY` used for?
 - Performing operations by group
 
 *** =hint
-You use `GROUP BY` when you want to compute results from many records.
+You use `GROUP BY` when you want to compute results within groups.
 
 *** =sct
 ```{python}
@@ -737,9 +733,9 @@ Ex().test_mc(4, [one, two, three, success_msg])
 --- type:BulletExercise lang:sql xp:100 key:98e30a6131
 ## GROUP BY practice
 
-As you saw, these kinds of calculations, done by *aggregate functions*, make `GROUP BY` incredibly powerful.
+As you've just seen, combining aggregate functions with `GROUP BY` can yield some powerful results!
 
-SQL will return an error if you try to `SELECT` a field that is not in your `GROUP BY` clause without using it to calculate some kind of value about the entire group.
+A word of warning: SQL will return an error if you try to `SELECT` a field that is not in your `GROUP BY` clause without using it to calculate some kind of value about the entire group.
 
 Note that you can combine `GROUP BY` with `ORDER BY` to group your results, calculate something about them, and then order your results. For example,
 
@@ -757,11 +753,8 @@ might return something like
 | female | 19 |
 | male | 15 |
 
-because there are more females at our company than males.
-
-Note also that `ORDER BY` always goes after `GROUP BY`!
-
-Now that you understand what `GROUP BY` is and how to use it, let's try some exercises!
+<br>
+because there are more females at our company than males. Note also that `ORDER BY` always goes after `GROUP BY`. Let's try some exercises!
 
 *** =pre_exercise_code
 ```{python}
@@ -779,7 +772,7 @@ set_options(visible_tables = ['films', 'reviews'])
 *** =xp1: 20
 
 *** =instructions1
-Get the release year count of films released in each year.
+Get the release year and count of films released in each year.
 *** =solution1
 ```{sql}
 SELECT release_year, COUNT(*)
@@ -913,7 +906,7 @@ Ex().test_correct(check_result(), [
 *** =xp4: 20
 
 *** =instructions4
-Get the imdbe score and count of film reviews for each IMDB rating in the `reviews` table.
+Get the IMDB score and count of film reviews for each IMDB rating in the `reviews` table.
 *** =solution4
 ```{sql}
 SELECT imdb_score, COUNT(*)
@@ -1090,8 +1083,6 @@ Ex().test_correct(check_result(), [
 --- type:BulletExercise lang:sql xp:100 key:38a7c62434
 ## GROUP BY practice (2)
 
-Great work!
-
 Now practice your new skills by combining `GROUP BY` and `ORDER BY` with some more aggregate functions!
 
 Make sure to always put the `ORDER BY` clause at the end of your query. You can't sort values that you haven't calculated yet!
@@ -1112,7 +1103,7 @@ set_options(visible_tables = ['films'])
 *** =xp1: 20
 
 *** =instructions1
-Get the highest budget spent making a film for each year, for each country, sorted by release year and country.
+Get the release year, country, and highest budget spent making a film for each year, for each country. Sort your results by release year and country.
 *** =solution1
 ```{sql}
 SELECT release_year, country, MAX(budget)
@@ -1162,7 +1153,7 @@ Ex().test_correct(check_result(), [
 *** =xp2: 20
 
 *** =instructions2
-Get the lowest amount grossed per release year per country. Order your results by country and release year. 
+Get the country, release year, and lowest amount grossed per release year per country. Order your results by country and release year. 
 *** =solution2
 ```{sql}
 SELECT country, release_year, MIN(gross)
