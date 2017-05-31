@@ -1777,4 +1777,3 @@ correct = 'Correct!'
 
 Ex().test_mc(2,[msg1, correct, msg1, msg1])
 ```
-a
