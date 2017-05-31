@@ -20,25 +20,24 @@ ORDER BY release_year;
 gives you the titles of films sorted by release year, from newest to oldest.
 
 <hr>
-Which way does `ORDER BY` sort results by default?
+How do you think `ORDER BY` sorts a column of text values by default?
 
 *** =instructions
-- Alphabetically
-- Descending
-- Ascending
-- In order of creation date
+- Alphabetically (A-Z)
+- Reverse alphabetically (Z-A)
+- There's no natural ordering to text data
+- By number of characters (fewest to most)
 
 *** =hint
-By default, `ORDER BY` behaves as if it was used with the `ASC` keyword.
+By default, `ORDER BY` sorts alphabetically, but in which direction?
 
 *** =sct
 ```{python}
 success_msg = 'Correct!'
-alphabetically = 'Incorrect. Although results may be in alphabetical order, how would we order numbers alphabetically?'
-descending = 'Incorrect. Results are not ordered descending by default.'
-creation = 'Incorrect. Results are not ordered by creation date by default.'
+msg1 = 'Incorrect. Although text values are ordered alphabetically, they don\'t go Z-A.'
+msg2 = 'Incorrect. Text values are ordered alphabetically.'
 
-Ex().test_mc(3, [alphabetically, descending, success_msg, creation])
+Ex().test_mc(1, [success_msg, msg1, msg2, msg2])
 ```
 
 --- type:BulletExercise lang:sql xp:100 key:a7b2964ba6
