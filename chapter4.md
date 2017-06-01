@@ -1201,7 +1201,7 @@ Ex().test_correct(check_result(), [
 ```
 
 
---- type:PlainMultipleChoiceExercise lang:sql xp:50 key:4d55b1adf8
+--- type:MultipleChoiceExercise lang:sql xp:50 key:4d55b1adf8
 ## HAVING a great time
 
 In SQL, aggregate functions can't be used in `WHERE` clauses. For example, the following query is invalid:
@@ -1225,25 +1225,35 @@ HAVING COUNT(title) > 10;
 shows only those years in which more than 10 films were released.
 
 <hr>
-What does the `HAVING` keyword let you do?
+In how many different years were more than 200 movies released?
 
 *** =instructions
-- Filter based on results of rounding functions
-- Filter based on results of exponential functions
-- Filter based on results of recursive functions
-- Filter based on results of aggregate functions
+- 12
+- 13
+- 14
+- 15
 
 *** =hint
-What kind of functions can `WHERE` not be used with?
+Replace 10 with 200 in the query above and run it in the editor.
+
+*** =pre_exercise_code
+```{python}
+connect('postgresql', 'films')
+set_options(visible_tables = ['films'])
+```
+
+*** =sample_code
+```{sql}
+-- You can test out queries here!
+
+```
 
 *** =sct
 ```{python}
-rounding = 'Incorrect. `HAVING` is not used with rounding functions.'
-summing = 'Incorrect. `HAVING` is not used with exponential functions.'
-recursive = 'Incorrect. `HAVING` is not used with recursive functions.'
-aggregate = 'Correct!. `HAVING` is used to filter based on the results of aggregate functions.'
+correct = 'Correct!'
+incorrect = 'Incorrect! Make a small modification to the query above and run it in the editor.'
 
-Ex().test_mc(4, [rounding, summing, recursive, aggregate])
+Ex().test_mc(2, [incorrect, correct, incorrect, incorrect])
 ```
 
 --- type:TabExercise lang:sql xp:100 key:f7dcb9e122
