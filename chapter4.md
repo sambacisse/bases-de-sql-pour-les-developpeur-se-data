@@ -1707,7 +1707,7 @@ Ex().test_correct(check_result(), [
 
 Congrats on making it to the end of the course! By now you should have a good understanding of the basics of SQL.
 
-There's one more concept we're going to introduce. You may have noticed that all our results so far have been from just one table. For example, from the `films` or `people` tables.
+There's one more concept we're going to introduce. You may have noticed that all your results so far have been from just one table, e.g. `films` or `people`.
 
 In the real world however, you will often want to query multiple tables. For example, what if you want to see the IMDB score for a particular movie?
 
@@ -1723,7 +1723,6 @@ We'll have a whole course dedicated to them coming soon!
 ```{sql}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'reviews'])
-
 ```
 
 *** =sample_code
@@ -1731,7 +1730,7 @@ set_options(visible_tables = ['films', 'reviews'])
 SELECT title, imdb_score
 FROM films
 JOIN reviews
-ON films.id=reviews.id
+ON films.id = reviews.id
 WHERE title = 'To Kill a Mockingbird';
 ```
 
@@ -1750,7 +1749,7 @@ Submit the code in the editor!
 SELECT title, imdb_score
 FROM films
 JOIN reviews
-ON films.id=reviews.id
+ON films.id = reviews.id
 WHERE title = 'To Kill a Mockingbird';
 ```
 
