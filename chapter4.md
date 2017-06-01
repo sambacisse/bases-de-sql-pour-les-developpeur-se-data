@@ -1200,6 +1200,61 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+--- type:MultipleChoiceExercise lang:sql xp:50 key:a391d35885
+## HAVING a great time
+
+In SQL, aggregate functions can't be used in `WHERE` clauses. For example, the following query is invalid:
+
+```
+SELECT release_year
+FROM films
+GROUP BY release_year
+WHERE COUNT(title) > 10;
+```
+
+This means that if you want to filter based on the result of an aggregate function, you need another way! That's where the `HAVING` clause comes in. For example,
+
+```
+SELECT release_year
+FROM films
+GROUP BY release_year
+HAVING COUNT(title) > 10;
+```
+
+shows only those years in which more than 10 films were released.
+
+<hr>
+In how many different years were more than 200 movies released?
+
+*** =instructions
+- 12
+- 13
+- 14
+- 15
+
+*** =hint
+Replace 10 with 200 in the query above and run it in the editor.
+
+*** =pre_exercise_code
+```{python}
+connect('postgresql', 'films')
+set_options(visible_tables = ['films'])
+```
+
+*** =sample_code
+```{sql}
+-- You can test out queries here!
+
+```
+
+*** =sct
+```{python}
+msg1 = 'Correct!'
+msg2 = 'Incorrect! Make a small modification to the query above and run it in the editor.'
+
+Ex().test_mc(2, [msg2, msg1, msg2, msg2])
+```
+
 --- type:TabExercise lang:sql xp:100 key:f7dcb9e122
 ## All together now
 
