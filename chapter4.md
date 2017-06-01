@@ -1318,7 +1318,7 @@ Ex().test_correct(check_result(), [
 *** =xp2: 20
 
 *** =instructions2
-Modify your query so that only results since 1990 are included.
+Modify your query so that only results after 1990 are included.
 *** =solution2
 ```{sql}
 SELECT release_year, budget, gross
@@ -1382,6 +1382,9 @@ GROUP BY ___;
 ```
 *** =sct3
 ```{python}
+# TODO: fix this SCT
+
+'''
 sel = check_node('SelectStmt')
 
 release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
@@ -1403,8 +1406,7 @@ Ex().test_correct(check_result(), [
     test_ncols(),
     test_error()
 ])
-
-
+'''
 ```
 
 *** =type4: NormalExercise
@@ -1412,17 +1414,21 @@ Ex().test_correct(check_result(), [
 *** =xp4: 20
 
 *** =instructions4
-Modify your query to add in the rounded average budget and average box office earnings for the results you have so far. Alias your results as `avg_budget` and `avg_box_office` respectively. Remember, you can use the `ROUND()` function.
+Modify your query to add in the average budget and average box office earnings for the results you have so far. Round both columns with `ROUND()` and alias your results as `avg_budget` and `avg_box_office`, respectively.
 *** =solution4
 ```{sql}
-SELECT release_year, ROUND(AVG(budget)) AS avg_budget, ROUND(AVG(gross)) AS avg_box_office
+SELECT release_year, 
+       ROUND(AVG(budget)) AS avg_budget, 
+       ROUND(AVG(gross)) AS avg_box_office
 FROM films
 WHERE release_year > 1990
 GROUP BY release_year;
 ```
 *** =hint4
 ```
-SELECT ___, ROUND(___(___)) AS avg_budget, ___(AVG(gross)) AS avg_box_office
+SELECT ___, 
+       ROUND(___(___)) AS avg_budget, 
+       ___(AVG(gross)) AS avg_box_office
 FROM ___
 WHERE ___ > ___
 GROUP BY ___;
@@ -1472,7 +1478,9 @@ Modify your query so that only films with an average budget of greater than $60 
 
 *** =solution5
 ```{sql}
-SELECT release_year, ROUND(AVG(budget)) AS avg_budget, ROUND(AVG(gross)) AS avg_box_office
+SELECT release_year, 
+       ROUND(AVG(budget)) AS avg_budget, 
+       ROUND(AVG(gross)) AS avg_box_office
 FROM films
 WHERE release_year > 1990
 GROUP BY release_year
@@ -1480,7 +1488,9 @@ HAVING AVG(budget) > 60000000;
 ```
 *** =hint5
 ```
-SELECT ___, ROUND(AVG(budget)) AS avg_budget, ___(AVG(gross)) AS avg_box_office
+SELECT ___, 
+       ROUND(AVG(budget)) AS avg_budget, 
+       ___(AVG(gross)) AS avg_box_office
 FROM ___
 WHERE ___ > ___
 GROUP BY ___
@@ -1488,6 +1498,8 @@ HAVING AVG(___) > 60000000;
 ```
 *** =sct5
 ```{python}
+# TODO: fix SCT
+'''
 sel = check_node('SelectStmt')
 
 release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
@@ -1525,7 +1537,7 @@ Ex().test_correct(check_result(), [
     test_ncols(),
     test_error()
 ])
-
+'''
 ```
 
 *** =type6: NormalExercise
@@ -1537,7 +1549,9 @@ Finally, modify your query to order the results from highest average box office 
 
 *** =solution6
 ```{sql}
-SELECT release_year, ROUND(AVG(budget)) AS avg_budget, ROUND(AVG(gross)) AS avg_box_office
+SELECT release_year, 
+       ROUND(AVG(budget)) AS avg_budget, 
+       ROUND(AVG(gross)) AS avg_box_office
 FROM films
 WHERE release_year > 1990
 GROUP BY release_year
@@ -1546,7 +1560,9 @@ ORDER BY avg_box_office DESC;
 ```
 *** =hint6
 ```
-SELECT ___, ROUND(AVG(budget)) AS avg_budget, ___(AVG(gross)) AS avg_box_office
+SELECT ___, 
+       ROUND(AVG(budget)) AS avg_budget, 
+       ___(AVG(gross)) AS avg_box_office
 FROM ___
 WHERE ___ > ___
 GROUP BY ___
@@ -1555,6 +1571,8 @@ ORDER BY ___ DESC;
 ```
 *** =sct6
 ```{python}
+# TODO: fix
+'''
 sel = check_node('SelectStmt')
 
 release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
@@ -1595,6 +1613,7 @@ Ex().test_correct(check_result(), [
     test_ncols(),
     test_error()
 ])
+'''
 ```
 
 --- type:NormalExercise lang:sql xp:100 skills:1 key:0bbc6da34d
@@ -1603,7 +1622,7 @@ Ex().test_correct(check_result(), [
 Great work! Now try another large query. This time, all in one go!
 
 *** =instructions
-Get the name, average budget, and average box office take of countries that have made more than 10 films. Order the result by name, and limit the number of results displayed to 5. Remember, you can use the `ROUND()` function.
+Get the name, average budget, and average box office take of countries that have made more than 10 films. Order the result by country name, and limit the number of results displayed to 5. Remember, you can use the `ROUND()` function.
 
 *** =hint
 You can refer back to the previous exercise!
@@ -1621,7 +1640,9 @@ set_options(visible_tables = ['films'])
 
 *** =solution
 ```{sql}
-SELECT country, ROUND(AVG(budget)) AS avg_budget, ROUND(AVG(gross)) AS avg_box_office
+SELECT country, 
+       ROUND(AVG(budget)) AS avg_budget, 
+       ROUND(AVG(gross)) AS avg_box_office
 FROM films
 GROUP BY country
 HAVING COUNT(title) > 10
@@ -1629,15 +1650,21 @@ ORDER BY country
 LIMIT 5;
 ```
 *** =hint
-SELECT ___, ROUND(AVG(budget)) AS avg_budget, ___(___(gross)) AS avg_box_office
+```
+SELECT ___, 
+       ROUND(AVG(budget)) AS avg_budget, 
+       ___(___(gross)) AS avg_box_office
 FROM films
 GROUP BY ___
 HAVING COUNT(title) > 10
 ORDER BY ___
 LIMIT 5;
+```
 
 *** =sct
 ```{python}
+# TODO: do we want to force students to ROUND() and use aliases? If so, we need to state explicitly in the instructions
+
 sel = check_node('SelectStmt')
 
 country = test_column('country', msg='Did you select the `country` column correctly?')
