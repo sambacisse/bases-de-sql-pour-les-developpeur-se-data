@@ -1250,10 +1250,10 @@ set_options(visible_tables = ['films'])
 
 *** =sct
 ```{python}
-correct = 'Correct!'
-incorrect = 'Incorrect! Make a small modification to the query above and run it in the editor.'
+msg1 = 'Correct!'
+msg2 = 'Incorrect! Make a small modification to the query above and run it in the editor.'
 
-Ex().test_mc(2, [incorrect, correct, incorrect, incorrect])
+Ex().test_mc(2, [msg2, msg1, msg2, msg2])
 ```
 
 --- type:TabExercise lang:sql xp:100 key:f7dcb9e122
