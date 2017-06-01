@@ -35,6 +35,3 @@ service postgresql start \
   && cd courses-intro-to-sql \
   && sudo -u postgres psql films < data/films/films.sql \
   && service postgresql stop
-
-# rebuild!
-pip3 install git+https://github.com/datacamp/sqlwhat.git@staging
