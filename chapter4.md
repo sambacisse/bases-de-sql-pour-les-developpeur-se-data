@@ -1201,7 +1201,7 @@ Ex().test_correct(check_result(), [
 ```
 
 
---- type:MultipleChoiceExercise lang:sql xp:50 key:4d55b1adf8
+--- type:MultipleChoiceExercise lang:sql xp:50 key:a391d35885
 ## HAVING a great time
 
 In SQL, aggregate functions can't be used in `WHERE` clauses. For example, the following query is invalid:
