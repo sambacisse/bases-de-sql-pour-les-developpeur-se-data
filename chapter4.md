@@ -1409,7 +1409,7 @@ Ex().test_correct(check_result(), [
 *** =xp4: 20
 
 *** =instructions4
-Modify your query to add in the average budget and average box office earnings for the results you have so far. Alias your results as `avg_budget` and `avg_box_office`, respectively.
+Modify your query to add in the average budget and average box office earnings for the results you have so far. Alias your results as `avg_budget` and `avg_gross`, respectively.
 *** =solution4
 ```{sql}
 SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
@@ -1438,7 +1438,7 @@ where_release_year = where_clause.has_equal_ast(sql='release_year > 1990', start
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
 alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
-alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_box_office` correctly?')
+alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_gross` correctly?')
 
 Ex().test_correct(check_result(), [
     group_by_clause,
@@ -1491,7 +1491,7 @@ where_release_year = where_clause.has_equal_ast(sql='release_year > 1990', start
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
 alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
-alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_box_office` correctly?')
+alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_gross` correctly?')
 
 having_clause = sel.check_field('having_clause').has_equal_ast('Is your `HAVING` clause correct?')
 
@@ -1526,7 +1526,7 @@ FROM films
 WHERE release_year > 1990
 GROUP BY release_year
 HAVING AVG(budget) > 60000000
-ORDER BY avg_box_office DESC;
+ORDER BY avg_gross DESC;
 ```
 *** =hint6
 ```
@@ -1551,13 +1551,13 @@ where_release_year = where_clause.has_equal_ast(sql='release_year > 1990', start
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
 alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
-alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_box_office` correctly?')
+alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_gross` correctly?')
 
 having_clause = sel.check_field('having_clause').has_equal_ast('Is your `HAVING` clause correct?')
 
 avg_in_having = having_clause.check_node('Call').has_equal_ast('Are you correctly calling `AVG` on `budget` in your `HAVING` clause?')
 
-order_by = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
+order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
 
 Ex().test_correct(check_result(), [
     order_by_clause,
