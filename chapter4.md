@@ -1381,9 +1381,6 @@ GROUP BY ___;
 ```
 *** =sct3
 ```{python}
-# TODO: fix this SCT
-
-'''
 sel = check_node('SelectStmt')
 
 release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
@@ -1405,7 +1402,6 @@ Ex().test_correct(check_result(), [
     test_ncols(),
     test_error()
 ])
-'''
 ```
 
 *** =type4: NormalExercise
@@ -1497,8 +1493,6 @@ HAVING AVG(___) > 60000000;
 ```
 *** =sct5
 ```{python}
-# TODO: fix SCT
-'''
 sel = check_node('SelectStmt')
 
 release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
@@ -1536,7 +1530,6 @@ Ex().test_correct(check_result(), [
     test_ncols(),
     test_error()
 ])
-'''
 ```
 
 *** =type6: NormalExercise
@@ -1570,8 +1563,6 @@ ORDER BY ___ DESC;
 ```
 *** =sct6
 ```{python}
-# TODO: fix
-'''
 sel = check_node('SelectStmt')
 
 release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
@@ -1612,7 +1603,6 @@ Ex().test_correct(check_result(), [
     test_ncols(),
     test_error()
 ])
-'''
 ```
 
 --- type:NormalExercise lang:sql xp:100 skills:1 key:0bbc6da34d
@@ -1621,7 +1611,7 @@ Ex().test_correct(check_result(), [
 Great work! Now try another large query. This time, all in one go!
 
 *** =instructions
-Get the name, average budget, and average box office take of countries that have made more than 10 films. Order the result by country name, and limit the number of results displayed to 5. Remember, you can use the `ROUND()` function.
+Get the name, average budget, and average box office take of countries that have made more than 10 films. Order the result by country name, and limit the number of results displayed to 5. You should alias the averages as `avg_budget` and `avg_gross` respectively.
 
 *** =hint
 You can refer back to the previous exercise!
@@ -1639,9 +1629,7 @@ set_options(visible_tables = ['films'])
 
 *** =solution
 ```{sql}
-SELECT country, 
-       ROUND(AVG(budget)) AS avg_budget, 
-       ROUND(AVG(gross)) AS avg_box_office
+SELECT country, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
 FROM films
 GROUP BY country
 HAVING COUNT(title) > 10
@@ -1650,9 +1638,7 @@ LIMIT 5;
 ```
 *** =hint
 ```
-SELECT ___, 
-       ROUND(AVG(budget)) AS avg_budget, 
-       ___(___(gross)) AS avg_box_office
+SELECT ___, AVG(budget) AS avg_budget, ___(gross) AS avg_gross
 FROM films
 GROUP BY ___
 HAVING COUNT(title) > 10
@@ -1662,8 +1648,6 @@ LIMIT 5;
 
 *** =sct
 ```{python}
-# TODO: do we want to force students to ROUND() and use aliases? If so, we need to state explicitly in the instructions
-
 sel = check_node('SelectStmt')
 
 country = test_column('country', msg='Did you select the `country` column correctly?')
@@ -1677,9 +1661,6 @@ order_by = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` 
 alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
 alias2 = test_column('avg_box_office', match='exact', msg='Are you aliasing `avg_box_office` correctly?')
 
-first_round = sel.check_node('AliasExpr', 0).check_node('Unshaped').has_equal_ast('Are you calling `ROUND(AVG(budget))` correctly?')
-
-second_round = sel.check_node('AliasExpr', 0).check_node('Unshaped').has_equal_ast('Are you calling `ROUND(AVG(gross))` correctly?')
 avg_in_having = having_clause.check_node('Call').has_equal_ast('Are you correctly calling `AVG` on `budget` in your `HAVING` clause?')
 
 limit_clause = sel.check_field('limit_clause').has_equal_ast('Did you `LIMIT` the number of results to `5`?')
@@ -1690,8 +1671,6 @@ Ex().test_correct(check_result(), [
     group_by,
     from_clause,
     having_clause,
-    first_round,
-    second_round,
     country,
     alias1,
     alias2,
