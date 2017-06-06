@@ -1409,21 +1409,17 @@ Ex().test_correct(check_result(), [
 *** =xp4: 20
 
 *** =instructions4
-Modify your query to add in the average budget and average box office earnings for the results you have so far. Round both columns with `ROUND()` and alias your results as `avg_budget` and `avg_box_office`, respectively.
+Modify your query to add in the average budget and average box office earnings for the results you have so far. Alias your results as `avg_budget` and `avg_box_office`, respectively.
 *** =solution4
 ```{sql}
-SELECT release_year, 
-       ROUND(AVG(budget)) AS avg_budget, 
-       ROUND(AVG(gross)) AS avg_box_office
+SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_box_office
 FROM films
 WHERE release_year > 1990
 GROUP BY release_year;
 ```
 *** =hint4
 ```
-SELECT ___, 
-       ROUND(___(___)) AS avg_budget, 
-       ___(AVG(gross)) AS avg_box_office
+SELECT ___, ___(___) AS avg_budget, AVG(gross) AS avg_box_office
 FROM ___
 WHERE ___ > ___
 GROUP BY ___;
@@ -1444,16 +1440,10 @@ group_by = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` 
 alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
 alias2 = test_column('avg_box_office', match='exact', msg='Are you aliasing `avg_box_office` correctly?')
 
-first_round = sel.check_node('AliasExpr', 0).check_node('Unshaped').has_equal_ast('Are you calling `ROUND(AVG(budget))` correctly?')
-
-second_round = sel.check_node('AliasExpr', 0).check_node('Unshaped').has_equal_ast('Are you calling `ROUND(AVG(gross))` correctly?')
-
 Ex().test_correct(check_result(), [
     group_by,
     where_clause,
     from_clause,
-    first_round,
-    second_round,
     where_release_year,
     alias1,
     alias2,
@@ -1473,9 +1463,7 @@ Modify your query so that only films with an average budget of greater than $60 
 
 *** =solution5
 ```{sql}
-SELECT release_year, 
-       ROUND(AVG(budget)) AS avg_budget, 
-       ROUND(AVG(gross)) AS avg_box_office
+SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_box_office
 FROM films
 WHERE release_year > 1990
 GROUP BY release_year
@@ -1483,9 +1471,7 @@ HAVING AVG(budget) > 60000000;
 ```
 *** =hint5
 ```
-SELECT ___, 
-       ROUND(AVG(budget)) AS avg_budget, 
-       ___(AVG(gross)) AS avg_box_office
+SELECT ___, AVG(budget) AS avg_budget, AVG(gross) AS avg_box_office
 FROM ___
 WHERE ___ > ___
 GROUP BY ___
@@ -1507,10 +1493,6 @@ group_by = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` 
 alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
 alias2 = test_column('avg_box_office', match='exact', msg='Are you aliasing `avg_box_office` correctly?')
 
-first_round = sel.check_node('AliasExpr', 0).check_node('Unshaped').has_equal_ast('Are you calling `ROUND(AVG(budget))` correctly?')
-
-second_round = sel.check_node('AliasExpr', 0).check_node('Unshaped').has_equal_ast('Are you calling `ROUND(AVG(gross))` correctly?')
-
 having_clause = sel.check_field('having_clause').has_equal_ast('Is your `HAVING` clause correct?')
 
 avg_in_having = having_clause.check_node('Call').has_equal_ast('Are you correctly calling `AVG` on `budget` in your `HAVING` clause?')
@@ -1521,8 +1503,6 @@ Ex().test_correct(check_result(), [
     having_clause,
     from_clause,
     where_release_year,
-    first_round,
-    second_round,
     alias1,
     alias2,
     release_year,
@@ -1541,9 +1521,7 @@ Finally, modify your query to order the results from highest average box office 
 
 *** =solution6
 ```{sql}
-SELECT release_year, 
-       ROUND(AVG(budget)) AS avg_budget, 
-       ROUND(AVG(gross)) AS avg_box_office
+SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_box_office
 FROM films
 WHERE release_year > 1990
 GROUP BY release_year
@@ -1552,9 +1530,7 @@ ORDER BY avg_box_office DESC;
 ```
 *** =hint6
 ```
-SELECT ___, 
-       ROUND(AVG(budget)) AS avg_budget, 
-       ___(AVG(gross)) AS avg_box_office
+SELECT ___, AVG(budget) AS avg_budget, AVG(gross) AS avg_box_office
 FROM ___
 WHERE ___ > ___
 GROUP BY ___
@@ -1577,10 +1553,6 @@ group_by = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` 
 alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
 alias2 = test_column('avg_box_office', match='exact', msg='Are you aliasing `avg_box_office` correctly?')
 
-first_round = sel.check_node('AliasExpr', 0).check_node('Unshaped').has_equal_ast('Are you calling `ROUND(AVG(budget))` correctly?')
-
-second_round = sel.check_node('AliasExpr', 0).check_node('Unshaped').has_equal_ast('Are you calling `ROUND(AVG(gross))` correctly?')
-
 having_clause = sel.check_field('having_clause').has_equal_ast('Is your `HAVING` clause correct?')
 
 avg_in_having = having_clause.check_node('Call').has_equal_ast('Are you correctly calling `AVG` on `budget` in your `HAVING` clause?')
@@ -1594,8 +1566,6 @@ Ex().test_correct(check_result(), [
     having_clause,
     from_clause,
     where_release_year,
-    first_round,
-    second_round,
     alias1,
     alias2,
     release_year,
