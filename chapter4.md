@@ -948,7 +948,7 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:BulletExercise lang:sql xp:100 key:38a7c62434
+--- type:TabExercise lang:sql xp:100 key:38a7c62434
 ## GROUP BY practice (2)
 
 Now practice your new skills by combining `GROUP BY` and `ORDER BY` with some more aggregate functions!
