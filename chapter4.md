@@ -948,25 +948,43 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type5: NormalExercise
-*** =key5: 53ad6da98c
-*** =xp5: 20
+--- type:BulletExercise lang:sql xp:100 key:38a7c62434
+## GROUP BY practice (2)
 
-*** =instructions5
+Now practice your new skills by combining `GROUP BY` and `ORDER BY` with some more aggregate functions!
+
+Make sure to always put the `ORDER BY` clause at the end of your query. You can't sort values that you haven't calculated yet!
+
+*** =pre_exercise_code
+```{python}
+connect('postgresql', 'films')
+set_options(visible_tables = ['films'])
+```
+
+*** =sample_code
+```{sql}
+
+```
+
+*** =type1: NormalExercise
+*** =key1: 53ad6da98c
+*** =xp1: 20
+
+*** =instructions1
 Get the release year and lowest gross box office earnings per release year.
-*** =solution5
+*** =solution1
 ```{sql}
 SELECT release_year, MIN(gross)
 FROM films
 GROUP BY release_year;
 ```
-*** =hint5
+*** =hint1
 ```
 SELECT ___, ___(___)
 FROM ___
 GROUP BY ___;
 ```
-*** =sct5
+*** =sct1
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -992,25 +1010,25 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type6: NormalExercise
-*** =key6: cff5924de5
-*** =xp6: 20
+*** =type2: NormalExercise
+*** =key2: cff5924de5
+*** =xp2: 20
 
-*** =instructions6
+*** =instructions2
 Get the language and total gross amount films in each language brought in at the box office.
-*** =solution6
+*** =solution2
 ```{sql}
 SELECT language, SUM(gross)
 FROM films
 GROUP BY language;
 ```
-*** =hint6
+*** =hint2
 ```
 SELECT ___, ___(___)
 FROM ___
 GROUP BY ___;
 ```
-*** =sct6
+*** =sct2
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -1036,25 +1054,25 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type7: NormalExercise
-*** =key7: 83944ff64f
-*** =xp7: 20
+*** =type3: NormalExercise
+*** =key3: 83944ff64f
+*** =xp3: 20
 
-*** =instructions7
+*** =instructions3
 Get the country and total budget spent making movies in each country.
-*** =solution7
+*** =solution3
 ```{sql}
 SELECT country, SUM(budget)
 FROM films
 GROUP BY country;
 ```
-*** =hint7
+*** =hint3
 ```
 SELECT ___, ___(___)
 FROM ___
 GROUP BY ___;
 ```
-*** =sct7
+*** =sct3
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -1080,45 +1098,27 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:BulletExercise lang:sql xp:100 key:38a7c62434
-## GROUP BY practice (2)
+*** =type4: NormalExercise
+*** =key4: eac5f722a5
+*** =xp4: 20
 
-Now practice your new skills by combining `GROUP BY` and `ORDER BY` with some more aggregate functions!
-
-Make sure to always put the `ORDER BY` clause at the end of your query. You can't sort values that you haven't calculated yet!
-
-*** =pre_exercise_code
-```{python}
-connect('postgresql', 'films')
-set_options(visible_tables = ['films'])
-```
-
-*** =sample_code
-```{sql}
-
-```
-
-*** =type1: NormalExercise
-*** =key1: eac5f722a5
-*** =xp1: 20
-
-*** =instructions1
+*** =instructions4
 Get the release year, country, and highest budget spent making a film for each year, for each country. Sort your results by release year and country.
-*** =solution1
+*** =solution4
 ```{sql}
 SELECT release_year, country, MAX(budget)
 FROM films
 GROUP BY release_year, country
 ORDER BY release_year, country;
 ```
-*** =hint1
+*** =hint4
 ```
 SELECT ___, ___, ___(___)
 FROM ___
 GROUP BY ___, ___
 ORDER BY ___, ___;
 ```
-*** =sct1
+*** =sct4
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -1148,27 +1148,27 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type2: NormalExercise
-*** =key2: 48461bd4d3
-*** =xp2: 20
+*** =type5: NormalExercise
+*** =key5: 48461bd4d3
+*** =xp5: 20
 
-*** =instructions2
+*** =instructions5
 Get the country, release year, and lowest amount grossed per release year per country. Order your results by country and release year. 
-*** =solution2
+*** =solution5
 ```{sql}
 SELECT country, release_year, MIN(gross)
 FROM films
 GROUP BY country, release_year
 ORDER BY country, release_year;
 ```
-*** =hint2
+*** =hint5
 ```
 SELECT ___, ___, ___(___)
 FROM films
 GROUP BY country, release_year
 ORDER BY ___, ___;
 ```
-*** =sct2
+*** =sct5
 ```{python}
 sel = check_node('SelectStmt')
 
