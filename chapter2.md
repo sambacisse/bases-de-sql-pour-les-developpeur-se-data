@@ -150,7 +150,6 @@ temp = sel.check_node('Call')
 
 count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
 
-# TODO: this needs to be changed
 count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` on the right column?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
@@ -1188,8 +1187,8 @@ from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` claus
 
 where_clause = sel.check_field('where_clause')
 
-# TODO: hack to deal with AST morphing
-# typed_and = test_student_typed('and|AND', msg='Make sure to use an `AND` statement in your `WHERE` clause!')
+# hack to deal with AST morphing
+typed_and = test_student_typed('and|AND', msg='Make sure to use an `AND` statement in your `WHERE` clause!')
 
 where_duration = where_clause.has_equal_ast(sql="duration > 120", start='expression', exact=False, msg='Did you check the `duration` correctly?')
 
@@ -1197,7 +1196,7 @@ in_thing = where_clause.has_equal_ast(sql="release_year IN (1990, 2000)", start=
 
 Ex().test_correct(check_result(), [
     from_clause,
-    # typed_and,
+    typed_and,
     in_thing,
     where_duration,
     title,
@@ -1240,14 +1239,14 @@ from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` claus
 
 where_clause = sel.check_field('where_clause')
 
-# TODO: hack to deal with AST morphing
-# typed_and = test_student_typed('and|AND', msg='Make sure to use an `AND` statement in your `WHERE` clause!')
+# hack to deal with AST morphing
+typed_and = test_student_typed('and|AND', msg='Make sure to use an `AND` statement in your `WHERE` clause!')
 
 in_thing = where_clause.has_equal_ast(sql="WHERE language IN ('English', 'Spanish', 'French')", start='expression', exact=False, msg='Did you use `IN` correctly?')
 
 Ex().test_correct(check_result(), [
     from_clause,
-    # typed_and,
+    typed_and,
     in_thing,
     title,
     release_year,
@@ -1288,14 +1287,14 @@ from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` claus
 
 where_clause = sel.check_field('where_clause')
 
-# TODO: hack to deal with AST morphing
-# typed_and = test_student_typed('and|AND', msg='Make sure to use an `AND` statement in your `WHERE` clause!')
+# hack to deal with AST morphing
+typed_and = test_student_typed('and|AND', msg='Make sure to use an `AND` statement in your `WHERE` clause!')
 
 in_thing = where_clause.has_equal_ast(sql="certification IN ('NC-17', 'R')", start='expression', exact=False, msg='Did you use `IN` correctly?')
 
 Ex().test_correct(check_result(), [
     from_clause,
-    # typed_and,
+    typed_and,
     in_thing,
     title,
     certification,
@@ -1649,7 +1648,7 @@ like_clause = where_clause.check_field('expr')
 op_like = where_clause.check_field('op').has_equal_ast('Are you using the `NOT LIKE` operator in your `WHERE` clause?')
 
 left_like = like_clause.check_field('left').has_equal_ast('Are you using `name` with `NOT LIKE`?')
-# TODO: might need to add a test_student_typed()s here
+# TODO: might need to add a test_student_typed() here
 
 right_like = like_clause.check_field('right').has_equal_ast("Are you using `NOT LIKE` with `'A%'`?")
 

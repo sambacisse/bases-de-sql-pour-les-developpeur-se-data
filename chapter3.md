@@ -755,7 +755,10 @@ FROM ___;
 
 sel = check_node('SelectStmt')
 
+
 title = test_column('title', msg='Did you select the `title` column correctly?')
+
+# TODO: add digits kwarg here 
 alias = test_column('duration_hours', match='exact', msg='Did you alias your result as `duration_hours`?')
 
 alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr')
@@ -806,8 +809,8 @@ sel = check_node('SelectStmt')
 
 alias = test_column('avg_duration_hours', match='exact', msg='Did you alias your result as `avg_duration_hours`?')
 
-avg1 = test_student_typed('AVG(duration) / 60.0', msg='Are you calling `AVG` correctly?')
-avg2 = test_student_typed('AVG(duration / 60.0)', msg='Are you calling `AVG` correctly?')
+avg1 = test_student_typed('AVG\(duration\)\s+\/\s+60.0', msg='Are you calling `AVG` correctly?')
+avg2 = test_student_typed('AVG\(duration\s+\/\s+60.0\)', msg='Are you calling `AVG` correctly?')
 
 avg_call = test_or(avg1, avg2)
 

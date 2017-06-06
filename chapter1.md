@@ -633,7 +633,6 @@ FROM ___;
 ```{python}
 sel = check_node('SelectStmt')
 
-# TODO: this needs to be changed 
 distinct = sel.check_field('pref').has_equal_ast("Don't forget to use the `DISTINCT` keyword!")
 
 country = test_column('country', msg='Did you select the `country` column?')
@@ -671,7 +670,6 @@ FROM ___;
 ```{python}
 sel = check_node('SelectStmt')
 
-# TODO: this needs to be changed 
 distinct = sel.check_field('pref').has_equal_ast("Don't forget to use the `DISTINCT` keyword!")
 
 certification = test_column('certification', msg='Did you select the `certification` column?')
@@ -709,7 +707,6 @@ FROM ___;
 ```{python}
 sel = check_node('SelectStmt')
 
-# TODO: this needs to be changed
 distinct = sel.check_field('pref').has_equal_ast("Don't forget to use the `DISTINCT` keyword!")
 
 role = test_column('role', msg='Did you select the `role` column?')
@@ -903,7 +900,7 @@ temp = sel.check_node('Call')
 
 count_call = temp.check_field('name').has_equal_ast('Are you using `COUNT` with `DISTINCT`?')
 
-# TODO: this needs to be changed
+# not urgent: this might need to be changed
 # count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
 
 count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
@@ -945,7 +942,7 @@ temp = sel.check_node('Call')
 
 count_call = temp.check_field('name').has_equal_ast('Are you using `COUNT` with `DISTINCT`?')
 
-# TODO: this needs to be changed
+# not urgent: this might need to be changed
 # count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
 
 count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
@@ -989,7 +986,7 @@ temp = sel.check_node('Call')
 
 count_call = temp.check_field('name').has_equal_ast('Are you using `COUNT` with `DISTINCT`?')
 
-# TODO: this needs to be changed
+# not urgent: this might need to be changed
 # count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
 
 count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
