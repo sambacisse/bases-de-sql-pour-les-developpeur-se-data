@@ -948,7 +948,7 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:TabExercise lang:sql xp:100 key:38a7c62434
+--- type:BulletExercise lang:sql xp:100 key:38a7c62434
 ## GROUP BY practice (2)
 
 Now practice your new skills by combining `GROUP BY` and `ORDER BY` with some more aggregate functions!
@@ -1387,11 +1387,11 @@ release_year = test_column('release_year', msg='Did you select the `release_year
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
+group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
+
 where_clause = sel.check_field('where_clause')
 
 where_release_year = where_clause.has_equal_ast(sql='release_year > 1990', start='expression', exact=False, msg='Did you check the `release_year` correctly in your `WHERE` clause?')
-
-group_by = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
 Ex().test_correct(check_result(), [
     group_by_clause,
