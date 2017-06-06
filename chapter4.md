@@ -1435,13 +1435,13 @@ from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` claus
 where_clause = sel.check_field('where_clause')
 where_release_year = where_clause.has_equal_ast(sql='release_year > 1990', start='expression', exact=False, msg='Did you check the `release_year` correctly in your `WHERE` clause?')
 
-group_by = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
+group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
 alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
 alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_box_office` correctly?')
 
 Ex().test_correct(check_result(), [
-    group_by,
+    group_by_clause,
     where_clause,
     from_clause,
     where_release_year,
@@ -1488,7 +1488,7 @@ from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` claus
 where_clause = sel.check_field('where_clause')
 where_release_year = where_clause.has_equal_ast(sql='release_year > 1990', start='expression', exact=False, msg='Did you check the `release_year` correctly in your `WHERE` clause?')
 
-group_by = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
+group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
 alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
 alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_box_office` correctly?')
@@ -1548,7 +1548,7 @@ from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` claus
 where_clause = sel.check_field('where_clause')
 where_release_year = where_clause.has_equal_ast(sql='release_year > 1990', start='expression', exact=False, msg='Did you check the `release_year` correctly in your `WHERE` clause?')
 
-group_by = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
+group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
 alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
 alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_box_office` correctly?')
