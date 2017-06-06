@@ -756,7 +756,7 @@ FROM ___;
 sel = check_node('SelectStmt')
 
 title = test_column('title', msg='Did you select the `title` column correctly?')
-alias = test_column('duration_hours', match='exact', msg='Did you alias your result as `duration_hours`?')
+alias = test_column('duration_hours', match='exact', msg='Did you alias your result as `duration_hours`?', digits=4)
 
 alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr')
 
