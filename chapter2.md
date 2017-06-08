@@ -593,10 +593,10 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:TabExercise lang:sql xp:100 key:ecc1838fc7
+--- type:PlainMultipleChoiceExercise lang:sql xp:50 key:227814cb5d
 ## WHERE AND OR
 
-What if you want to select rows based on multiple conditions where some but not _all_ of the conditions need to be met? For this, SQL has the `OR` clause.
+What if you want to select rows based on multiple conditions where some but not _all_ of the conditions need to be met? For this, SQL has the `OR` operator.
 
 For example, the following returns all films released in *either* 1994 or 2000:
 
@@ -625,6 +625,51 @@ AND (certification = 'PG' OR certification = 'R');
 ```
 
 Otherwise, due to SQL's precedence rules, you may not get the results you're expecting!
+
+<hr>
+What does the `OR` operator do?
+
+*** =instructions
+- Display rows that meet **one** of the specified conditions.
+- Display rows that meet **all** of the specified conditions.
+- Display rows that meet **none** of the specified conditions.
+
+*** =hint
+Think about records that meet condition1 **and** condition2.
+
+*** =sct
+```{python}
+success_msg = 'Correct!'
+msg1 = 'Incorrect. `OR` does not display rows that meet **all** of the specified conditions.'
+msg2 = 'Incorrect. `OR` does not display rows that meet **none** of the specified conditions.'
+
+Ex().test_mc(1, [success_msg, msg1, msg2])
+```
+
+--- type:TabExercise lang:sql xp:100 key:ecc1838fc7
+## WHERE AND OR (2)
+
+You now know how to select rows that meet __some__ but not __all__ conditions by combining `AND` and `OR`. 
+
+For example, the following query selects all films that were released in 1994 or 1995 which had a rating of PG or R. 
+
+```
+SELECT title
+FROM films
+WHERE (release_year = 1994 OR release_year = 1995)
+AND (certification = 'PG' OR certification = 'R');
+```
+
+<hr>
+
+Now you'll write a query to:
+
+- get the title and release year
+- of French or Spanish films
+- released in the 90s
+- which took in more than $2M at the box office
+
+It looks like a lot, but you can build the query up one step at a time to get comfortable with the underlying concept in each step. Let's go!
 
 *** =pre_exercise_code
 ```{python}
@@ -691,7 +736,7 @@ Ex().test_correct(check_result(), [
 *** =xp2: 20
 
 *** =instructions2
-Get the title and release year of French or Spanish films released in the 90s.
+Now, filter the records to only include French or Spanish language films.
 
 *** =solution2
 ```{sql}
@@ -750,7 +795,7 @@ Ex().test_correct(check_result(), [
 *** =xp3: 20
 
 *** =instructions3
-Get the title and release year of French or Spanish films released in the 90s that took in more than $2M at the box office.
+Finally, restrict the query to only return films that took in more than $2M at the box office.
 
 *** =solution3
 ```{sql}
@@ -866,7 +911,7 @@ WHERE age BETWEEN 2 AND 12
 AND nationality = 'USA';
 ```
 
-Take a go at using `BETWEEN` with `AND` on the films data!
+Take a go at using `BETWEEN` with `AND` on the films data to get the title and release year of all Spanish films released between 1990 and 2000 with budgets over $100 million. We have broken the problem into smaller steps so that you can build the query as you go along! 
 
 *** =pre_exercise_code
 ```{python}
@@ -886,6 +931,7 @@ set_options(visible_tables = ['films'])
 
 *** =instructions1
 Get the title and release year of all films released between 1990 and 2000.
+
 *** =solution1
 ```{sql}
 SELECT title, release_year
@@ -935,7 +981,8 @@ Ex().test_correct(check_result(), [
 *** =xp2: 20
 
 *** =instructions2
-Get the title and release year of all films released between 1990 and 2000 with budgets over $100 million.
+Now, select only films that have budgets over $100 million.
+
 *** =solution2
 ```{sql}
 SELECT title, release_year
@@ -992,7 +1039,8 @@ Ex().test_correct(check_result(), [
 *** =xp3: 20
 
 *** =instructions3
-Get the title and release year of all Spanish films released between 1990 and 2000 with budgets over $100 million.
+Finally, restrict the query to only return Spanish films.
+
 *** =solution3
 ```{sql}
 SELECT title, release_year

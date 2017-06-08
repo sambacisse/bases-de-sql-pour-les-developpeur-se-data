@@ -12,14 +12,97 @@ description: >-
 *** =projector_key
 f05d06ad7807cf476fdb5f674174c9d5
 
---- type:TabExercise lang:sql xp:100 skills:1 key:0cbd791cc8
-## Onboarding
+--- type:MultipleChoiceExercise lang:sql xp:50 skills:1 key:e456699517
+## Onboarding | Tables
 
-If you've used DataCamp to learn [R](https://www.datacamp.com/courses/free-introduction-to-r) or [Python](https://www.datacamp.com/courses/intro-to-python-for-data-science), you'll be familiar with the interface.
+If you've used DataCamp to learn [R](https://www.datacamp.com/courses/free-introduction-to-r) or [Python](https://www.datacamp.com/courses/intro-to-python-for-data-science), you'll be familiar with the interface. For SQL however, there are a few new features you should be aware of. 
 
-For SQL however, we're introducing some new features.
+For this course, you'll be using a database containing information on almost 5000 films. To the right, underneath the editor, you can see the data in this database by clicking through the tabs.
 
-In the real world you will often need to incrementally build up your queries. To reflect this, we're introducing *tab exercises*. Check it out below!
+From looking at the tabs, who is the first person listed in the `people` table?
+
+*** =pre_exercise_code
+```{python}
+connect('postgresql', 'films')
+```
+
+*** =instructions
+- Kanye West
+- Biggie Smalls
+- 50 Cent
+- Jay Z
+
+*** =hint
+Look at the `people` tab under the editor!
+
+*** =sct
+```{python}
+msg1 = 'Nope, look at the `people` table!'
+correct = 'Correct!'
+
+Ex().test_mc(3,[msg1, msg1, correct, msg1])
+```
+
+--- type:MultipleChoiceExercise lang:sql xp:50 skills:1 key:5314676aac
+## Onboarding | Query Results
+
+Notice the **query result** tab in the bottom right corner of your screen. This is where the results of your SQL queries will be displayed. 
+
+Run the query in the editor and check out the results in the **query result** tab! 
+
+<hr>
+
+From looking at the results, who is the second person listed in the `query results` table?
+
+*** =pre_exercise_code
+```{python}
+connect('postgresql', 'films')
+```
+
+*** =sample_code
+```{sql}
+SELECT name FROM people;
+```
+
+*** =instructions
+- Kanye West
+- A. Michael Baldwin
+- 50 Cent
+- Jay Z
+
+*** =hint
+Run the code in the editor and look at the `query result` tab under the editor!
+
+*** =sct
+```{python}
+msg1 = 'Nope, look at the `query result` tab!'
+correct = 'Correct!'
+
+Ex().test_mc(2, [msg1, correct, msg1, msg1])
+```
+
+--- type:NormalExercise lang:sql xp:100 skills:1 key:7d7e325a12
+## Onboarding | Errors
+
+If you submit the code to the right, you'll see that you get two types of errors.
+
+_SQL_ errors are shown below the editor. These are errors returned by the _SQL_ engine. You should see:
+
+```
+syntax error at or near "'DataCamp <3 SQL'" LINE 2: 'DataCamp <3 SQL' ^
+```
+<br>
+_DataCamp_ errors are shown in the the **Instructions** box. These will let you know in plain English where you went wrong in your code! You should see:
+
+```
+You need to add SELECT at the start of line 2!
+```
+
+*** =instructions
+Submit the code to the right, check out the errors, then fix them!
+
+*** =hint
+In the editor, change line 2 to `SELECT 'DataCamp <3 SQL'`.
 
 *** =pre_exercise_code
 ```{python}
@@ -29,68 +112,28 @@ connect('postgresql', 'films')
 *** =sample_code
 ```{sql}
 -- Try running me!
-SELECT 'Welcome to the course!'
-AS welcome_column;
+'DataCamp <3 SQL'
+AS result;
 ```
 
-*** =type1:NormalExercise
-*** =key1: 0e1942875c
-*** =xp1: 20
-
-*** =instructions1
-Notice the **query result** tab in the bottom right corner of your screen. This is where the results of your SQL queries will be displayed.
-
-Run the query in the editor and check out the results in the **query result** tab!
-
-*** =hint1
-Run the code in the editor!
-
-*** =solution1
+*** =solution
 ```{sql}
 -- Try running me!
-SELECT 'Welcome to the course!'
-AS welcome_column;
+SELECT 'DataCamp <3 SQL'
+AS result;
 ```
 
-*** =sct1
-```{python}
+*** =sct
+```{sql}
+Ex().test_student_typed('SELECT', msg='You need to add `SELECT` at the start of line 2!', fixed=True)
 Ex().test_has_columns()
 Ex().test_error()
-Ex().test_student_typed('SELECT', msg='You need to add `SELECT` at the start of line 2!', fixed=True)
 ```
 
-*** =type2:MultipleChoiceExercise
-*** =key2: 97d9538682
-*** =xp2: 20
+--- type:BulletExercise lang:sql xp:100 skills:1 key:81eb00a53d
+## Onboarding | Bullet Exercises
 
-*** =question2
-Good work!
-
-For this course, you'll be using a database containing information on almost 5000 films. To the right, underneath the editor, you can see the tables in this database by clicking through the tabs.
-
-From looking at the tables, who is the first person listed in the `people` table?
-
-*** =possible_answers2
-- Kanye West
-- Biggy Smalls
-- 50 Cent
-- Jay Z
-
-*** =hint2
-Look at the `people` tab under the editor!
-
-*** =sct2
-```{python}
-msg1 = 'Nope, look at the `people` table!'
-correct = 'Correct!'
-
-Ex().test_mc(3,[msg1, msg1, correct, msg1])
-```
-
---- type:BulletExercise lang:sql xp:100 skills:1 key:f76443aff1
-## Onboarding (2)
-
-Another new feature we're introducing is *bullet exercises*, which allow you to easily practice a new concept through repetition. Check it out below!
+Another new feature we're introducing the *bullet exercise*, which allows you to easily practice a new concept through repetition. Check it out below!
 
 *** =pre_exercise_code
 ```{python}
@@ -135,7 +178,7 @@ Ex().check_result()
 *** =xp2: 20
 
 *** =instructions2
-Now change 'SQL' to 'SQL is' and click Submit!
+Now change `'SQL'` to `'SQL is'` and click Submit!
 
 *** =hint2
 Change the code and submit the query!
@@ -161,7 +204,7 @@ Ex().check_result()
 *** =xp3: 20
 
 *** =instructions3
-Finally, change 'SQL is' to 'SQL is cool!' and click Submit!
+Finally, change `'SQL is'` to `'SQL is cool!'` and click Submit!
 
 *** =hint3
 Change the code and submit the query!
@@ -180,53 +223,6 @@ Ex().test_student_typed('SQL is cool!', msg="Did you change the query correctly?
 
 Ex().test_has_columns()
 Ex().check_result()
-```
-
---- type:NormalExercise lang:sql xp:100 skills:1 key:7d7e325a12
-## A note on errors
-
-If you submit the code to the right, you'll see that you get two types of errors. _SQL_ errors are shown below the editor. You should see:
-
-```
-syntax error at or near "'DataCamp <3 SQL'" LINE 2: 'DataCamp <3 SQL' ^
-```
-
-_DataCamp_ errors are shown in the the **Instructions** box. These will let you know in plain English where you went wrong in your code! You should see:
-
-```
-You need to add SELECT at the start of line 2!
-```
-
-*** =instructions
-Submit the code to the right, check out the errors, then fix them to start the course!
-
-*** =hint
-In the editor, change line 2 to `SELECT 'DataCamp <3 SQL'`.
-
-*** =pre_exercise_code
-```{python}
-connect('postgresql', 'films')
-```
-
-*** =sample_code
-```{sql}
--- Try running me!
-'DataCamp <3 SQL'
-AS result;
-```
-
-*** =solution
-```{sql}
--- Try running me!
-SELECT 'DataCamp <3 SQL'
-AS result;
-```
-
-*** =sct
-```{sql}
-Ex().test_student_typed('SELECT', msg='You need to add `SELECT` at the start of line 2!', fixed=True)
-Ex().test_has_columns()
-Ex().test_error()
 ```
 
 --- type:PlainMultipleChoiceExercise lang:sql xp:50 key:a1f556e63f
@@ -293,6 +289,8 @@ That said, it's good practice to make SQL keywords uppercase to distinguish them
 
 It's also good practice (but not necessary for the exercises in this course) to include a semicolon at the end of your query. This tells SQL where the end of your query is!
 
+Remember, you can see the results of executing your query in the __query result__ tab to the right!
+
 *** =pre_exercise_code
 ```{python}
 connect('postgresql', 'films')
@@ -308,7 +306,8 @@ set_options(visible_tables = ['films', 'people'])
 *** =key1: a41cc766d5
 *** =xp1: 20
 *** =instructions1
-Select the `title` column from the `films` table. You can see your results in the query result tab to the right!
+Select the `title` column from the `films` table.
+
 *** =solution1
 ```{sql}
 SELECT title
@@ -341,7 +340,7 @@ Ex().test_correct(check_result(), [
 *** =key2: 4a74270ecd
 *** =xp2: 20
 *** =instructions2
-Modify your query to get the `release_year` column from the `films table`.
+Select the `release_year` column from the `films` table.
 
 *** =solution2
 ```{sql}
@@ -374,7 +373,7 @@ Ex().test_correct(check_result(), [
 *** =key3: 323bd5ddf5
 *** =xp3: 20
 *** =instructions3
-Now modify your query to get the `name` of each person in the `people` table.
+Select the `name` of each person in the `people` table.
 
 *** =solution3
 ```{sql}

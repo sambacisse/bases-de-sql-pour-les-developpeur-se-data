@@ -34,7 +34,7 @@ By default, `ORDER BY` sorts alphabetically, but in which direction?
 *** =sct
 ```{python}
 success_msg = 'Correct!'
-msg1 = 'Incorrect. Although text values are ordered alphabetically, they don\'t go Z-A.'
+msg1 = "Incorrect. Although text values are ordered alphabetically, they don't go Z-A."
 msg2 = 'Incorrect. Text values are ordered alphabetically.'
 
 Ex().test_mc(1, [success_msg, msg1, msg2, msg2])
@@ -695,12 +695,12 @@ Now you know how to sort results! Often you'll need to aggregate results. For ex
 ```
 SELECT gender, count(*)
 FROM employees
-GROUP BY gender;
+GROUP BY sex;
 ```
 
 This might give, for example:
 
-| gender | count |
+| sex | count |
 |----|----|
 | male | 15 |
 | female | 19 |
@@ -724,7 +724,7 @@ You use `GROUP BY` when you want to compute results within groups.
 ```{python}
 one = 'Incorrect. While `GROUP BY` does sort by column, we could just use `ORDER BY` for this.'
 two = 'Incorrect.'
-three = 'Incorrect. While `GROUP BY` does sort results, it\'s not designed to control order of operations.'
+three = "Incorrect. While `GROUP BY` does sort results, it's not designed to control order of operations."
 success_msg = 'Correct! `GROUP BY` is for performing operations within groups.'
 
 Ex().test_mc(4, [one, two, three, success_msg])
@@ -1258,7 +1258,9 @@ Ex().test_mc(2, [msg2, msg1, msg2, msg2])
 --- type:TabExercise lang:sql xp:100 key:f7dcb9e122
 ## All together now
 
-Time to practice using `ORDER BY`, `GROUP BY` and `HAVING` together.
+Time to practice using `ORDER BY`, `GROUP BY` and `HAVING` together. 
+
+Now you're going to write a query that returns the average budget and average gross earnings for films released after 1990, for every release year with an average budget of greater than $60 million. 
 
 This is going to be a big query, but you can handle it!
 
