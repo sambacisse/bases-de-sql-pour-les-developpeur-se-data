@@ -755,11 +755,9 @@ FROM ___;
 
 sel = check_node('SelectStmt')
 
-
 title = test_column('title', msg='Did you select the `title` column correctly?')
 
-# TODO: add digits kwarg here 
-alias = test_column('duration_hours', match='exact', msg='Did you alias your result as `duration_hours`?')
+alias = test_column('duration_hours', match='exact', msg='Did you alias your result as `duration_hours`?', digits=4)
 
 alias_eqn = sel.check_node('AliasExpr').check_node('BinaryExpr')
 
@@ -771,7 +769,7 @@ op_eqn = alias_eqn.check_field('op').has_equal_ast('Are you dividing by `60.0`?'
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
-Ex().test_correct(check_result(), [
+Ex().test_correct(alias, [
     from_clause,
     left_eqn,
     op_eqn,
@@ -807,16 +805,19 @@ FROM ___;
 # TODO: come back to this with better solution once sqlwhat is patched
 sel = check_node('SelectStmt')
 
-alias = test_column('avg_duration_hours', match='exact', msg='Did you alias your result as `avg_duration_hours`?')
+alias = test_column('avg_duration_hours', match='exact', msg='Did you alias your result as `avg_duration_hours`?', digits=4)
 
 avg1 = test_student_typed('AVG\(duration\)\s+\/\s+60.0', msg='Are you calling `AVG` correctly?')
 avg2 = test_student_typed('AVG\(duration\s+\/\s+60.0\)', msg='Are you calling `AVG` correctly?')
+avg3 = test_student_typed('AVG\(duration\/60.0\)', msg='Are you calling `AVG` correctly?')
+avg4 = test_student_typed('AVG\(duration\/60.0\)', msg='Are you calling `AVG` correctly?')
 
-avg_call = test_or(avg1, avg2)
+
+avg_call = test_or(avg1, avg2, avg3, avg4)
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
-Ex().test_correct(check_result(), [
+Ex().test_correct(alias, [
     from_clause,
     avg_call,
     alias,
