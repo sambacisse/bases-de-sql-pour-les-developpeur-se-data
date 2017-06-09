@@ -4,7 +4,6 @@ BASE_DIR=$(pwd)
 FILMS_REPO="https://assets.datacamp.com/course/tmp_fixme_filip/films.zip"
 
 apt-get update && apt-get install -y unzip
-
 # get repos
 #wget $NYCBIKES_REPO
 #unzip nycbikes15_db_scripts.zip
@@ -29,6 +28,8 @@ unzip films.zip -d courses-intro-to-sql/data
   #&& cd $BASE_DIR/nycbikes15 \
   #&& sudo -u postgres psql nycbikes15 < sql-setup/create-db-postgres.sql \
   #&& service postgresql stop
+
+pip3 install sqlwhat-ext==0.0.1
 
 service postgresql start \
   && sudo -u postgres createdb -O repl films \

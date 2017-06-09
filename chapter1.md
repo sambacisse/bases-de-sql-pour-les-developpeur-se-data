@@ -462,13 +462,15 @@ FROM ___;
 ```
 *** =sct1
 ```{python}
+from sqlwhat_ext import check_result2
+
 sel = check_node('SelectStmt')
 
 title = test_column('title', msg='Did you select the `title` column correctly?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` cause correct?')
 
-Ex().test_correct(check_result(), [
+Ex().test_correct(check_result2(), [
     from_clause,
     title,
     test_has_columns(),
@@ -495,6 +497,8 @@ FROM ___;
 ```
 *** =sct2
 ```{python}
+from sqlwhat_ext import check_result2
+
 sel = check_node('SelectStmt')
 
 title = test_column('title', msg='Did you select the `title` column correctly?')
@@ -503,7 +507,7 @@ release_year = test_column('release_year', msg='Did you select the `release_year
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` cause correct?')
 
-Ex().test_correct(check_result(), [
+Ex().test_correct(check_result2(), [
     from_clause,
     title,
     release_year,
@@ -532,6 +536,8 @@ FROM ___;
 ```
 *** =sct3
 ```{python}
+from sqlwhat_ext import check_result2
+
 sel = check_node('SelectStmt')
 
 title = test_column('title', msg='Did you select the `title` column correctly?')
@@ -542,7 +548,7 @@ country = test_column('country', msg='Did you select the `country` column correc
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` cause correct?')
 
-Ex().test_correct(check_result(), [
+Ex().test_correct(check_result2(), [
     from_clause,
     title,
     release_year,
