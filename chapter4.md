@@ -1,6 +1,6 @@
 ---
 title       : Sorting, grouping and joins
-description : This chapter provides a brief introduction to sorting and grouping your results, and briefly touches on the concept of joins. 
+description : This chapter provides a brief introduction to sorting and grouping your results, and briefly touches on the concept of joins.
 
 --- type:PlainMultipleChoiceExercise lang:sql xp:50 key:322af4938b
 ## ORDER BY
@@ -58,7 +58,7 @@ set_options(visible_tables = ['films', 'people'])
 
 *** =type1: NormalExercise
 *** =key1: e3a06cce15
-*** =xp1: 20
+*** =xp1: 30
 
 *** =instructions1
 Get the names of people from the `people` table, sorted alphabetically.
@@ -100,7 +100,7 @@ Ex().test_correct(check_result(), [
 *** =type2: NormalExercise
 
 *** =key2: 14a2792baa
-*** =xp2: 20
+*** =xp2: 30
 
 *** =instructions2
 Get the names of people, sorted by birth date.
@@ -138,7 +138,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: 6cfeca71b1
-*** =xp3: 20
+*** =xp3: 30
 
 *** =instructions3
 Get the birth date and name for every person, in order of when they were born.
@@ -195,7 +195,7 @@ set_options(visible_tables = ['films', 'people'])
 
 *** =type1: NormalExercise
 *** =key1: e2702b5933
-*** =xp1: 20
+*** =xp1: 30
 
 *** =instructions1
 Get the title and release year of films released in 2000 or 2012, in the order they were released.
@@ -240,7 +240,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 5c84507976
-*** =xp2: 20
+*** =xp2: 30
 
 *** =instructions2
 Get all details for all films except those released in 2015 and order them by duration.
@@ -286,7 +286,7 @@ Ex().test_correct(check_result(), [
 *** =type3: NormalExercise
 *** =key3: 6359addbf8
 
-*** =xp3: 20
+*** =xp3: 30
 
 *** =instructions3
 Get the title and gross box office earnings for movies which begin with the letter 'M' and order the results alphabetically.
@@ -342,7 +342,7 @@ Ex().test_correct(check_result(), [
 To order results in _descending_ order, you can put the keyword `DESC` after your `ORDER BY`. For example, to get all the names in the `people` table, in reverse alpabetical order:
 
 ```
-SELECT name 
+SELECT name
 FROM people
 ORDER BY people DESC;
 ```
@@ -362,7 +362,7 @@ set_options(visible_tables = ['films', 'reviews'])
 
 *** =type1: NormalExercise
 *** =key1: 1ed651456d
-*** =xp1: 20
+*** =xp1: 30
 
 *** =instructions1
 Get the IMDB score and film ID for every film, sorted from highest to lowest score.
@@ -405,7 +405,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 3629dd5dcd
-*** =xp2: 20
+*** =xp2: 30
 
 *** =instructions2
 Get the title for every film, in reverse order.
@@ -445,7 +445,7 @@ Ex().test_correct(check_result(), [
 *** =type3: NormalExercise
 *** =key3: ddcb2dd3ad
 
-*** =xp3: 20
+*** =xp3: 30
 
 *** =instructions3
 Get the title and duration for every film, in order of longest duration to shortest.
@@ -513,7 +513,7 @@ set_options(visible_tables = ['films', 'people'])
 
 *** =type1: NormalExercise
 *** =key1: 9ec6e8ae72
-*** =xp1: 20
+*** =xp1: 25
 
 *** =instructions1
 Get the birth date and name of people in the `people` table, in order of when they were born and alphabetically by name.
@@ -555,7 +555,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 3460b2f14b
-*** =xp2: 20
+*** =xp2: 25
 
 *** =instructions2
 Get the release year, duration, and title of films ordered by their release year and duration.
@@ -599,7 +599,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: c03517c2b9
-*** =xp3: 20
+*** =xp3: 25
 
 *** =instructions3
 Get certifications, release years, and titles of films ordered by certification (alphabetically) and release year.
@@ -646,7 +646,7 @@ Ex().test_correct(check_result(), [
 
 *** =type4: NormalExercise
 *** =key4: f0ade213ff
-*** =xp4: 20
+*** =xp4: 25
 
 *** =instructions4
 Get the names and birthdates of people ordered by birth date and name.
@@ -679,7 +679,7 @@ order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORD
 Ex().test_correct(check_result(), [
     order_by_clause,
     from_clause,
-    name, 
+    name,
     birthdate,
     test_has_columns(),
     test_ncols(),
@@ -769,7 +769,7 @@ set_options(visible_tables = ['films', 'reviews'])
 
 *** =type1: NormalExercise
 *** =key1: 0b29eb4ff3
-*** =xp1: 20
+*** =xp1: 25
 
 *** =instructions1
 Get the release year and count of films released in each year.
@@ -813,7 +813,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: ebee043890
-*** =xp2: 20
+*** =xp2: 25
 
 *** =instructions2
 Get the release year and average duration of all films, grouped by release year.
@@ -858,7 +858,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: b4341b8451
-*** =xp3: 20
+*** =xp3: 25
 
 *** =instructions3
 Get the release year and largest budget for all films, grouped by release year.
@@ -903,7 +903,7 @@ Ex().test_correct(check_result(), [
 
 *** =type4: NormalExercise
 *** =key4: 66d0c5198a
-*** =xp4: 20
+*** =xp4: 25
 
 *** =instructions4
 Get the IMDB score and count of film reviews for each IMDB rating in the `reviews` table.
@@ -940,7 +940,7 @@ Ex().test_correct(check_result(), [
     group_by_clause,
     from_clause,
     imdb_score,
-    count_call, 
+    count_call,
     count_args,
     test_has_columns(),
     test_ncols(),
@@ -1153,7 +1153,7 @@ Ex().test_correct(check_result(), [
 *** =xp5: 20
 
 *** =instructions5
-Get the country, release year, and lowest amount grossed per release year per country. Order your results by country and release year. 
+Get the country, release year, and lowest amount grossed per release year per country. Order your results by country and release year.
 *** =solution5
 ```{sql}
 SELECT country, release_year, MIN(gross)
@@ -1258,9 +1258,9 @@ Ex().test_mc(2, [msg2, msg1, msg2, msg2])
 --- type:TabExercise lang:sql xp:100 key:f7dcb9e122
 ## All together now
 
-Time to practice using `ORDER BY`, `GROUP BY` and `HAVING` together. 
+Time to practice using `ORDER BY`, `GROUP BY` and `HAVING` together.
 
-Now you're going to write a query that returns the average budget and average gross earnings for films released after 1990, for every release year with an average budget of greater than $60 million. 
+Now you're going to write a query that returns the average budget and average gross earnings for films released after 1990, for every release year with an average budget of greater than $60 million.
 
 This is going to be a big query, but you can handle it!
 
@@ -1686,7 +1686,7 @@ WHERE title = 'To Kill a Mockingbird';
 
 *** =type1:NormalExercise
 *** =key1: 7c4fc7a484
-*** =xp1: 20
+*** =xp1: 50
 
 *** =instructions1
 Submit the code in the editor and inspect the results.
@@ -1729,7 +1729,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2:MultipleChoiceExercise
 *** =key2: fc288db979
-*** =xp2: 20
+*** =xp2: 50
 
 *** =question2
 What rating does _To Kill a Mockingbird_ have on IMDB?

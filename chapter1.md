@@ -15,7 +15,7 @@ f05d06ad7807cf476fdb5f674174c9d5
 --- type:MultipleChoiceExercise lang:sql xp:50 skills:1 key:e456699517
 ## Onboarding | Tables
 
-If you've used DataCamp to learn [R](https://www.datacamp.com/courses/free-introduction-to-r) or [Python](https://www.datacamp.com/courses/intro-to-python-for-data-science), you'll be familiar with the interface. For SQL however, there are a few new features you should be aware of. 
+If you've used DataCamp to learn [R](https://www.datacamp.com/courses/free-introduction-to-r) or [Python](https://www.datacamp.com/courses/intro-to-python-for-data-science), you'll be familiar with the interface. For SQL however, there are a few new features you should be aware of.
 
 For this course, you'll be using a database containing information on almost 5000 films. To the right, underneath the editor, you can see the data in this database by clicking through the tabs.
 
@@ -46,9 +46,9 @@ Ex().test_mc(3,[msg1, msg1, correct, msg1])
 --- type:MultipleChoiceExercise lang:sql xp:50 skills:1 key:5314676aac
 ## Onboarding | Query Results
 
-Notice the **query result** tab in the bottom right corner of your screen. This is where the results of your SQL queries will be displayed. 
+Notice the **query result** tab in the bottom right corner of your screen. This is where the results of your SQL queries will be displayed.
 
-Run the query in the editor and check out the results in the **query result** tab! 
+Run the query in the editor and check out the results in the **query result** tab!
 
 <hr>
 
@@ -148,7 +148,7 @@ AS result;
 
 *** =type1:NormalExercise
 *** =key1: 157ee8d1ad
-*** =xp1: 20
+*** =xp1: 30
 
 *** =instructions1
 Submit the query in the editor! Don't worry, you'll learn how it works soon.
@@ -175,7 +175,7 @@ Ex().check_result()
 
 *** =type2:NormalExercise
 *** =key2: 764f82129d
-*** =xp2: 20
+*** =xp2: 30
 
 *** =instructions2
 Now change `'SQL'` to `'SQL is'` and click Submit!
@@ -201,7 +201,7 @@ Ex().check_result()
 
 *** =type3:NormalExercise
 *** =key3: 1496605dac
-*** =xp3: 20
+*** =xp3: 30
 
 *** =instructions3
 Finally, change `'SQL is'` to `'SQL is cool!'` and click Submit!
@@ -304,7 +304,7 @@ set_options(visible_tables = ['films', 'people'])
 
 *** =type1: NormalExercise
 *** =key1: a41cc766d5
-*** =xp1: 20
+*** =xp1: 30
 *** =instructions1
 Select the `title` column from the `films` table.
 
@@ -338,7 +338,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 4a74270ecd
-*** =xp2: 20
+*** =xp2: 30
 *** =instructions2
 Select the `release_year` column from the `films` table.
 
@@ -371,7 +371,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: 323bd5ddf5
-*** =xp3: 20
+*** =xp3: 30
 *** =instructions3
 Select the `name` of each person in the `people` table.
 
@@ -445,7 +445,7 @@ set_options(visible_tables = ['films'])
 
 *** =type1: NormalExercise
 *** =key1: d561b4df97
-*** =xp1: 20
+*** =xp1: 25
 *** =instructions1
 Get the title of every film from the `films` table.
 
@@ -481,7 +481,7 @@ Ex().test_correct(check_result2(), [
 
 *** =type2: NormalExercise
 *** =key2: 917d7dc533
-*** =xp2: 20
+*** =xp2: 25
 *** =instructions2
 Get the title and release year for every film.
 
@@ -519,7 +519,7 @@ Ex().test_correct(check_result2(), [
 
 *** =type3: NormalExercise
 *** =key3: eeba078a00
-*** =xp3: 20
+*** =xp3: 25
 *** =instructions3
 Get the title, release year and country for every film.
 
@@ -561,7 +561,7 @@ Ex().test_correct(check_result2(), [
 
 *** =type4: NormalExercise
 *** =key4: dac27d9aad
-*** =xp4: 20
+*** =xp4: 25
 *** =instructions4
 Get all columns from the `films` table.
 *** =solution4
@@ -619,7 +619,7 @@ set_options(visible_tables = ['films', 'roles'])
 
 *** =type1: NormalExercise
 *** =key1: e6b81711f1
-*** =xp1: 20
+*** =xp1: 30
 *** =instructions1
 Get all the unique countries represented in the `films` table.
 
@@ -656,7 +656,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 2cb9a4bf6a
-*** =xp2: 20
+*** =xp2: 30
 *** =instructions2
 Get all the different film certifications from the `films` table.
 *** =solution2
@@ -693,7 +693,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: 26835d3029
-*** =xp3: 20
+*** =xp3: 30
 *** =instructions3
 Get the different types of film roles from the `roles` table.
 

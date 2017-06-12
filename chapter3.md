@@ -1,6 +1,6 @@
 ---
 title       : Aggregate Functions
-description : This chapter builds on the first two by teaching you how to use aggregate functions to summarize your data and gain useful insights. Additionally, you'll learn about arithmetic in SQL, and how to use aliases to make your results more readable! 
+description : This chapter builds on the first two by teaching you how to use aggregate functions to summarize your data and gain useful insights. Additionally, you'll learn about arithmetic in SQL, and how to use aliases to make your results more readable!
 
 
 --- type:BulletExercise lang:sql xp:100 key:b883e7079f
@@ -44,7 +44,7 @@ set_options(visible_tables = ['films'])
 *** =type1: NormalExercise
 
 *** =key1: 80fd462ae1
-*** =xp1: 20
+*** =xp1: 25
 
 *** =instructions1
 Use the `SUM` function to get the total duration of all films.
@@ -82,7 +82,7 @@ Ex().test_correct(check_result(), [
 *** =type2: NormalExercise
 
 *** =key2: 7993b51268
-*** =xp2: 20
+*** =xp2: 25
 
 *** =instructions2
 Get the average duration of all films.
@@ -119,7 +119,7 @@ Ex().test_correct(check_result(), [
 *** =type3: NormalExercise
 
 *** =key3: a03aeabbc6
-*** =xp3: 20
+*** =xp3: 25
 
 *** =instructions3
 Get the duration of the shortest film.
@@ -156,10 +156,10 @@ Ex().test_correct(check_result(), [
 *** =type4: NormalExercise
 
 *** =key4: fabbc619c6
-*** =xp4: 20
+*** =xp4: 25
 
 *** =instructions4
-Get the duration of the longest film. 
+Get the duration of the longest film.
 *** =solution4
 ```{sql}
 SELECT MAX(duration)
@@ -210,7 +210,7 @@ set_options(visible_tables = ['films'])
 
 *** =key1: c8173b7d3e
 
-*** =xp1: 20
+*** =xp1: 25
 
 *** =instructions1
 Use the `SUM` function to get the total amount grossed by all films.
@@ -249,7 +249,7 @@ Ex().test_correct(check_result(), [
 
 *** =key2: 24c0ab68ad
 
-*** =xp2: 20
+*** =xp2: 25
 
 *** =instructions2
 Get the average amount grossed by all films.
@@ -287,7 +287,7 @@ Ex().test_correct(check_result(), [
 
 *** =key3: 19838082cb
 
-*** =xp3: 20
+*** =xp3: 25
 
 *** =instructions3
 Get the amount grossed by the worst performing film.
@@ -325,7 +325,7 @@ Ex().test_correct(check_result(), [
 
 *** =key4: a49b98de42
 
-*** =xp4: 20
+*** =xp4: 25
 
 *** =instructions4
 Get the amount grossed by the best performing film.
@@ -364,7 +364,7 @@ Ex().test_correct(check_result(), [
 --- type:BulletExercise lang:sql xp:100 key:b44bd43288
 ## Combining aggregate functions with WHERE
 
-Aggregate functions can be combined with the `WHERE` clause to gain further insights from your data. 
+Aggregate functions can be combined with the `WHERE` clause to gain further insights from your data.
 
 For example, to get the total budget of movies made in the year 2010 or later:
 
@@ -390,7 +390,7 @@ set_options(visible_tables = ['films'])
 
 *** =key1: b986f33a10
 
-*** =xp1: 20
+*** =xp1: 25
 
 *** =instructions1
 Use the `SUM` function to get the total amount grossed by all films made in the year 2000 or later.
@@ -436,7 +436,7 @@ Ex().test_correct(check_result(), [
 
 *** =key2: 65e81175c5
 
-*** =xp2: 20
+*** =xp2: 25
 
 *** =instructions2
 Get the average amount grossed by all films whose titles start with the letter 'A'.
@@ -485,7 +485,7 @@ Ex().test_correct(check_result(), [
 
 *** =key3: 3ca90a8536
 
-*** =xp3: 20
+*** =xp3: 25
 
 *** =instructions3
 Get the amount grossed by the worst performing film in 1994.
@@ -530,7 +530,7 @@ Ex().test_correct(check_result(), [
 
 *** =key4: d2e630e656
 
-*** =xp4: 20
+*** =xp4: 25
 
 *** =instructions4
 Get the amount grossed by the best performing film between 2000 and 2012.
@@ -595,11 +595,11 @@ However, this gives a result of `1`.
 SELECT (4 / 3);
 ```
 
-What's going on here? 
+What's going on here?
 
 SQL assumes that if you divide an integer by an integer, you want to get an integer back. So be careful when dividing!
 
-If you want more precision when dividing, you can add decimal places to your numbers. For example, 
+If you want more precision when dividing, you can add decimal places to your numbers. For example,
 
 ```
 SELECT (4.0 / 3.0) AS result;
@@ -661,7 +661,7 @@ To avoid situations like this, SQL allows you to do something called _aliasing_.
 For example, in the above example we could use aliases to make the result clearer:
 
 ```
-SELECT MAX(budget) AS max_budget, 
+SELECT MAX(budget) AS max_budget,
        MAX(duration) AS max_duration
 FROM films;
 ```
@@ -682,7 +682,7 @@ set_options(visible_tables = ['films'])
 *** =type1: NormalExercise
 
 *** =key1: ec33c2353b
-*** =xp1: 20
+*** =xp1: 30
 
 *** =instructions1
 Get the title and net profit (the amount a film grossed, minus its budget) for all films. Alias the net profit as `net_profit`.
@@ -703,7 +703,7 @@ FROM ___;
 ```{python}
 sel = check_node('SelectStmt')
 
-title = test_column('title').has_equal_ast('Did you select the `title` column correctly?') 
+title = test_column('title').has_equal_ast('Did you select the `title` column correctly?')
 
 alias = test_column('net_profit', match='exact', msg='Did you alias your result as `net_profit`?')
 
@@ -733,7 +733,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 1351c6f6bb
-*** =xp2: 20
+*** =xp2: 30
 
 *** =instructions2
 Get the title and duration in hours for all films. The duration is in minutes, so you'll need to divide by 60.0 to get the duration in hours. Alias the duration in hours as `duration_hours`.
@@ -785,7 +785,7 @@ Ex().test_correct(alias, [
 
 *** =type3: NormalExercise
 *** =key3: 497f8d2a8a
-*** =xp3: 20
+*** =xp3: 30
 *** =instructions3
 Get the average duration in hours for all films, aliased as `avg_duration_hours`.
 
@@ -845,7 +845,7 @@ set_options(visible_tables = ['films', 'people'])
 
 *** =type1: NormalExercise
 *** =key1: e14dc7c1a2
-*** =xp1: 20
+*** =xp1: 30
 
 *** =instructions1
 Get the percentage of `people` who are no longer alive. Alias the result as `percentage_dead`. Remember to use `100.0` and not `100`!
@@ -900,7 +900,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: c2bbd9a806
-*** =xp2: 20
+*** =xp2: 30
 *** =instructions2
 Get the number of years between the oldest film and newest film. Alias the result as `difference`.
 
@@ -955,7 +955,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: f272486b68
-*** =xp3: 20
+*** =xp3: 30
 
 *** =instructions3
 Get the number of decades the `films` table covers. Alias the result as `number_of_decades`. The top half of your fraction should be enclosed in parentheses.

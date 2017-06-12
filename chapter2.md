@@ -1,8 +1,8 @@
 ---
 title: Filtering rows
 description: >-
-  This chapter builds on the first by teaching you how to filter tables for rows 
-  satisfying some criteria of interest. You'll learn how to use basic comparison 
+  This chapter builds on the first by teaching you how to filter tables for rows
+  satisfying some criteria of interest. You'll learn how to use basic comparison
   operators, combine multiple criteria, match patterns in text, and much more.
 
 --- type:PlainMultipleChoiceExercise lang:sql xp:50 key:bfc80ff2e5
@@ -84,7 +84,7 @@ set_options(visible_tables = ['films'])
 
 *** =type1: NormalExercise
 *** =key1: 8a4615ada8
-*** =xp1: 20
+*** =xp1: 30
 
 *** =instructions1
 Get all details for all films released in 2016.
@@ -125,7 +125,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 5e6e1c74c6
-*** =xp2: 20
+*** =xp2: 30
 
 *** =instructions2
 Get the number of films released before 2000.
@@ -171,7 +171,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: d66f3d41b7
-*** =xp3: 20
+*** =xp3: 30
 
 *** =instructions3
 Get the title and release year of films released after 2000.
@@ -242,7 +242,7 @@ set_options(visible_tables = ['films', 'people'])
 
 *** =type1: NormalExercise
 *** =key1: b645308dcd
-*** =xp1: 20
+*** =xp1: 25
 
 *** =instructions1
 Get all details for all French language films.
@@ -282,7 +282,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 051f6fb8ec
-*** =xp2: 20
+*** =xp2: 25
 
 *** =instructions2
 Get the name and birth date of the person born on November 11th, 1974. Remember to use ISO date format (`'1974-11-11'`)!
@@ -327,7 +327,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: 7b872a3af0
-*** =xp3: 20
+*** =xp3: 25
 
 *** =instructions3
 Get the number of Hindi language films.
@@ -374,7 +374,7 @@ Ex().test_correct(check_result(), [
 
 *** =type4: NormalExercise
 *** =key4: 2c87504f11
-*** =xp4: 20
+*** =xp4: 25
 
 *** =instructions4
 Get all details for all films with an R certification.
@@ -452,7 +452,7 @@ set_options(visible_tables = ['films'])
 
 *** =type1: NormalExercise
 *** =key1: 7ccf93b215
-*** =xp1: 20
+*** =xp1: 30
 
 *** =instructions1
 Get the title and release year for all Spanish language films released before 2000.
@@ -500,7 +500,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: e703c95e46
-*** =xp2: 20
+*** =xp2: 30
 
 *** =instructions2
 Get all details for Spanish language films released after 2000.
@@ -545,7 +545,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: 7f2ba5c82f
-*** =xp3: 20
+*** =xp3: 30
 
 *** =instructions3
 Get all details for Spanish language films released after 2000, but before 2010.
@@ -583,7 +583,7 @@ where_language = where_clause.has_equal_ast(sql="language = 'Spanish'", start='e
 
 Ex().test_correct(check_result(), [
     from_clause,
-    where_release_year1, 
+    where_release_year1,
     where_release_year2,
     where_language,
     star,
@@ -649,9 +649,9 @@ Ex().test_mc(1, [success_msg, msg1, msg2])
 --- type:TabExercise lang:sql xp:100 key:ecc1838fc7
 ## WHERE AND OR (2)
 
-You now know how to select rows that meet __some__ but not __all__ conditions by combining `AND` and `OR`. 
+You now know how to select rows that meet __some__ but not __all__ conditions by combining `AND` and `OR`.
 
-For example, the following query selects all films that were released in 1994 or 1995 which had a rating of PG or R. 
+For example, the following query selects all films that were released in 1994 or 1995 which had a rating of PG or R.
 
 ```
 SELECT title
@@ -684,7 +684,7 @@ set_options(visible_tables = ['films'])
 *** =type1: NormalExercise
 
 *** =key1: 510b387baa
-*** =xp1: 20
+*** =xp1: 30
 
 *** =instructions1
 Get the title and release year for films released in the 90s.
@@ -733,7 +733,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 969ed73542
-*** =xp2: 20
+*** =xp2: 30
 
 *** =instructions2
 Now, filter the records to only include French or Spanish language films.
@@ -792,7 +792,7 @@ Ex().test_correct(check_result(), [
 *** =type3: NormalExercise
 *** =key3: d961856c7a
 
-*** =xp3: 20
+*** =xp3: 30
 
 *** =instructions3
 Finally, restrict the query to only return films that took in more than $2M at the box office.
@@ -911,7 +911,7 @@ WHERE age BETWEEN 2 AND 12
 AND nationality = 'USA';
 ```
 
-Take a go at using `BETWEEN` with `AND` on the films data to get the title and release year of all Spanish films released between 1990 and 2000 with budgets over $100 million. We have broken the problem into smaller steps so that you can build the query as you go along! 
+Take a go at using `BETWEEN` with `AND` on the films data to get the title and release year of all Spanish films released between 1990 and 2000 with budgets over $100 million. We have broken the problem into smaller steps so that you can build the query as you go along!
 
 *** =pre_exercise_code
 ```{python}
@@ -927,7 +927,7 @@ set_options(visible_tables = ['films'])
 *** =type1: NormalExercise
 
 *** =key1: 9252da136b
-*** =xp1: 20
+*** =xp1: 25
 
 *** =instructions1
 Get the title and release year of all films released between 1990 and 2000.
@@ -978,7 +978,7 @@ Ex().test_correct(check_result(), [
 *** =type2: NormalExercise
 
 *** =key2: d21a4bec02
-*** =xp2: 20
+*** =xp2: 25
 
 *** =instructions2
 Now, select only films that have budgets over $100 million.
@@ -1036,7 +1036,7 @@ Ex().test_correct(check_result(), [
 *** =type3: NormalExercise
 
 *** =key3: 9087bf33ac
-*** =xp3: 20
+*** =xp3: 25
 
 *** =instructions3
 Finally, restrict the query to only return Spanish films.
@@ -1101,7 +1101,7 @@ Ex().test_correct(check_result(), [
 
 *** =key4: 73d020dfab
 
-*** =xp4: 20
+*** =xp4: 25
 
 *** =instructions4
 Get the title and release year of all Spanish *or* French films released between 1990 and 2000 with budgets over $100 million.
@@ -1171,7 +1171,7 @@ As you've seen, `WHERE` is very useful for filtering results. However, if you wa
 ```
 SELECT name
 FROM kids
-WHERE age = 2 
+WHERE age = 2
 OR age = 4
 OR age = 6
 OR age = 8
@@ -1203,7 +1203,7 @@ set_options(visible_tables = ['films'])
 
 *** =type1: NormalExercise
 *** =key1: dc7674d358
-*** =xp1: 20
+*** =xp1: 30
 
 *** =instructions1
 Get the title and release year of all films released in 1990 or released in 2000 that were longer than two hours. Remember, duration is in minutes!
@@ -1257,7 +1257,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 3a84c097d2
-*** =xp2: 20
+*** =xp2: 30
 
 *** =instructions2
 Get the title and language of all films which were in English, Spanish or French.
@@ -1306,7 +1306,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: 3c947b0d2d
-*** =xp3: 20
+*** =xp3: 30
 
 *** =instructions3
 Get the title and certification of all films with an NC-17 or R certification.
@@ -1415,7 +1415,7 @@ set_options(visible_tables = ['films', 'people'])
 
 *** =type1: NormalExercise
 *** =key1: 3c646ada87
-*** =xp1: 20
+*** =xp1: 30
 
 *** =instructions1
 Get the names of people who are still alive, i.e. whose death date is missing.
@@ -1454,7 +1454,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 3c646ada89
-*** =xp2: 20
+*** =xp2: 30
 
 *** =instructions2
 Get the title of every film which doesn't have a budget associated with it.
@@ -1492,7 +1492,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: 3c646ada88
-*** =xp3: 20
+*** =xp3: 30
 
 *** =instructions3
 Get the number of films which don't have a language associated with them.
@@ -1574,7 +1574,7 @@ set_options(visible_tables = ['people'])
 
 *** =type1: NormalExercise
 *** =key1: 9e3c3ef68f
-*** =xp1: 20
+*** =xp1: 30
 
 *** =instructions1
 Get the names of all people whose names begin with 'B'. The pattern you need is `'B%'`.
@@ -1619,7 +1619,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 606b667e1c
-*** =xp2: 20
+*** =xp2: 30
 
 *** =instructions2
 Get the names of people whose names have 'r' as the second letter. The pattern you need is `'_r%'`.
@@ -1665,7 +1665,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: 2e4f49a528
-*** =xp3: 20
+*** =xp3: 30
 
 *** =instructions3
 Get the names of people whose names don't start with A. The pattern you need is `'A%'`.
