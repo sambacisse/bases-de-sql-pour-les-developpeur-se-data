@@ -242,7 +242,7 @@ set_options(visible_tables = ['films', 'people'])
 
 *** =type1: NormalExercise
 *** =key1: b645308dcd
-*** =xp1: 25
+*** =xp1: 30
 
 *** =instructions1
 Get all details for all French language films.
@@ -282,7 +282,7 @@ Ex().test_correct(check_result(), [
 
 *** =type2: NormalExercise
 *** =key2: 051f6fb8ec
-*** =xp2: 25
+*** =xp2: 30
 
 *** =instructions2
 Get the name and birth date of the person born on November 11th, 1974. Remember to use ISO date format (`'1974-11-11'`)!
@@ -327,7 +327,7 @@ Ex().test_correct(check_result(), [
 
 *** =type3: NormalExercise
 *** =key3: 7b872a3af0
-*** =xp3: 25
+*** =xp3: 30
 
 *** =instructions3
 Get the number of Hindi language films.
@@ -374,7 +374,7 @@ Ex().test_correct(check_result(), [
 
 *** =type4: NormalExercise
 *** =key4: 2c87504f11
-*** =xp4: 25
+*** =xp4: 30
 
 *** =instructions4
 Get all details for all films with an R certification.
@@ -927,7 +927,7 @@ set_options(visible_tables = ['films'])
 *** =type1: NormalExercise
 
 *** =key1: 9252da136b
-*** =xp1: 25
+*** =xp1: 30
 
 *** =instructions1
 Get the title and release year of all films released between 1990 and 2000.
@@ -978,7 +978,7 @@ Ex().test_correct(check_result(), [
 *** =type2: NormalExercise
 
 *** =key2: d21a4bec02
-*** =xp2: 25
+*** =xp2: 30
 
 *** =instructions2
 Now, select only films that have budgets over $100 million.
@@ -1036,7 +1036,7 @@ Ex().test_correct(check_result(), [
 *** =type3: NormalExercise
 
 *** =key3: 9087bf33ac
-*** =xp3: 25
+*** =xp3: 30
 
 *** =instructions3
 Finally, restrict the query to only return Spanish films.
@@ -1101,7 +1101,7 @@ Ex().test_correct(check_result(), [
 
 *** =key4: 73d020dfab
 
-*** =xp4: 25
+*** =xp4: 30
 
 *** =instructions4
 Get the title and release year of all Spanish *or* French films released between 1990 and 2000 with budgets over $100 million.

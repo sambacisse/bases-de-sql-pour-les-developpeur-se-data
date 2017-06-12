@@ -44,7 +44,7 @@ set_options(visible_tables = ['films'])
 *** =type1: NormalExercise
 
 *** =key1: 80fd462ae1
-*** =xp1: 25
+*** =xp1: 30
 
 *** =instructions1
 Use the `SUM` function to get the total duration of all films.
@@ -82,7 +82,7 @@ Ex().test_correct(check_result(), [
 *** =type2: NormalExercise
 
 *** =key2: 7993b51268
-*** =xp2: 25
+*** =xp2: 30
 
 *** =instructions2
 Get the average duration of all films.
@@ -119,7 +119,7 @@ Ex().test_correct(check_result(), [
 *** =type3: NormalExercise
 
 *** =key3: a03aeabbc6
-*** =xp3: 25
+*** =xp3: 30
 
 *** =instructions3
 Get the duration of the shortest film.
@@ -156,7 +156,7 @@ Ex().test_correct(check_result(), [
 *** =type4: NormalExercise
 
 *** =key4: fabbc619c6
-*** =xp4: 25
+*** =xp4: 30
 
 *** =instructions4
 Get the duration of the longest film.
@@ -210,7 +210,7 @@ set_options(visible_tables = ['films'])
 
 *** =key1: c8173b7d3e
 
-*** =xp1: 25
+*** =xp1: 30
 
 *** =instructions1
 Use the `SUM` function to get the total amount grossed by all films.
@@ -249,7 +249,7 @@ Ex().test_correct(check_result(), [
 
 *** =key2: 24c0ab68ad
 
-*** =xp2: 25
+*** =xp2: 30
 
 *** =instructions2
 Get the average amount grossed by all films.
@@ -287,7 +287,7 @@ Ex().test_correct(check_result(), [
 
 *** =key3: 19838082cb
 
-*** =xp3: 25
+*** =xp3: 30
 
 *** =instructions3
 Get the amount grossed by the worst performing film.
@@ -325,7 +325,7 @@ Ex().test_correct(check_result(), [
 
 *** =key4: a49b98de42
 
-*** =xp4: 25
+*** =xp4: 30
 
 *** =instructions4
 Get the amount grossed by the best performing film.
@@ -390,7 +390,7 @@ set_options(visible_tables = ['films'])
 
 *** =key1: b986f33a10
 
-*** =xp1: 25
+*** =xp1: 30
 
 *** =instructions1
 Use the `SUM` function to get the total amount grossed by all films made in the year 2000 or later.
@@ -436,7 +436,7 @@ Ex().test_correct(check_result(), [
 
 *** =key2: 65e81175c5
 
-*** =xp2: 25
+*** =xp2: 30
 
 *** =instructions2
 Get the average amount grossed by all films whose titles start with the letter 'A'.
@@ -485,7 +485,7 @@ Ex().test_correct(check_result(), [
 
 *** =key3: 3ca90a8536
 
-*** =xp3: 25
+*** =xp3: 30
 
 *** =instructions3
 Get the amount grossed by the worst performing film in 1994.
@@ -530,7 +530,7 @@ Ex().test_correct(check_result(), [
 
 *** =key4: d2e630e656
 
-*** =xp4: 25
+*** =xp4: 30
 
 *** =instructions4
 Get the amount grossed by the best performing film between 2000 and 2012.
