@@ -215,7 +215,7 @@ Ex().test_correct(check_result(), [
 --- type:BulletExercise lang:sql xp:100 key:b90db25f33
 ## Simple filtering of text
 
-Remember, the `WHERE` clause can be also be used to filter text results, such as names or countries.
+Remember, the `WHERE` clause can also be used to filter text results, such as names or countries.
 
 For example, this query gets the titles of all films which were filmed in China:
 
@@ -911,7 +911,7 @@ WHERE age BETWEEN 2 AND 12
 AND nationality = 'USA';
 ```
 
-Take a go at using `BETWEEN` with `AND` on the films data to get the title and release year of all Spanish films released between 1990 and 2000 with budgets over $100 million. We have broken the problem into smaller steps so that you can build the query as you go along!
+Take a go at using `BETWEEN` with `AND` on the films data to get the title and release year of all Spanish films released between 1990 and 2000 (inclusive) with budgets over $100 million. We have broken the problem into smaller steps so that you can build the query as you go along!
 
 *** =pre_exercise_code
 ```{python}
@@ -930,7 +930,7 @@ set_options(visible_tables = ['films'])
 *** =xp1: 30
 
 *** =instructions1
-Get the title and release year of all films released between 1990 and 2000.
+Get the title and release year of all films released between 1990 and 2000 (inclusive).
 
 *** =solution1
 ```{sql}
