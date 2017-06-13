@@ -339,7 +339,7 @@ Ex().test_correct(check_result(), [
 --- type:BulletExercise lang:sql xp:100 key:a7b2964ba7
 ## Sorting single columns (DESC)
 
-To order results in _descending_ order, you can put the keyword `DESC` after your `ORDER BY`. For example, to get all the names in the `people` table, in reverse alpabetical order:
+To order results in _descending_ order, you can put the keyword `DESC` after your `ORDER BY`. For example, to get all the names in the `people` table, in reverse alphabetical order:
 
 ```
 SELECT name
@@ -1469,7 +1469,7 @@ SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
 FROM films
 WHERE release_year > 1990
 GROUP BY release_year
-HAVING AVG(budget) > 60000000;
+HAVING AVG(budget) > 60000000 60000000;
 ```
 *** =hint5
 ```
