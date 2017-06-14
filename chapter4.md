@@ -9,12 +9,14 @@ Congratulations on making it this far! You now know how to select and filter you
 
 In this chapter you'll learn how to sort and group your results to gain further insight. Let's go!
 
-In SQL, the `ORDER BY` keyword is used to sort results in ascending or descending order according the values of one or more columns. By default `ORDER BY` will sort in ascending order. If you want to sort the results in descending order, you can use the `DESC` keyword. For example,
+In SQL, the `ORDER BY` keyword is used to sort results in ascending or descending order according the values of one or more columns. 
+
+By default `ORDER BY` will sort in ascending order. If you want to sort the results in descending order, you can use the `DESC` keyword. For example,
 
 ```
 SELECT title
 FROM films
-ORDER BY release_year;
+ORDER BY release_year DESC;
 ```
 
 gives you the titles of films sorted by release year, from newest to oldest.
@@ -693,7 +695,7 @@ Ex().test_correct(check_result(), [
 Now you know how to sort results! Often you'll need to aggregate results. For example, you might want to get count the number of male and female employees in your company. Here, what you want is to group all the males together and count them, and group all the females together and count them. In SQL, `GROUP BY` allows you to group a result by one or more columns, like so:
 
 ```
-SELECT gender, count(*)
+SELECT sex, count(*)
 FROM employees
 GROUP BY sex;
 ```
