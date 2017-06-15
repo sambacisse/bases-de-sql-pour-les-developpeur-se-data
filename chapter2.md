@@ -1287,9 +1287,6 @@ from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` claus
 
 where_clause = sel.check_field('where_clause')
 
-# hack to deal with AST morphing
-typed_and = test_student_typed('and|AND', msg='Make sure to use an `AND` statement in your `WHERE` clause!')
-
 in_thing = where_clause.has_equal_ast(sql="WHERE language IN ('English', 'Spanish', 'French')", start='expression', exact=False, msg='Did you use `IN` correctly?')
 
 Ex().test_correct(check_result(), [
