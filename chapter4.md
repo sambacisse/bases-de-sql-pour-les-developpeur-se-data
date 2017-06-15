@@ -742,15 +742,15 @@ A word of warning: SQL will return an error if you try to `SELECT` a field that 
 Note that you can combine `GROUP BY` with `ORDER BY` to group your results, calculate something about them, and then order your results. For example,
 
 ```
-SELECT gender, count(*)
+SELECT sex, count(*)
 FROM employees
-GROUP BY gender
+GROUP BY sex
 ORDER BY count DESC;
 ```
 
 might return something like
 
-| gender | count |
+| sex | count |
 |----|----|
 | female | 19 |
 | male | 15 |
