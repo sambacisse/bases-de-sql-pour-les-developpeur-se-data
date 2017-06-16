@@ -9,7 +9,7 @@ Congratulations on making it this far! You now know how to select and filter you
 
 In this chapter you'll learn how to sort and group your results to gain further insight. Let's go!
 
-In SQL, the `ORDER BY` keyword is used to sort results in ascending or descending order according the values of one or more columns. 
+In SQL, the `ORDER BY` keyword is used to sort results in ascending or descending order according to the values of one or more columns. 
 
 By default `ORDER BY` will sort in ascending order. If you want to sort the results in descending order, you can use the `DESC` keyword. For example,
 
