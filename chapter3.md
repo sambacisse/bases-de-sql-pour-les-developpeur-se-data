@@ -533,7 +533,7 @@ Ex().test_correct(check_result(), [
 *** =xp4: 30
 
 *** =instructions4
-Get the amount grossed by the best performing film between 2000 and 2012.
+Get the amount grossed by the best performing film between 2000 and 2012, inclusive.
 *** =solution4
 ```{sql}
 SELECT MAX(gross)

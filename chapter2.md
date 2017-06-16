@@ -1260,7 +1260,7 @@ Ex().test_correct(check_result(), [
 *** =xp2: 30
 
 *** =instructions2
-Get the title and language of all films which were in English, Spanish or French.
+Get the title and language of all films which were in English, Spanish, or French.
 *** =solution2
 ```{sql}
 SELECT title, language

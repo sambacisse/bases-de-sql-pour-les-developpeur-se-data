@@ -92,7 +92,7 @@ _SQL_ errors are shown below the editor. These are errors returned by the _SQL_ 
 syntax error at or near "'DataCamp <3 SQL'" LINE 2: 'DataCamp <3 SQL' ^
 ```
 <br>
-_DataCamp_ errors are shown in the the **Instructions** box. These will let you know in plain English where you went wrong in your code! You should see:
+_DataCamp_ errors are shown in the **Instructions** box. These will let you know in plain English where you went wrong in your code! You should see:
 
 ```
 You need to add SELECT at the start of line 2!
@@ -133,7 +133,7 @@ Ex().test_error()
 --- type:BulletExercise lang:sql xp:100 skills:1 key:81eb00a53d
 ## Onboarding | Bullet Exercises
 
-Another new feature we're introducing the *bullet exercise*, which allows you to easily practice a new concept through repetition. Check it out below!
+Another new feature we're introducing is the *bullet exercise*, which allows you to easily practice a new concept through repetition. Check it out below!
 
 *** =pre_exercise_code
 ```{python}
