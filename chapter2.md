@@ -1294,7 +1294,6 @@ Ex().test_correct(check_result(), [
     typed_and,
     in_thing,
     title,
-    release_year,
     test_has_columns(),
     test_ncols(),
     test_error()
