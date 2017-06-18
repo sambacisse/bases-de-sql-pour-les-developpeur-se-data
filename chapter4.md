@@ -908,7 +908,7 @@ Ex().test_correct(check_result(), [
 *** =xp4: 30
 
 *** =instructions4
-Get the IMDB score and count of film reviews for each IMDB rating in the `reviews` table.
+Get the IMDB score and count of film reviews grouped by IMDB score in the `reviews` table.
 *** =solution4
 ```{sql}
 SELECT imdb_score, COUNT(*)
@@ -1262,7 +1262,7 @@ Ex().test_mc(2, [msg2, msg1, msg2, msg2])
 
 Time to practice using `ORDER BY`, `GROUP BY` and `HAVING` together.
 
-Now you're going to write a query that returns the average budget and average gross earnings for films released after 1990, for every release year with an average budget of greater than $60 million.
+Now you're going to write a query that returns the average budget and average gross earnings for films in each year after 1990, if the average budget is greater than $60 million.
 
 This is going to be a big query, but you can handle it!
 
@@ -1585,7 +1585,7 @@ Ex().test_correct(check_result(), [
 Great work! Now try another large query. This time, all in one go!
 
 *** =instructions
-Get the name, average budget, and average box office take of countries that have made more than 10 films. Order the result by country name, and limit the number of results displayed to 5. You should alias the averages as `avg_budget` and `avg_gross` respectively.
+Get the country, average budget, and average box office take of countries that have made more than 10 films. Order the result by country name, and limit the number of results displayed to 5. You should alias the averages as `avg_budget` and `avg_gross` respectively.
 
 *** =hint
 You can refer back to the previous exercise!
