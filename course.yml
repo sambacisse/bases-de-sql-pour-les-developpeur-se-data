@@ -10,4 +10,4 @@ programming_language: sql
 difficulty_level: 0
 from: 'postgresql-base-prod:22'
 datasets:
-  films.csv: Films Database
+  films.sql: Films Database Dump
