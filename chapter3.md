@@ -466,6 +466,7 @@ where_clause = sel.check_field('where_clause')
 
 left_like = where_clause.check_field('left').has_equal_ast('Are you using `title` with `LIKE`?')
 op_like = where_clause.check_field('op').has_equal_ast('Are you using the `LIKE` operator in your `WHERE` clause?')
+
 right_like = where_clause.check_field('right').has_equal_ast("Are you using `LIKE` with `'A%'`?")
 
 Ex().test_correct(check_result(), [
