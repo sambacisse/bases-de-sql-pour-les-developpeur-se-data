@@ -13,7 +13,7 @@ Congrats on finishing the first chapter! You now know how to select columns and 
 In SQL, the `WHERE` keyword allows you to filter based on both text and numeric values in a table. There are a few different comparison operators you can use:
 
 - `=` equal
-- `<>` not equal
+- `<>` not equal 
 - `<` less than
 - `>` greater than
 - `<=` less than or equal to
@@ -27,7 +27,9 @@ FROM films
 WHERE title = 'Metropolis';
 ```
 
-Note that the `WHERE` clause always comes after the `FROM` statement!
+Notice that the `WHERE` clause always comes after the `FROM` statement!
+
+**Note that in this course we will use `<>` and not `!=` for the not equal operator, as per the SQL standard.**
 
 <hr>
 What does the following query return?
