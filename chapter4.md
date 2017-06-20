@@ -651,12 +651,12 @@ Ex().test_correct(check_result(), [
 *** =xp4: 30
 
 *** =instructions4
-Get the names and birthdates of people ordered by birth date and name.
+Get the names and birthdates of people ordered by name and birth date.
 *** =solution4
 ```{sql}
 SELECT name, birthdate
 FROM people
-ORDER BY birthdate, name;
+ORDER BY name, birthdate;
 ```
 *** =hint4
 ```
