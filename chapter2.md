@@ -1337,7 +1337,6 @@ in_thing = where_clause.has_equal_ast(sql="certification IN ('NC-17', 'R')", sta
 
 Ex().test_correct(check_result(), [
     from_clause,
-    typed_and,
     in_thing,
     title,
     certification,
