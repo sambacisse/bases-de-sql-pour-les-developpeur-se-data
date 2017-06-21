@@ -841,7 +841,8 @@ set_options(visible_tables = ['films', 'people'])
 
 *** =sample_code
 ```{sql}
-
+-- get the count(deathdate) and multiply by 100.0
+-- then divide by count(*) 
 ```
 
 *** =type1: NormalExercise
