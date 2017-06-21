@@ -842,7 +842,7 @@ This means that the following will erroneously result in `400.0`:
 SELECT 45 / 10 * 100.0;
 ```
 
-This is because `45 / 10` evaluates to an integer (`4`), and not a  decimal number like we would expect.
+This is because `45 / 10` evaluates to an integer (`4`), and not a decimal number like we would expect.
 
 So when you're dividing make sure at least one of your numbers has a decimal place:
 
