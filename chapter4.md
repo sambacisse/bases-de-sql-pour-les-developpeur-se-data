@@ -1614,11 +1614,17 @@ set_options(visible_tables = ['films'])
 
 *** =solution
 ```{sql}
+-- select country, average budget, average gross
 SELECT country, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
+-- from the films table
 FROM films
+-- group by country 
 GROUP BY country
+-- where the country has a title count greater than 10
 HAVING COUNT(title) > 10
+-- order by country
 ORDER BY country
+-- limit to only show 5 results
 LIMIT 5;
 ```
 *** =hint
