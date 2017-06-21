@@ -983,7 +983,7 @@ Ex().test_correct(check_result(), [
 *** =xp2: 30
 
 *** =instructions2
-Now, select only films that have budgets over $100 million.
+Now, build on your previous query to select only films that have budgets over $100 million.
 
 *** =solution2
 ```{sql}
