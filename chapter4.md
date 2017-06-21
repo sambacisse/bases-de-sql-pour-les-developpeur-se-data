@@ -1598,6 +1598,17 @@ set_options(visible_tables = ['films'])
 
 *** =sample_code
 ```{sql}
+-- select country, average budget, average gross
+
+-- from the films table
+
+-- group by country 
+
+-- where the country has a title count greater than 10
+
+-- order by country
+
+-- limit to only show 5 results
 
 ```
 
