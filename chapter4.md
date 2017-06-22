@@ -291,7 +291,7 @@ Ex().test_correct(check_result(), [
 *** =xp3: 30
 
 *** =instructions3
-Get the title and gross box office earnings for movies which begin with the letter 'M' and order the results alphabetically.
+Get the title and gross earnings for movies which begin with the letter 'M' and order the results alphabetically.
 *** =solution3
 ```{sql}
 SELECT title, gross
@@ -973,7 +973,7 @@ set_options(visible_tables = ['films'])
 *** =xp1: 30
 
 *** =instructions1
-Get the release year and lowest gross box office earnings per release year.
+Get the release year and lowest gross earnings per release year.
 *** =solution1
 ```{sql}
 SELECT release_year, MIN(gross)
@@ -1017,7 +1017,7 @@ Ex().test_correct(check_result(), [
 *** =xp2: 30
 
 *** =instructions2
-Get the language and total gross amount films in each language brought in at the box office.
+Get the language and total gross amount films in each language made.
 *** =solution2
 ```{sql}
 SELECT language, SUM(gross)
@@ -1281,7 +1281,7 @@ set_options(visible_tables = ['films'])
 *** =xp1: 30
 
 *** =instructions1
-Get the release year, budget and box office earnings for each film in the `films` table.
+Get the release year, budget and gross earnings for each film in the `films` table.
 *** =solution1
 ```{sql}
 SELECT release_year, budget, gross
@@ -1413,7 +1413,7 @@ Ex().test_correct(check_result(), [
 *** =xp4: 30
 
 *** =instructions4
-Modify your query to add in the average budget and average box office earnings for the results you have so far. Alias your results as `avg_budget` and `avg_gross`, respectively.
+Modify your query to add in the average budget and average gross earnings for the results you have so far. Alias your results as `avg_budget` and `avg_gross`, respectively.
 *** =solution4
 ```{sql}
 SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
@@ -1521,7 +1521,7 @@ Ex().test_correct(check_result(), [
 *** =xp6: 20
 
 *** =instructions6
-Finally, modify your query to order the results from highest average box office earnings to lowest.
+Finally, modify your query to order the results from highest average gross earnings to lowest.
 
 *** =solution6
 ```{sql}
@@ -1585,7 +1585,7 @@ Ex().test_correct(check_result(), [
 Great work! Now try another large query. This time, all in one go!
 
 *** =instructions
-Get the country, average budget, and average box office take of countries that have made more than 10 films. Order the result by country name, and limit the number of results displayed to 5. You should alias the averages as `avg_budget` and `avg_gross` respectively.
+Get the country, average budget, and average gross take of countries that have made more than 10 films. Order the result by country name, and limit the number of results displayed to 5. You should alias the averages as `avg_budget` and `avg_gross` respectively.
 
 *** =hint
 You can refer back to the previous exercise!

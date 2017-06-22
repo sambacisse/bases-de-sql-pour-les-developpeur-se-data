@@ -669,7 +669,7 @@ Now you'll write a query to:
 - get the title and release year
 - of French or Spanish films
 - released in the 90s
-- which took in more than $2M at the box office
+- which took in more than $2M gross
 
 It looks like a lot, but you can build the query up one step at a time to get comfortable with the underlying concept in each step. Let's go!
 
@@ -738,7 +738,7 @@ Ex().test_correct(check_result(), [
 *** =xp2: 30
 
 *** =instructions2
-Now, filter the records to only include French or Spanish language films.
+Now, build on your query to filter the records to only include French or Spanish language films.
 
 *** =solution2
 ```{sql}
@@ -797,7 +797,7 @@ Ex().test_correct(check_result(), [
 *** =xp3: 30
 
 *** =instructions3
-Finally, restrict the query to only return films that took in more than $2M at the box office.
+Finally, restrict the query to only return films that took in more than $2M gross.
 
 *** =solution3
 ```{sql}
@@ -913,7 +913,7 @@ WHERE age BETWEEN 2 AND 12
 AND nationality = 'USA';
 ```
 
-Take a go at using `BETWEEN` with `AND` on the films data to get the title and release year of all Spanish films released between 1990 and 2000 (inclusive) with budgets over $100 million. We have broken the problem into smaller steps so that you can build the query as you go along!
+Take a go at using `BETWEEN` with `AND` on the films data to get the title and release year of all Spanish language films released between 1990 and 2000 (inclusive) with budgets over $100 million. We have broken the problem into smaller steps so that you can build the query as you go along!
 
 *** =pre_exercise_code
 ```{python}
@@ -1041,7 +1041,7 @@ Ex().test_correct(check_result(), [
 *** =xp3: 30
 
 *** =instructions3
-Finally, restrict the query to only return Spanish films.
+Now restrict the query to only return Spanish language films.
 
 *** =solution3
 ```{sql}
@@ -1106,7 +1106,7 @@ Ex().test_correct(check_result(), [
 *** =xp4: 30
 
 *** =instructions4
-Get the title and release year of all Spanish *or* French films released between 1990 and 2000 with budgets over $100 million.
+Finally, modify to your previous query to include all Spanish language *or* French language films with the same criteria as before. Don't forget your parentheses!
 *** =solution4
 ```{sql}
 SELECT title, release_year
@@ -1293,7 +1293,6 @@ in_thing = where_clause.has_equal_ast(sql="WHERE language IN ('English', 'Spanis
 
 Ex().test_correct(check_result(), [
     from_clause,
-    typed_and,
     in_thing,
     title,
     test_has_columns(),
