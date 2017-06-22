@@ -664,12 +664,7 @@ AND (certification = 'PG' OR certification = 'R');
 
 <hr>
 
-Now you'll write a query to:
-
-- get the title and release year
-- of French or Spanish films
-- released in the 90s
-- which took in more than $2M gross
+Now you'll write a query to get the title and release year of films released in the 90s which were in French or Spanish and which took in more than $2M gross.
 
 It looks like a lot, but you can build the query up one step at a time to get comfortable with the underlying concept in each step. Let's go!
 
