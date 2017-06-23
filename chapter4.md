@@ -1464,7 +1464,7 @@ Ex().test_correct(check_result(), [
 *** =xp5: 30
 
 *** =instructions5
-Modify your query so that only films with an average budget of greater than $60 million are included.
+Modify your query so that only years with an average budget of greater than $60 million are included.
 
 *** =solution5
 ```{sql}
