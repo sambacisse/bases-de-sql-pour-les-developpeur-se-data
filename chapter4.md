@@ -200,7 +200,7 @@ set_options(visible_tables = ['films', 'people'])
 *** =xp1: 30
 
 *** =instructions1
-Get the title and release year of films released in 2000 or 2012, in the order they were released.
+Get the title of films released in 2000 or 2012, in the order they were released.
 *** =solution1
 ```{sql}
 SELECT title
