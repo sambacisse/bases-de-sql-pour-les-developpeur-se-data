@@ -346,7 +346,7 @@ To order results in _descending_ order, you can put the keyword `DESC` after you
 ```
 SELECT name
 FROM people
-ORDER BY people DESC;
+ORDER BY name DESC;
 ```
 
 Now practice using `ORDER BY` with `DESC` to sort single columns in descending order!
@@ -367,7 +367,7 @@ set_options(visible_tables = ['films', 'reviews'])
 *** =xp1: 30
 
 *** =instructions1
-Get the IMDB score and film ID for every film, sorted from highest to lowest score.
+Get the IMDB score and film ID for every film from the reviews table, sorted from highest to lowest score.
 
 *** =solution1
 ```{sql}
