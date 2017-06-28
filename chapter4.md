@@ -1343,7 +1343,7 @@ release_year = test_column('release_year', msg='Did you select the `release_year
 
 budget = test_column('budget', msg='Did you select the `budget` column correctly?')
 
-gross = test_column('gross', msg='Did you select the `release_year` column correctly?')
+gross = test_column('gross', msg='Did you select the `gross` column correctly?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
@@ -1702,7 +1702,7 @@ set_options(visible_tables = ['films', 'reviews'])
 SELECT title, imdb_score
 FROM films
 JOIN reviews
-ON films.id = reviews.id
+ON films.id = reviews.film_id
 WHERE title = 'To Kill a Mockingbird';
 ```
 
@@ -1721,7 +1721,7 @@ Submit the code in the editor!
 SELECT title, imdb_score
 FROM films
 JOIN reviews
-ON films.id = reviews.id
+ON films.id = reviews.film_id
 WHERE title = 'To Kill a Mockingbird';
 ```
 
@@ -1758,8 +1758,8 @@ What rating does _To Kill a Mockingbird_ have on IMDB?
 
 *** =possible_answers2
 - 8.1
+- 8.4
 - 7.7
-- 7.6
 - 9.3
 
 *** =hint2

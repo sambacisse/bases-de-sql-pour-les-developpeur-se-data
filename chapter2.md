@@ -306,9 +306,9 @@ WHERE ___ = '___';
 ```{python}
 sel = check_node('SelectStmt')
 
-name = test_column('name', msg='Did you select the `title` column?')
+name = test_column('name', msg='Did you select the `name` column?')
 
-birthdate = test_column('name', msg='Did you select the `birthdate` column?')
+birthdate = test_column('birthdate', msg='Did you select the `birthdate` column?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
@@ -949,7 +949,7 @@ sel = check_node('SelectStmt')
 
 title = test_column('title', msg='Did you select the `title` column?')
 
-release_year = test_column('title', msg='Did you select the `release_year` column?')
+release_year = test_column('release_year', msg='Did you select the `release_year` column?')
 
 from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
