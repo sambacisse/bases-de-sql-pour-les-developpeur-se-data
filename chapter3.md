@@ -590,7 +590,7 @@ So, for example, this gives a result of `12`:
 SELECT (4 * 3);
 ```
 
-However, the following gives a result of `1`.
+However, the following gives a result of `1`:
 
 ```
 SELECT (4 / 3);
