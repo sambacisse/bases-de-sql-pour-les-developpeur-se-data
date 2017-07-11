@@ -456,7 +456,7 @@ Get the title and duration for every film, in order of longest duration to short
 ```{sql}
 SELECT title, duration
 FROM films
-ORDER BY title DESC;
+ORDER BY duration DESC;
 ```
 *** =hint3
 ```
