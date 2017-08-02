@@ -590,7 +590,7 @@ So, for example, this gives a result of `12`:
 SELECT (4 * 3);
 ```
 
-However, this gives a result of `1`.
+However, the following gives a result of `1`:
 
 ```
 SELECT (4 / 3);
@@ -926,7 +926,7 @@ Ex().test_correct(check_result(), [
 *** =key2: c2bbd9a806
 *** =xp2: 30
 *** =instructions2
-Get the number of years between the oldest film and newest film. Alias the result as `difference`.
+Get the number of years between the newest film and oldest film. Alias the result as `difference`.
 
 *** =solution2
 ```{sql}
