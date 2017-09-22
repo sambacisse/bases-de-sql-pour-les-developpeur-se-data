@@ -2,8 +2,15 @@
 title       : Sorting, grouping and joins
 description : This chapter provides a brief introduction to sorting and grouping your results, and briefly touches on the concept of joins.
 
---- type:PlainMultipleChoiceExercise lang:sql xp:50 key:322af4938b
+---
 ## ORDER BY
+
+```yaml
+type: PlainMultipleChoiceExercise
+lang: sql
+xp: 50
+key: 322af4938b
+```
 
 Congratulations on making it this far! You now know how to select and filter your results.
 
@@ -30,7 +37,7 @@ How do you think `ORDER BY` sorts a column of text values by default?
 - There's no natural ordering to text data
 - By number of characters (fewest to most)
 
-`@instructions`
+`@hint`
 By default, `ORDER BY` sorts alphabetically, but in which direction?
 
 `@sct`
@@ -42,8 +49,15 @@ msg2 = 'Incorrect. Text values are ordered alphabetically.'
 Ex().test_mc(1, [success_msg, msg1, msg2, msg2])
 ```
 
---- type:BulletExercise lang:sql xp:100 key:a7b2964ba6
+---
 ## Sorting single columns
+
+```yaml
+type: BulletExercise
+lang: sql
+xp: 100
+key: a7b2964ba6
+```
 
 Now that you understand how `ORDER BY` works, give these exercises a go!
 
@@ -58,9 +72,13 @@ set_options(visible_tables = ['films', 'people'])
 
 ```
 
-*** =type1: NormalExercise
-*** =key1: e3a06cce15
-*** =xp1: 30
+***
+
+```yaml
+type: NormalExercise
+key: e3a06cce15
+xp: 30
+```
 
 `@instructions`
 Get the names of people from the `people` table, sorted alphabetically.
@@ -99,10 +117,13 @@ Ex().test_correct(check_result(), [
 
 ```
 
-*** =type2: NormalExercise
+***
 
-*** =key2: 14a2792baa
-*** =xp2: 30
+```yaml
+type: NormalExercise
+key: 14a2792baa
+xp: 30
+```
 
 `@instructions`
 Get the names of people, sorted by birth date.
@@ -138,9 +159,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type3: NormalExercise
-*** =key3: 6cfeca71b1
-*** =xp3: 30
+***
+
+```yaml
+type: NormalExercise
+key: 6cfeca71b1
+xp: 30
+```
 
 `@instructions`
 Get the birth date and name for every person, in order of when they were born.
@@ -179,8 +204,15 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:BulletExercise lang:sql xp:100 key:357ec9bc3d
+---
 ## Sorting single columns (2)
+
+```yaml
+type: BulletExercise
+lang: sql
+xp: 100
+key: 357ec9bc3d
+```
 
 Let's get some more practice with `ORDER BY`!
 
@@ -195,9 +227,13 @@ set_options(visible_tables = ['films', 'people'])
 
 ```
 
-*** =type1: NormalExercise
-*** =key1: e2702b5933
-*** =xp1: 30
+***
+
+```yaml
+type: NormalExercise
+key: e2702b5933
+xp: 30
+```
 
 `@instructions`
 Get the title of films released in 2000 or 2012, in the order they were released.
@@ -240,9 +276,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type2: NormalExercise
-*** =key2: 5c84507976
-*** =xp2: 30
+***
+
+```yaml
+type: NormalExercise
+key: 5c84507976
+xp: 30
+```
 
 `@instructions`
 Get all details for all films except those released in 2015 and order them by duration.
@@ -285,10 +325,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type3: NormalExercise
-*** =key3: 6359addbf8
+***
 
-*** =xp3: 30
+```yaml
+type: NormalExercise
+key: 6359addbf8
+xp: 30
+```
 
 `@instructions`
 Get the title and gross earnings for movies which begin with the letter 'M' and order the results alphabetically.
@@ -338,8 +381,15 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:BulletExercise lang:sql xp:100 key:a7b2964ba7
+---
 ## Sorting single columns (DESC)
+
+```yaml
+type: BulletExercise
+lang: sql
+xp: 100
+key: a7b2964ba7
+```
 
 To order results in _descending_ order, you can put the keyword `DESC` after your `ORDER BY`. For example, to get all the names in the `people` table, in reverse alphabetical order:
 
@@ -362,9 +412,13 @@ set_options(visible_tables = ['films', 'reviews'])
 
 ```
 
-*** =type1: NormalExercise
-*** =key1: 1ed651456d
-*** =xp1: 30
+***
+
+```yaml
+type: NormalExercise
+key: 1ed651456d
+xp: 30
+```
 
 `@instructions`
 Get the IMDB score and film ID for every film from the reviews table, sorted from highest to lowest score.
@@ -405,9 +459,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type2: NormalExercise
-*** =key2: 3629dd5dcd
-*** =xp2: 30
+***
+
+```yaml
+type: NormalExercise
+key: 3629dd5dcd
+xp: 30
+```
 
 `@instructions`
 Get the title for every film, in reverse order.
@@ -444,10 +502,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type3: NormalExercise
-*** =key3: ddcb2dd3ad
+***
 
-*** =xp3: 30
+```yaml
+type: NormalExercise
+key: ddcb2dd3ad
+xp: 30
+```
 
 `@instructions`
 Get the title and duration for every film, in order of longest duration to shortest.
@@ -487,8 +548,15 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:BulletExercise lang:sql xp:100 key:b2a52993bc
+---
 ## Sorting multiple columns
+
+```yaml
+type: BulletExercise
+lang: sql
+xp: 100
+key: b2a52993bc
+```
 
 `ORDER BY` can also be used to sort on multiple columns. It will sort by the first column specified, then sort by the next, then the next, and so on. For example,
 
@@ -513,9 +581,13 @@ set_options(visible_tables = ['films', 'people'])
 
 ```
 
-*** =type1: NormalExercise
-*** =key1: 9ec6e8ae72
-*** =xp1: 30
+***
+
+```yaml
+type: NormalExercise
+key: 9ec6e8ae72
+xp: 30
+```
 
 `@instructions`
 Get the birth date and name of people in the `people` table, in order of when they were born and alphabetically by name.
@@ -555,9 +627,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type2: NormalExercise
-*** =key2: 3460b2f14b
-*** =xp2: 30
+***
+
+```yaml
+type: NormalExercise
+key: 3460b2f14b
+xp: 30
+```
 
 `@instructions`
 Get the release year, duration, and title of films ordered by their release year and duration.
@@ -599,9 +675,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type3: NormalExercise
-*** =key3: c03517c2b9
-*** =xp3: 30
+***
+
+```yaml
+type: NormalExercise
+key: c03517c2b9
+xp: 30
+```
 
 `@instructions`
 Get certifications, release years, and titles of films ordered by certification (alphabetically) and release year.
@@ -646,9 +726,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type4: NormalExercise
-*** =key4: f0ade213ff
-*** =xp4: 30
+***
+
+```yaml
+type: NormalExercise
+key: f0ade213ff
+xp: 30
+```
 
 `@instructions`
 Get the names and birthdates of people ordered by name and birth date.
@@ -689,8 +773,15 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:PlainMultipleChoiceExercise lang:sql xp:50 key:81987a99cf
+---
 ## GROUP BY
+
+```yaml
+type: PlainMultipleChoiceExercise
+lang: sql
+xp: 50
+key: 81987a99cf
+```
 
 Now you know how to sort results! Often you'll need to aggregate results. For example, you might want to get count the number of male and female employees in your company. Here, what you want is to group all the males together and count them, and group all the females together and count them. In SQL, `GROUP BY` allows you to group a result by one or more columns, like so:
 
@@ -719,7 +810,7 @@ What is `GROUP BY` used for?
 - Performing operations in a particular order
 - Performing operations by group
 
-`@instructions`
+`@hint`
 You use `GROUP BY` when you want to compute results within groups.
 
 `@sct`
@@ -732,8 +823,15 @@ success_msg = 'Correct! `GROUP BY` is for performing operations within groups.'
 Ex().test_mc(4, [one, two, three, success_msg])
 ```
 
---- type:BulletExercise lang:sql xp:100 key:98e30a6131
+---
 ## GROUP BY practice
+
+```yaml
+type: BulletExercise
+lang: sql
+xp: 100
+key: 98e30a6131
+```
 
 As you've just seen, combining aggregate functions with `GROUP BY` can yield some powerful results!
 
@@ -769,9 +867,13 @@ set_options(visible_tables = ['films', 'reviews'])
 
 ```
 
-*** =type1: NormalExercise
-*** =key1: 0b29eb4ff3
-*** =xp1: 30
+***
+
+```yaml
+type: NormalExercise
+key: 0b29eb4ff3
+xp: 30
+```
 
 `@instructions`
 Get the release year and count of films released in each year.
@@ -813,9 +915,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type2: NormalExercise
-*** =key2: ebee043890
-*** =xp2: 30
+***
+
+```yaml
+type: NormalExercise
+key: ebee043890
+xp: 30
+```
 
 `@instructions`
 Get the release year and average duration of all films, grouped by release year.
@@ -858,9 +964,13 @@ Ex().test_correct(check_result(), [
 
 ```
 
-*** =type3: NormalExercise
-*** =key3: b4341b8451
-*** =xp3: 30
+***
+
+```yaml
+type: NormalExercise
+key: b4341b8451
+xp: 30
+```
 
 `@instructions`
 Get the release year and largest budget for all films, grouped by release year.
@@ -903,9 +1013,13 @@ Ex().test_correct(check_result(), [
 
 ```
 
-*** =type4: NormalExercise
-*** =key4: 66d0c5198a
-*** =xp4: 30
+***
+
+```yaml
+type: NormalExercise
+key: 66d0c5198a
+xp: 30
+```
 
 `@instructions`
 Get the IMDB score and count of film reviews grouped by IMDB score in the `reviews` table.
@@ -950,8 +1064,15 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:BulletExercise lang:sql xp:100 key:38a7c62434
+---
 ## GROUP BY practice (2)
+
+```yaml
+type: BulletExercise
+lang: sql
+xp: 100
+key: 38a7c62434
+```
 
 Now practice your new skills by combining `GROUP BY` and `ORDER BY` with some more aggregate functions!
 
@@ -968,9 +1089,13 @@ set_options(visible_tables = ['films'])
 
 ```
 
-*** =type1: NormalExercise
-*** =key1: 53ad6da98c
-*** =xp1: 30
+***
+
+```yaml
+type: NormalExercise
+key: 53ad6da98c
+xp: 30
+```
 
 `@instructions`
 Get the release year and lowest gross earnings per release year.
@@ -1012,9 +1137,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type2: NormalExercise
-*** =key2: cff5924de5
-*** =xp2: 30
+***
+
+```yaml
+type: NormalExercise
+key: cff5924de5
+xp: 30
+```
 
 `@instructions`
 Get the language and total gross amount films in each language made.
@@ -1056,9 +1185,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type3: NormalExercise
-*** =key3: 83944ff64f
-*** =xp3: 30
+***
+
+```yaml
+type: NormalExercise
+key: 83944ff64f
+xp: 30
+```
 
 `@instructions`
 Get the country and total budget spent making movies in each country.
@@ -1100,9 +1233,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type4: NormalExercise
-*** =key4: eac5f722a5
-*** =xp4: 30
+***
+
+```yaml
+type: NormalExercise
+key: eac5f722a5
+xp: 30
+```
 
 `@instructions`
 Get the release year, country, and highest budget spent making a film for each year, for each country. Sort your results by release year and country.
@@ -1150,9 +1287,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type5: NormalExercise
-*** =key5: 48461bd4d3
-*** =xp5: 30
+***
+
+```yaml
+type: NormalExercise
+key: 48461bd4d3
+xp: 30
+```
 
 `@instructions`
 Get the country, release year, and lowest amount grossed per release year per country. Order your results by country and release year.
@@ -1202,8 +1343,15 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:MultipleChoiceExercise lang:sql xp:50 key:a391d35885
+---
 ## HAVING a great time
+
+```yaml
+type: MultipleChoiceExercise
+lang: sql
+xp: 50
+key: a391d35885
+```
 
 In SQL, aggregate functions can't be used in `WHERE` clauses. For example, the following query is invalid:
 
@@ -1234,7 +1382,7 @@ In how many different years were more than 200 movies released?
 - 14
 - 15
 
-`@instructions`
+`@hint`
 Replace 10 with 200 in the query above and run it in the editor.
 
 `@pre_exercise_code`
@@ -1257,8 +1405,15 @@ msg2 = 'Incorrect! Make a small modification to the query above and run it in th
 Ex().test_mc(2, [msg2, msg1, msg2, msg2])
 ```
 
---- type:TabExercise lang:sql xp:100 key:f7dcb9e122
+---
 ## All together now
+
+```yaml
+type: TabExercise
+lang: sql
+xp: 100
+key: f7dcb9e122
+```
 
 Time to practice using `ORDER BY`, `GROUP BY` and `HAVING` together.
 
@@ -1277,9 +1432,14 @@ set_options(visible_tables = ['films'])
 ```{sql}
 
 ```
-*** =type1: NormalExercise
-*** =key1: a141cd669f
-*** =xp1: 30
+
+***
+
+```yaml
+type: NormalExercise
+key: a141cd669f
+xp: 30
+```
 
 `@instructions`
 Get the release year, budget and gross earnings for each film in the `films` table.
@@ -1317,9 +1477,13 @@ Ex().test_correct(check_result(), [
 
 ```
 
-*** =type2: NormalExercise
-*** =key2: d80bd57b13
-*** =xp2: 30
+***
+
+```yaml
+type: NormalExercise
+key: d80bd57b13
+xp: 30
+```
 
 `@instructions`
 Modify your query so that only results after 1990 are included.
@@ -1364,9 +1528,13 @@ Ex().test_correct(check_result(), [
 
 ```
 
-*** =type3: NormalExercise
-*** =key3: 2d5e6bd8cf
-*** =xp3: 30
+***
+
+```yaml
+type: NormalExercise
+key: 2d5e6bd8cf
+xp: 30
+```
 
 `@instructions`
 Remove the budget and gross columns, and group your results by release year.
@@ -1409,9 +1577,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type4: NormalExercise
-*** =key4: ee92d8cbaa
-*** =xp4: 30
+***
+
+```yaml
+type: NormalExercise
+key: ee92d8cbaa
+xp: 30
+```
 
 `@instructions`
 Modify your query to add in the average budget and average gross earnings for the results you have so far. Alias your results as `avg_budget` and `avg_gross`, respectively.
@@ -1459,9 +1631,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type5: NormalExercise
-*** =key5: ce0f248734
-*** =xp5: 30
+***
+
+```yaml
+type: NormalExercise
+key: ce0f248734
+xp: 30
+```
 
 `@instructions`
 Modify your query so that only years with an average budget of greater than $60 million are included.
@@ -1517,9 +1693,13 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type6: NormalExercise
-*** =key6: 7b3afeed2f
-*** =xp6: 20
+***
+
+```yaml
+type: NormalExercise
+key: 7b3afeed2f
+xp: 30
+```
 
 `@instructions`
 Finally, modify your query to order the results from highest average gross earnings to lowest.
@@ -1580,8 +1760,16 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:NormalExercise lang:sql xp:100 skills:1 key:0bbc6da34d
+---
 ## All together now (2)
+
+```yaml
+type: NormalExercise
+lang: sql
+xp: 100
+skills: 1
+key: 0bbc6da34d
+```
 
 Great work! Now try another large query. This time, all in one go!
 
@@ -1590,7 +1778,7 @@ Remember, if you only want to return a certain number of results, you can use th
 `@instructions`
 Get the country, average budget, and average gross take of countries that have made more than 10 films. Order the result by country name, and limit the number of results displayed to 5. You should alias the averages as `avg_budget` and `avg_gross` respectively.
 
-`@instructions`
+`@hint`
 You can refer back to the previous exercise!
 
 `@pre_exercise_code`
@@ -1615,7 +1803,7 @@ set_options(visible_tables = ['films'])
 
 ```
 
-*** =solution
+`@solution`
 ```{sql}
 -- select country, average budget, average gross
 SELECT country, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
@@ -1630,7 +1818,7 @@ ORDER BY country
 -- limit to only show 5 results
 LIMIT 5;
 ```
-`@instructions`
+`@hint`
 ```
 SELECT ___, AVG(budget) AS avg_budget, ___(gross) AS avg_gross
 FROM films
@@ -1674,8 +1862,15 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:TabExercise lang:sql xp:100 skills:1 key:d101be707a
+---
 ## A taste of things to come
+
+```yaml
+type: TabExercise
+lang: sql
+xp: 100
+key: d101be707a
+```
 
 Congrats on making it to the end of the course! By now you should have a good understanding of the basics of SQL.
 
@@ -1706,9 +1901,13 @@ ON films.id = reviews.film_id
 WHERE title = 'To Kill a Mockingbird';
 ```
 
-*** =type1:NormalExercise
-*** =key1: 7c4fc7a484
-*** =xp1: 30
+***
+
+```yaml
+type: NormalExercise
+key: 7c4fc7a484
+xp: 30
+```
 
 `@instructions`
 Submit the code in the editor and inspect the results.
@@ -1749,14 +1948,18 @@ Ex().test_correct(check_result(), [
 
 ```
 
-*** =type2:MultipleChoiceExercise
-*** =key2: fc288db979
-*** =xp2: 30
+***
 
-*** =question2
+```yaml
+type: MultipleChoiceExercise
+key: fc288db979
+xp: 30
+```
+
+`@question`
 What rating does _To Kill a Mockingbird_ have on IMDB?
 
-*** =possible_answers2
+`@possible_answers`
 - 8.1
 - 8.4
 - 7.7
