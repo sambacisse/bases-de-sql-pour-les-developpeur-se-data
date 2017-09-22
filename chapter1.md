@@ -6,14 +6,31 @@ description: >-
   database lingo, and how to begin an analysis by using simple SQL commands to
   select and summarize columns from database tables.
 
---- type:VideoExercise lang:sql xp:50 skills:1 key:dcdbb24914
+---
 ## Welcome to the course!
 
-*** =projector_key
+
+```yaml
+type: VideoExercise
+lang: sql
+xp: 50
+skills: 1
+key: dcdbb24914
+```
+
+`@projector_key`
 f05d06ad7807cf476fdb5f674174c9d5
 
---- type:MultipleChoiceExercise lang:sql xp:50 skills:1 key:e456699517
+---
 ## Onboarding | Tables
+
+```yaml
+type: MultipleChoiceExercise
+lang: sql
+xp: 50
+skills: 1
+key: e456699517
+```
 
 If you've used DataCamp to learn [R](https://www.datacamp.com/courses/free-introduction-to-r) or [Python](https://www.datacamp.com/courses/intro-to-python-for-data-science), you'll be familiar with the interface. For SQL, however, there are a few new features you should be aware of.
 
@@ -21,21 +38,21 @@ For this course, you'll be using a database containing information on almost 500
 
 From looking at the tabs, who is the first person listed in the `people` table?
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 ```
 
-*** =instructions
+`@instructions`
 - Kanye West
 - Biggie Smalls
 - 50 Cent
 - Jay Z
 
-*** =hint
+`@hint`
 Look at the `people` tab under the editor!
 
-*** =sct
+`@sct`
 ```{python}
 msg1 = 'Nope, look at the `people` table!'
 correct = 'Correct!'
@@ -43,8 +60,16 @@ correct = 'Correct!'
 Ex().test_mc(3,[msg1, msg1, correct, msg1])
 ```
 
---- type:MultipleChoiceExercise lang:sql xp:50 skills:1 key:5314676aac
+---
 ## Onboarding | Query Result
+
+```yaml
+type: MultipleChoiceExercise
+lang: sql
+xp: 50
+skills: 1
+key: 5314676aac
+```
 
 Notice the **query result** tab in the bottom right corner of your screen. This is where the results of your SQL queries will be displayed.
 
@@ -54,26 +79,26 @@ Run the query in the editor and check out the resulting table in the query resul
 
 Who is the second person listed in the query result?
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 SELECT name FROM people;
 ```
 
-*** =instructions
+`@instructions`
 - Kanye West
 - A. Michael Baldwin
 - 50 Cent
 - Jay Z
 
-*** =hint
+`@hint`
 Run the code in the editor and look at the query result tab under the editor!
 
-*** =sct
+`@sct`
 ```{python}
 msg1 = 'Nope, look at the query result tab!'
 correct = 'Correct!'
@@ -81,8 +106,16 @@ correct = 'Correct!'
 Ex().test_mc(2, [msg1, correct, msg1, msg1])
 ```
 
---- type:NormalExercise lang:sql xp:100 skills:1 key:7d7e325a12
+---
 ## Onboarding | Errors
+
+```yaml
+type: NormalExercise
+lang: sql
+xp: 100
+skills: 1
+key: 7d7e325a12
+```
 
 If you submit the code to the right, you'll see that you get two types of errors.
 
@@ -98,71 +131,83 @@ _DataCamp_ errors are shown in the **Instructions** box. These will let you know
 You need to add SELECT at the start of line 2!
 ```
 
-*** =instructions
+`@instructions`
 Submit the code to the right, check out the errors, then fix them!
 
-*** =hint
+`@hint`
 In the editor, change line 2 to `SELECT 'DataCamp <3 SQL'`.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 -- Try running me!
 'DataCamp <3 SQL'
 AS result;
 ```
 
-*** =solution
+`@solution`
 ```{sql}
 -- Try running me!
 SELECT 'DataCamp <3 SQL'
 AS result;
 ```
 
-*** =sct
+`@sct`
 ```{sql}
 Ex().test_student_typed('SELECT|select', msg='You need to add `SELECT` at the start of line 2!')
 Ex().test_has_columns()
 Ex().test_error()
 ```
 
---- type:BulletExercise lang:sql xp:100 skills:1 key:81eb00a53d
+---
 ## Onboarding | Bullet Exercises
+
+```yaml
+type: BulletExercise
+lang: sql
+xp: 100
+skills: 1
+key: 81eb00a53d
+```
 
 Another new feature we're introducing is the *bullet exercise*, which allows you to easily practice a new concept through repetition. Check it out below!
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 SELECT 'SQL'
 AS result;
 ```
 
-*** =type1:NormalExercise
-*** =key1: 157ee8d1ad
-*** =xp1: 30
+***
 
-*** =instructions1
+```yaml
+type: NormalExercise
+key: 157ee8d1ad
+xp: 30
+```
+
+`@instructions`
 Submit the query in the editor! Don't worry, you'll learn how it works soon.
 
-*** =hint1
+`@hint`
 Submit the query!
 
-*** =solution1
+`@solution`
 ```{sql}
 SELECT 'SQL'
 AS result;
 ```
 
-*** =sct1
+`@sct`
 ```{sql}
 Ex().test_error()
 
@@ -173,23 +218,27 @@ Ex().check_result()
 
 ```
 
-*** =type2:NormalExercise
-*** =key2: 764f82129d
-*** =xp2: 30
+***
 
-*** =instructions2
+```yaml
+type: NormalExercise
+key: 764f82129d
+xp: 30
+```
+
+`@instructions`
 Now change `'SQL'` to `'SQL is'` and click Submit!
 
-*** =hint2
+`@hint`
 Change the code and submit the query!
 
-*** =solution2
+`@solution`
 ```{sql}
 SELECT 'SQL is'
 AS result;
 ```
 
-*** =sct2
+`@sct`
 ```{sql}
 Ex().test_error()
 
@@ -199,23 +248,27 @@ Ex().test_has_columns()
 Ex().check_result()
 ```
 
-*** =type3:NormalExercise
-*** =key3: 1496605dac
-*** =xp3: 30
+***
 
-*** =instructions3
+```yaml
+type: NormalExercise
+key: 1496605dac
+xp: 30
+```
+
+`@instructions`
 Finally, change `'SQL is'` to `'SQL is cool!'` and click Submit!
 
-*** =hint3
+`@hint`
 Change the code and submit the query!
 
-*** =solution3
+`@solution`
 ```{sql}
 SELECT 'SQL is cool!'
 AS result;
 ```
 
-*** =sct3
+`@sct`
 ```{sql}
 Ex().test_error()
 
@@ -225,8 +278,15 @@ Ex().test_has_columns()
 Ex().check_result()
 ```
 
---- type:PlainMultipleChoiceExercise lang:sql xp:50 key:a1f556e63f
+---
 ## Beginning your SQL journey
+
+```yaml
+type: PlainMultipleChoiceExercise
+lang: sql
+xp: 50
+key: a1f556e63f
+```
 
 Now that you're familiar with the interface, let's get straight into it.
 
@@ -247,16 +307,16 @@ The table of employees might look something like this:
 <hr>
 How many fields does the employees table above contain?
 
-*** =instructions
+`@instructions`
 - 1
 - 2
 - 3
 - 4
 
-*** =hint
+`@hint`
 Remember that in database lingo, a column is called a *field*. How many fields does the table contain?
 
-*** =sct
+`@sct`
 ```{python}
 msg1 = "Incorrect, a table contains information about one type of entity, but generally has multiple fields."
 msg2 = "Sorry, try again!"
@@ -266,8 +326,15 @@ success_msg = "Correct! The table contains four columns, or fields."
 Ex().test_mc(4, [msg1, msg2, msg3, success_msg])
 ```
 
---- type:BulletExercise lang:sql xp:100 key:c0bb58f7f9
+---
 ## SELECTing single columns
+
+```yaml
+type: BulletExercise
+lang: sql
+xp: 100
+key: c0bb58f7f9
+```
 
 While SQL can be used to create and modify databases, the focus of this course will be *querying* databases. A *query* is a request for data from a database table (or combination of tables). Querying is an essential skill for a data scientist, since the data you need for your analyses will often live in databases.
 
@@ -291,35 +358,40 @@ It's also good practice (but not necessary for the exercises in this course) to 
 
 Remember, you can see the results of executing your query in the __query result__ tab to the right!
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 
 ```
 
-*** =type1: NormalExercise
-*** =key1: a41cc766d5
-*** =xp1: 30
-*** =instructions1
+***
+
+```yaml
+type: NormalExercise
+key: a41cc766d5
+xp: 30
+```
+
+`@instructions`
 Select the `title` column from the `films` table.
 
-*** =solution1
+`@solution`
 ```{sql}
 SELECT title
 FROM films;
 ```
 
-*** =hint1
+`@hint`
 ```
 SELECT ___
 FROM ___;
 ```
-*** =sct1
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -336,23 +408,28 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type2: NormalExercise
-*** =key2: 4a74270ecd
-*** =xp2: 30
-*** =instructions2
+***
+
+```yaml
+type: NormalExercise
+key: 4a74270ecd
+xp: 30
+```
+
+`@instructions`
 Select the `release_year` column from the `films` table.
 
-*** =solution2
+`@solution`
 ```{sql}
 SELECT release_year
 FROM films;
 ```
-*** =hint2
+`@hint`
 ```
 SELECT ___
 FROM ___;
 ```
-*** =sct2
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -369,23 +446,28 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type3: NormalExercise
-*** =key3: 323bd5ddf5
-*** =xp3: 30
-*** =instructions3
+***
+
+```yaml
+type: NormalExercise
+key: 323bd5ddf5
+xp: 30
+```
+
+`@instructions`
 Select the `name` of each person in the `people` table.
 
-*** =solution3
+`@solution`
 ```{sql}
 SELECT name
 FROM people;
 ```
-*** =hint3
+`@hint`
 ```
 SELECT ___
 FROM ___;
 ```
-*** =sct3
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -402,8 +484,15 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:BulletExercise lang:sql xp:100 key:09f21bae4c
+---
 ## SELECTing multiple columns
+
+```yaml
+type: BulletExercise
+lang: sql
+xp: 100
+key: 09f21bae4c
+```
 
 Well done! Now you know how to select single columns.
 
@@ -433,34 +522,39 @@ LIMIT 10;
 
 Before getting started with the instructions below, check out the column names in the `films` table by clicking on the `films` tab to the right!
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 ```
 
-*** =type1: NormalExercise
-*** =key1: d561b4df97
-*** =xp1: 30
-*** =instructions1
+***
+
+```yaml
+type: NormalExercise
+key: d561b4df97
+xp: 30
+```
+
+`@instructions`
 Get the title of every film from the `films` table.
 
-*** =solution1
+`@solution`
 ```{sql}
 SELECT title
 FROM films;
 ```
 
-*** =hint1
+`@hint`
 ```
 SELECT ___
 FROM ___;
 ```
-*** =sct1
+`@sct`
 ```{python}
 from sqlwhat_ext import check_result2
 
@@ -479,23 +573,28 @@ Ex().test_correct(check_result2(), [
 ])
 ```
 
-*** =type2: NormalExercise
-*** =key2: 917d7dc533
-*** =xp2: 30
-*** =instructions2
+***
+
+```yaml
+type: NormalExercise
+key: 917d7dc533
+xp: 30
+```
+
+`@instructions`
 Get the title and release year for every film.
 
-*** =solution2
+`@solution`
 ```{sql}
 SELECT title, release_year
 FROM films;
 ```
-*** =hint2
+`@hint`
 ```
 SELECT ___, ___
 FROM ___;
 ```
-*** =sct2
+`@sct`
 ```{python}
 from sqlwhat_ext import check_result2
 
@@ -517,24 +616,29 @@ Ex().test_correct(check_result2(), [
 ])
 ```
 
-*** =type3: NormalExercise
-*** =key3: eeba078a00
-*** =xp3: 30
-*** =instructions3
+***
+
+```yaml
+type: NormalExercise
+key: eeba078a00
+xp: 30
+```
+
+`@instructions`
 Get the title, release year and country for every film.
 
-*** =solution3
+`@solution`
 ```{sql}
 SELECT title, release_year, country
 FROM films;
 ```
 
-*** =hint3
+`@hint`
 ```
 SELECT ___, ___, ___
 FROM ___;
 ```
-*** =sct3
+`@sct`
 ```{python}
 from sqlwhat_ext import check_result2
 
@@ -559,24 +663,30 @@ Ex().test_correct(check_result2(), [
 ])
 ```
 
-*** =type4: NormalExercise
-*** =key4: dac27d9aad
-*** =xp4: 30
-*** =instructions4
+***
+
+```yaml
+type: NormalExercise
+key: dac27d9aad
+xp: 30
+```
+
+`@instructions`
 Get all columns from the `films` table.
-*** =solution4
+
+`@solution`
 ```{sql}
 SELECT *
 FROM films;
 ```
 
-*** =hint4
+`@hint`
 ```
 SELECT *
 FROM ___;
 ```
 
-*** =sct4
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -593,8 +703,15 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:BulletExercise lang:sql xp:100 key:de52236965
+---
 ## SELECT DISTINCT
+
+```yaml
+type: BulletExercise
+lang: sql
+xp: 100
+key: de52236965
+```
 
 Often your results will include many duplicate values. If you want to select all the unique values from a column, you can use the `DISTINCT` keyword.
 
@@ -607,34 +724,39 @@ FROM films;
 
 Remember, you can check out the data in the tables by clicking on the tabs to the right under the editor!
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'roles'])
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 ```
 
-*** =type1: NormalExercise
-*** =key1: e6b81711f1
-*** =xp1: 30
-*** =instructions1
+***
+
+```yaml
+type: NormalExercise
+key: e6b81711f1
+xp: 30
+```
+
+`@instructions`
 Get all the unique countries represented in the `films` table.
 
-*** =solution1
+`@solution`
 ```{sql}
 SELECT DISTINCT country
 FROM films;
 ```
 
-*** =hint1
+`@hint`
 ```
 SELECT DISTINCT ___
 FROM ___;
 ```
-*** =sct1
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -653,24 +775,29 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type2: NormalExercise
-*** =key2: 2cb9a4bf6a
-*** =xp2: 30
-*** =instructions2
+***
+
+```yaml
+type: NormalExercise
+key: 2cb9a4bf6a
+xp: 30
+```
+
+`@instructions`
 Get all the different film certifications from the `films` table.
-*** =solution2
+`@solution`
 ```{sql}
 SELECT DISTINCT certification
 FROM films;
 ```
 
-*** =hint2
+`@hint`
 ```
 SELECT DISTINCT ___
 FROM ___;
 ```
 
-*** =sct2
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -690,24 +817,29 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type3: NormalExercise
-*** =key3: 26835d3029
-*** =xp3: 30
-*** =instructions3
+***
+
+```yaml
+type: NormalExercise
+key: 26835d3029
+xp: 30
+```
+
+`@instructions`
 Get the different types of film roles from the `roles` table.
 
-*** =solution3
+`@solution`
 ```{sql}
 SELECT DISTINCT role
 FROM roles;
 ```
 
-*** =hint3
+`@hint`
 ```
 SELECT DISTINCT ___
 FROM ___;
 ```
-*** =sct3
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -727,8 +859,15 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
---- type:MultipleChoiceExercise lang:sql xp:50 key:97f97f5766
+---
 ## Learning to COUNT
+
+```yaml
+type: MultipleChoiceExercise
+lang: sql
+xp: 50
+key: 97f97f5766
+```
 
 What if you want to count the number of employees in your employees table? The `COUNT` statement lets you do this by returning the number of rows in one or more columns.
 
@@ -742,36 +881,43 @@ FROM people;
 <hr>
 How many records are contained in the `reviews` table?
 
-*** =instructions
+`@instructions`
 - 9,468
 - 8,397
 - 4,968
 - 9,837
 - 9,864
 
-*** =hint
+`@hint`
 Run a query to count the number of records in the `reviews` table!
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 -- You can test out queries here!
 
 ```
 
-*** =sct
+`@sct`
 ```{python}
 success_msg = 'Correct!'
 msg2 = "Use the syntax provided in the example. Be sure to swap out `people` for `reviews`!"
 
 Ex().test_mc(3,[msg2, msg2, success_msg, msg2, msg2])
 ```
---- type:BulletExercise lang:sql xp:100 key:7643365e67
+---
 ## Practice with COUNT
+
+```yaml
+type: BulletExercise
+lang: sql
+xp: 100
+key: 7643365e67
+```
 
 As you've seen, `COUNT(*)` tells you how many rows are in a table. However, if you want to count the number of *non-missing* values in a particular column, you can call `COUNT` on just that column.
 
@@ -793,33 +939,40 @@ FROM people;
 
 Let's get some practice with `COUNT`!
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 ```
 
-*** =type1: NormalExercise
-*** =key1: 4688067e3e
-*** =xp1: 30
-*** =instructions1
+***
+
+```yaml
+type: NormalExercise
+key: 4688067e3e
+xp: 30
+```
+
+`@instructions`
 Count the number of rows in the `people` table.
-*** =solution1
+
+`@solution`
 ```{sql}
 SELECT COUNT(*)
 FROM people;
 ```
 
-*** =hint1
+`@hint`
 ```
 SELECT COUNT(___)
 FROM ___;
 ```
-*** =sct1
+
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -842,22 +995,30 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type2: NormalExercise
-*** =key2: 497ffa962e
-*** =xp2: 30
-*** =instructions2
+***
+
+```yaml
+type: NormalExercise
+key: 497ffa962e
+xp: 30
+```
+
+`@instructions`
 Count the number of (non-missing) birth dates in the `people` table.
-*** =solution2
+
+`@solution`
 ```{sql}
 SELECT COUNT(birthdate)
 FROM people;
 ```
-*** =hint2
+
+`@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
-*** =sct2
+
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -879,24 +1040,30 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type3: NormalExercise
+***
 
-*** =key3: 50c903a00a
-*** =xp3: 30
+```yaml
+type: NormalExercise
+key: 50c903a00a
+xp: 30
+```
 
-*** =instructions3
+`@instructions`
 Count the number of unique birth dates in the `people` table.
-*** =solution3
+
+`@solution`
 ```{sql}
 SELECT COUNT(DISTINCT birthdate)
 FROM people;
 ```
-***=hint3
+
+`@hint`
 ```
 SELECT ___(DISTINCT ___)
 FROM ___;
 ```
-*** =sct3
+
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -921,24 +1088,30 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type4: NormalExercise
+***
 
-*** =key4: 511052cbbe
-*** =xp4: 30
+```yaml
+type: NormalExercise
+key: 511052cbbe
+xp: 30
+```
 
-*** =instructions4
+`@instructions`
 Count the number of unique languages in the `films` table.
-*** =solution4
+
+`@solution`
 ```{sql}
 SELECT COUNT(DISTINCT language)
 FROM films;
 ```
-*** =hint4
+
+`@hint`
 ```
 SELECT ___(DISTINCT ___)
 FROM ___;
 ```
-*** =sct4
+
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -963,26 +1136,30 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
-*** =type5: NormalExercise
+***
 
-*** =key5: 9e1147efe5
-*** =xp5: 30
+```yaml
+type: NormalExercise
+key: 9e1147efe5
+xp: 30
+```
 
-*** =instructions5
+`@instructions`
 Count the number of unique countries in the `films` table.
-*** =solution5
+
+`@solution`
 ```{sql}
 SELECT COUNT(DISTINCT country)
 FROM films;
 ```
 
-*** =hint5
+`@hint`
 ```
 SELECT ___(DISTINCT ___)
 FROM ___;
 ```
 
-*** =sct5
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 

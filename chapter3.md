@@ -31,13 +31,13 @@ FROM films;
 
 You can probably guess what the `MIN` function does! Now it's your turn to try out some SQL functions.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 ```
 
@@ -46,20 +46,20 @@ set_options(visible_tables = ['films'])
 *** =key1: 80fd462ae1
 *** =xp1: 30
 
-*** =instructions1
+`@instructions`
 Use the `SUM` function to get the total duration of all films.
-*** =solution1
+`@solution`
 ```{sql}
 SELECT SUM(duration)
 FROM films;
 ```
 
-*** =hint1
+`@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
-*** =sct1
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -84,19 +84,19 @@ Ex().test_correct(check_result(), [
 *** =key2: 7993b51268
 *** =xp2: 30
 
-*** =instructions2
+`@instructions`
 Get the average duration of all films.
-*** =solution2
+`@solution`
 ```{sql}
 SELECT AVG(duration)
 FROM films;
 ```
-*** =hint2
+`@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
-*** =sct2
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -121,19 +121,19 @@ Ex().test_correct(check_result(), [
 *** =key3: a03aeabbc6
 *** =xp3: 30
 
-*** =instructions3
+`@instructions`
 Get the duration of the shortest film.
-*** =solution3
+`@solution`
 ```{sql}
 SELECT MIN(duration)
 FROM films;
 ```
-*** =hint3
+`@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
-*** =sct3
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -158,20 +158,20 @@ Ex().test_correct(check_result(), [
 *** =key4: fabbc619c6
 *** =xp4: 30
 
-*** =instructions4
+`@instructions`
 Get the duration of the longest film.
-*** =solution4
+`@solution`
 ```{sql}
 SELECT MAX(duration)
 FROM films;
 ```
-*** =hint4
+`@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
 
-*** =sct4
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -196,13 +196,13 @@ Ex().test_correct(check_result(), [
 
 Good work. Aggregate functions are important to understand, so let's get some more practice!
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 ```
 
@@ -212,20 +212,20 @@ set_options(visible_tables = ['films'])
 
 *** =xp1: 30
 
-*** =instructions1
+`@instructions`
 Use the `SUM` function to get the total amount grossed by all films.
-*** =solution1
+`@solution`
 ```{sql}
 SELECT SUM(gross)
 FROM films;
 ```
 
-*** =hint1
+`@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
-*** =sct1
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -251,19 +251,19 @@ Ex().test_correct(check_result(), [
 
 *** =xp2: 30
 
-*** =instructions2
+`@instructions`
 Get the average amount grossed by all films.
-*** =solution2
+`@solution`
 ```{sql}
 SELECT AVG(gross)
 FROM films;
 ```
-*** =hint2
+`@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
-*** =sct2
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -289,19 +289,19 @@ Ex().test_correct(check_result(), [
 
 *** =xp3: 30
 
-*** =instructions3
+`@instructions`
 Get the amount grossed by the worst performing film.
-*** =solution3
+`@solution`
 ```{sql}
 SELECT MIN(gross)
 FROM films;
 ```
-*** =hint3
+`@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
-*** =sct3
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -327,20 +327,20 @@ Ex().test_correct(check_result(), [
 
 *** =xp4: 30
 
-*** =instructions4
+`@instructions`
 Get the amount grossed by the best performing film.
-*** =solution4
+`@solution`
 ```{sql}
 SELECT MAX(gross)
 FROM films;
 ```
-*** =hint4
+`@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
 
-*** =sct4
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -376,13 +376,13 @@ WHERE release_year >= 2010;
 
 Now it's your turn!
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 ```
 
@@ -392,22 +392,22 @@ set_options(visible_tables = ['films'])
 
 *** =xp1: 30
 
-*** =instructions1
+`@instructions`
 Use the `SUM` function to get the total amount grossed by all films made in the year 2000 or later.
-*** =solution1
+`@solution`
 ```{sql}
 SELECT SUM(gross)
 FROM films
 WHERE release_year >= 2000;
 ```
 
-*** =hint1
+`@hint`
 ```
 SELECT ___(___)
 FROM ___
 WHERE ___ >= ___;
 ```
-*** =sct1
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -438,21 +438,21 @@ Ex().test_correct(check_result(), [
 
 *** =xp2: 30
 
-*** =instructions2
+`@instructions`
 Get the average amount grossed by all films whose titles start with the letter 'A'.
-*** =solution2
+`@solution`
 ```{sql}
 SELECT AVG(gross)
 FROM films
 where title LIKE 'A%';
 ```
-*** =hint2
+`@hint`
 ```
 SELECT ___(___)
 FROM ___
 WHERE ___ LIKE 'A%';
 ```
-*** =sct2
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -488,21 +488,21 @@ Ex().test_correct(check_result(), [
 
 *** =xp3: 30
 
-*** =instructions3
+`@instructions`
 Get the amount grossed by the worst performing film in 1994.
-*** =solution3
+`@solution`
 ```{sql}
 SELECT MIN(gross)
 FROM films
 WHERE release_year = 1994;
 ```
-*** =hint3
+`@hint`
 ```
 SELECT ___(___)
 FROM ___
 WHERE ___ = ___;
 ```
-*** =sct3
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -533,22 +533,22 @@ Ex().test_correct(check_result(), [
 
 *** =xp4: 30
 
-*** =instructions4
+`@instructions`
 Get the amount grossed by the best performing film between 2000 and 2012, inclusive.
-*** =solution4
+`@solution`
 ```{sql}
 SELECT MAX(gross)
 FROM films
 WHERE release_year BETWEEN 2000 AND 2012;
 ```
-*** =hint4
+`@hint`
 ```
 SELECT ___(___)
 FROM ___
 WHERE ___ BETWEEN ___ AND ___;
 ```
 
-*** =sct4
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -611,27 +611,27 @@ gives you the result you would expect: `1.333`.
 <hr>
 What is the result of `SELECT (10 / 3);`?
 
-*** =instructions
+`@instructions`
 - 2.333
 - 3.333
 - 3
 - 3.0
 
-*** =hint
+`@instructions`
 Run a query in the editor to the right.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 -- You can test out queries here!
 
 ```
 
-*** =sct
+`@sct`
 ```{python}
 success_msg = 'Correct!'
 msg2 = "Incorrect, try out the query in the editor!"
@@ -669,13 +669,13 @@ FROM films;
 
 Aliases are helpful for making results more readable!
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 
 ```
@@ -685,22 +685,22 @@ set_options(visible_tables = ['films'])
 *** =key1: ec33c2353b
 *** =xp1: 30
 
-*** =instructions1
+`@instructions`
 Get the title and net profit (the amount a film grossed, minus its budget) for all films. Alias the net profit as `net_profit`.
 
-*** =solution1
+`@solution`
 ```{sql}
 SELECT title, gross - budget AS net_profit
 FROM films;
 ```
 
-*** =hint1
+`@hint`
 ```
 SELECT ___, ___ - ___ AS ___
 FROM ___;
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -736,22 +736,22 @@ Ex().test_correct(check_result(), [
 *** =key2: 1351c6f6bb
 *** =xp2: 30
 
-*** =instructions2
+`@instructions`
 Get the title and duration in hours for all films. The duration is in minutes, so you'll need to divide by 60.0 to get the duration in hours. Alias the duration in hours as `duration_hours`.
 
-*** =solution2
+`@solution`
 ```{sql}
 SELECT title, duration / 60.0 AS duration_hours
 FROM films;
 ```
 
-*** =hint2
+`@hint`
 ```
 SELECT ___, ___ / 60.0 AS ___
 FROM ___;
 ```
 
-*** =sct2
+`@sct`
 ```{python}
 
 sel = check_node('SelectStmt')
@@ -787,21 +787,21 @@ Ex().test_correct(alias, [
 *** =type3: NormalExercise
 *** =key3: 497f8d2a8a
 *** =xp3: 30
-*** =instructions3
+`@instructions`
 Get the average duration in hours for all films, aliased as `avg_duration_hours`.
 
-*** =solution3
+`@solution`
 ```{sql}
 SELECT AVG(duration) / 60.0 AS avg_duration_hours  
 FROM films;
 ```
-*** =hint3
+`@hint`
 ```
 SELECT ___(___) / 60.0 AS avg_duration_hours  
 FROM ___;
 ```
 
-*** =sct3
+`@sct`
 ```{python}
 # TODO: come back to this with better solution once sqlwhat is patched
 sel = check_node('SelectStmt')
@@ -853,13 +853,13 @@ SELECT 45 * 100.0 / 10;
 The above now gives the correct answer of `450.0` as now the numerator of the division (`45 * 100.0`) is a decimal!
 
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
 
-*** =sample_code
+`@sample_code`
 ```{sql}
 -- get the count(deathdate) and multiply by 100.0
 -- then divide by count(*) 
@@ -869,22 +869,22 @@ set_options(visible_tables = ['films', 'people'])
 *** =key1: e14dc7c1a2
 *** =xp1: 30
 
-*** =instructions1
+`@instructions`
 Get the percentage of `people` who are no longer alive. Alias the result as `percentage_dead`. Remember to use `100.0` and not `100`!
-*** =solution1
+`@solution`
 ```{sql}
 -- get the count(deathdate) and multiply by 100.0
 -- then divide by count(*) 
 SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percentage_dead
 FROM people;
 ```
-*** =hint1
+`@hint`
 ```
 SELECT ___(___) * 100.0 / ___(___) AS percentage_dead
 FROM ___;
 ```
 
-*** =sct1
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -925,23 +925,23 @@ Ex().test_correct(check_result(), [
 *** =type2: NormalExercise
 *** =key2: c2bbd9a806
 *** =xp2: 30
-*** =instructions2
+`@instructions`
 Get the number of years between the newest film and oldest film. Alias the result as `difference`.
 
-*** =solution2
+`@solution`
 ```{sql}
 SELECT MAX(release_year) - MIN(release_year)
 AS difference
 FROM films;
 ```
-*** =hint2
+`@hint`
 ```
 SELECT ___(___) - ___(___)
 AS difference
 FROM ___;
 ```
 
-*** =sct2
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -981,22 +981,22 @@ Ex().test_correct(check_result(), [
 *** =key3: f272486b68
 *** =xp3: 30
 
-*** =instructions3
+`@instructions`
 Get the number of decades the `films` table covers. Alias the result as `number_of_decades`. The top half of your fraction should be enclosed in parentheses.
-*** =solution3
+`@solution`
 ```{sql}
 SELECT (MAX(release_year) - MIN(release_year)) / 10.0
 AS number_of_decades
 FROM films;
 ```
-*** =hint3
+`@hint`
 ```
 SELECT (___(___) - ___(___)) / 10.0
 AS number_of_decades
 FROM ___;
 ```
 
-*** =sct3
+`@sct`
 ```{python}
 sel = check_node('SelectStmt')
 
