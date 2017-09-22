@@ -636,6 +636,7 @@ Ex().test_correct(check_result(), [
 type: MultipleChoiceExercise
 lang: sql
 xp: 50
+skills: 1
 key: 7b8b54b64d
 ```
 
