@@ -1882,7 +1882,7 @@ The query in the editor gets the IMDB score for the film _To Kill a Mockingbird_
 
 As you can see, joins are incredibly useful and important to understand for anyone using SQL.
 
-We'll have a whole course dedicated to them coming soon!
+We have a whole follow-up course dedicated to them called <a href="https://www.datacamp.com/courses/joining-data-in-postgresql">Joining Data in PostgreSQL</a> for you to hone your database skills further!
 
 `@pre_exercise_code`
 ```{sql}
