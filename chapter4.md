@@ -992,7 +992,7 @@ temp = sel.check_node('Call')
 max_call = temp.check_field('name').has_equal_ast('Did you use the `MAX` function?')
 max_args = temp.check_field('args').has_equal_ast('Are you using `MAX` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
@@ -1044,7 +1044,7 @@ count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT`
 
 count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
@@ -1117,7 +1117,7 @@ temp = sel.check_node('Call')
 min_call = temp.check_field('name').has_equal_ast('Did you use the `MIN` function?')
 min_args = temp.check_field('args').has_equal_ast('Are you using `MIN` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
@@ -1165,7 +1165,7 @@ temp = sel.check_node('Call')
 sum_call = temp.check_field('name').has_equal_ast('Did you use the `SUM` function?')
 sum_args = temp.check_field('args').has_equal_ast('Are you using `SUM` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
@@ -1213,7 +1213,7 @@ temp = sel.check_node('Call')
 sum_call = temp.check_field('name').has_equal_ast('Did you use the `SUM` function?')
 sum_args = temp.check_field('args').has_equal_ast('Are you using `SUM` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
@@ -1265,7 +1265,7 @@ temp = sel.check_node('Call')
 max_call = temp.check_field('name').has_equal_ast('Did you use the `MAX` function?')
 max_args = temp.check_field('args').has_equal_ast('Are you using `MAX` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
 
