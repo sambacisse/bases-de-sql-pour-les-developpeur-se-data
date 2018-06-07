@@ -161,6 +161,7 @@ AS result;
 Ex().test_student_typed('SELECT|select', msg='You need to add `SELECT` at the start of line 2!')
 Ex().test_has_columns()
 Ex().test_error()
+Ex().success_msg("Excellent error editing! You can feel safe experimenting with code in the editor &ndash; you'll always get feedback if something goes wrong.")
 ```
 
 ---
