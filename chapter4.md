@@ -1854,6 +1854,7 @@ Ex().test_correct(check_result(), [
     test_ncols(),
     test_error()
 ])
+Ex().success_msg("Superb work on a selection saga! SELECT queries can get rather long, but breaking them down into individual clauses makes them easier to write.")
 ```
 
 ---
