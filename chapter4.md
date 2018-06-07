@@ -1319,7 +1319,7 @@ temp = sel.check_node('Call')
 min_call = temp.check_field('name').has_equal_ast('Did you use the `MIN` function?')
 min_args = temp.check_field('args').has_equal_ast('Are you using `MIN` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
 
