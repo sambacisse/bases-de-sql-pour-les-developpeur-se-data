@@ -9,7 +9,7 @@ description: >-
 ## Filtering results
 
 ```yaml
-type: PlainMultipleChoiceExercise
+type: PureMultipleChoiceExercise
 lang: sql
 xp: 50
 key: bfc80ff2e5
@@ -47,22 +47,22 @@ FROM films
 WHERE release_year > 2000;
 ```
 
-`@instructions`
+`@possible_answers`
 - Films released before the year 2000
-- Films released after the year 2000
+- [Films released after the year 2000]
 - Films released after the year 2001
 - Films released in 2000
 
 `@hint`
 If you're stuck, refer to the list of comparison operators above!
 
-`@sct`
-```{python}
-success_msg = "Correct!"
-msg2 = "Incorrect. `>` means *strictly* greater than and *not* equal to."
+`@feedback`
 
-Ex().test_mc(2, [msg2, success_msg, msg2, msg2])
-```
+- Incorrect. `>` means *strictly* greater than and *not* equal to.
+- Correct!
+- Incorrect. `>` means *strictly* greater than and *not* equal to.
+- Incorrect. `>` means *strictly* greater than and *not* equal to.
+
 
 ---
 ## Simple filtering of numeric values
@@ -669,7 +669,7 @@ Ex().test_correct(check_result(), [
 ## WHERE AND OR
 
 ```yaml
-type: PlainMultipleChoiceExercise
+type: PureMultipleChoiceExercise
 lang: sql
 xp: 50
 key: 227814cb5d
@@ -708,22 +708,20 @@ Otherwise, due to SQL's precedence rules, you may not get the results you're exp
 <hr>
 What does the `OR` operator do?
 
-`@instructions`
-- Display only rows that meet at least **one** of the specified conditions.
+`@possible_answers`
+- [Display only rows that meet at least **one** of the specified conditions.]
 - Display only rows that meet **all** of the specified conditions.
 - Display only rows that meet **none** of the specified conditions.
 
 `@hint`
 Think about records that meet condition1 **and** condition2.
 
-`@sct`
-```{python}
-success_msg = 'Correct!'
-msg1 = 'Incorrect. `OR` does not only display rows that meet **all** of the specified conditions.'
-msg2 = 'Incorrect. `OR` does not display rows that meet **none** of the specified conditions.'
+`@feedback`
 
-Ex().test_mc(1, [success_msg, msg1, msg2])
-```
+- Correct!
+- Incorrect. `OR` does not only display rows that meet **all** of the specified conditions.
+- Incorrect. `OR` does not display rows that meet **none** of the specified conditions.
+
 
 ---
 ## WHERE AND OR (2)
@@ -947,7 +945,7 @@ Ex().test_correct(check_result(), [
 ## BETWEEN
 
 ```yaml
-type: PlainMultipleChoiceExercise
+type: PureMultipleChoiceExercise
 lang: sql
 xp: 50
 key: a1827199e2
@@ -976,24 +974,22 @@ It's important to remember that `BETWEEN` is _inclusive_, meaning the beginning 
 <hr>
 What does the `BETWEEN` keyword do?
 
-`@instructions`
+`@possible_answers`
 - Filter numeric values
 - Filter text values
 - Filter values in a specified list
-- Filter values in a specified range
+- [Filter values in a specified range]
 
 `@hint`
 Think about looking for values **between** a beginning and end point.
 
-`@sct`
-```{python}
-success_msg = 'Correct!'
-numeric = 'Incorrect. `BETWEEN` does not just filter numeric values.'
-text = 'Incorrect. `BETWEEN` does not just filter text values.'
-lst = 'Incorrect!'
+`@feedback`
 
-Ex().test_mc(4, [numeric, text, lst, success_msg])
-```
+- Incorrect. `BETWEEN` does not just filter numeric values.
+- Incorrect. `BETWEEN` does not just filter text values.
+- Incorrect!
+- Correct!
+
 
 ---
 ## BETWEEN (2)
@@ -1482,7 +1478,7 @@ Ex().test_correct(check_result(), [
 ## Introduction to NULL and IS NULL
 
 ```yaml
-type: PlainMultipleChoiceExercise
+type: PureMultipleChoiceExercise
 lang: sql
 xp: 50
 key: 5cf67b42b3
@@ -1511,24 +1507,22 @@ WHERE birthdate IS NOT NULL;
 <hr>
 What does `NULL` represent?
 
-`@instructions`
+`@possible_answers`
 - A corrupt entry
-- A missing value
+- [A missing value]
 - An empty string
 - An invalid value
 
 `@hint`
 Remember, `NULL` represents values which are missing or unknown.
 
-`@sct`
-```{python}
-corrupt = 'Incorrect. We can not be sure that a `NULL` value is actually corrupt.'
-success_msg = 'Correct! `NULL` is used to represent unknown values.'
-empty = 'Incorrect. An empty string is not the same as a `NULL` value.'
-invalid = 'Incorrect!'
+`@feedback`
 
-Ex().test_mc(2, [corrupt, success_msg, empty, invalid])
-```
+- Incorrect. We can not be sure that a `NULL` value is actually corrupt.
+- Correct! `NULL` is used to represent unknown values.
+- Incorrect. An empty string is not the same as a `NULL` value.
+- Incorrect!
+
 
 ---
 ## NULL and IS NULL

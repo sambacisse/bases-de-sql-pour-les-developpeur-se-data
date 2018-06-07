@@ -6,7 +6,7 @@ description : This chapter provides a brief introduction to sorting and grouping
 ## ORDER BY
 
 ```yaml
-type: PlainMultipleChoiceExercise
+type: PureMultipleChoiceExercise
 lang: sql
 xp: 50
 key: 322af4938b
@@ -31,8 +31,8 @@ gives you the titles of films sorted by release year, from newest to oldest.
 <hr>
 How do you think `ORDER BY` sorts a column of text values by default?
 
-`@instructions`
-- Alphabetically (A-Z)
+`@possible_answers`
+- [Alphabetically (A-Z)]
 - Reverse alphabetically (Z-A)
 - There's no natural ordering to text data
 - By number of characters (fewest to most)
@@ -40,14 +40,13 @@ How do you think `ORDER BY` sorts a column of text values by default?
 `@hint`
 By default, `ORDER BY` sorts alphabetically, but in which direction?
 
-`@sct`
-```{python}
-success_msg = 'Correct!'
-msg1 = "Incorrect. Although text values are ordered alphabetically, they don't go Z-A."
-msg2 = 'Incorrect. Text values are ordered alphabetically.'
+`@feedback`
 
-Ex().test_mc(1, [success_msg, msg1, msg2, msg2])
-```
+- Correct!
+- Incorrect. Although text values are ordered alphabetically, they don't go Z-A.
+- Incorrect. Text values are ordered alphabetically.
+- Incorrect. Text values are ordered alphabetically.
+
 
 ---
 ## Sorting single columns
@@ -777,7 +776,7 @@ Ex().test_correct(check_result(), [
 ## GROUP BY
 
 ```yaml
-type: PlainMultipleChoiceExercise
+type: PureMultipleChoiceExercise
 lang: sql
 xp: 50
 key: 81987a99cf
@@ -804,24 +803,21 @@ Commonly, `GROUP BY` is used with _aggregate functions_ like `COUNT()` or `MAX()
 <hr>
 What is `GROUP BY` used for?
 
-`@instructions`
+`@possible_answers`
 - Performing operations by column
 - Performing operations all at once
 - Performing operations in a particular order
-- Performing operations by group
+- [Performing operations by group]
 
 `@hint`
 You use `GROUP BY` when you want to compute results within groups.
 
-`@sct`
-```{python}
-one = 'Incorrect. While `GROUP BY` does sort by column, we could just use `ORDER BY` for this.'
-two = 'Incorrect.'
-three = "Incorrect. While `GROUP BY` does sort results, it's not designed to control order of operations."
-success_msg = 'Correct! `GROUP BY` is for performing operations within groups.'
+`@feedback`
+- Incorrect. While `GROUP BY` does sort by column, we could just use `ORDER BY` for this.
+- Incorrect.
+- Incorrect. While `GROUP BY` does sort results, it's not designed to control order of operations.
+- Correct! `GROUP BY` is for performing operations within groups.
 
-Ex().test_mc(4, [one, two, three, success_msg])
-```
 
 ---
 ## GROUP BY practice
@@ -996,7 +992,7 @@ temp = sel.check_node('Call')
 max_call = temp.check_field('name').has_equal_ast('Did you use the `MAX` function?')
 max_args = temp.check_field('args').has_equal_ast('Are you using `MAX` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
@@ -1048,7 +1044,7 @@ count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT`
 
 count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
@@ -1121,7 +1117,7 @@ temp = sel.check_node('Call')
 min_call = temp.check_field('name').has_equal_ast('Did you use the `MIN` function?')
 min_args = temp.check_field('args').has_equal_ast('Are you using `MIN` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
@@ -1169,7 +1165,7 @@ temp = sel.check_node('Call')
 sum_call = temp.check_field('name').has_equal_ast('Did you use the `SUM` function?')
 sum_args = temp.check_field('args').has_equal_ast('Are you using `SUM` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
@@ -1217,7 +1213,7 @@ temp = sel.check_node('Call')
 sum_call = temp.check_field('name').has_equal_ast('Did you use the `SUM` function?')
 sum_args = temp.check_field('args').has_equal_ast('Are you using `SUM` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
 
@@ -1269,7 +1265,7 @@ temp = sel.check_node('Call')
 max_call = temp.check_field('name').has_equal_ast('Did you use the `MAX` function?')
 max_args = temp.check_field('args').has_equal_ast('Are you using `MAX` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
 
@@ -1323,7 +1319,7 @@ temp = sel.check_node('Call')
 min_call = temp.check_field('name').has_equal_ast('Did you use the `MIN` function?')
 min_args = temp.check_field('args').has_equal_ast('Are you using `MIN` on the right column?')
 
-from_clause = sel.check_field('where_clause').has_equal_ast('Is your `FROM` clause correct?')
+from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
 
 order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
 
@@ -1858,6 +1854,7 @@ Ex().test_correct(check_result(), [
     test_ncols(),
     test_error()
 ])
+Ex().success_msg("Superb work on a selection saga! SELECT queries can get rather long, but breaking them down into individual clauses makes them easier to write.")
 ```
 
 ---

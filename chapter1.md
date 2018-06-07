@@ -161,6 +161,7 @@ AS result;
 Ex().test_student_typed('SELECT|select', msg='You need to add `SELECT` at the start of line 2!')
 Ex().test_has_columns()
 Ex().test_error()
+Ex().success_msg("Excellent error editing! You can feel safe experimenting with code in the editor &ndash; you'll always get feedback if something goes wrong.")
 ```
 
 ---
@@ -282,7 +283,7 @@ Ex().check_result()
 ## Beginning your SQL journey
 
 ```yaml
-type: PlainMultipleChoiceExercise
+type: PureMultipleChoiceExercise
 lang: sql
 xp: 50
 key: a1f556e63f
@@ -307,24 +308,22 @@ The table of employees might look something like this:
 <hr>
 How many fields does the employees table above contain?
 
-`@instructions`
+`@possible_answers`
 - 1
 - 2
 - 3
-- 4
+- [4]
 
 `@hint`
 Remember that in database lingo, a column is called a *field*. How many fields does the table contain?
 
-`@sct`
-```{python}
-msg1 = "Incorrect, a table contains information about one type of entity, but generally has multiple fields."
-msg2 = "Sorry, try again!"
-msg3 = "Incorrect, the table contains three records, but how many fields does it have?"
-success_msg = "Correct! The table contains four columns, or fields."
+`@feedback`
 
-Ex().test_mc(4, [msg1, msg2, msg3, success_msg])
-```
+- Incorrect, a table contains information about one type of entity, but generally has multiple fields.
+- Sorry, try again!
+- Incorrect, the table contains three records, but how many fields does it have?
+- Correct! The table contains four columns, or fields.
+
 
 ---
 ## SELECTing single columns
