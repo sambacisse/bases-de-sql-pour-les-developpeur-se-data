@@ -1951,10 +1951,9 @@ key: fc288db979
 xp: 30
 ```
 
-`@question`
 What rating does _To Kill a Mockingbird_ have on IMDB?
 
-`@possible_answers`
+`@instructions`
 - 8.1
 - 8.4
 - 7.7
