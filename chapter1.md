@@ -140,6 +140,7 @@ In the editor, change line 2 to `SELECT 'DataCamp <3 SQL'`.
 `@pre_exercise_code`
 ```{python}
 connect('postgresql', 'films')
+set_options(write_access = True)
 ```
 
 `@sample_code`
