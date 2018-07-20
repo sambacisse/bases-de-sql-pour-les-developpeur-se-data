@@ -1,17 +1,17 @@
 ---
-title       : Aggregate Functions
-description : This chapter builds on the first two by teaching you how to use aggregate functions to summarize your data and gain useful insights. Additionally, you'll learn about arithmetic in SQL, and how to use aliases to make your results more readable!
-
-
+  title: "Aggregate Functions"
+  description: "This chapter builds on the first two by teaching you how to use aggregate functions to summarize your data and gain useful insights. Additionally, you'll learn about arithmetic in SQL, and how to use aliases to make your results more readable!"
 ---
+
 ## Aggregate functions
 
 ```yaml
-type: BulletExercise
+type: BulletExercise 
 lang: sql
-xp: 100
-key: b883e7079f
+xp: 100 
+key: b883e7079f   
 ```
+
 
 Often, you will want to perform some calculation on the data in a database. SQL provides a few functions, called *aggregate functions*, to help you out with this.
 
@@ -38,38 +38,46 @@ FROM films;
 
 You can probably guess what the `MIN` function does! Now it's your turn to try out some SQL functions.
 
+
 `@pre_exercise_code`
+
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-`@sample_code`
-```{sql}
-```
-
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: 80fd462ae1
-xp: 30
+type: NormalExercise 
+xp: 25 
+key: 80fd462ae1   
 ```
+
+
+
+
 
 `@instructions`
 Use the `SUM` function to get the total duration of all films.
+
+`@hint`
+```
+SELECT ___(___)
+FROM ___;
+```
+
 `@solution`
+
 ```{sql}
 SELECT SUM(duration)
 FROM films;
 ```
 
-`@hint`
-```
-SELECT ___(___)
-FROM ___;
-```
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -89,27 +97,39 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: 7993b51268
-xp: 30
+type: NormalExercise 
+xp: 25 
+key: 7993b51268   
 ```
+
+
+
+
 
 `@instructions`
 Get the average duration of all films.
-`@solution`
-```{sql}
-SELECT AVG(duration)
-FROM films;
-```
+
 `@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
+
+`@solution`
+
+```{sql}
+SELECT AVG(duration)
+FROM films;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -129,27 +149,39 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: a03aeabbc6
-xp: 30
+type: NormalExercise 
+xp: 25 
+key: a03aeabbc6   
 ```
+
+
+
+
 
 `@instructions`
 Get the duration of the shortest film.
-`@solution`
-```{sql}
-SELECT MIN(duration)
-FROM films;
-```
+
 `@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
+
+`@solution`
+
+```{sql}
+SELECT MIN(duration)
+FROM films;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -169,28 +201,39 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: fabbc619c6
-xp: 30
+type: NormalExercise 
+xp: 25 
+key: fabbc619c6   
 ```
+
+
+
+
 
 `@instructions`
 Get the duration of the longest film.
-`@solution`
-```{sql}
-SELECT MAX(duration)
-FROM films;
-```
+
 `@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
 
+`@solution`
+
+```{sql}
+SELECT MAX(duration)
+FROM films;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -210,50 +253,61 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+
 ---
+
 ## Aggregate functions practice
 
 ```yaml
-type: BulletExercise
+type: BulletExercise 
 lang: sql
-xp: 100
-key: e60103b3f1
+xp: 100 
+key: e60103b3f1   
 ```
+
 
 Good work. Aggregate functions are important to understand, so let's get some more practice!
 
+
 `@pre_exercise_code`
+
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-`@sample_code`
-```{sql}
-```
-
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: c8173b7d3e
-xp: 30
+type: NormalExercise 
+xp: 25 
+key: c8173b7d3e   
 ```
+
+
+
+
 
 `@instructions`
 Use the `SUM` function to get the total amount grossed by all films.
-`@solution`
-```{sql}
-SELECT SUM(gross)
-FROM films;
-```
 
 `@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
+
+`@solution`
+
+```{sql}
+SELECT SUM(gross)
+FROM films;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -273,27 +327,39 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: 24c0ab68ad
-xp: 30
+type: NormalExercise 
+xp: 25 
+key: 24c0ab68ad   
 ```
+
+
+
+
 
 `@instructions`
 Get the average amount grossed by all films.
-`@solution`
-```{sql}
-SELECT AVG(gross)
-FROM films;
-```
+
 `@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
+
+`@solution`
+
+```{sql}
+SELECT AVG(gross)
+FROM films;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -313,28 +379,39 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: 19838082cb
-xp: 30
+type: NormalExercise 
+xp: 25 
+key: 19838082cb   
 ```
+
+
+
 
 
 `@instructions`
 Get the amount grossed by the worst performing film.
-`@solution`
-```{sql}
-SELECT MIN(gross)
-FROM films;
-```
+
 `@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
+
+`@solution`
+
+```{sql}
+SELECT MIN(gross)
+FROM films;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -354,28 +431,39 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: a49b98de42
-xp: 30
+type: NormalExercise 
+xp: 25 
+key: a49b98de42   
 ```
+
+
+
+
 
 `@instructions`
 Get the amount grossed by the best performing film.
-`@solution`
-```{sql}
-SELECT MAX(gross)
-FROM films;
-```
+
 `@hint`
 ```
 SELECT ___(___)
 FROM ___;
 ```
 
+`@solution`
+
+```{sql}
+SELECT MAX(gross)
+FROM films;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -397,14 +485,16 @@ Ex().test_correct(check_result(), [
 
 
 ---
+
 ## Combining aggregate functions with WHERE
 
 ```yaml
-type: BulletExercise
+type: BulletExercise 
 lang: sql
-xp: 100
-key: b44bd43288
+xp: 100 
+key: b44bd43288   
 ```
+
 
 Aggregate functions can be combined with the `WHERE` clause to gain further insights from your data.
 
@@ -418,32 +508,30 @@ WHERE release_year >= 2010;
 
 Now it's your turn!
 
+
 `@pre_exercise_code`
+
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-`@sample_code`
-```{sql}
-```
-
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: b986f33a10
-xp: 30
+type: NormalExercise 
+xp: 25 
+key: b986f33a10   
 ```
+
+
+
+
 
 `@instructions`
 Use the `SUM` function to get the total amount grossed by all films made in the year 2000 or later.
-`@solution`
-```{sql}
-SELECT SUM(gross)
-FROM films
-WHERE release_year >= 2000;
-```
 
 `@hint`
 ```
@@ -451,7 +539,17 @@ SELECT ___(___)
 FROM ___
 WHERE ___ >= ___;
 ```
+
+`@solution`
+
+```{sql}
+SELECT SUM(gross)
+FROM films
+WHERE release_year >= 2000;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -476,29 +574,41 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: 65e81175c5
-xp: 30
+type: NormalExercise 
+xp: 25 
+key: 65e81175c5   
 ```
+
+
+
+
 
 `@instructions`
 Get the average amount grossed by all films whose titles start with the letter 'A'.
-`@solution`
-```{sql}
-SELECT AVG(gross)
-FROM films
-where title LIKE 'A%';
-```
+
 `@hint`
 ```
 SELECT ___(___)
 FROM ___
 WHERE ___ LIKE 'A%';
 ```
+
+`@solution`
+
+```{sql}
+SELECT AVG(gross)
+FROM films
+where title LIKE 'A%';
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -528,29 +638,41 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: 3ca90a8536
-xp: 30
+type: NormalExercise 
+xp: 25 
+key: 3ca90a8536   
 ```
+
+
+
+
 
 `@instructions`
 Get the amount grossed by the worst performing film in 1994.
-`@solution`
-```{sql}
-SELECT MIN(gross)
-FROM films
-WHERE release_year = 1994;
-```
+
 `@hint`
 ```
 SELECT ___(___)
 FROM ___
 WHERE ___ = ___;
 ```
+
+`@solution`
+
+```{sql}
+SELECT MIN(gross)
+FROM films
+WHERE release_year = 1994;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -575,22 +697,24 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: d2e630e656
-xp: 30
+type: NormalExercise 
+xp: 25 
+key: d2e630e656   
 ```
+
+
+
+
 
 `@instructions`
 Get the amount grossed by the best performing film between 2000 and 2012, inclusive.
-`@solution`
-```{sql}
-SELECT MAX(gross)
-FROM films
-WHERE release_year BETWEEN 2000 AND 2012;
-```
+
 `@hint`
 ```
 SELECT ___(___)
@@ -598,7 +722,16 @@ FROM ___
 WHERE ___ BETWEEN ___ AND ___;
 ```
 
+`@solution`
+
+```{sql}
+SELECT MAX(gross)
+FROM films
+WHERE release_year BETWEEN 2000 AND 2012;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -628,17 +761,18 @@ Ex().test_correct(check_result(), [
 ```
 
 
-
 ---
+
 ## A note on arithmetic
 
 ```yaml
-type: MultipleChoiceExercise
+type: MultipleChoiceExercise 
 lang: sql
-xp: 50
+xp: 50 
 skills: 1
-key: 7b8b54b64d
+key: 7b8b54b64d   
 ```
+
 
 In addition to using aggregate functions, you can perform basic arithmetic with symbols like `+`, `-`, `*`, and `/`.
 
@@ -669,6 +803,7 @@ gives you the result you would expect: `1.333`.
 <hr>
 What is the result of `SELECT (10 / 3);`?
 
+
 `@instructions`
 - 2.333
 - 3.333
@@ -679,32 +814,37 @@ What is the result of `SELECT (10 / 3);`?
 Run a query in the editor to the right.
 
 `@pre_exercise_code`
+
 ```{python}
 connect('postgresql', 'films')
 ```
 
 `@sample_code`
+
 ```{sql}
 -- You can test out queries here!
-
 ```
 
 `@sct`
+
 ```{python}
 success_msg = 'Correct!'
 msg2 = "Incorrect, try out the query in the editor!"
 
 Ex().test_mc(3,[msg2, msg2, success_msg, msg2])
 ```
+
 ---
+
 ## It's AS simple AS aliasing
 
 ```yaml
-type: BulletExercise
+type: BulletExercise 
 lang: sql
-xp: 100
-key: 9f4b026fe7
+xp: 100 
+key: 9f4b026fe7   
 ```
+
 
 You may have noticed in the first exercise of this chapter that the column name of your result was just the name of the function you used. For example,
 
@@ -734,33 +874,30 @@ FROM films;
 
 Aliases are helpful for making results more readable!
 
+
 `@pre_exercise_code`
+
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-`@sample_code`
-```{sql}
-
-```
-
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: ec33c2353b
-xp: 30
+type: NormalExercise 
+xp: 35 
+key: ec33c2353b   
 ```
+
+
+
+
 
 `@instructions`
 Get the title and net profit (the amount a film grossed, minus its budget) for all films. Alias the net profit as `net_profit`.
-
-`@solution`
-```{sql}
-SELECT title, gross - budget AS net_profit
-FROM films;
-```
 
 `@hint`
 ```
@@ -768,7 +905,15 @@ SELECT ___, ___ - ___ AS ___
 FROM ___;
 ```
 
+`@solution`
+
+```{sql}
+SELECT title, gross - budget AS net_profit
+FROM films;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -800,22 +945,23 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: 1351c6f6bb
-xp: 30
+type: NormalExercise 
+xp: 35 
+key: 1351c6f6bb   
 ```
+
+
+
+
 
 `@instructions`
 Get the title and duration in hours for all films. The duration is in minutes, so you'll need to divide by 60.0 to get the duration in hours. Alias the duration in hours as `duration_hours`.
-
-`@solution`
-```{sql}
-SELECT title, duration / 60.0 AS duration_hours
-FROM films;
-```
 
 `@hint`
 ```
@@ -823,9 +969,16 @@ SELECT ___, ___ / 60.0 AS ___
 FROM ___;
 ```
 
-`@sct`
-```{python}
+`@solution`
 
+```{sql}
+SELECT title, duration / 60.0 AS duration_hours
+FROM films;
+```
+
+`@sct`
+
+```{python}
 sel = check_node('SelectStmt')
 
 title = test_column('title', msg='Did you select the `title` column correctly?')
@@ -855,29 +1008,39 @@ Ex().test_correct(alias, [
 ])
 ```
 
+
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: 497f8d2a8a
-xp: 30
+type: NormalExercise 
+xp: 30 
+key: 497f8d2a8a   
 ```
+
+
+
+
 
 `@instructions`
 Get the average duration in hours for all films, aliased as `avg_duration_hours`.
 
-`@solution`
-```{sql}
-SELECT AVG(duration) / 60.0 AS avg_duration_hours  
-FROM films;
-```
 `@hint`
 ```
 SELECT ___(___) / 60.0 AS avg_duration_hours  
 FROM ___;
 ```
 
+`@solution`
+
+```{sql}
+SELECT AVG(duration) / 60.0 AS avg_duration_hours  
+FROM films;
+```
+
 `@sct`
+
 ```{python}
 # TODO: come back to this with better solution once sqlwhat is patched
 sel = check_node('SelectStmt')
@@ -904,15 +1067,18 @@ Ex().test_correct(alias, [
 ])
 ```
 
+
 ---
+
 ## Even more aliasing
 
 ```yaml
-type: BulletExercise
+type: BulletExercise 
 lang: sql
-xp: 100
-key: 7e3a93209c
+xp: 100 
+key: 7e3a93209c   
 ```
+
 
 Let's practice your newfound aliasing skills some more before moving on!
 
@@ -933,45 +1099,57 @@ So when you're dividing make sure at least one of your numbers has a decimal pla
 SELECT 45 * 100.0 / 10;
 ```
 
-The above now gives the correct answer of `450.0` as now the numerator of the division (`45 * 100.0`) is a decimal!
+The above now gives the correct answer of `450.0` since the numerator (`45 * 100.0`) of the division is now a decimal!
 
 
 `@pre_exercise_code`
+
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
 
 `@sample_code`
+
 ```{sql}
 -- get the count(deathdate) and multiply by 100.0
--- then divide by count(*) 
+-- then divide by count(*)
 ```
 
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: e14dc7c1a2
-xp: 30
+type: NormalExercise 
+xp: 35 
+key: e14dc7c1a2   
 ```
+
+
+
+
 
 `@instructions`
 Get the percentage of `people` who are no longer alive. Alias the result as `percentage_dead`. Remember to use `100.0` and not `100`!
-`@solution`
-```{sql}
--- get the count(deathdate) and multiply by 100.0
--- then divide by count(*) 
-SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percentage_dead
-FROM people;
-```
+
 `@hint`
 ```
 SELECT ___(___) * 100.0 / ___(___) AS percentage_dead
 FROM ___;
 ```
 
+`@solution`
+
+```{sql}
+-- get the count(deathdate) and multiply by 100.0
+-- then divide by count(*) 
+SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percentage_dead
+FROM people;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -1009,23 +1187,24 @@ Ex().test_correct(check_result(), [
 ])
 ```
 
+
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: c2bbd9a806
-xp: 30
+type: NormalExercise 
+xp: 35 
+key: c2bbd9a806   
 ```
+
+
+
+
 
 `@instructions`
 Get the number of years between the newest film and oldest film. Alias the result as `difference`.
 
-`@solution`
-```{sql}
-SELECT MAX(release_year) - MIN(release_year)
-AS difference
-FROM films;
-```
 `@hint`
 ```
 SELECT ___(___) - ___(___)
@@ -1033,7 +1212,16 @@ AS difference
 FROM ___;
 ```
 
+`@solution`
+
+```{sql}
+SELECT MAX(release_year) - MIN(release_year)
+AS difference
+FROM films;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -1066,25 +1254,26 @@ Ex().test_correct(check_result(), [
     test_ncols(),
     test_error()
 ])
-
 ```
+
 
 ***
 
+
+
 ```yaml
-type: NormalExercise
-key: f272486b68
-xp: 30
+type: NormalExercise 
+xp: 30 
+key: f272486b68   
 ```
+
+
+
+
 
 `@instructions`
 Get the number of decades the `films` table covers. Alias the result as `number_of_decades`. The top half of your fraction should be enclosed in parentheses.
-`@solution`
-```{sql}
-SELECT (MAX(release_year) - MIN(release_year)) / 10.0
-AS number_of_decades
-FROM films;
-```
+
 `@hint`
 ```
 SELECT (___(___) - ___(___)) / 10.0
@@ -1092,7 +1281,16 @@ AS number_of_decades
 FROM ___;
 ```
 
+`@solution`
+
+```{sql}
+SELECT (MAX(release_year) - MIN(release_year)) / 10.0
+AS number_of_decades
+FROM films;
+```
+
 `@sct`
+
 ```{python}
 sel = check_node('SelectStmt')
 
@@ -1136,3 +1334,4 @@ Ex().test_correct(check_result(), [
     test_error()
 ])
 ```
+
