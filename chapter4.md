@@ -2002,7 +2002,7 @@ Ex().test_correct(check_result(), [
 
 ```yaml
 type: NormalExercise 
-xp: 0 
+xp: 100 
 key: 7b3afeed2f   
 ```
 
