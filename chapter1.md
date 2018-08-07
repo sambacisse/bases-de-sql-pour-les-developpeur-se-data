@@ -54,10 +54,12 @@ Look at the `people` tab under the editor!
 
 `@sct`
 ```{python}
-msg1 = 'Nope, look at the `people` table!'
-correct = 'Correct!'
-
-Ex().test_mc(3,[msg1, msg1, correct, msg1])
+patt = '%s is nowhere to be seen in the `people` table. Have another look!'
+msg1 = patt % "Kanye West"
+msg2 = patt % "Biggie Smalls"
+msg3 = "That's correct! Head over to the next exercise to see how we can answer a similar question with code!"
+msg4 = patt % "Jay Z"
+Ex().has_chosen(3,[msg1, msg2, msg3, msg4])
 ```
 
 ---
@@ -100,10 +102,12 @@ Run the code in the editor and look at the query result tab under the editor!
 
 `@sct`
 ```{python}
-msg1 = 'Nope, look at the query result tab!'
-correct = 'Correct!'
-
-Ex().test_mc(2, [msg1, correct, msg1, msg1])
+patt = "If you execute the query that was already provided with the 'Run Code' button, you will see that %s is not the second person listed in the query result."
+msg1 = patt % "Kanye West"
+msg2 = "Correct!"
+msg3 = "50 Cent is the first person listed in the query result. We're looking for the second person."
+msg4 = patt % "Jay Z"
+Ex().has_chosen(2, [msg1, msg2, msg3, msg4])
 ```
 
 ---
@@ -158,9 +162,10 @@ AS result;
 
 `@sct`
 ```{sql}
-Ex().test_student_typed('SELECT|select', msg='You need to add `SELECT` at the start of line 2!')
-Ex().test_has_columns()
-Ex().test_error()
+Ex().has_code(r'SELECT|select', msg="Alright, no go ahead and fix your code by including a `SELECT`")
+
+Ex().check_col('result').is_equal()
+
 Ex().success_msg("Excellent error editing! You can feel safe experimenting with code in the editor &ndash; you'll always get feedback if something goes wrong.")
 ```
 
@@ -210,13 +215,7 @@ AS result;
 
 `@sct`
 ```{sql}
-Ex().test_error()
-
-Ex().test_student_typed('SQL', msg="Don't modify the query!", fixed=True)
-
-Ex().test_has_columns()
-Ex().check_result()
-
+Ex().check_col('result').is_equal()
 ```
 
 ***
@@ -241,12 +240,10 @@ AS result;
 
 `@sct`
 ```{sql}
-Ex().test_error()
-
-Ex().test_student_typed('SQL is', msg="Did you change the query correctly?", fixed=True)
-
-Ex().test_has_columns()
-Ex().check_result()
+Ex().check_correct(
+    check_col('result').is_equal(),
+    has_code('SQL is', msg="Did you change `'SQL'` to `'SQL is'`?.", fixed=True)
+)
 ```
 
 ***
@@ -271,12 +268,11 @@ AS result;
 
 `@sct`
 ```{sql}
-Ex().test_error()
-
-Ex().test_student_typed('SQL is cool!', msg="Did you change the query correctly?", fixed=True)
-
-Ex().test_has_columns()
-Ex().check_result()
+Ex().check_correct(
+    check_col('result').is_equal(),
+    has_code('SQL is cool!', msg = "Did you change `'SQL is'` to `'SQL is cool!'`?", fixed=True)
+)
+Ex().success_msg("Well done! The time has come to actually fetch information from tables now!")
 ```
 
 ---
@@ -305,7 +301,6 @@ The table of employees might look something like this:
 | 2 | Gabriel | 48 | France |
 | 3 | Laura | 36 | USA |
 
-<hr>
 How many fields does the employees table above contain?
 
 `@possible_answers`
@@ -392,19 +387,13 @@ FROM ___;
 ```
 `@sct`
 ```{python}
-sel = check_node('SelectStmt')
-
-title = test_column('title', msg='Did you select the `title` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    title,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_correct(
+    check_col('title').is_equal(),
+    check_node('SelectStmt').multi(
+        check_field('target_list', 0).has_equal_ast(),
+        check_field('from_clause').has_equal_ast()
+    )   
+)
 ```
 
 ***
@@ -430,19 +419,13 @@ FROM ___;
 ```
 `@sct`
 ```{python}
-sel = check_node('SelectStmt')
-
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    release_year,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_correct(
+    check_col('release_year').is_equal(),
+    check_node('SelectStmt').multi(
+        check_field('target_list', 0).has_equal_ast(),
+        check_field('from_clause').has_equal_ast()
+    )   
+)
 ```
 
 ***
@@ -466,21 +449,16 @@ FROM people;
 SELECT ___
 FROM ___;
 ```
+
 `@sct`
 ```{python}
-sel = check_node('SelectStmt')
-
-name = test_column('name', msg='Did you select the `name` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    name,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_correct(
+    check_col('name').is_equal(),
+    check_node('SelectStmt').multi(
+        check_field('target_list', 0).has_equal_ast(),
+        check_field('from_clause').has_equal_ast()
+    )   
+)
 ```
 
 ---
@@ -553,23 +531,16 @@ FROM films;
 SELECT ___
 FROM ___;
 ```
+
 `@sct`
 ```{python}
-from sqlwhat_ext import check_result2
-
-sel = check_node('SelectStmt')
-
-title = test_column('title', msg='Did you select the `title` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` cause correct?')
-
-Ex().test_correct(check_result2(), [
-    from_clause,
-    title,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_correct(
+    check_col('title').is_equal(),
+    check_node('SelectStmt').multi(
+        check_field('target_list', 0).has_equal_ast(),
+        check_field('from_clause').has_equal_ast()
+    )   
+)
 ```
 
 ***
@@ -588,31 +559,26 @@ Get the title and release year for every film.
 SELECT title, release_year
 FROM films;
 ```
+
 `@hint`
 ```
 SELECT ___, ___
 FROM ___;
 ```
+
 `@sct`
 ```{python}
-from sqlwhat_ext import check_result2
-
-sel = check_node('SelectStmt')
-
-title = test_column('title', msg='Did you select the `title` column correctly?')
-
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` cause correct?')
-
-Ex().test_correct(check_result2(), [
-    from_clause,
-    title,
-    release_year,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_correct(
+    multi(
+        check_col('title').is_equal(),
+        check_col('release_year').is_equal()
+    ),
+    check_node('SelectStmt').multi(
+        check_field('target_list', 0).has_equal_ast(),
+        check_field('target_list', 1).has_equal_ast(),
+        check_field('from_clause').has_equal_ast()
+    )   
+)
 ```
 
 ***
@@ -639,27 +605,19 @@ FROM ___;
 ```
 `@sct`
 ```{python}
-from sqlwhat_ext import check_result2
-
-sel = check_node('SelectStmt')
-
-title = test_column('title', msg='Did you select the `title` column correctly?')
-
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-country = test_column('country', msg='Did you select the `country` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` cause correct?')
-
-Ex().test_correct(check_result2(), [
-    from_clause,
-    title,
-    release_year,
-    country,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_correct(
+    multi(
+        check_col('title').is_equal(),
+        check_col('release_year').is_equal(),
+        check_col('country').is_equal()
+    ),
+    check_node('SelectStmt').multi(
+        check_field('target_list', 0).has_equal_ast(),
+        check_field('target_list', 1).has_equal_ast(),
+        check_field('target_list', 2).has_equal_ast(),
+        check_field('from_clause').has_equal_ast()
+    )
+)
 ```
 
 ***
@@ -687,19 +645,13 @@ FROM ___;
 
 `@sct`
 ```{python}
-sel = check_node('SelectStmt')
-
-star = sel.check_node('Star').has_equal_ast('Did you use `SELECT *` to get all columns?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    star,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_correct(
+    check_solution_cols().is_equal(),
+    check_node('SelectStmt').multi(
+        check_node('Star').has_equal_ast(msg = "Did you use `SELECT *` to get all columns?"),
+        check_field('from_clause').has_equal_ast()
+    )
+)
 ```
 
 ---
@@ -755,23 +707,19 @@ FROM films;
 SELECT DISTINCT ___
 FROM ___;
 ```
+
 `@sct`
 ```{python}
-sel = check_node('SelectStmt')
-
-distinct = sel.check_field('pref').has_equal_ast("Don't forget to use the `DISTINCT` keyword!")
-
-country = test_column('country', msg='Did you select the `country` column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    distinct,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+distinct_msg = "Did you use the `DISTINCT` keyword?"
+country_msg = "Did you use `DISTINCT country` to `SELECT` unique countries?"
+Ex().check_correct(
+    check_col('country').is_equal(),
+    check_node('SelectStmt').multi(
+        check_field('pref', missing_msg=distinct_msg).has_equal_ast(msg=distinct_msg),
+        check_field('target_list', 0).has_equal_ast(msg=country_msg),
+        check_field('from_clause').has_equal_ast()
+    )
+)
 ```
 
 ***
@@ -784,6 +732,7 @@ xp: 30
 
 `@instructions`
 Get all the different film certifications from the `films` table.
+
 `@solution`
 ```{sql}
 SELECT DISTINCT certification
@@ -798,22 +747,16 @@ FROM ___;
 
 `@sct`
 ```{python}
-sel = check_node('SelectStmt')
-
-distinct = sel.check_field('pref').has_equal_ast("Don't forget to use the `DISTINCT` keyword!")
-
-certification = test_column('certification', msg='Did you select the `certification` column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    certification,
-    distinct,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+distinct_msg = "Did you use the `DISTINCT` keyword?"
+certs_msg = "Did you use `DISTINCT certification` to `SELECT` unique certifications?"
+Ex().check_correct(
+    check_col('certification').is_equal(),
+    check_node('SelectStmt').multi(
+        check_field('pref', missing_msg=distinct_msg).has_equal_ast(msg=distinct_msg),
+        check_field('target_list', 0).has_equal_ast(msg=certs_msg),
+        check_field('from_clause').has_equal_ast()
+    )
+)
 ```
 
 ***
@@ -838,24 +781,19 @@ FROM roles;
 SELECT DISTINCT ___
 FROM ___;
 ```
+
 `@sct`
 ```{python}
-sel = check_node('SelectStmt')
-
-distinct = sel.check_field('pref').has_equal_ast("Don't forget to use the `DISTINCT` keyword!")
-
-role = test_column('role', msg='Did you select the `role` column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    distinct,
-    role,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+distinct_msg = "Did you use the `DISTINCT` keyword?"
+role_msg = "Did you use `DISTINCT role` to `SELECT` unique roles?"
+Ex().check_correct(
+    check_col('role').is_equal(),
+    check_node('SelectStmt').multi(
+        check_field('pref', missing_msg=distinct_msg).has_equal_ast(msg=distinct_msg),
+        check_field('target_list', 0).has_equal_ast(msg=role_msg),
+        check_field('from_clause').has_equal_ast()
+    )
+)
 ```
 
 ---
@@ -903,11 +841,11 @@ connect('postgresql', 'films')
 
 `@sct`
 ```{python}
-success_msg = 'Correct!'
-msg2 = "Use the syntax provided in the example. Be sure to swap out `people` for `reviews`!"
-
-Ex().test_mc(3,[msg2, msg2, success_msg, msg2, msg2])
+crm = 'Correct!'
+icm = "Use the syntax provided in the example. Be sure to swap out `people` for `reviews`!"
+Ex().has_chosen(3, [icm, icm, crm, icm, icm])
 ```
+
 ---
 ## Practice with COUNT
 
@@ -973,25 +911,16 @@ FROM ___;
 
 `@sct`
 ```{python}
-sel = check_node('SelectStmt')
-
-temp = sel.check_node('Call')
-
-count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
-
-count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` on the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    count_call,
-    count_args,
-    count_call,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_correct(
+    check_col('count').is_equal(),
+    check_node('SelectStmt').multi(
+        check_node('Call').multi(
+            check_field('name').has_equal_ast(msg="Are you calling the `COUNT()` function?"),
+            check_field('args').has_equal_ast(msg='Are you using `COUNT(*)`?')
+        ),
+        check_field('from_clause').has_equal_ast()
+    )
+)
 ```
 
 ***
@@ -1019,24 +948,16 @@ FROM ___;
 
 `@sct`
 ```{python}
-sel = check_node('SelectStmt')
-
-temp = sel.check_node('Call')
-
-count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
-
-count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` on the right column?')
-
-from_clause = count_call.has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    count_call,
-    count_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_correct(
+    check_col('count').is_equal(),
+    check_node('SelectStmt').multi(
+        check_node('Call').multi(
+            check_field('name').has_equal_ast(msg="Are you calling the `COUNT()` function?"),
+            check_field('args').has_equal_ast(msg='Are you using `COUNT(birthdate)`?')
+        ),
+        check_field('from_clause').has_equal_ast()
+    )
+)
 ```
 
 ***
@@ -1064,27 +985,18 @@ FROM ___;
 
 `@sct`
 ```{python}
-sel = check_node('SelectStmt')
-
-temp = sel.check_node('Call')
-
-count_call = temp.check_field('name').has_equal_ast('Are you using `COUNT` with `DISTINCT`?')
-
-# not urgent: this might need to be changed
-# count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
-
-count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    count_call,
-    count_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+hint = "Are you using `COUNT(DISTINCT birthdate)`?"
+Ex().check_correct(
+    check_col('count').is_equal(),
+    check_node('SelectStmt').multi(
+        check_node('Call').multi(
+            check_field('name').has_equal_ast(msg="Are you calling the `COUNT()` function?"),
+            check_field('pref').has_equal_ast(msg=hint),
+            check_field('args').has_equal_ast(msg=hint)
+        ),
+        check_field('from_clause').has_equal_ast()
+    )
+)
 ```
 
 ***
@@ -1112,27 +1024,18 @@ FROM ___;
 
 `@sct`
 ```{python}
-sel = check_node('SelectStmt')
-
-temp = sel.check_node('Call')
-
-count_call = temp.check_field('name').has_equal_ast('Are you using `COUNT` with `DISTINCT`?')
-
-# not urgent: this might need to be changed
-# count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
-
-count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    count_call,
-    count_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+hint = "Are you using `COUNT(DISTINCT language)`?"
+Ex().check_correct(
+    check_col('count').is_equal(),
+    check_node('SelectStmt').multi(
+        check_node('Call').multi(
+            check_field('name').has_equal_ast(msg="Are you calling the `COUNT()` function?"),
+            check_field('pref').has_equal_ast(msg=hint),
+            check_field('args').has_equal_ast(msg=hint)
+        ),
+        check_field('from_clause').has_equal_ast()
+    )
+)
 ```
 
 ***
@@ -1160,25 +1063,16 @@ FROM ___;
 
 `@sct`
 ```{python}
-sel = check_node('SelectStmt')
-
-temp = sel.check_node('Call')
-
-count_call = temp.check_field('name').has_equal_ast('Are you using `COUNT` with `DISTINCT`?')
-
-# not urgent: this might need to be changed
-# count_distinct_arg = temp.check_field('pref').has_equal_ast('Are you using `DISTINCT` with `COUNT()`?')
-
-count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` and `DISTINCT` with the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    count_call,
-    count_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+hint = "Are you using `COUNT(DISTINCT country)`?"
+Ex().check_correct(
+    check_col('count').is_equal(),
+    check_node('SelectStmt').multi(
+        check_node('Call').multi(
+            check_field('name').has_equal_ast(msg="Are you calling the `COUNT()` function?"),
+            check_field('pref').has_equal_ast(msg=hint),
+            check_field('args').has_equal_ast(msg=hint)
+        ),
+        check_field('from_clause').has_equal_ast()
+    )
+)
 ```
