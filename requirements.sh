@@ -1,3 +1,6 @@
+# If bash command fails, build should error out
+set -e
+
 BASE_DIR=$(pwd)
 #NYCBIKES_DATA="https://assets.datacamp.com/course/sql/nycbikes15.zip"
 #NYCBIKES_REPO="https://assets.datacamp.com/course/tmp_fixme_filip/nycbikes15_db_scripts.zip"
@@ -29,7 +32,10 @@ unzip films.zip -d courses-intro-to-sql/data
   #&& sudo -u postgres psql nycbikes15 < sql-setup/create-db-postgres.sql \
   #&& service postgresql stop
 
-pip3 install sqlwhat-ext==0.0.1
+pip3 install jinja2==2.10
+pip3 install git+https://github.com/datacamp/protowhat.git/@fs/refactor --upgrade --no-dependencies
+pip3 install git+https://github.com/datacamp/sqlwhat.git/@fs/refactor --upgrade --no-dependencies
+pip3 install sqlwhat-ext==0.0.1 --upgrade --no-dependencies
 
 service postgresql start \
   && sudo -u postgres createdb -O repl films \
