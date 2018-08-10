@@ -136,7 +136,7 @@ Ex().check_correct(
 # Now, check if all columns are correct
 Ex().check_correct(
     check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_node('Star', missing_msg = "Are you using the `*` argument to select _all_ columns?")
+    check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 ```
 
@@ -303,7 +303,7 @@ Ex().check_correct(
 # Next check if right columns were included
 Ex().check_correct(
     check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_node('Star', missing_msg = "Are you using the `*` argument to select _all_ columns?")
+    check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 ```
 
@@ -431,7 +431,7 @@ Ex().check_correct(
 # Now, check if all columns are correct
 Ex().check_correct(
     check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_node('Star', missing_msg = "Are you using the `*` argument to select _all_ columns?")
+    check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 
 Ex().success_msg("Wonderful! Let's look at combining different conditions now!")
@@ -577,7 +577,7 @@ Ex().check_correct(
 # Now, check if all columns are correct
 Ex().check_correct(
     check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_node('Star', missing_msg = "Are you using the `*` argument to select _all_ columns?")
+    check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 ```
 
@@ -628,7 +628,7 @@ Ex().check_correct(
 # Now, check if all columns are correct
 Ex().check_correct(
     check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_node('Star', missing_msg = "Are you using the `*` argument to select _all_ columns?")
+    check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 
 Ex().success_msg("Great work! Being able to combine conditions with `AND` will prove to be very useful if you only want your query to return a specific subset of records!")

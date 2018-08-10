@@ -301,7 +301,7 @@ Ex().check_correct(
 # Next, check if all columns included
 Ex().check_correct(
     check_solution_cols(),
-    check_node('SelectStmt').check_node('Star', missing_msg = "Are you using the `*` argument to select _all_ columns?")
+    check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 
 # Finally, check if order is correct

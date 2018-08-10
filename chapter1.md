@@ -301,6 +301,8 @@ The table of employees might look something like this:
 | 2 | Gabriel | 48 | France |
 | 3 | Laura | 36 | USA |
 
+<hr>
+
 How many fields does the employees table above contain?
 
 `@possible_answers`
@@ -648,7 +650,7 @@ FROM ___;
 Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').multi(
-        check_node('Star').has_equal_ast(msg = "Did you use `SELECT *` to get all columns?"),
+        check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?"),
         check_field('from_clause').has_equal_ast()
     )
 )
