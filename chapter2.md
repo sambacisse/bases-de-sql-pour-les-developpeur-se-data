@@ -1009,15 +1009,14 @@ WHERE release_year BETWEEN 1990 AND 2000;
 `@sct`
 ```{python}
 # First check if the WHERE clause was correct
-where_msg = "In your `WHERE` clause, have you checked whether `release_year` is between 1990 and 2000?"
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
         check_field('from_clause').has_equal_ast(),
         check_field('where_clause').multi(
-            check_field('left').has_equal_ast(msg=where_msg),
-            check_field('right', 0).has_equal_ast(msg=where_msg),
-            check_field('right', 1).has_equal_ast(msg=where_msg)
+            check_field('left').has_equal_ast(),
+            check_field('right', 0).has_equal_ast(),
+            check_field('right', 1).has_equal_ast()
         )
     )
 )
