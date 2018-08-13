@@ -222,7 +222,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "release_year, title", start="expression", exact=False)
+        has_equal_ast(sql = "release_year, title")
     )
 )
 
@@ -349,7 +349,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "birthdate, name", start="expression", exact=False)
+        has_equal_ast(sql = "birthdate, name")
     )
 )
 ```
@@ -516,8 +516,8 @@ Ex().check_correct(
     check_node('SelectStmt').multi(
         check_field('from_clause').has_equal_ast(),
         check_field('where_clause').multi(
-            has_equal_ast(sql = "release_year < 2000", start='expression', exact=False),
-            has_equal_ast(sql = "language = 'Spanish'", start='expression', exact=False)
+            has_equal_ast(sql = "release_year < 2000"),
+            has_equal_ast(sql = "language = 'Spanish'")
         )
     )
 )
@@ -527,7 +527,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "release_year, title", start="expression", exact=False)
+        has_equal_ast(sql = "release_year, title")
     )
 )
 ```
@@ -568,8 +568,8 @@ Ex().check_correct(
     check_node('SelectStmt').multi(
         check_field('from_clause').has_equal_ast(),
         check_field('where_clause').multi(
-            has_equal_ast(sql = "release_year > 2000", start='expression', exact=False),
-            has_equal_ast(sql = "language = 'Spanish'", start='expression', exact=False)
+            has_equal_ast(sql = "release_year > 2000"),
+            has_equal_ast(sql = "language = 'Spanish'")
         )
     )
 )
@@ -618,9 +618,9 @@ Ex().check_correct(
     check_node('SelectStmt').multi(
         check_field('from_clause').has_equal_ast(),
         check_field('where_clause').multi(
-            has_equal_ast(sql = "release_year > 2000", start='expression', exact=False),
-            has_equal_ast(sql = "release_year > 2010", start='expression', exact=False),
-            has_equal_ast(sql = "language = 'Spanish'", start='expression', exact=False)
+            has_equal_ast(sql = "release_year > 2000"),
+            has_equal_ast(sql = "release_year > 2010"),
+            has_equal_ast(sql = "language = 'Spanish'")
         )
     )
 )
@@ -764,8 +764,8 @@ Ex().check_correct(
     check_node('SelectStmt').multi(
         check_field('from_clause').has_equal_ast(),
         check_field('where_clause').multi(
-            has_equal_ast(sql = "release_year >= 1990", start='expression', exact=False),
-            has_equal_ast(sql = "release_year < 2000", start='expression', exact=False),
+            has_equal_ast(sql = "release_year >= 1990"),
+            has_equal_ast(sql = "release_year < 2000"),
             has_code("AND")
         )
     )
@@ -776,7 +776,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "release_year, title", start="expression", exact=False)
+        has_equal_ast(sql = "release_year, title")
     )
 )
 ```
@@ -816,11 +816,11 @@ Ex().check_correct(
     check_node('SelectStmt').multi(
         check_field('from_clause').has_equal_ast(),
         check_field('where_clause').multi(
-            has_equal_ast(sql = "release_year >= 1990", start='expression', exact=False),
-            has_equal_ast(sql = "release_year < 2000", start='expression', exact=False),
+            has_equal_ast(sql = "release_year >= 1990"),
+            has_equal_ast(sql = "release_year < 2000"),
             has_code("AND"),
-            has_equal_ast(sql = "language = 'French'", start='expression', exact=False),
-            has_equal_ast(sql = "language = 'Spanish'", start='expression', exact=False),
+            has_equal_ast(sql = "language = 'French'"),
+            has_equal_ast(sql = "language = 'Spanish'"),
             has_code("OR")
         )
     )
@@ -831,7 +831,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "release_year, title", start="expression", exact=False)
+        has_equal_ast(sql = "release_year, title")
     )
 )
 ```
@@ -874,13 +874,13 @@ Ex().check_correct(
     check_node('SelectStmt').multi(
         check_field('from_clause').has_equal_ast(),
         check_field('where_clause').multi(
-            has_equal_ast(sql = "release_year >= 1990", start='expression', exact=False),
-            has_equal_ast(sql = "release_year < 2000", start='expression', exact=False),
+            has_equal_ast(sql = "release_year >= 1990"),
+            has_equal_ast(sql = "release_year < 2000"),
             has_code("AND"),
-            has_equal_ast(sql = "language = 'French'", start='expression', exact=False),
-            has_equal_ast(sql = "language = 'Spanish'", start='expression', exact=False),
+            has_equal_ast(sql = "language = 'French'"),
+            has_equal_ast(sql = "language = 'Spanish'"),
             has_code("OR"),
-            has_equal_ast(sql = 'gross > 2000000', start='expression', exact=False)
+            has_equal_ast(sql = 'gross > 2000000')
         )
     )
 )
@@ -890,7 +890,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "release_year, title", start="expression", exact=False)
+        has_equal_ast(sql = "release_year, title")
     )
 )
 
@@ -1026,7 +1026,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "release_year, title", start="expression", exact=False)
+        has_equal_ast(sql = "release_year, title")
     )
 )
 ```
@@ -1065,7 +1065,7 @@ Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
         check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast(sql='budget > 100000000', start='expression', exact=False)
+        check_field('where_clause').has_equal_ast(sql='budget > 100000000')
     )
 )
 
@@ -1074,7 +1074,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "release_year, title", start="expression", exact=False)
+        has_equal_ast(sql = "release_year, title")
     )
 )
 ```
@@ -1116,7 +1116,7 @@ Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
         check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast(sql="language = 'Spanish'", start='expression', exact=False)
+        check_field('where_clause').has_equal_ast(sql="language = 'Spanish'")
     )
 )
 
@@ -1125,7 +1125,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "release_year, title", start="expression", exact=False)
+        has_equal_ast(sql = "release_year, title")
     )
 )
 ```
@@ -1166,7 +1166,7 @@ Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
         check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast(sql="language = 'French'", start='expression', exact=False)
+        check_field('where_clause').has_equal_ast(sql="language = 'French'")
     )
 )
 
@@ -1175,7 +1175,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "release_year, title", start="expression", exact=False)
+        has_equal_ast(sql = "release_year, title")
     )
 )
 
@@ -1273,7 +1273,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "release_year, title", start="expression", exact=False)
+        has_equal_ast(sql = "release_year, title")
     )
 )
 ```
@@ -1320,7 +1320,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "language, title", start="expression", exact=False)
+        has_equal_ast(sql = "language, title")
     )
 )
 ```
@@ -1366,7 +1366,7 @@ Ex().check_correct(
     check_solution_cols().is_equal(),
     check_node('SelectStmt').check_field('target_list').check_or(
         has_equal_ast(),
-        has_equal_ast(sql = "certification, title", start="expression", exact=False)
+        has_equal_ast(sql = "certification, title")
     )
 )
 
