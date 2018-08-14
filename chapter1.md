@@ -162,9 +162,9 @@ AS result;
 
 `@sct`
 ```{sql}
-Ex().has_code(r'SELECT|select', msg="Alright, no go ahead and fix your code by including a `SELECT`")
+Ex().has_code(r'SELECT|select', incorrect_msg="Alright, no go ahead and fix your code by including a `SELECT`")
 
-Ex().check_col('result').is_equal()
+Ex().check_column('result').has_equal_value()
 
 Ex().success_msg("Excellent error editing! You can feel safe experimenting with code in the editor &ndash; you'll always get feedback if something goes wrong.")
 ```
@@ -215,7 +215,7 @@ AS result;
 
 `@sct`
 ```{sql}
-Ex().check_col('result').is_equal()
+Ex().check_column('result').has_equal_value()
 ```
 
 ***
@@ -241,8 +241,8 @@ AS result;
 `@sct`
 ```{sql}
 Ex().check_correct(
-    check_col('result').is_equal(),
-    has_code('SQL is', msg="Did you change `'SQL'` to `'SQL is'`?.", fixed=True)
+    check_column('result').has_equal_value(),
+    has_code('SQL is', incorrect_msg="Did you change `'SQL'` to `'SQL is'`?.", fixed=True)
 )
 ```
 
@@ -269,8 +269,8 @@ AS result;
 `@sct`
 ```{sql}
 Ex().check_correct(
-    check_col('result').is_equal(),
-    has_code('SQL is cool!', msg = "Did you change `'SQL is'` to `'SQL is cool!'`?", fixed=True)
+    check_column('result').has_equal_value(),
+    has_code('SQL is cool!', incorrect_msg="Did you change `'SQL is'` to `'SQL is cool!'`?", fixed=True)
 )
 Ex().success_msg("Well done! The time has come to actually fetch information from tables now!")
 ```
@@ -390,10 +390,10 @@ FROM ___;
 `@sct`
 ```{python}
 Ex().check_correct(
-    check_col('title').is_equal(),
+    check_column('title').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_field('target_list', 0).has_equal_ast(),
-        check_field('from_clause').has_equal_ast()
+        check_edge('target_list', 0).has_equal_ast(),
+        check_edge('from_clause').has_equal_ast()
     )   
 )
 ```
@@ -422,10 +422,10 @@ FROM ___;
 `@sct`
 ```{python}
 Ex().check_correct(
-    check_col('release_year').is_equal(),
+    check_column('release_year').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_field('target_list', 0).has_equal_ast(),
-        check_field('from_clause').has_equal_ast()
+        check_edge('target_list', 0).has_equal_ast(),
+        check_edge('from_clause').has_equal_ast()
     )   
 )
 ```
@@ -455,10 +455,10 @@ FROM ___;
 `@sct`
 ```{python}
 Ex().check_correct(
-    check_col('name').is_equal(),
+    check_column('name').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_field('target_list', 0).has_equal_ast(),
-        check_field('from_clause').has_equal_ast()
+        check_edge('target_list', 0).has_equal_ast(),
+        check_edge('from_clause').has_equal_ast()
     )   
 )
 ```
@@ -537,10 +537,10 @@ FROM ___;
 `@sct`
 ```{python}
 Ex().check_correct(
-    check_col('title').is_equal(),
+    check_column('title').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_field('target_list', 0).has_equal_ast(),
-        check_field('from_clause').has_equal_ast()
+        check_edge('target_list', 0).has_equal_ast(),
+        check_edge('from_clause').has_equal_ast()
     )   
 )
 ```
@@ -572,13 +572,13 @@ FROM ___;
 ```{python}
 Ex().check_correct(
     multi(
-        check_col('title').is_equal(),
-        check_col('release_year').is_equal()
+        check_column('title').has_equal_value(),
+        check_column('release_year').has_equal_value()
     ),
     check_node('SelectStmt').multi(
-        check_field('target_list', 0).has_equal_ast(),
-        check_field('target_list', 1).has_equal_ast(),
-        check_field('from_clause').has_equal_ast()
+        check_edge('target_list', 0).has_equal_ast(),
+        check_edge('target_list', 1).has_equal_ast(),
+        check_edge('from_clause').has_equal_ast()
     )   
 )
 ```
@@ -609,15 +609,15 @@ FROM ___;
 ```{python}
 Ex().check_correct(
     multi(
-        check_col('title').is_equal(),
-        check_col('release_year').is_equal(),
-        check_col('country').is_equal()
+        check_column('title').has_equal_value(),
+        check_column('release_year').has_equal_value(),
+        check_column('country').has_equal_value()
     ),
     check_node('SelectStmt').multi(
-        check_field('target_list', 0).has_equal_ast(),
-        check_field('target_list', 1).has_equal_ast(),
-        check_field('target_list', 2).has_equal_ast(),
-        check_field('from_clause').has_equal_ast()
+        check_edge('target_list', 0).has_equal_ast(),
+        check_edge('target_list', 1).has_equal_ast(),
+        check_edge('target_list', 2).has_equal_ast(),
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -648,10 +648,10 @@ FROM ___;
 `@sct`
 ```{python}
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').multi(
         check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?"),
-        check_field('from_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -715,11 +715,11 @@ FROM ___;
 distinct_msg = "Did you use the `DISTINCT` keyword?"
 country_msg = "Did you use `DISTINCT country` to `SELECT` unique countries?"
 Ex().check_correct(
-    check_col('country').is_equal(),
+    check_column('country').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_field('pref', missing_msg=distinct_msg).has_equal_ast(msg=distinct_msg),
-        check_field('target_list', 0).has_equal_ast(msg=country_msg),
-        check_field('from_clause').has_equal_ast()
+        check_edge('pref', missing_msg=distinct_msg).has_equal_ast(incorrect_msg=distinct_msg),
+        check_edge('target_list', 0).has_equal_ast(incorrect_msg=country_msg),
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -752,11 +752,11 @@ FROM ___;
 distinct_msg = "Did you use the `DISTINCT` keyword?"
 certs_msg = "Did you use `DISTINCT certification` to `SELECT` unique certifications?"
 Ex().check_correct(
-    check_col('certification').is_equal(),
+    check_column('certification').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_field('pref', missing_msg=distinct_msg).has_equal_ast(msg=distinct_msg),
-        check_field('target_list', 0).has_equal_ast(msg=certs_msg),
-        check_field('from_clause').has_equal_ast()
+        check_edge('pref', missing_msg=distinct_msg).has_equal_ast(incorrect_msg=distinct_msg),
+        check_edge('target_list', 0).has_equal_ast(incorrect_msg=certs_msg),
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -789,11 +789,11 @@ FROM ___;
 distinct_msg = "Did you use the `DISTINCT` keyword?"
 role_msg = "Did you use `DISTINCT role` to `SELECT` unique roles?"
 Ex().check_correct(
-    check_col('role').is_equal(),
+    check_column('role').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_field('pref', missing_msg=distinct_msg).has_equal_ast(msg=distinct_msg),
-        check_field('target_list', 0).has_equal_ast(msg=role_msg),
-        check_field('from_clause').has_equal_ast()
+        check_edge('pref', missing_msg=distinct_msg).has_equal_ast(incorrect_msg=distinct_msg),
+        check_edge('target_list', 0).has_equal_ast(incorrect_msg=role_msg),
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -914,13 +914,13 @@ FROM ___;
 `@sct`
 ```{python}
 Ex().check_correct(
-    check_col('count').is_equal(),
+    check_column('count').has_equal_value(),
     check_node('SelectStmt').multi(
         check_node('Call').multi(
-            check_field('name').has_equal_ast(msg="Are you calling the `COUNT()` function?"),
-            check_field('args').has_equal_ast(msg='Are you using `COUNT(*)`?')
+            check_edge('name').has_equal_ast(incorrect_msg="Are you calling the `COUNT()` function?"),
+            check_edge('args').has_equal_ast(incorrect_msg='Are you using `COUNT(*)`?')
         ),
-        check_field('from_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -951,13 +951,13 @@ FROM ___;
 `@sct`
 ```{python}
 Ex().check_correct(
-    check_col('count').is_equal(),
+    check_column('count').has_equal_value(),
     check_node('SelectStmt').multi(
         check_node('Call').multi(
-            check_field('name').has_equal_ast(msg="Are you calling the `COUNT()` function?"),
-            check_field('args').has_equal_ast(msg='Are you using `COUNT(birthdate)`?')
+            check_edge('name').has_equal_ast(incorrect_msg="Are you calling the `COUNT()` function?"),
+            check_edge('args').has_equal_ast(incorrect_msg='Are you using `COUNT(birthdate)`?')
         ),
-        check_field('from_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -989,14 +989,14 @@ FROM ___;
 ```{python}
 hint = "Are you using `COUNT(DISTINCT birthdate)`?"
 Ex().check_correct(
-    check_col('count').is_equal(),
+    check_column('count').has_equal_value(),
     check_node('SelectStmt').multi(
         check_node('Call').multi(
-            check_field('name').has_equal_ast(msg="Are you calling the `COUNT()` function?"),
-            check_field('pref').has_equal_ast(msg=hint),
-            check_field('args').has_equal_ast(msg=hint)
+            check_edge('name').has_equal_ast(incorrect_msg="Are you calling the `COUNT()` function?"),
+            check_edge('pref').has_equal_ast(incorrect_msg=hint),
+            check_edge('args').has_equal_ast(incorrect_msg=hint)
         ),
-        check_field('from_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -1028,14 +1028,14 @@ FROM ___;
 ```{python}
 hint = "Are you using `COUNT(DISTINCT language)`?"
 Ex().check_correct(
-    check_col('count').is_equal(),
+    check_column('count').has_equal_value(),
     check_node('SelectStmt').multi(
         check_node('Call').multi(
-            check_field('name').has_equal_ast(msg="Are you calling the `COUNT()` function?"),
-            check_field('pref').has_equal_ast(msg=hint),
-            check_field('args').has_equal_ast(msg=hint)
+            check_edge('name').has_equal_ast(incorrect_msg="Are you calling the `COUNT()` function?"),
+            check_edge('pref').has_equal_ast(incorrect_msg=hint),
+            check_edge('args').has_equal_ast(incorrect_msg=hint)
         ),
-        check_field('from_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -1067,14 +1067,14 @@ FROM ___;
 ```{python}
 hint = "Are you using `COUNT(DISTINCT country)`?"
 Ex().check_correct(
-    check_col('count').is_equal(),
+    check_column('count').has_equal_value(),
     check_node('SelectStmt').multi(
         check_node('Call').multi(
-            check_field('name').has_equal_ast(msg="Are you calling the `COUNT()` function?"),
-            check_field('pref').has_equal_ast(msg=hint),
-            check_field('args').has_equal_ast(msg=hint)
+            check_edge('name').has_equal_ast(incorrect_msg="Are you calling the `COUNT()` function?"),
+            check_edge('pref').has_equal_ast(incorrect_msg=hint),
+            check_edge('args').has_equal_ast(incorrect_msg=hint)
         ),
-        check_field('from_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```

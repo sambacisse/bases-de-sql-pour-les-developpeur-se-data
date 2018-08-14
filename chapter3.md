@@ -76,10 +76,10 @@ FROM films;
 ```{python}
 custom_msg="Have you used `SUM(duration)`?"
 Ex().check_correct(
-    check_col('sum').is_equal(),
+    check_column('sum').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=custom_msg).has_equal_ast(msg=custom_msg),
-        check_field('from_clause').has_equal_ast()
+        check_node('Call', missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg),
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -113,10 +113,10 @@ FROM films;
 ```{python}
 custom_msg="Have you used `AVG(duration)`?"
 Ex().check_correct(
-    check_col('avg').is_equal(),
+    check_column('avg').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=custom_msg).has_equal_ast(msg=custom_msg),
-        check_field('from_clause').has_equal_ast()
+        check_node('Call', missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg),
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -149,10 +149,10 @@ FROM films;
 ```{python}
 custom_msg="Have you used `MIN(duration)`?"
 Ex().check_correct(
-    check_col('min').is_equal(),
+    check_column('min').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=custom_msg).has_equal_ast(msg=custom_msg),
-        check_field('from_clause').has_equal_ast()
+        check_node('Call', missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg),
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -186,10 +186,10 @@ FROM films;
 ```{python}
 custom_msg="Have you used `MAX(duration)`?"
 Ex().check_correct(
-    check_col('max').is_equal(),
+    check_column('max').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=custom_msg).has_equal_ast(msg=custom_msg),
-        check_field('from_clause').has_equal_ast()
+        check_node('Call', missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg),
+        check_edge('from_clause').has_equal_ast()
     )
 )
 
@@ -247,10 +247,10 @@ FROM films;
 ```{python}
 custom_msg="Have you used `SUM(gross)`?"
 Ex().check_correct(
-    check_col('sum').is_equal(),
+    check_column('sum').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=custom_msg).has_equal_ast(msg=custom_msg),
-        check_field('from_clause').has_equal_ast()
+        check_node('Call', missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg),
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -283,10 +283,10 @@ FROM films;
 ```{python}
 custom_msg="Have you used `AVG(gross)`?"
 Ex().check_correct(
-    check_col('avg').is_equal(),
+    check_column('avg').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=custom_msg).has_equal_ast(msg=custom_msg),
-        check_field('from_clause').has_equal_ast()
+        check_node('Call', missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg),
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -319,10 +319,10 @@ FROM films;
 ```{python}
 custom_msg="Have you used `MIN(gross)`?"
 Ex().check_correct(
-    check_col('min').is_equal(),
+    check_column('min').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=custom_msg).has_equal_ast(msg=custom_msg),
-        check_field('from_clause').has_equal_ast()
+        check_node('Call', missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg),
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -356,10 +356,10 @@ FROM films;
 ```{python}
 custom_msg="Have you used `MAX(gross)`?"
 Ex().check_correct(
-    check_col('max').is_equal(),
+    check_column('max').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=custom_msg).has_equal_ast(msg=custom_msg),
-        check_field('from_clause').has_equal_ast()
+        check_node('Call', missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg),
+        check_edge('from_clause').has_equal_ast()
     )
 )
 
@@ -431,11 +431,11 @@ WHERE release_year >= 2000;
 ```{python}
 custom_msg="Have you used `SUM(gross)`?"
 Ex().check_correct(
-    check_col('sum').is_equal(),
+    check_column('sum').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=custom_msg).has_equal_ast(msg=custom_msg),
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_node('Call', missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg),
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 ```
@@ -474,11 +474,11 @@ where title LIKE 'A%';
 ```{python}
 custom_msg="Have you used `AVG(gross)`?"
 Ex().check_correct(
-    check_col('avg').is_equal(),
+    check_column('avg').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=custom_msg).has_equal_ast(msg=custom_msg),
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_node('Call', missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg),
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 ```
@@ -515,11 +515,11 @@ WHERE release_year = 1994;
 ```{python}
 custom_msg="Have you used `MIN(gross)`?"
 Ex().check_correct(
-    check_col('min').is_equal(),
+    check_column('min').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=custom_msg).has_equal_ast(msg=custom_msg),
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_node('Call', missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg),
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 ```
@@ -556,11 +556,11 @@ WHERE release_year BETWEEN 2000 AND 2012;
 ```{python}
 custom_msg="Have you used `MAX(gross)`?"
 Ex().check_correct(
-    check_col('max').is_equal(),
+    check_column('max').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=custom_msg).has_equal_ast(msg=custom_msg),
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_node('Call', missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg),
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
@@ -716,15 +716,15 @@ FROM films;
 ```{python}
 Ex().check_correct(
     multi(
-        check_col('title').is_equal(),
-        check_col('net_profit').is_equal()
+        check_column('title').has_equal_value(),
+        check_column('net_profit').has_equal_value()
     ),
     check_node('SelectStmt').multi(
         check_node('AliasExpr').multi(
-            check_field('expr').has_equal_ast(),
-            check_field('alias').has_equal_ast()
+            check_edge('expr').has_equal_ast(),
+            check_edge('alias').has_equal_ast()
         ),
-        check_field('from_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -759,15 +759,15 @@ FROM films;
 ```{python}
 Ex().check_correct(
     multi(
-        check_col('title').is_equal(),
-        check_col('duration_hours').is_equal()
+        check_column('title').has_equal_value(),
+        check_column('duration_hours').has_equal_value()
     ),
     check_node('SelectStmt').multi(
         check_node('AliasExpr').multi(
-            check_field('expr').has_equal_ast(),
-            check_field('alias').has_equal_ast()
+            check_edge('expr').has_equal_ast(),
+            check_edge('alias').has_equal_ast()
         ),
-        check_field('from_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -803,13 +803,13 @@ FROM films;
 
 ```{python}
 Ex().check_correct(
-    check_col('avg_duration_hours').is_equal(),
+    check_column('avg_duration_hours').has_equal_value(),
     check_node('SelectStmt').multi(
         check_node('AliasExpr').multi(
-            check_field('expr').has_equal_ast(),
-            check_field('alias').has_equal_ast()
+            check_edge('expr').has_equal_ast(),
+            check_edge('alias').has_equal_ast()
         ),
-        check_field('from_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast()
     )
 )
 
@@ -894,13 +894,13 @@ FROM people;
 
 ```{python}
 Ex().check_correct(
-    check_col('percentage_dead').is_equal(),
+    check_column('percentage_dead').has_equal_value(),
     check_node('SelectStmt').multi(
         check_node('AliasExpr').multi(
-            check_field('expr').has_equal_ast(),
-            check_field('alias').has_equal_ast()
+            check_edge('expr').has_equal_ast(),
+            check_edge('alias').has_equal_ast()
         ),
-        check_field('from_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -936,13 +936,13 @@ FROM films;
 
 ```{python}
 Ex().check_correct(
-    check_col('difference').is_equal(),
+    check_column('difference').has_equal_value(),
     check_node('SelectStmt').multi(
         check_node('AliasExpr').multi(
-            check_field('expr').has_equal_ast(),
-            check_field('alias').has_equal_ast()
+            check_edge('expr').has_equal_ast(),
+            check_edge('alias').has_equal_ast()
         ),
-        check_field('from_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast()
     )
 )
 ```
@@ -978,13 +978,13 @@ FROM films;
 
 ```{python}
 Ex().check_correct(
-    check_col('number_of_decades').is_equal(),
+    check_column('number_of_decades').has_equal_value(),
     check_node('SelectStmt').multi(
         check_node('AliasExpr').multi(
-            check_field('expr').has_equal_ast(),
-            check_field('alias').has_equal_ast()
+            check_edge('expr').has_equal_ast(),
+            check_edge('alias').has_equal_ast()
         ),
-        check_field('from_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast()
     )
 )
 

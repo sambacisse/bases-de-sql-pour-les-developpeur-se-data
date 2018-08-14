@@ -16,7 +16,7 @@ service postgresql start \
   && sudo -u postgres psql films < data/films/films.sql \
   && service postgresql stop
 
-# override installs from sql-shared
+# Override installs from sql-shared
 pip3 install jinja2==2.10
 pip3 install git+https://github.com/datacamp/protowhat.git/@fs/refactor --upgrade --no-dependencies
 pip3 install git+https://github.com/datacamp/sqlwhat.git/@fs/refactor --upgrade --no-dependencies

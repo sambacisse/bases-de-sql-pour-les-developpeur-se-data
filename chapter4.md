@@ -97,14 +97,14 @@ ORDER BY name;
 
 ```{python}
 # Check whether the right column was included
-Ex().check_col('name')
+Ex().check_column('name')
 
 Ex().check_correct(
     # Check whether the name column is correct (taking into account order)
-    check_col('name').is_equal(ordered=True),
+    check_column('name').has_equal_value(ordered=True),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('order_by_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('order_by_clause').has_equal_ast()
     )
 )
 ```
@@ -139,10 +139,10 @@ ORDER BY birthdate;
 
 ```{python}
 Ex().check_correct(
-    check_col('name').is_equal(ordered=True),
+    check_column('name').has_equal_value(ordered=True),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('order_by_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('order_by_clause').has_equal_ast()
     )
 )
 ```
@@ -177,14 +177,14 @@ ORDER BY birthdate;
 
 ```{python}
 # Check whether the right columns are included
-Ex().check_solution_cols()
+Ex().check_all_columns()
 
 # Check whether the order is correct
 Ex().check_correct(
-    check_solution_cols().is_equal(ordered=True),
+    check_all_columns().has_equal_value(ordered=True),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('order_by_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('order_by_clause').has_equal_ast()
     )
 )
 ```
@@ -245,16 +245,16 @@ ORDER BY release_year;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next, check if right columns were included in the right order:
-Ex().check_col('title')
+Ex().check_column('title')
 Ex().check_correct(
-    check_col('title').is_equal(ordered=True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_column('title').has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 ```
 
@@ -293,21 +293,21 @@ ORDER BY duration;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next, check if all columns included
 Ex().check_correct(
-    check_solution_cols(),
+    check_all_columns(),
     check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 
 # Finally, check if order is correct
 Ex().check_correct(
-    check_solution_cols().is_equal(ordered = True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_all_columns().has_equal_value(ordered = True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 ```
 
@@ -346,18 +346,18 @@ ORDER BY title;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next, check if all columns included
-Ex().check_solution_cols()
+Ex().check_all_columns()
 
 # Finally, check if order is correct
 Ex().check_correct(
-    check_solution_cols().is_equal(ordered = True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_all_columns().has_equal_value(ordered = True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 
 Ex().success_msg("Can you feel the SQL power dawn on you?!")
@@ -421,12 +421,12 @@ ORDER BY imdb_score DESC;
 
 ```{python}
 # Check if all required columns included
-Ex().check_solution_cols()
+Ex().check_all_columns()
 
 # Check if order is correct
 Ex().check_correct(
-    check_solution_cols().is_equal(ordered = True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_all_columns().has_equal_value(ordered = True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 ```
 
@@ -461,14 +461,14 @@ ORDER BY title DESC;
 ```{python}
 # Check if all required columns included
 Ex().check_correct(
-    check_col('title'),
-    check_node('SelectStmt').check_field('target_list').has_equal_ast()
+    check_column('title'),
+    check_node('SelectStmt').check_edge('target_list').has_equal_ast()
 )
 
 # Check if order is correct
 Ex().check_correct(
-    check_col('title').is_equal(ordered = True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_column('title').has_equal_value(ordered = True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 ```
 
@@ -502,12 +502,12 @@ ORDER BY duration DESC;
 
 ```{python}
 # Check if all required columns included
-Ex().check_solution_cols()
+Ex().check_all_columns()
 
 # Check if order is correct
 Ex().check_correct(
-    check_solution_cols().is_equal(ordered=True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 
 Ex().success_msg("Nice. Let's explore how you can sort multiple columns!")
@@ -574,12 +574,12 @@ ORDER BY birthdate, name;
 
 ```{python}
 # Check if all required columns included
-Ex().check_solution_cols()
+Ex().check_all_columns()
 
 # Check if order is correct
 Ex().check_correct(
-    check_solution_cols().is_equal(ordered=True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 ```
 
@@ -613,12 +613,12 @@ ORDER BY release_year, duration;
 
 ```{python}
 # Check if all required columns included
-Ex().check_solution_cols()
+Ex().check_all_columns()
 
 # Check if order is correct
 Ex().check_correct(
-    check_solution_cols().is_equal(ordered=True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 ```
 
@@ -652,12 +652,12 @@ ORDER BY certification, release_year;
 
 ```{python}
 # Check if all required columns included
-Ex().check_solution_cols()
+Ex().check_all_columns()
 
 # Check if order is correct
 Ex().check_correct(
-    check_solution_cols().is_equal(ordered=True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 ```
 
@@ -692,12 +692,12 @@ ORDER BY name, birthdate;
 
 ```{python}
 # Check if all required columns included
-Ex().check_solution_cols()
+Ex().check_all_columns()
 
 # Check if order is correct
 Ex().check_correct(
-    check_solution_cols().is_equal(ordered=True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 
 Ex().success_msg("Well done. Notice how the second column you order on only steps in when the first column is not decisive to tell the order. The second column acts as a tie breaker.")
@@ -826,11 +826,11 @@ GROUP BY release_year;
 groupby_msg = "Make sure to include a `GROUP BY` statement!"
 custom_msg = "Are you using `COUNT(*)`?"
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').multi(
         # If grouping is not done, it will not work in the first place
-        check_field('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
-        check_node("Call", missing_msg=custom_msg).has_equal_ast(msg=custom_msg)
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
     )
 )
 ```
@@ -867,12 +867,12 @@ GROUP BY release_year;
 groupby_msg = "Make sure to include a `GROUP BY` statement!"
 custom_msg = "Are you using `AVG(duration)`?"
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').multi(
         # If grouping is not done, it will not work in the first place
-        check_field('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
         # If grouping is okay, it makes sense to look at the Call part.
-        check_node("Call", missing_msg=custom_msg).has_equal_ast(msg=custom_msg)
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
     )
 )
 ```
@@ -909,12 +909,12 @@ GROUP BY release_year;
 groupby_msg = "Make sure to include a `GROUP BY` statement!"
 custom_msg = "Are you using `MAX(budget)`?"
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').multi(
         # If grouping is not done, it will not work in the first place
-        check_field('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
         # If grouping is okay, it makes sense to look at the Call part.
-        check_node("Call", missing_msg=custom_msg).has_equal_ast(msg=custom_msg)
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
     )
 )
 ```
@@ -951,12 +951,12 @@ GROUP BY imdb_score;
 groupby_msg = "Make sure to include a `GROUP BY` statement!"
 custom_msg = "Are you using `COUNT(*)`?"
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').multi(
         # If grouping is not done, it will not work in the first place
-        check_field('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
         # If grouping is okay, it makes sense to look at the Call part.
-        check_node("Call", missing_msg=custom_msg).has_equal_ast(msg=custom_msg)
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
     )
 )
 
@@ -1017,12 +1017,12 @@ GROUP BY release_year;
 groupby_msg = "Make sure to include a `GROUP BY` statement!"
 custom_msg = "Are you using `MIN(gross)`?"
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').multi(
         # If grouping is not done, it will not work in the first place
-        check_field('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
         # If grouping is okay, it makes sense to look at the Call part.
-        check_node("Call", missing_msg=custom_msg).has_equal_ast(msg=custom_msg)
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
     )
 )
 ```
@@ -1059,12 +1059,12 @@ GROUP BY language;
 groupby_msg = "Make sure to include a `GROUP BY` statement!"
 custom_msg = "Are you using `SUM(gross)`?"
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').multi(
         # If grouping is not done, it will not work in the first place
-        check_field('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
         # If grouping is okay, it makes sense to look at the Call part.
-        check_node("Call", missing_msg=custom_msg).has_equal_ast(msg=custom_msg)
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
     )
 )
 ```
@@ -1101,12 +1101,12 @@ GROUP BY country;
 groupby_msg = "Make sure to include a `GROUP BY` statement!"
 custom_msg = "Are you using `SUM(budget)`?"
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').multi(
         # If grouping is not done, it will not work in the first place
-        check_field('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
         # If grouping is okay, it makes sense to look at the Call part.
-        check_node("Call", missing_msg=custom_msg).has_equal_ast(msg=custom_msg)
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
     )
 )
 ```
@@ -1145,19 +1145,19 @@ ORDER BY release_year, country;
 groupby_msg = "Make sure to include a `GROUP BY` statement!"
 custom_msg = "Are you using `MAX(budget)`?"
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').multi(
         # If grouping is not done, it will not work in the first place
-        check_field('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
         # If grouping is okay, it makes sense to look at the Call part.
-        check_node("Call", missing_msg=custom_msg).has_equal_ast(msg=custom_msg)
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
     )
 )
 
 # Verify the ordering.
 Ex().check_correct(
-    check_solution_cols().is_equal(ordered=True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 ```
 
@@ -1195,19 +1195,19 @@ ORDER BY country, release_year;
 groupby_msg = "Make sure to include a `GROUP BY` statement!"
 custom_msg = "Are you using `MIN(gross)`?"
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').multi(
         # If grouping is not done, it will not work in the first place
-        check_field('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
         # If grouping is okay, it makes sense to look at the Call part.
-        check_node("Call", missing_msg=custom_msg).has_equal_ast(msg=custom_msg)
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
     )
 )
 
 # Verify the ordering.
 Ex().check_correct(
-    check_solution_cols().is_equal(ordered=True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 
 Ex().success_msg("Off to the next statement!")
@@ -1332,7 +1332,7 @@ FROM films;
 `@sct`
 
 ```{python}
-Ex().check_solution_cols(allow_extra_cols=False).is_equal()
+Ex().check_all_columns(allow_extra=False).has_equal_value()
 ```
 
 ***
@@ -1367,11 +1367,11 @@ WHERE release_year > 1990;
 # First check that WHERE was coded correctly
 Ex().check_correct(
     has_nrows(),
-    check_node('SelectStmt').check_field('where_clause').has_equal_ast()
+    check_node('SelectStmt').check_edge('where_clause').has_equal_ast()
 )
 
 # Check whether the right columns where selected
-Ex().check_solution_cols(allow_extra_cols=False).is_equal()
+Ex().check_all_columns(allow_extra=False).has_equal_value()
 ```
 
 ***
@@ -1409,13 +1409,13 @@ GROUP BY release_year;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('where_clause').has_equal_ast(),
-        check_field('group_by_clause').has_equal_ast()
+        check_edge('where_clause').has_equal_ast(),
+        check_edge('group_by_clause').has_equal_ast()
     )
 )
 
 # Check whether the right columns where selected
-Ex().check_solution_cols(allow_extra_cols=False).is_equal()
+Ex().check_all_columns(allow_extra=False).has_equal_value()
 ```
 
 ***
@@ -1451,25 +1451,25 @@ GROUP BY release_year;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('where_clause').has_equal_ast(),
-        check_field('group_by_clause').has_equal_ast()
+        check_edge('where_clause').has_equal_ast(),
+        check_edge('group_by_clause').has_equal_ast()
     )
 )
 
 # Check whether release_year is correct
-Ex().check_col('release_year').is_equal()
+Ex().check_column('release_year').has_equal_value()
 
 # Check whether avg_budget is included and calculated properly
-Ex().check_col('avg_budget')
+Ex().check_column('avg_budget')
 Ex().check_correct(
-    check_col('avg_budget').is_equal(),
+    check_column('avg_budget').has_equal_value(),
     check_node('SelectStmt').check_node('AliasExpr', 0).has_equal_ast()
 )
 
 # Check whether avg_gross is included and calculated properly
-Ex().check_col('avg_gross')
+Ex().check_column('avg_gross')
 Ex().check_correct(
-    check_col('avg_gross').is_equal(),
+    check_column('avg_gross').has_equal_value(),
     check_node('SelectStmt').check_node('AliasExpr', 1).has_equal_ast()
 )
 ```
@@ -1510,18 +1510,18 @@ HAVING AVG(budget) > 60000000;
 ```{python}
 # Check if all columns are still there
 msg = "Don't include any additional columns: stick with `release_year`, `avg_budget`, and `avg_gross`."
-Ex().check_col('release_year', missing_msg=msg)
-Ex().check_col('avg_budget', missing_msg=msg)
-Ex().check_col('avg_gross', missing_msg=msg)
-Ex().check_solution_cols(allow_extra_cols=False)
+Ex().check_column('release_year', missing_msg=msg)
+Ex().check_column('avg_budget', missing_msg=msg)
+Ex().check_column('avg_gross', missing_msg=msg)
+Ex().check_all_columns(allow_extra=False)
 
 # Then check if the contents are correct
 Ex().check_correct(
-    check_solution_cols(allow_extra_cols=False).is_equal(),
+    check_all_columns(allow_extra=False).has_equal_value(),
     check_node('SelectStmt').multi(
-        check_field('where_clause').has_equal_ast(),
-        check_field('group_by_clause').has_equal_ast(),
-        check_field('having_clause').has_equal_ast()
+        check_edge('where_clause').has_equal_ast(),
+        check_edge('group_by_clause').has_equal_ast(),
+        check_edge('having_clause').has_equal_ast()
     )
 )
 ```
@@ -1563,25 +1563,25 @@ ORDER BY avg_gross DESC;
 ```{python}
 # Check if all columns are still there
 msg = "Don't include any additional columns: stick with `release_year`, `avg_budget`, and `avg_gross`."
-Ex().check_col('release_year', missing_msg=msg)
-Ex().check_col('avg_budget', missing_msg=msg)
-Ex().check_col('avg_gross', missing_msg=msg)
-Ex().check_solution_cols(allow_extra_cols=False)
+Ex().check_column('release_year', missing_msg=msg)
+Ex().check_column('avg_budget', missing_msg=msg)
+Ex().check_column('avg_gross', missing_msg=msg)
+Ex().check_all_columns(allow_extra=False)
 
 # Then check if the contents are correct
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').multi(
-        check_field('where_clause').has_equal_ast(),
-        check_field('group_by_clause').has_equal_ast(),
-        check_field('having_clause').has_equal_ast()
+        check_edge('where_clause').has_equal_ast(),
+        check_edge('group_by_clause').has_equal_ast(),
+        check_edge('having_clause').has_equal_ast()
     )
 )
 
 # Check if it's the right order
 Ex().check_correct(
-    check_solution_cols().is_equal(ordered=True),
-    check_node('SelectStmt').check_field('order_by_clause').has_equal_ast()
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
 )
 
 Ex().success_msg("Wooooow! Let's do another one!")
@@ -1661,31 +1661,31 @@ LIMIT 5;
 ```{python}
 Ex().check_correct(
     # If end result is ok, all fine all good.
-    check_solution_cols(allow_extra_cols=False).is_equal(ordered=True),
+    check_all_columns(allow_extra=False).has_equal_value(ordered=True),
     # If not, let's dive deeper
     multi(
         # First look at the elements that influence the number of records
         check_correct(
             has_nrows(),
             check_node('SelectStmt').multi(
-                check_field('from_clause').has_equal_ast(),
-                check_field('group_by_clause').has_equal_ast(),
-                check_field('having_clause').has_equal_ast(),
-                check_field('limit_clause').has_equal_ast()
+                check_edge('from_clause').has_equal_ast(),
+                check_edge('group_by_clause').has_equal_ast(),
+                check_edge('having_clause').has_equal_ast(),
+                check_edge('limit_clause').has_equal_ast()
             )
         ),
         # If that is good, look at the separate columns and how they are calculated
-        check_col('country').is_equal(),
-        check_col('avg_budget'),
+        check_column('country').has_equal_value(),
+        check_column('avg_budget'),
         check_correct(
-            check_col('avg_budget').is_equal(),
+            check_column('avg_budget').has_equal_value(),
             check_node('SelectStmt').check_node('AliasExpr', 0).has_equal_ast()
         ),
         check_correct(
-            check_col('avg_gross').is_equal(),
+            check_column('avg_gross').has_equal_value(),
             check_node('SelectStmt').check_node('AliasExpr', 1).has_equal_ast()
         ),
-        check_node('SelectStmt').check_field('order_by_clause')
+        check_node('SelectStmt').check_edge('order_by_clause')
     )
 )
 
@@ -1762,7 +1762,7 @@ WHERE title = 'To Kill a Mockingbird';
 `@sct`
 
 ```{python}
-Ex().check_solution_cols(allow_extra_cols=False).is_equal()
+Ex().check_all_columns(allow_extra=False).has_equal_value()
 ```
 
 ***

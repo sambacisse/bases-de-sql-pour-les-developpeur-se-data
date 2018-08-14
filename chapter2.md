@@ -128,14 +128,14 @@ WHERE release_year = 2016;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Now, check if all columns are correct
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 ```
@@ -170,11 +170,11 @@ WHERE release_year < 2000;
 ```{python}
 cnt_msg = "Are you using `COUNT(*)`?"
 Ex().check_correct(
-    check_col('count').is_equal(),
+    check_column('count').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=cnt_msg).check_field('name', missing_msg=cnt_msg),
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_node('Call', missing_msg=cnt_msg).check_edge('name', missing_msg=cnt_msg),
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 ```
@@ -212,15 +212,15 @@ WHERE release_year > 2000;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "release_year, title")
     )
@@ -295,14 +295,14 @@ WHERE language = 'French';
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 ```
@@ -339,15 +339,15 @@ WHERE birthdate = '1974-11-11';
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "birthdate, name")
     )
@@ -383,11 +383,11 @@ WHERE language = 'Hindi';
 ```{python}
 cnt_msg = "Are you using `COUNT(*)`?"
 Ex().check_correct(
-    check_col('count').is_equal(),
+    check_column('count').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=cnt_msg).check_field('name', missing_msg=cnt_msg),
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_node('Call', missing_msg=cnt_msg).check_edge('name', missing_msg=cnt_msg),
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 ```
@@ -423,14 +423,14 @@ WHERE certification = 'R';
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Now, check if all columns are correct
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 
@@ -514,8 +514,8 @@ AND language = 'Spanish';
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').multi(
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').multi(
             has_equal_ast(sql = "release_year < 2000"),
             has_equal_ast(sql = "language = 'Spanish'")
         )
@@ -524,8 +524,8 @@ Ex().check_correct(
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "release_year, title")
     )
@@ -566,8 +566,8 @@ AND language = 'Spanish';
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').multi(
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').multi(
             has_equal_ast(sql = "release_year > 2000"),
             has_equal_ast(sql = "language = 'Spanish'")
         )
@@ -576,7 +576,7 @@ Ex().check_correct(
 
 # Now, check if all columns are correct
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 ```
@@ -616,8 +616,8 @@ AND language = 'Spanish';
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').multi(
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').multi(
             has_equal_ast(sql = "release_year > 2000"),
             has_equal_ast(sql = "release_year > 2010"),
             has_equal_ast(sql = "language = 'Spanish'")
@@ -627,7 +627,7 @@ Ex().check_correct(
 
 # Now, check if all columns are correct
 Ex().check_correct(
-    check_solution_cols().is_equal(),
+    check_all_columns().has_equal_value(),
     check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 
@@ -762,8 +762,8 @@ WHERE release_year >= 1990 AND release_year < 2000;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').multi(
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').multi(
             has_equal_ast(sql = "release_year >= 1990"),
             has_equal_ast(sql = "release_year < 2000"),
             has_code("AND")
@@ -773,8 +773,8 @@ Ex().check_correct(
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "release_year, title")
     )
@@ -814,8 +814,8 @@ AND (___ = 'French' OR ___ = 'Spanish');
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').multi(
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').multi(
             has_equal_ast(sql = "release_year >= 1990"),
             has_equal_ast(sql = "release_year < 2000"),
             has_code("AND"),
@@ -828,8 +828,8 @@ Ex().check_correct(
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "release_year, title")
     )
@@ -872,8 +872,8 @@ AND gross > 2000000;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').multi(
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').multi(
             has_equal_ast(sql = "release_year >= 1990"),
             has_equal_ast(sql = "release_year < 2000"),
             has_code("AND"),
@@ -887,8 +887,8 @@ Ex().check_correct(
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "release_year, title")
     )
@@ -1012,19 +1012,19 @@ WHERE release_year BETWEEN 1990 AND 2000;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').multi(
-            check_field('left').has_equal_ast(),
-            check_field('right', 0).has_equal_ast(),
-            check_field('right', 1).has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').multi(
+            check_edge('left').has_equal_ast(),
+            check_edge('right', 0).has_equal_ast(),
+            check_edge('right', 1).has_equal_ast()
         )
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "release_year, title")
     )
@@ -1064,15 +1064,15 @@ AND budget > 100000000;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast(sql='budget > 100000000')
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast(sql='budget > 100000000')
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "release_year, title")
     )
@@ -1115,15 +1115,15 @@ AND language = 'Spanish';
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast(sql="language = 'Spanish'")
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast(sql="language = 'Spanish'")
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "release_year, title")
     )
@@ -1165,15 +1165,15 @@ AND (language = 'Spanish' OR language = 'French');
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast(sql="language = 'French'")
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast(sql="language = 'French'")
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "release_year, title")
     )
@@ -1260,18 +1260,18 @@ AND duration > 120;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').multi(
-            check_field('left').has_equal_ast(),
-            check_field('right').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').multi(
+            check_edge('left').has_equal_ast(),
+            check_edge('right').has_equal_ast()
         )
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "release_year, title")
     )
@@ -1310,15 +1310,15 @@ WHERE language IN ('English', 'Spanish', 'French');
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "language, title")
     )
@@ -1356,15 +1356,15 @@ WHERE certification IN ('NC-17', 'R');
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').check_or(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').check_or(
         has_equal_ast(),
         has_equal_ast(sql = "certification, title")
     )
@@ -1478,15 +1478,15 @@ WHERE deathdate IS NULL;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').has_equal_ast()
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').has_equal_ast()
 )
 ```
 
@@ -1521,15 +1521,15 @@ WHERE budget IS NULL;
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').has_equal_ast()
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').has_equal_ast()
 )
 ```
 
@@ -1562,11 +1562,11 @@ WHERE language IS NULL;
 ```{python}
 cnt_msg = "Are you using `COUNT(*)`?"
 Ex().check_correct(
-    check_col('count').is_equal(),
+    check_column('count').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('Call', missing_msg=cnt_msg).check_field('name', missing_msg=cnt_msg),
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_node('Call', missing_msg=cnt_msg).check_edge('name', missing_msg=cnt_msg),
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
@@ -1649,15 +1649,15 @@ WHERE name LIKE 'B%';
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').has_equal_ast()
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').has_equal_ast()
 )
 ```
 
@@ -1693,15 +1693,15 @@ WHERE name LIKE '_r%';
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').has_equal_ast()
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').has_equal_ast()
 )
 ```
 
@@ -1736,15 +1736,15 @@ WHERE name NOT LIKE 'A%';
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
-        check_field('from_clause').has_equal_ast(),
-        check_field('where_clause').has_equal_ast()
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
     )
 )
 
 # Next check if right columns were included
 Ex().check_correct(
-    check_solution_cols().is_equal(),
-    check_node('SelectStmt').check_field('target_list').has_equal_ast()
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').check_edge('target_list').has_equal_ast()
 )
 
 Ex().success_msg("This concludes the second chapter of the intro to SQL course. Rush over to chapter 3 if you want to learn more about aggregate functions!")
