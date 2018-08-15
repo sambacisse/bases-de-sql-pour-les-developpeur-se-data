@@ -18,5 +18,5 @@ service postgresql start \
 
 # Override installs from sql-shared
 pip3 install jinja2==2.10
-pip3 install git+https://github.com/datacamp/protowhat.git/@fs/refactor --upgrade --no-dependencies
-pip3 install git+https://github.com/datacamp/sqlwhat.git/@fs/refactor --upgrade --no-dependencies
+pip3 install protowhat==1.0.0 --no-dependencies
+pip3 install sqlwhat==3.0.0 --no-dependencies
