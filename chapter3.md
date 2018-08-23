@@ -1236,10 +1236,7 @@ Ex().check_correct(
         check_column('net_profit').has_equal_value()
     ),
     check_node('SelectStmt').multi(
-        check_node('AliasExpr').multi(
-            check_edge('expr').has_equal_ast(),
-            check_edge('alias').has_equal_ast()
-        ),
+        check_node('AliasExpr').has_equal_ast(),
         check_edge('from_clause').has_equal_ast()
     )
 )
@@ -1307,10 +1304,7 @@ Ex().check_correct(
         check_column('duration_hours').has_equal_value()
     ),
     check_node('SelectStmt').multi(
-        check_node('AliasExpr').multi(
-            check_edge('expr').has_equal_ast(),
-            check_edge('alias').has_equal_ast()
-        ),
+        check_node('AliasExpr').has_equal_ast(),
         check_edge('from_clause').has_equal_ast()
     )
 )
@@ -1375,10 +1369,7 @@ FROM films;
 Ex().check_correct(
     check_column('avg_duration_hours').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('AliasExpr').multi(
-            check_edge('expr').has_equal_ast(),
-            check_edge('alias').has_equal_ast()
-        ),
+        check_node('AliasExpr').has_equal_ast(),
         check_edge('from_clause').has_equal_ast()
     )
 )
@@ -1523,9 +1514,9 @@ FROM people;
 Ex().check_correct(
     check_column('percentage_dead').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('AliasExpr').multi(
-            check_edge('expr').has_equal_ast(),
-            check_edge('alias').has_equal_ast()
+        check_correct(
+            check_node('AliasExpr').has_equal_ast(),
+            has_code('100\.0', incorrect_msg="Make sure to use `100.0` to calculate the percentage!")
         ),
         check_edge('from_clause').has_equal_ast()
     )
@@ -1593,10 +1584,7 @@ FROM films;
 Ex().check_correct(
     check_column('difference').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('AliasExpr').multi(
-            check_edge('expr').has_equal_ast(),
-            check_edge('alias').has_equal_ast()
-        ),
+        check_node('AliasExpr').has_equal_ast(),
         check_edge('from_clause').has_equal_ast()
     )
 )
@@ -1663,10 +1651,7 @@ FROM films;
 Ex().check_correct(
     check_column('number_of_decades').has_equal_value(),
     check_node('SelectStmt').multi(
-        check_node('AliasExpr').multi(
-            check_edge('expr').has_equal_ast(),
-            check_edge('alias').has_equal_ast()
-        ),
+        check_node('AliasExpr').has_equal_ast(),
         check_edge('from_clause').has_equal_ast()
     )
 )
