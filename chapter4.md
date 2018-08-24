@@ -1,6 +1,6 @@
 ---
-  title: "Sorting, grouping and joins"
-  description: "This chapter provides a brief introduction to sorting and grouping your results, and briefly touches on the concept of joins."
+title: 'Sorting, grouping and joins'
+description: 'This chapter provides a brief introduction to sorting and grouping your results, and briefly touches on the concept of joins.'
 ---
 
 ## ORDER BY
@@ -33,8 +33,39 @@ gives you the titles of films sorted by release year, from newest to oldest.
 How do you think `ORDER BY` sorts a column of text values by default?
 
 
+`@instructions`
+
+
 `@hint`
 By default, `ORDER BY` sorts alphabetically, but in which direction?
+
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
+`@solution`
+
+```{sql}
+
+```
+
+
+`@sct`
+
+```{python}
+
+```
+
 
 `@possible_answers`
 - [Alphabetically (A-Z)]
@@ -42,7 +73,7 @@ By default, `ORDER BY` sorts alphabetically, but in which direction?
 - There's no natural ordering to text data
 - By number of characters (fewest to most)
 
-`@feedbacks`
+`@feedback`
 - Correct!
 - Incorrect. Although text values are ordered alphabetically, they don't go Z-A.
 - Incorrect. Text values are ordered alphabetically.
@@ -63,12 +94,46 @@ key: a7b2964ba6
 Now that you understand how `ORDER BY` works, give these exercises a go!
 
 
+`@instructions`
+
+
+`@hint`
+
+
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
+`@solution`
+
+```{sql}
+
+```
+
+
+`@sct`
+
+```{python}
+
+```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 ***
 
@@ -94,6 +159,20 @@ FROM ___
 ORDER BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -102,26 +181,29 @@ FROM people
 ORDER BY name;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# Check whether the right column was included
+Ex().check_column('name')
 
-name = test_column('name', msg='Did you select the `name` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    name,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_correct(
+    # Check whether the name column is correct (taking into account order)
+    check_column('name').has_equal_value(ordered=True),
+    check_node('SelectStmt').multi(
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('order_by_clause').has_equal_ast()
+    )
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -148,6 +230,20 @@ FROM ___
 ORDER BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -156,26 +252,25 @@ FROM people
 ORDER BY birthdate;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
-
-name = test_column('name', msg='Did you select the `name` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    name,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_correct(
+    check_column('name').has_equal_value(ordered=True),
+    check_node('SelectStmt').multi(
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('order_by_clause').has_equal_ast()
+    )
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -202,6 +297,20 @@ FROM ___
 ORDER BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -210,29 +319,29 @@ FROM people
 ORDER BY birthdate;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# Check whether the right columns are included
+Ex().check_all_columns()
 
-birthdate = test_column('birthdate', msg='Did you select the `birthdate` column correctly?')
-
-name = test_column('name', msg='Did you select the `name` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    birthdate,
-    name,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Check whether the order is correct
+Ex().check_correct(
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').multi(
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('order_by_clause').has_equal_ast()
+    )
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ---
@@ -250,12 +359,46 @@ key: 357ec9bc3d
 Let's get some more practice with `ORDER BY`!
 
 
+`@instructions`
+
+
+`@hint`
+
+
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
+`@solution`
+
+```{sql}
+
+```
+
+
+`@sct`
+
+```{python}
+
+```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 ***
 
@@ -282,6 +425,20 @@ WHERE ___ IN (___, ___)
 ORDER BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -291,31 +448,33 @@ WHERE release_year IN (2000, 2012)
 ORDER BY release_year;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# First check if where statement was coded correctly
+Ex().check_correct(
+    has_nrows(),
+    check_node('SelectStmt').multi(
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
+    )
+)
 
-title = test_column('title', msg='Did you select the `title` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-where_clause = sel.check_field('where_clause')
-
-in_thing = where_clause.has_equal_ast(sql="release_year IN (2000, 2012)", start='expression', exact=False, msg='Did you use `IN` correctly?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    in_thing,
-    title,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Next, check if right columns were included in the right order:
+Ex().check_column('title')
+Ex().check_correct(
+    check_column('title').has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -343,6 +502,20 @@ WHERE ___ <> ___
 ORDER BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -352,31 +525,38 @@ WHERE release_year <> 2015
 ORDER BY duration;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# First check if where statement was coded correctly
+Ex().check_correct(
+    has_nrows(),
+    check_node('SelectStmt').multi(
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
+    )
+)
 
-star = sel.check_node('Star').has_equal_ast('Are you selecting all columns correctly?')
+# Next, check if all columns included
+Ex().check_correct(
+    check_all_columns(),
+    check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
+)
 
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-where_clause = sel.check_field('where_clause')
-
-where_release_year = where_clause.has_equal_ast(sql="release_year <> 2015", start='expression', exact=False, msg='Did you use check the `release_year` with `<>` correctly in your `WHERE` clause?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    order_by_clause,
-    where_release_year,
-    star,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Finally, check if order is correct
+Ex().check_correct(
+    check_all_columns().has_equal_value(ordered = True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -404,6 +584,20 @@ WHERE ___ LIKE ___
 ORDER BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -413,38 +607,37 @@ WHERE title LIKE 'M%'
 ORDER BY title;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# First check if where statement was coded correctly
+Ex().check_correct(
+    has_nrows(),
+    check_node('SelectStmt').multi(
+        check_edge('from_clause').has_equal_ast(),
+        check_edge('where_clause').has_equal_ast()
+    )
+)
 
-title = test_column('title', msg='Did you select the `title` column correctly?')
+# Next, check if all columns included
+Ex().check_all_columns()
 
-gross = test_column('gross', msg='Did you select the `gross` column correctly?')
+# Finally, check if order is correct
+Ex().check_correct(
+    check_all_columns().has_equal_value(ordered = True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-where_clause = sel.check_field('where_clause')
-
-left_like = where_clause.check_field('left').has_equal_ast('Are you using `title` with `LIKE`?')
-op_like = where_clause.check_field('op').has_equal_ast('Are you using the `LIKE` operator in your `WHERE` clause?')
-right_like = where_clause.check_field('right').has_equal_ast("Are you using `LIKE` with `'M%'`?")
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    order_by_clause,
-    left_like,
-    op_like,
-    right_like,
-    title,
-    gross,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().success_msg("Can you feel the SQL power dawn on you?!")
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ---
@@ -470,12 +663,46 @@ ORDER BY name DESC;
 Now practice using `ORDER BY` with `DESC` to sort single columns in descending order!
 
 
+`@instructions`
+
+
+`@hint`
+
+
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'reviews'])
 ```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
+`@solution`
+
+```{sql}
+
+```
+
+
+`@sct`
+
+```{python}
+
+```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 ***
 
@@ -501,6 +728,20 @@ FROM ___
 ORDER BY ___ DESC;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -509,28 +750,26 @@ FROM reviews
 ORDER BY imdb_score DESC;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# Check if all required columns included
+Ex().check_all_columns()
 
-imdb_score = test_column('imdb_score', msg='Did you select the `imdb_score` column correctly?')
-film_id = test_column('film_id', msg='Did you select the `film_id` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    imdb_score,
-    film_id,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Check if order is correct
+Ex().check_correct(
+    check_all_columns().has_equal_value(ordered = True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -557,6 +796,20 @@ FROM ___
 ORDER BY ___ ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -565,26 +818,29 @@ FROM films
 ORDER BY title DESC;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# Check if all required columns included
+Ex().check_correct(
+    check_column('title'),
+    check_node('SelectStmt').check_edge('target_list').has_equal_ast()
+)
 
-title = test_column('title', msg='Did you select the `title` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    title,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Check if order is correct
+Ex().check_correct(
+    check_column('title').has_equal_value(ordered = True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -611,6 +867,20 @@ FROM ___
 ORDER BY ___ ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -619,29 +889,28 @@ FROM films
 ORDER BY duration DESC;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# Check if all required columns included
+Ex().check_all_columns()
 
-title = test_column('title', msg='Did you select the `title` column correctly?')
+# Check if order is correct
+Ex().check_correct(
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 
-duration = test_column('duration', msg='Did you select the `duration` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    title,
-    duration,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().success_msg("Nice. Let's explore how you can sort multiple columns!")
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ---
@@ -669,12 +938,46 @@ sorts on birth dates first (oldest to newest) and then sorts on the names in alp
 Try using `ORDER BY` to sort multiple columns! Remember, to specify multiple columns you separate the column names with a comma.
 
 
+`@instructions`
+
+
+`@hint`
+
+
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
+`@solution`
+
+```{sql}
+
+```
+
+
+`@sct`
+
+```{python}
+
+```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 ***
 
@@ -700,6 +1003,20 @@ FROM ___
 ORDER BY ___, ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -708,29 +1025,26 @@ FROM people
 ORDER BY birthdate, name;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# Check if all required columns included
+Ex().check_all_columns()
 
-birthdate = test_column('birthdate', msg='Did you select the `birthdate` column correctly?')
-
-name = test_column('name', msg='Did you select the `name` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    birthdate,
-    name,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Check if order is correct
+Ex().check_correct(
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -757,6 +1071,20 @@ FROM ___
 ORDER BY ___, ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -765,32 +1093,26 @@ FROM films
 ORDER BY release_year, duration;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# Check if all required columns included
+Ex().check_all_columns()
 
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-duration = test_column('duration', msg='Did you select the `duration` column correctly?')
-
-title = test_column('title', msg='Did you select the `title` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause corect?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    release_year,
-    duration,
-    title,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Check if order is correct
+Ex().check_correct(
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -817,6 +1139,20 @@ FROM ___
 ORDER BY ___, ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -825,34 +1161,26 @@ FROM films
 ORDER BY certification, release_year;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# Check if all required columns included
+Ex().check_all_columns()
 
-certification = test_column('certification', msg='Did you select the `certification` column correctly?')
-
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-title = test_column('title', msg='Did you select the `title` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause corect?')
-
-where_clause = sel.check_field('where_clause').has_equal_ast('Is your `WHERE` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    certification,
-    release_year,
-    title,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Check if order is correct
+Ex().check_correct(
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -879,6 +1207,20 @@ FROM ___
 ORDER BY ___, ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -887,31 +1229,28 @@ FROM people
 ORDER BY name, birthdate;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# Check if all required columns included
+Ex().check_all_columns()
 
-name = test_column('name', msg='Did you select the `name` column correctly?')
+# Check if order is correct
+Ex().check_correct(
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 
-birthdate = test_column('birthdate', msg='Did you select the `birthdate` column correctly?')
-
-from_clause = sel.check_field('from_clause')
-
-where_clause = sel.check_field('where_clause').has_equal_ast('Is your `WHERE` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    from_clause,
-    name,
-    birthdate,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().success_msg("Well done. Notice how the second column you order on only steps in when the first column is not decisive to tell the order. The second column acts as a tie breaker.")
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ---
@@ -948,8 +1287,39 @@ Commonly, `GROUP BY` is used with _aggregate functions_ like `COUNT()` or `MAX()
 What is `GROUP BY` used for?
 
 
+`@instructions`
+
+
 `@hint`
 You use `GROUP BY` when you want to compute results within groups.
+
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
+`@solution`
+
+```{sql}
+
+```
+
+
+`@sct`
+
+```{python}
+
+```
+
 
 `@possible_answers`
 - Performing operations by column
@@ -957,7 +1327,7 @@ You use `GROUP BY` when you want to compute results within groups.
 - Performing operations in a particular order
 - [Performing operations by group]
 
-`@feedbacks`
+`@feedback`
 - Incorrect. While `GROUP BY` does sort by column, we could just use `ORDER BY` for this.
 - Incorrect.
 - Incorrect. While `GROUP BY` does sort results, it's not designed to control order of operations.
@@ -999,12 +1369,46 @@ might return something like
 because there are more females at our company than males. Note also that `ORDER BY` always goes after `GROUP BY`. Let's try some exercises!
 
 
+`@instructions`
+
+
+`@hint`
+
+
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'reviews'])
 ```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
+`@solution`
+
+```{sql}
+
+```
+
+
+`@sct`
+
+```{python}
+
+```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 ***
 
@@ -1030,6 +1434,20 @@ FROM ___
 GROUP BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -1038,32 +1456,28 @@ FROM films
 GROUP BY release_year;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
-
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-temp = sel.check_node('Call')
-count_call = temp.check_field('name').has_equal_ast('Did you use the `COUNT` function?')
-count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` on the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    group_by_clause,
-    from_clause,
-    release_year,
-    count_call,
-    count_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+groupby_msg = "Make sure to include a `GROUP BY` statement!"
+custom_msg = "Are you using `COUNT(*)`?"
+Ex().check_correct(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').multi(
+        # If grouping is not done, it will not work in the first place
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
+    )
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -1090,6 +1504,20 @@ FROM ___
 GROUP BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -1098,32 +1526,29 @@ FROM films
 GROUP BY release_year;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
-
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-temp = sel.check_node('Call')
-avg_call = temp.check_field('name').has_equal_ast('Did you use the `AVG` function?')
-avg_args = temp.check_field('args').has_equal_ast('Are you using `AVG` on the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    group_by_clause,
-    from_clause,
-    release_year,
-    avg_call,
-    avg_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+groupby_msg = "Make sure to include a `GROUP BY` statement!"
+custom_msg = "Are you using `AVG(duration)`?"
+Ex().check_correct(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').multi(
+        # If grouping is not done, it will not work in the first place
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        # If grouping is okay, it makes sense to look at the Call part.
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
+    )
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -1150,6 +1575,20 @@ FROM ___
 GROUP BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -1158,32 +1597,29 @@ FROM films
 GROUP BY release_year;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
-
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-temp = sel.check_node('Call')
-max_call = temp.check_field('name').has_equal_ast('Did you use the `MAX` function?')
-max_args = temp.check_field('args').has_equal_ast('Are you using `MAX` on the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    group_by_clause,
-    from_clause,
-    release_year,
-    max_call,
-    max_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+groupby_msg = "Make sure to include a `GROUP BY` statement!"
+custom_msg = "Are you using `MAX(budget)`?"
+Ex().check_correct(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').multi(
+        # If grouping is not done, it will not work in the first place
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        # If grouping is okay, it makes sense to look at the Call part.
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
+    )
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -1210,6 +1646,20 @@ FROM ___
 GROUP BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -1218,34 +1668,31 @@ FROM reviews
 GROUP BY imdb_score;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+groupby_msg = "Make sure to include a `GROUP BY` statement!"
+custom_msg = "Are you using `COUNT(*)`?"
+Ex().check_correct(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').multi(
+        # If grouping is not done, it will not work in the first place
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        # If grouping is okay, it makes sense to look at the Call part.
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
+    )
+)
 
-imdb_score = test_column('imdb_score', msg='Did you select the `imdb_score` column correctly?')
-
-temp = sel.check_node('Call')
-
-count_call = temp.check_field('name').has_equal_ast('Are you calling the `COUNT` function?')
-
-count_args = temp.check_field('args').has_equal_ast('Are you using `COUNT` on the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    group_by_clause,
-    from_clause,
-    imdb_score,
-    count_call,
-    count_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().success_msg("Now that you've accustomed yourself with `GROUP BY`, let's throw it in the mix with other SQL constructs you already know!")
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ---
@@ -1265,12 +1712,46 @@ Now practice your new skills by combining `GROUP BY` and `ORDER BY` with some mo
 Make sure to always put the `ORDER BY` clause at the end of your query. You can't sort values that you haven't calculated yet!
 
 
+`@instructions`
+
+
+`@hint`
+
+
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
+`@solution`
+
+```{sql}
+
+```
+
+
+`@sct`
+
+```{python}
+
+```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 ***
 
@@ -1296,6 +1777,20 @@ FROM ___
 GROUP BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -1304,32 +1799,29 @@ FROM films
 GROUP BY release_year;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
-
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-temp = sel.check_node('Call')
-min_call = temp.check_field('name').has_equal_ast('Did you use the `MIN` function?')
-min_args = temp.check_field('args').has_equal_ast('Are you using `MIN` on the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    group_by_clause,
-    from_clause,
-    release_year,
-    min_call,
-    min_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+groupby_msg = "Make sure to include a `GROUP BY` statement!"
+custom_msg = "Are you using `MIN(gross)`?"
+Ex().check_correct(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').multi(
+        # If grouping is not done, it will not work in the first place
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        # If grouping is okay, it makes sense to look at the Call part.
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
+    )
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -1356,6 +1848,20 @@ FROM ___
 GROUP BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -1364,32 +1870,29 @@ FROM films
 GROUP BY language;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
-
-language = test_column('language', msg='Did you select the `language` column correctly?')
-
-temp = sel.check_node('Call')
-sum_call = temp.check_field('name').has_equal_ast('Did you use the `SUM` function?')
-sum_args = temp.check_field('args').has_equal_ast('Are you using `SUM` on the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    group_by_clause,
-    from_clause,
-    language,
-    sum_call,
-    sum_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+groupby_msg = "Make sure to include a `GROUP BY` statement!"
+custom_msg = "Are you using `SUM(gross)`?"
+Ex().check_correct(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').multi(
+        # If grouping is not done, it will not work in the first place
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        # If grouping is okay, it makes sense to look at the Call part.
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
+    )
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -1416,6 +1919,20 @@ FROM ___
 GROUP BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -1424,32 +1941,29 @@ FROM films
 GROUP BY country;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
-
-country = test_column('country', msg='Did you select the `country` column correctly?')
-
-temp = sel.check_node('Call')
-sum_call = temp.check_field('name').has_equal_ast('Did you use the `SUM` function?')
-sum_args = temp.check_field('args').has_equal_ast('Are you using `SUM` on the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    group_by_clause,
-    from_clause,
-    sum_call,
-    country,
-    sum_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+groupby_msg = "Make sure to include a `GROUP BY` statement!"
+custom_msg = "Are you using `SUM(budget)`?"
+Ex().check_correct(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').multi(
+        # If grouping is not done, it will not work in the first place
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        # If grouping is okay, it makes sense to look at the Call part.
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
+    )
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -1477,6 +1991,20 @@ GROUP BY ___, ___
 ORDER BY ___, ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -1486,36 +2014,35 @@ GROUP BY release_year, country
 ORDER BY release_year, country;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+groupby_msg = "Make sure to include a `GROUP BY` statement!"
+custom_msg = "Are you using `MAX(budget)`?"
+Ex().check_correct(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').multi(
+        # If grouping is not done, it will not work in the first place
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        # If grouping is okay, it makes sense to look at the Call part.
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
+    )
+)
 
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-country = test_column('country', msg='Did you select the `country` column correctly?')
-
-temp = sel.check_node('Call')
-max_call = temp.check_field('name').has_equal_ast('Did you use the `MAX` function?')
-max_args = temp.check_field('args').has_equal_ast('Are you using `MAX` on the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    group_by_clause,
-    from_clause,
-    max_call,
-    max_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Verify the ordering.
+Ex().check_correct(
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -1543,6 +2070,20 @@ GROUP BY country, release_year
 ORDER BY ___, ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -1552,38 +2093,37 @@ GROUP BY country, release_year
 ORDER BY country, release_year;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+groupby_msg = "Make sure to include a `GROUP BY` statement!"
+custom_msg = "Are you using `MIN(gross)`?"
+Ex().check_correct(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').multi(
+        # If grouping is not done, it will not work in the first place
+        check_edge('group_by_clause', missing_msg=groupby_msg).has_equal_ast(),
+        # If grouping is okay, it makes sense to look at the Call part.
+        check_node("Call", missing_msg=custom_msg).has_equal_ast(incorrect_msg=custom_msg)
+    )
+)
 
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
+# Verify the ordering.
+Ex().check_correct(
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 
-country = test_column('country', msg='Did you select the `country` column correctly?')
-
-temp = sel.check_node('Call')
-min_call = temp.check_field('name').has_equal_ast('Did you use the `MIN` function?')
-min_args = temp.check_field('args').has_equal_ast('Are you using `MIN` on the right column?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    group_by_clause,
-    from_clause,
-    country,
-    release_year,
-    min_call,
-    min_args,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().success_msg("Off to the next statement!")
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ---
@@ -1623,10 +2163,10 @@ In how many different years were more than 200 movies released?
 
 
 `@instructions`
-- 12
+- 2
 - 13
-- 14
-- 15
+- 44
+- 63
 
 `@hint`
 Replace 10 with 200 in the query above and run it in the editor.
@@ -1638,20 +2178,37 @@ connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
+
 `@sample_code`
 
 ```{sql}
 -- You can test out queries here!
 ```
 
+
+`@solution`
+
+```{sql}
+
+```
+
+
 `@sct`
 
 ```{python}
-msg1 = 'Correct!'
-msg2 = 'Incorrect! Make a small modification to the query above and run it in the editor.'
-
-Ex().test_mc(2, [msg2, msg1, msg2, msg2])
+msg1 = "It's more than that! Copy and paste the code from the example query, make a small modification, and run it to answer the question!"
+msg2 = "That's correct! We're nearing the end of the course, so it's time to combine everything that you've learned and answer some interesting questions!"
+msg3 = '44 is the number of different years in which more than 10 movies were released. Make sure to answer the same question but for _200_ movies.'
+msg4 = "Not that much! Copy and paste the code from the example query, make a small modification, and run it to answer the question!"
+Ex().has_chosen(2, [msg1, msg2, msg3, msg4])
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 ---
 
@@ -1672,12 +2229,46 @@ Now you're going to write a query that returns the average budget and average gr
 This is going to be a big query, but you can handle it!
 
 
+`@instructions`
+
+
+`@hint`
+
+
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
+`@solution`
+
+```{sql}
+
+```
+
+
+`@sct`
+
+```{python}
+
+```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 ***
 
@@ -1702,6 +2293,20 @@ SELECT ___, ___, ___
 FROM ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -1709,29 +2314,19 @@ SELECT release_year, budget, gross
 FROM films;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
-
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-budget = test_column('budget', msg='Did you select the `budget` column correctly?')
-
-gross = test_column('gross', msg='Did you select the `release_year` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    release_year,
-    budget,
-    gross,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_all_columns(allow_extra=False).has_equal_value()
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -1749,7 +2344,7 @@ key: d80bd57b13
 
 
 `@instructions`
-Modify your query so that only results after 1990 are included.
+Modify your query so that only records with a `release_year` after 1990 are included.
 
 `@hint`
 ```
@@ -1757,6 +2352,20 @@ SELECT ___, ___, ___
 FROM ___
 WHERE ___ > ___;
 ```
+
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
 
 `@solution`
 
@@ -1766,34 +2375,26 @@ FROM films
 WHERE release_year > 1990;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# First check that WHERE was coded correctly
+Ex().check_correct(
+    has_nrows(),
+    check_node('SelectStmt').check_edge('where_clause').has_equal_ast()
+)
 
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-budget = test_column('budget', msg='Did you select the `budget` column correctly?')
-
-gross = test_column('gross', msg='Did you select the `gross` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-where_clause = sel.check_field('where_clause')
-
-where_release_year = where_clause.has_equal_ast(sql='release_year > 1990', start='expression', exact=False, msg='Did you check the `release_year` correctly in your `WHERE` clause?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    where_release_year,
-    release_year,
-    budget,
-    gross,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Check whether the right columns where selected
+Ex().check_all_columns(allow_extra=False).has_equal_value()
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -1821,6 +2422,20 @@ WHERE ___ > ___
 GROUP BY ___;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -1830,31 +2445,29 @@ WHERE release_year > 1990
 GROUP BY release_year;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# First check that WHERE and GROUP BY was coded correctly
+Ex().check_correct(
+    has_nrows(),
+    check_node('SelectStmt').multi(
+        check_edge('where_clause').has_equal_ast(),
+        check_edge('group_by_clause').has_equal_ast()
+    )
+)
 
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-where_clause = sel.check_field('where_clause')
-
-where_release_year = where_clause.has_equal_ast(sql='release_year > 1990', start='expression', exact=False, msg='Did you check the `release_year` correctly in your `WHERE` clause?')
-
-Ex().test_correct(check_result(), [
-    group_by_clause,
-    from_clause,
-    where_clause,
-    release_year,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Check whether the right columns where selected
+Ex().check_all_columns(allow_extra=False).has_equal_value()
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -1872,7 +2485,7 @@ key: ee92d8cbaa
 
 
 `@instructions`
-Modify your query to add in the average budget and average gross earnings for the results you have so far. Alias your results as `avg_budget` and `avg_gross`, respectively.
+Modify your query to include the average budget and average gross earnings for the results you have so far. Alias the average budget as `avg_budget`; alias the average gross earnings as `avg_gross`.
 
 `@hint`
 ```
@@ -1881,6 +2494,20 @@ FROM ___
 WHERE ___ > ___
 GROUP BY ___;
 ```
+
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
 
 `@solution`
 
@@ -1891,36 +2518,43 @@ WHERE release_year > 1990
 GROUP BY release_year;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# First check that WHERE and GROUP BY was coded correctly
+Ex().check_correct(
+    has_nrows(),
+    check_node('SelectStmt').multi(
+        check_edge('where_clause').has_equal_ast(),
+        check_edge('group_by_clause').has_equal_ast()
+    )
+)
 
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
+# Check whether release_year is correct
+Ex().check_column('release_year').has_equal_value()
 
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
+# Check whether avg_budget is included and calculated properly
+Ex().check_column('avg_budget')
+Ex().check_correct(
+    check_column('avg_budget').has_equal_value(),
+    check_node('SelectStmt').check_node('AliasExpr', 0).has_equal_ast()
+)
 
-where_clause = sel.check_field('where_clause')
-where_release_year = where_clause.has_equal_ast(sql='release_year > 1990', start='expression', exact=False, msg='Did you check the `release_year` correctly in your `WHERE` clause?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
-alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_gross` correctly?')
-
-Ex().test_correct(check_result(), [
-    group_by_clause,
-    where_clause,
-    from_clause,
-    where_release_year,
-    alias1,
-    alias2,
-    release_year,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Check whether avg_gross is included and calculated properly
+Ex().check_column('avg_gross')
+Ex().check_correct(
+    check_column('avg_gross').has_equal_value(),
+    check_node('SelectStmt').check_node('AliasExpr', 1).has_equal_ast()
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -1949,6 +2583,20 @@ GROUP BY ___
 HAVING AVG(___) > 60000000;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -1959,41 +2607,34 @@ GROUP BY release_year
 HAVING AVG(budget) > 60000000;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# Check if all columns are still there
+msg = "Don't include any additional columns: stick with `release_year`, `avg_budget`, and `avg_gross`."
+Ex().check_column('release_year', missing_msg=msg)
+Ex().check_column('avg_budget', missing_msg=msg)
+Ex().check_column('avg_gross', missing_msg=msg)
+Ex().check_all_columns(allow_extra=False)
 
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-where_clause = sel.check_field('where_clause')
-where_release_year = where_clause.has_equal_ast(sql='release_year > 1990', start='expression', exact=False, msg='Did you check the `release_year` correctly in your `WHERE` clause?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
-alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_gross` correctly?')
-
-having_clause = sel.check_field('having_clause').has_equal_ast('Is your `HAVING` clause correct?')
-
-avg_in_having = having_clause.check_node('Call').has_equal_ast('Are you correctly calling `AVG` on `budget` in your `HAVING` clause?')
-
-Ex().test_correct(check_result(), [
-    group_by_clause,
-    avg_in_having,
-    having_clause,
-    from_clause,
-    where_release_year,
-    alias1,
-    alias2,
-    release_year,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+# Then check if the contents are correct
+Ex().check_correct(
+    check_all_columns(allow_extra=False).has_equal_value(),
+    check_node('SelectStmt').multi(
+        check_edge('where_clause').has_equal_ast(),
+        check_edge('group_by_clause').has_equal_ast(),
+        check_edge('having_clause').has_equal_ast()
+    )
+)
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -2002,7 +2643,7 @@ Ex().test_correct(check_result(), [
 
 ```yaml
 type: NormalExercise 
-xp: 100 
+xp: 0 
 key: 7b3afeed2f   
 ```
 
@@ -2023,6 +2664,20 @@ HAVING AVG(___) > 60000000
 ORDER BY ___ DESC;
 ```
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -2034,44 +2689,42 @@ HAVING AVG(budget) > 60000000
 ORDER BY avg_gross DESC;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+# Check if all columns are still there
+msg = "Don't include any additional columns: stick with `release_year`, `avg_budget`, and `avg_gross`."
+Ex().check_column('release_year', missing_msg=msg)
+Ex().check_column('avg_budget', missing_msg=msg)
+Ex().check_column('avg_gross', missing_msg=msg)
+Ex().check_all_columns(allow_extra=False)
 
-release_year = test_column('release_year', msg='Did you select the `release_year` column correctly?')
+# Then check if the contents are correct
+Ex().check_correct(
+    check_all_columns().has_equal_value(),
+    check_node('SelectStmt').multi(
+        check_edge('where_clause').has_equal_ast(),
+        check_edge('group_by_clause').has_equal_ast(),
+        check_edge('having_clause').has_equal_ast()
+    )
+)
 
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
+# Check if it's the right order
+Ex().check_correct(
+    check_all_columns().has_equal_value(ordered=True),
+    check_node('SelectStmt').check_edge('order_by_clause').has_equal_ast()
+)
 
-where_clause = sel.check_field('where_clause')
-where_release_year = where_clause.has_equal_ast(sql='release_year > 1990', start='expression', exact=False, msg='Did you check the `release_year` correctly in your `WHERE` clause?')
-
-group_by_clause = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-
-alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
-alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_gross` correctly?')
-
-having_clause = sel.check_field('having_clause').has_equal_ast('Is your `HAVING` clause correct?')
-
-avg_in_having = having_clause.check_node('Call').has_equal_ast('Are you correctly calling `AVG` on `budget` in your `HAVING` clause?')
-
-order_by_clause = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-Ex().test_correct(check_result(), [
-    order_by_clause,
-    group_by_clause,
-    avg_in_having,
-    having_clause,
-    from_clause,
-    where_release_year,
-    alias1,
-    alias2,
-    release_year,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().success_msg("Wooooow! Let's do another one!")
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ---
@@ -2112,6 +2765,7 @@ connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
+
 `@sample_code`
 
 ```{sql}
@@ -2121,12 +2775,13 @@ set_options(visible_tables = ['films'])
 
 -- group by country 
 
--- where the country has a title count greater than 10
+-- where the country has more than 10 titles
 
 -- order by country
 
 -- limit to only show 5 results
 ```
+
 
 `@solution`
 
@@ -2137,7 +2792,7 @@ SELECT country, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
 FROM films
 -- group by country 
 GROUP BY country
--- where the country has a title count greater than 10
+-- where the country has more than 10 titles
 HAVING COUNT(title) > 10
 -- order by country
 ORDER BY country
@@ -2145,41 +2800,49 @@ ORDER BY country
 LIMIT 5;
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
+Ex().check_correct(
+    # If end result is ok, all fine all good.
+    check_all_columns(allow_extra=False).has_equal_value(ordered=True),
+    # If not, let's dive deeper
+    multi(
+        # First look at the elements that influence the number of records
+        check_correct(
+            has_nrows(),
+            check_node('SelectStmt').multi(
+                check_edge('from_clause').has_equal_ast(),
+                check_edge('group_by_clause').has_equal_ast(),
+                check_edge('having_clause').has_equal_ast(),
+                check_edge('limit_clause').has_equal_ast()
+            )
+        ),
+        # If that is good, look at the separate columns and how they are calculated
+        check_column('country').has_equal_value(),
+        check_column('avg_budget'),
+        check_correct(
+            check_column('avg_budget').has_equal_value(),
+            check_node('SelectStmt').check_node('AliasExpr', 0).has_equal_ast()
+        ),
+        check_correct(
+            check_column('avg_gross').has_equal_value(),
+            check_node('SelectStmt').check_node('AliasExpr', 1).has_equal_ast()
+        ),
+        check_node('SelectStmt').check_edge('order_by_clause')
+    )
+)
 
-country = test_column('country', msg='Did you select the `country` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-where_clause = sel.check_field('where_clause').has_equal_ast('Is your `WHERE` clause correct?')
-group_by = sel.check_field('group_by_clause').has_equal_ast('Is your `GROUP BY` clause correct?')
-having_clause = sel.check_field('having_clause').has_equal_ast('Is your `HAVING` clause correct?')
-order_by = sel.check_field('order_by_clause').has_equal_ast('Is your `ORDER BY` clause correct?')
-
-alias1 = test_column('avg_budget', match='exact', msg='Are you aliasing `avg_budget` correctly?')
-alias2 = test_column('avg_gross', match='exact', msg='Are you aliasing `avg_gross` correctly?')
-
-avg_in_having = having_clause.check_node('Call').has_equal_ast('Are you correctly calling `AVG` on `budget` in your `HAVING` clause?')
-
-limit_clause = sel.check_field('limit_clause').has_equal_ast('Did you `LIMIT` the number of results to `5`?')
-
-Ex().test_correct(check_result(), [
-    limit_clause,
-    order_by,
-    group_by,
-    from_clause,
-    having_clause,
-    country,
-    alias1,
-    alias2,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
-Ex().success_msg("Superb work on a selection saga! SELECT queries can get rather long, but breaking them down into individual clauses makes them easier to write.")
+Ex().success_msg("Superb work on a selection saga! `SELECT` queries can get rather long, but breaking them down into individual clauses makes them easier to write.")
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 ---
 
@@ -2208,12 +2871,19 @@ As you can see, joins are incredibly useful and important to understand for anyo
 We have a whole follow-up course dedicated to them called <a href="https://www.datacamp.com/courses/joining-data-in-postgresql">Joining Data in PostgreSQL</a> for you to hone your database skills further!
 
 
+`@instructions`
+
+
+`@hint`
+
+
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'reviews'])
 ```
+
 
 `@sample_code`
 
@@ -2224,6 +2894,27 @@ JOIN reviews
 ON films.id = reviews.film_id
 WHERE title = 'To Kill a Mockingbird';
 ```
+
+
+`@solution`
+
+```{sql}
+
+```
+
+
+`@sct`
+
+```{python}
+
+```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 ***
 
@@ -2245,6 +2936,20 @@ Submit the code in the editor and inspect the results.
 `@hint`
 Submit the code in the editor!
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
 `@solution`
 
 ```{sql}
@@ -2255,29 +2960,19 @@ ON films.id = reviews.film_id
 WHERE title = 'To Kill a Mockingbird';
 ```
 
+
 `@sct`
 
 ```{python}
-sel = check_node('SelectStmt')
-
-title = test_column('title', msg='Did you select the `title` column correctly?')
-
-imdb_score = test_column('imdb_score', msg='Did you select the `imdb_score` column correctly?')
-
-from_clause = sel.check_field('from_clause').has_equal_ast('Is your `FROM` clause correct?')
-
-where_clause = sel.check_field('where_clause').has_equal_ast('Is your `WHERE` clause correct?')
-
-Ex().test_correct(check_result(), [
-    from_clause,
-    where_clause,
-    title,
-    imdb_score,
-    test_has_columns(),
-    test_ncols(),
-    test_error()
-])
+Ex().check_all_columns(allow_extra=False).has_equal_value()
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
 
 ***
@@ -2303,12 +2998,39 @@ key: fc288db979
 `@hint`
 Look at the query result tab!
 
+`@pre_exercise_code`
+
+```{python}
+
+```
+
+
+`@sample_code`
+
+```{sql}
+
+```
+
+
+`@solution`
+
+```{sql}
+
+```
+
+
 `@sct`
 
 ```{python}
-msg1 = 'Nope, look at the query results!'
+icm = 'Have another look at the result of the query you just submitted. The answer is right there!'
 correct = 'Correct!'
-
-Ex().test_mc(2,[msg1, correct, msg1, msg1])
+Ex().has_chosen(2,[icm, correct, icm, icm])
 ```
+
+
+`@possible_answers`
+
+
+`@feedback`
+
 
