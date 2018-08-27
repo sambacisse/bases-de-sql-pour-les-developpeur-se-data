@@ -1186,12 +1186,6 @@ Now you'll write a query to get the title and release year of films released in 
 It looks like a lot, but you can build the query up one step at a time to get comfortable with the underlying concept in each step. Let's go!
 
 
-`@instructions`
-
-
-`@hint`
-
-
 `@pre_exercise_code`
 
 ```{python}
@@ -1206,25 +1200,6 @@ set_options(visible_tables = ['films'])
 
 ```
 
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -1249,19 +1224,6 @@ Get the title and release year for films released in the 90s.
 SELECT ___, ___
 FROM ___
 WHERE ___ >= 1990 AND ___ < 2000;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
-`@sample_code`
-
-```{sql}
-
 ```
 
 
@@ -1301,12 +1263,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -1333,18 +1289,6 @@ WHERE (___ >= 1990 AND ___ < 2000)
 AND (___ = 'French' OR ___ = 'Spanish');
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
-`@sample_code`
-
-```{sql}
-
-```
 
 
 `@solution`
@@ -1387,11 +1331,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ***
@@ -1418,19 +1357,6 @@ FROM ___
 WHERE (___ >= 1990 AND ___ < 2000)
 AND (___ = '___' OR ___ = '___')
 AND ___ > ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
-`@sample_code`
-
-```{sql}
-
 ```
 
 
@@ -1476,12 +1402,6 @@ Ex().check_correct(
 
 Ex().success_msg("That was pretty involved!")
 ```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 
