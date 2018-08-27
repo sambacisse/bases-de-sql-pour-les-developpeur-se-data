@@ -1201,7 +1201,6 @@ set_options(visible_tables = ['films'])
 ```
 
 
-
 ***
 
 
@@ -1225,7 +1224,6 @@ SELECT ___, ___
 FROM ___
 WHERE ___ >= 1990 AND ___ < 2000;
 ```
-
 
 `@solution`
 
@@ -1289,8 +1287,6 @@ WHERE (___ >= 1990 AND ___ < 2000)
 AND (___ = 'French' OR ___ = 'Spanish');
 ```
 
-
-
 `@solution`
 
 ```{sql}
@@ -1332,7 +1328,6 @@ Ex().check_correct(
 
 
 
-
 ***
 
 
@@ -1358,7 +1353,6 @@ WHERE (___ >= 1990 AND ___ < 2000)
 AND (___ = '___' OR ___ = '___')
 AND ___ > ___;
 ```
-
 
 `@solution`
 
@@ -2850,5 +2844,6 @@ Ex().success_msg("This concludes the second chapter of the intro to SQL course. 
 
 
 `@feedback`
+
 
 
