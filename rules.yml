@@ -20,3 +20,6 @@ rules:
     bullet_exercise_num_subex:
         min: 0
         max: 6
+    chapter_num_exercises_chapter_n:
+        min: 6
+        max: 12
