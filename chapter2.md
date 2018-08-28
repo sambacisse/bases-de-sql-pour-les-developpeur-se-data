@@ -45,10 +45,9 @@ FROM films
 WHERE release_year > 2000;
 ```
 
+
 `@hint`
 If you're stuck, refer to the list of comparison operators above!
-
-
 
 `@possible_answers`
 - Films released before the year 2000
@@ -87,15 +86,12 @@ WHERE budget > 10000;
 Now it's your turn to use the `WHERE` clause to filter numeric values!
 
 
-
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
-
-
 
 
 ***
@@ -121,7 +117,6 @@ SELECT ___
 FROM ___
 WHERE ___ = ___;
 ```
-
 
 `@sample_code`
 
@@ -160,7 +155,6 @@ Ex().check_correct(
 
 
 
-
 ***
 
 
@@ -184,7 +178,6 @@ SELECT ___(*)
 FROM ___
 WHERE ___ < ___;
 ```
-
 
 `@sample_code`
 
@@ -217,6 +210,7 @@ Ex().check_correct(
 ```
 
 
+
 ***
 
 
@@ -246,7 +240,6 @@ WHERE ___ > ___;
 ```{sql}
 
 ```
-
 
 
 `@solution`
@@ -311,15 +304,12 @@ Now it's your turn to practice using `WHERE` with text values!
 **Important: in PostgreSQL (the version of SQL we're using), you must use single quotes with `WHERE`.**
 
 
-
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
-
-
 
 
 ***
@@ -353,7 +343,6 @@ WHERE ___ = '___';
 ```
 
 
-
 `@solution`
 
 ```{sql}
@@ -381,7 +370,6 @@ Ex().check_correct(
     check_node('SelectStmt').check_node('Star', missing_msg="Are you using `SELECT *` to select _all_ columns?")
 )
 ```
-
 
 
 
@@ -504,6 +492,7 @@ Ex().check_correct(
 ```
 
 
+
 ***
 
 
@@ -527,7 +516,6 @@ SELECT ___
 FROM ___
 WHERE ___ = '___';
 ```
-
 
 `@sample_code`
 
@@ -565,7 +553,6 @@ Ex().check_correct(
 
 Ex().success_msg("Wonderful! Let's look at combining different conditions now!")
 ```
-
 
 
 
@@ -638,7 +625,6 @@ WHERE ___ < ___
 AND ___ = '___';
 ```
 
-
 `@sample_code`
 
 ```{sql}
@@ -682,6 +668,7 @@ Ex().check_correct(
 ```
 
 
+
 ***
 
 
@@ -712,7 +699,6 @@ AND ___ = '___';
 ```{sql}
 
 ```
-
 
 
 `@solution`
@@ -780,7 +766,6 @@ AND ___ = '___';
 ```{sql}
 
 ```
-
 
 
 `@solution`
@@ -867,11 +852,8 @@ Otherwise, due to SQL's precedence rules, you may not get the results you're exp
 What does the `OR` operator do?
 
 
-
 `@hint`
 Think about records that meet condition1 **and** condition2.
-
-
 
 `@possible_answers`
 - [Display only rows that meet at least **one** of the specified conditions.]
@@ -921,7 +903,6 @@ set_options(visible_tables = ['films'])
 ```
 
 
-
 ***
 
 
@@ -951,6 +932,7 @@ WHERE ___ >= 1990 AND ___ < 2000;
 ```{sql}
 
 ```
+
 
 `@solution`
 
@@ -1019,6 +1001,7 @@ AND (___ = 'French' OR ___ = 'Spanish');
 ```{sql}
 
 ```
+
 
 `@solution`
 
@@ -1092,6 +1075,7 @@ AND ___ > ___;
 ```{sql}
 
 ```
+
 
 `@solution`
 
@@ -1177,8 +1161,6 @@ What does the `BETWEEN` keyword do?
 `@hint`
 Think about looking for values **between** a beginning and end point.
 
-
-
 `@possible_answers`
 - Filter numeric values
 - Filter text values
@@ -1225,7 +1207,6 @@ set_options(visible_tables = ['films'])
 ```
 
 
-
 ***
 
 
@@ -1255,7 +1236,6 @@ WHERE ___ BETWEEN ___ AND ___;
 ```{sql}
 
 ```
-
 
 
 `@solution`
@@ -1295,7 +1275,6 @@ Ex().check_correct(
 
 
 
-
 ***
 
 
@@ -1320,7 +1299,6 @@ FROM ___
 WHERE ___ BETWEEN ___ AND ___
 AND ___ > ___;
 ```
-
 
 `@sample_code`
 
@@ -1360,6 +1338,7 @@ Ex().check_correct(
     )
 )
 ```
+
 
 
 ***
@@ -1427,6 +1406,7 @@ Ex().check_correct(
     )
 )
 ```
+
 
 
 ***
@@ -1536,14 +1516,12 @@ WHERE age IN (2, 4, 6, 8, 10);
 Try using the `IN` operator yourself!
 
 
-
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
-
 
 
 ***
@@ -1612,6 +1590,7 @@ Ex().check_correct(
     )
 )
 ```
+
 
 
 ***
@@ -1708,6 +1687,7 @@ WHERE ___ IN ('NC-17', '___');
 
 ```
 
+
 `@solution`
 
 ```{sql}
@@ -1779,10 +1759,8 @@ WHERE birthdate IS NOT NULL;
 What does `NULL` represent?
 
 
-
 `@hint`
 Remember, `NULL` represents values which are missing or unknown.
-
 
 `@possible_answers`
 - A corrupt entry
@@ -1819,7 +1797,6 @@ set_options(visible_tables = ['films', 'people'])
 ```
 
 
-
 ***
 
 
@@ -1843,8 +1820,6 @@ SELECT ___
 FROM ___
 WHERE ___ IS NULL;
 ```
-
-
 
 `@sample_code`
 
@@ -1883,7 +1858,6 @@ Ex().check_correct(
 
 
 
-
 ***
 
 
@@ -1907,8 +1881,6 @@ SELECT ___
 FROM ___
 WHERE ___ ___ ___;
 ```
-
-
 
 `@sample_code`
 
@@ -1944,7 +1916,6 @@ Ex().check_correct(
     check_node('SelectStmt').check_edge('target_list').has_equal_ast()
 )
 ```
-
 
 
 
@@ -2006,8 +1977,6 @@ Ex().success_msg("Alright! Are you ready for a last type of operator?")
 
 
 
-
-
 ---
 
 ## LIKE and NOT LIKE
@@ -2045,15 +2014,12 @@ You can also use the `NOT LIKE` operator to find records that *don't* match the 
 Got it? Let's practice!
 
 
-
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['people'])
 ```
-
-
 
 
 ***
@@ -2079,8 +2045,6 @@ SELECT ___
 FROM ___
 WHERE ___ LIKE '___';
 ```
-
-
 
 `@sample_code`
 
@@ -2143,8 +2107,6 @@ FROM ___
 WHERE ___ ___ '___';
 ```
 
-
-
 `@sample_code`
 
 ```{sql}
@@ -2182,8 +2144,6 @@ Ex().check_correct(
 
 
 
-
-
 ***
 
 
@@ -2207,8 +2167,6 @@ SELECT ___
 FROM ___
 WHERE ___ NOT LIKE '___';
 ```
-
-
 
 `@sample_code`
 
@@ -2246,7 +2204,6 @@ Ex().check_correct(
 
 Ex().success_msg("This concludes the second chapter of the intro to SQL course. Rush over to chapter 3 if you want to learn more about aggregate functions!")
 ```
-
 
 
 

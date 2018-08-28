@@ -51,7 +51,6 @@ connect('postgresql', 'films')
 ```
 
 
-
 `@sct`
 
 ```{python}
@@ -109,8 +108,6 @@ SELECT name FROM people;
 ```
 
 
-
-
 `@sct`
 
 ```{python}
@@ -121,7 +118,6 @@ msg3 = "50 Cent is the first person listed in the query result. We're looking fo
 msg4 = patt % "Jay Z"
 Ex().has_chosen(2, [msg1, msg2, msg3, msg4])
 ```
-
 
 
 ---
@@ -194,7 +190,6 @@ Ex().success_msg("Excellent error editing! You can feel safe experimenting with 
 ```
 
 
-
 ---
 
 ## Onboarding | Bullet Exercises
@@ -211,16 +206,11 @@ key: 81eb00a53d
 Another new feature we're introducing is the *bullet exercise*, which allows you to easily practice a new concept through repetition. Check it out below!
 
 
-
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 ```
-
-
-
-
 
 
 ***
@@ -287,13 +277,13 @@ Now change `'SQL'` to `'SQL is'` and click Submit!
 `@hint`
 Change the code and submit the query!
 
-
 `@sample_code`
 
 ```{sql}
 SELECT 'SQL'
 AS result;
 ```
+
 
 `@solution`
 
@@ -311,8 +301,6 @@ Ex().check_correct(
     has_code('SQL is', incorrect_msg="Did you change `'SQL'` to `'SQL is'`?.", fixed=True)
 )
 ```
-
-
 
 
 
@@ -364,7 +352,6 @@ Ex().success_msg("Well done! The time has come to actually fetch information fro
 
 
 
-
 ---
 
 ## Beginning your SQL journey
@@ -398,12 +385,8 @@ The table of employees might look something like this:
 How many fields does the employees table above contain?
 
 
-
 `@hint`
 Remember that in database lingo, a column is called a *field*. How many fields does the table contain?
-
-
-
 
 `@possible_answers`
 - 1
@@ -452,8 +435,6 @@ It's also good practice (but not necessary for the exercises in this course) to 
 Remember, you can see the results of executing your query in the __query result__ tab to the right!
 
 
-
-
 `@pre_exercise_code`
 
 ```{python}
@@ -491,6 +472,7 @@ FROM ___;
 
 ```
 
+
 `@solution`
 
 ```{sql}
@@ -510,7 +492,6 @@ Ex().check_correct(
     )   
 )
 ```
-
 
 
 
@@ -536,7 +517,6 @@ Select the `release_year` column from the `films` table.
 SELECT ___
 FROM ___;
 ```
-
 
 `@sample_code`
 
@@ -589,7 +569,6 @@ Select the `name` of each person in the `people` table.
 SELECT ___
 FROM ___;
 ```
-
 
 `@sample_code`
 
@@ -661,14 +640,12 @@ LIMIT 10;
 Before getting started with the instructions below, check out the column names in the `films` table by clicking on the `films` tab to the right!
 
 
-
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
-
 
 
 ***
@@ -778,6 +755,8 @@ Ex().check_correct(
 )
 ```
 
+
+
 ***
 
 
@@ -800,7 +779,6 @@ Get the title, release year and country for every film.
 SELECT ___, ___, ___
 FROM ___;
 ```
-
 
 `@sample_code`
 
@@ -861,7 +839,6 @@ SELECT *
 FROM ___;
 ```
 
-
 `@sample_code`
 
 ```{sql}
@@ -916,14 +893,12 @@ FROM films;
 Remember, you can check out the data in the tables by clicking on the tabs to the right under the editor!
 
 
-
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'roles'])
 ```
-
 
 
 ***
@@ -981,7 +956,6 @@ Ex().check_correct(
 
 
 
-
 ***
 
 
@@ -1004,7 +978,6 @@ Get all the different film certifications from the `films` table.
 SELECT DISTINCT ___
 FROM ___;
 ```
-
 
 `@sample_code`
 
@@ -1060,7 +1033,6 @@ Get the different types of film roles from the `roles` table.
 SELECT DISTINCT ___
 FROM ___;
 ```
-
 
 `@sample_code`
 
@@ -1143,7 +1115,6 @@ connect('postgresql', 'films')
 ```
 
 
-
 `@sct`
 
 ```{python}
@@ -1151,7 +1122,6 @@ crm = 'Correct!'
 icm = "Use the syntax provided in the example. Be sure to swap out `people` for `reviews`!"
 Ex().has_chosen(3, [icm, icm, crm, icm, icm])
 ```
-
 
 
 ---
@@ -1193,7 +1163,6 @@ Let's get some practice with `COUNT`!
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
-
 
 
 ***
@@ -1281,6 +1250,7 @@ SELECT COUNT(*)
 FROM people;
 ```
 
+
 `@solution`
 
 ```{sql}
@@ -1305,6 +1275,7 @@ Ex().check_correct(
 ```
 
 
+
 ***
 
 
@@ -1327,7 +1298,6 @@ Count the number of unique birth dates in the `people` table.
 SELECT ___(DISTINCT ___)
 FROM ___;
 ```
-
 
 `@sample_code`
 
@@ -1386,7 +1356,6 @@ Count the number of unique languages in the `films` table.
 SELECT ___(DISTINCT ___)
 FROM ___;
 ```
-
 
 `@sample_code`
 
@@ -1452,7 +1421,6 @@ FROM ___;
 ```
 
 
-
 `@solution`
 
 ```{sql}
@@ -1477,7 +1445,6 @@ Ex().check_correct(
     )
 )
 ```
-
 
 
 
