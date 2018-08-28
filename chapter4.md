@@ -33,38 +33,11 @@ gives you the titles of films sorted by release year, from newest to oldest.
 How do you think `ORDER BY` sorts a column of text values by default?
 
 
-`@instructions`
-
 
 `@hint`
 By default, `ORDER BY` sorts alphabetically, but in which direction?
 
-`@pre_exercise_code`
 
-```{python}
-
-```
-
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
 
 
 `@possible_answers`
@@ -94,12 +67,6 @@ key: a7b2964ba6
 Now that you understand how `ORDER BY` works, give these exercises a go!
 
 
-`@instructions`
-
-
-`@hint`
-
-
 `@pre_exercise_code`
 
 ```{python}
@@ -107,32 +74,6 @@ connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
 
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -159,11 +100,6 @@ FROM ___
 ORDER BY ___;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -199,12 +135,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -229,13 +159,6 @@ SELECT ___
 FROM ___
 ORDER BY ___;
 ```
-
-`@pre_exercise_code`
-
-```{python}
-
-```
-
 
 `@sample_code`
 
@@ -266,11 +189,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ***
@@ -295,12 +213,6 @@ Get the birth date and name for every person, in order of when they were born.
 SELECT ___, ___
 FROM ___
 ORDER BY ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -337,12 +249,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ---
 
@@ -359,12 +265,6 @@ key: 357ec9bc3d
 Let's get some more practice with `ORDER BY`!
 
 
-`@instructions`
-
-
-`@hint`
-
-
 `@pre_exercise_code`
 
 ```{python}
@@ -372,32 +272,6 @@ connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
 
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -425,11 +299,6 @@ WHERE ___ IN (___, ___)
 ORDER BY ___;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -470,12 +339,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -500,12 +363,6 @@ SELECT ___
 FROM ___
 WHERE ___ <> ___
 ORDER BY ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -552,11 +409,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ***
@@ -582,12 +434,6 @@ SELECT ___, ___
 FROM ___
 WHERE ___ LIKE ___
 ORDER BY ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -633,11 +479,6 @@ Ex().success_msg("Can you feel the SQL power dawn on you?!")
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ---
@@ -663,11 +504,6 @@ ORDER BY name DESC;
 Now practice using `ORDER BY` with `DESC` to sort single columns in descending order!
 
 
-`@instructions`
-
-
-`@hint`
-
 
 `@pre_exercise_code`
 
@@ -683,25 +519,6 @@ set_options(visible_tables = ['films', 'reviews'])
 
 ```
 
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -726,12 +543,6 @@ Get the IMDB score and film ID for every film from the reviews table, sorted fro
 SELECT ___, ___
 FROM ___
 ORDER BY ___ DESC;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -765,13 +576,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
-
 ***
 
 
@@ -794,12 +598,6 @@ Get the title for every film, in reverse order.
 SELECT ___
 FROM ___
 ORDER BY ___ ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -836,11 +634,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ***
@@ -865,12 +658,6 @@ Get the title and duration for every film, in order of longest duration to short
 SELECT ___, ___
 FROM ___
 ORDER BY ___ ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -906,12 +693,6 @@ Ex().success_msg("Nice. Let's explore how you can sort multiple columns!")
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ---
 
@@ -938,11 +719,6 @@ sorts on birth dates first (oldest to newest) and then sorts on the names in alp
 Try using `ORDER BY` to sort multiple columns! Remember, to specify multiple columns you separate the column names with a comma.
 
 
-`@instructions`
-
-
-`@hint`
-
 
 `@pre_exercise_code`
 
@@ -950,33 +726,6 @@ Try using `ORDER BY` to sort multiple columns! Remember, to specify multiple col
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
-
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -1001,12 +750,6 @@ Get the birth date and name of people in the `people` table, in order of when th
 SELECT ___, ___
 FROM ___
 ORDER BY ___, ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -1040,12 +783,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -1071,11 +808,6 @@ FROM ___
 ORDER BY ___, ___;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -1108,12 +840,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -1137,12 +863,6 @@ Get certifications, release years, and titles of films ordered by certification 
 SELECT ___, ___, ___
 FROM ___
 ORDER BY ___, ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -1176,12 +896,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -1207,11 +921,6 @@ FROM ___
 ORDER BY ___, ___;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -1244,12 +953,6 @@ Ex().check_correct(
 
 Ex().success_msg("Well done. Notice how the second column you order on only steps in when the first column is not decisive to tell the order. The second column acts as a tie breaker.")
 ```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 
@@ -1287,38 +990,9 @@ Commonly, `GROUP BY` is used with _aggregate functions_ like `COUNT()` or `MAX()
 What is `GROUP BY` used for?
 
 
-`@instructions`
-
-
 `@hint`
 You use `GROUP BY` when you want to compute results within groups.
 
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
 
 
 `@possible_answers`
@@ -1369,11 +1043,6 @@ might return something like
 because there are more females at our company than males. Note also that `ORDER BY` always goes after `GROUP BY`. Let's try some exercises!
 
 
-`@instructions`
-
-
-`@hint`
-
 
 `@pre_exercise_code`
 
@@ -1382,32 +1051,6 @@ connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'reviews'])
 ```
 
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -1434,11 +1077,6 @@ FROM ___
 GROUP BY ___;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -1473,12 +1111,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -1502,12 +1134,6 @@ Get the release year and average duration of all films, grouped by release year.
 SELECT ___, ___(___)
 FROM ___
 GROUP BY ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -1544,13 +1170,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
-
 ***
 
 
@@ -1574,13 +1193,6 @@ SELECT ___, ___(___)
 FROM ___
 GROUP BY ___;
 ```
-
-`@pre_exercise_code`
-
-```{python}
-
-```
-
 
 `@sample_code`
 
@@ -1615,12 +1227,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -1644,12 +1250,6 @@ Get the IMDB score and count of film reviews grouped by IMDB score in the `revie
 SELECT ___, ___(___)
 FROM ___
 GROUP BY ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -1688,13 +1288,6 @@ Ex().success_msg("Now that you've accustomed yourself with `GROUP BY`, let's thr
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
-
 ---
 
 ## GROUP BY practice (2)
@@ -1712,11 +1305,6 @@ Now practice your new skills by combining `GROUP BY` and `ORDER BY` with some mo
 Make sure to always put the `ORDER BY` clause at the end of your query. You can't sort values that you haven't calculated yet!
 
 
-`@instructions`
-
-
-`@hint`
-
 
 `@pre_exercise_code`
 
@@ -1725,32 +1313,6 @@ connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -1775,12 +1337,6 @@ Get the release year and lowest gross earnings per release year.
 SELECT ___, ___(___)
 FROM ___
 GROUP BY ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -1817,13 +1373,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
-
 ***
 
 
@@ -1846,12 +1395,6 @@ Get the language and total gross amount films in each language made.
 SELECT ___, ___(___)
 FROM ___
 GROUP BY ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -1888,12 +1431,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -1919,11 +1456,6 @@ FROM ___
 GROUP BY ___;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -1959,12 +1491,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -1989,12 +1515,6 @@ SELECT ___, ___, ___(___)
 FROM ___
 GROUP BY ___, ___
 ORDER BY ___, ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -2038,11 +1558,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ***
@@ -2068,12 +1583,6 @@ SELECT ___, ___, ___(___)
 FROM films
 GROUP BY country, release_year
 ORDER BY ___, ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -2117,13 +1626,6 @@ Ex().check_correct(
 
 Ex().success_msg("Off to the next statement!")
 ```
-
-
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ---
@@ -2186,12 +1688,6 @@ set_options(visible_tables = ['films'])
 ```
 
 
-`@solution`
-
-```{sql}
-
-```
-
 
 `@sct`
 
@@ -2203,11 +1699,6 @@ msg4 = "Not that much! Copy and paste the code from the example query, make a sm
 Ex().has_chosen(2, [msg1, msg2, msg3, msg4])
 ```
 
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ---
@@ -2229,11 +1720,6 @@ Now you're going to write a query that returns the average budget and average gr
 This is going to be a big query, but you can handle it!
 
 
-`@instructions`
-
-
-`@hint`
-
 
 `@pre_exercise_code`
 
@@ -2243,31 +1729,6 @@ set_options(visible_tables = ['films'])
 ```
 
 
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -2293,11 +1754,6 @@ SELECT ___, ___, ___
 FROM ___;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -2320,12 +1776,6 @@ FROM films;
 ```{python}
 Ex().check_all_columns(allow_extra=False).has_equal_value()
 ```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 
@@ -2353,11 +1803,6 @@ FROM ___
 WHERE ___ > ___;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -2390,12 +1835,6 @@ Ex().check_all_columns(allow_extra=False).has_equal_value()
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -2422,11 +1861,6 @@ WHERE ___ > ___
 GROUP BY ___;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -2463,12 +1897,6 @@ Ex().check_all_columns(allow_extra=False).has_equal_value()
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -2493,12 +1921,6 @@ SELECT ___, ___(___) AS avg_budget, AVG(gross) AS avg_gross
 FROM ___
 WHERE ___ > ___
 GROUP BY ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -2550,12 +1972,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -2581,12 +1997,6 @@ FROM ___
 WHERE ___ > ___
 GROUP BY ___
 HAVING AVG(___) > 60000000;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -2630,13 +2040,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
-
 ***
 
 
@@ -2662,12 +2065,6 @@ WHERE ___ > ___
 GROUP BY ___
 HAVING AVG(___) > 60000000
 ORDER BY ___ DESC;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -2718,13 +2115,6 @@ Ex().check_correct(
 
 Ex().success_msg("Wooooow! Let's do another one!")
 ```
-
-
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ---
@@ -2837,13 +2227,6 @@ Ex().check_correct(
 Ex().success_msg("Superb work on a selection saga! `SELECT` queries can get rather long, but breaking them down into individual clauses makes them easier to write.")
 ```
 
-
-`@possible_answers`
-
-
-`@feedback`
-
-
 ---
 
 ## A taste of things to come
@@ -2871,11 +2254,6 @@ As you can see, joins are incredibly useful and important to understand for anyo
 We have a whole follow-up course dedicated to them called <a href="https://www.datacamp.com/courses/joining-data-in-postgresql">Joining Data in PostgreSQL</a> for you to hone your database skills further!
 
 
-`@instructions`
-
-
-`@hint`
-
 
 `@pre_exercise_code`
 
@@ -2885,35 +2263,6 @@ set_options(visible_tables = ['films', 'reviews'])
 ```
 
 
-`@sample_code`
-
-```{sql}
-SELECT title, imdb_score
-FROM films
-JOIN reviews
-ON films.id = reviews.film_id
-WHERE title = 'To Kill a Mockingbird';
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -2936,18 +2285,17 @@ Submit the code in the editor and inspect the results.
 `@hint`
 Submit the code in the editor!
 
-`@pre_exercise_code`
-
-```{python}
-
-```
-
 
 `@sample_code`
 
 ```{sql}
-
+SELECT title, imdb_score
+FROM films
+JOIN reviews
+ON films.id = reviews.film_id
+WHERE title = 'To Kill a Mockingbird';
 ```
+
 
 
 `@solution`
@@ -2967,11 +2315,6 @@ WHERE title = 'To Kill a Mockingbird';
 Ex().check_all_columns(allow_extra=False).has_equal_value()
 ```
 
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 
@@ -2998,11 +2341,6 @@ key: fc288db979
 `@hint`
 Look at the query result tab!
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -3028,9 +2366,5 @@ Ex().has_chosen(2,[icm, correct, icm, icm])
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
 
 
