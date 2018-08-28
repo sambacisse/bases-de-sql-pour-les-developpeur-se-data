@@ -45,39 +45,9 @@ FROM films
 WHERE release_year > 2000;
 ```
 
-
-`@instructions`
-
-
 `@hint`
 If you're stuck, refer to the list of comparison operators above!
 
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
 
 
 `@possible_answers`
@@ -117,11 +87,6 @@ WHERE budget > 10000;
 Now it's your turn to use the `WHERE` clause to filter numeric values!
 
 
-`@instructions`
-
-
-`@hint`
-
 
 `@pre_exercise_code`
 
@@ -131,31 +96,6 @@ set_options(visible_tables = ['films'])
 ```
 
 
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -180,12 +120,6 @@ Get all details for all films released in 2016.
 SELECT ___
 FROM ___
 WHERE ___ = ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -225,11 +159,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ***
@@ -254,12 +183,6 @@ Get the number of films released before 2000.
 SELECT ___(*)
 FROM ___
 WHERE ___ < ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -294,13 +217,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
-
 ***
 
 
@@ -325,18 +241,12 @@ FROM ___
 WHERE ___ > ___;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
 `@sample_code`
 
 ```{sql}
 
 ```
+
 
 
 `@solution`
@@ -373,12 +283,6 @@ Ex().success_msg("Great job! After filtering of numeric values, it's time to exp
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ---
 
@@ -407,11 +311,6 @@ Now it's your turn to practice using `WHERE` with text values!
 **Important: in PostgreSQL (the version of SQL we're using), you must use single quotes with `WHERE`.**
 
 
-`@instructions`
-
-
-`@hint`
-
 
 `@pre_exercise_code`
 
@@ -421,31 +320,6 @@ set_options(visible_tables = ['films', 'people'])
 ```
 
 
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -472,18 +346,12 @@ FROM ___
 WHERE ___ = '___';
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
 `@sample_code`
 
 ```{sql}
 
 ```
+
 
 
 `@solution`
@@ -515,11 +383,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ***
@@ -545,13 +408,6 @@ SELECT ___, ___
 FROM ___
 WHERE ___ = '___';
 ```
-
-`@pre_exercise_code`
-
-```{python}
-
-```
-
 
 `@sample_code`
 
@@ -592,12 +448,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -622,13 +472,6 @@ SELECT ___(___)
 FROM ___
 WHERE ___ = '___';
 ```
-
-`@pre_exercise_code`
-
-```{python}
-
-```
-
 
 `@sample_code`
 
@@ -661,13 +504,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
-
 ***
 
 
@@ -690,12 +526,6 @@ Get all details for all films with an R certification.
 SELECT ___
 FROM ___
 WHERE ___ = '___';
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -737,11 +567,6 @@ Ex().success_msg("Wonderful! Let's look at combining different conditions now!")
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ---
@@ -780,45 +605,12 @@ WHERE release_year > 1994 AND < 2000;
 You can add as many `AND` conditions as you need!
 
 
-`@instructions`
-
-
-`@hint`
-
-
 `@pre_exercise_code`
 
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
-
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -844,12 +636,6 @@ SELECT ___, ___
 FROM ___
 WHERE ___ < ___
 AND ___ = '___';
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -896,13 +682,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
-
 ***
 
 
@@ -928,18 +707,12 @@ WHERE ___ > ___
 AND ___ = '___';
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
 `@sample_code`
 
 ```{sql}
 
 ```
+
 
 
 `@solution`
@@ -975,12 +748,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -1008,18 +775,12 @@ AND ___ < ___
 AND ___ = '___';
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
 `@sample_code`
 
 ```{sql}
 
 ```
+
 
 
 `@solution`
@@ -1057,12 +818,6 @@ Ex().check_correct(
 
 Ex().success_msg("Great work! Being able to combine conditions with `AND` will prove to be very useful if you only want your query to return a specific subset of records!")
 ```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 
@@ -1112,38 +867,10 @@ Otherwise, due to SQL's precedence rules, you may not get the results you're exp
 What does the `OR` operator do?
 
 
-`@instructions`
-
 
 `@hint`
 Think about records that meet condition1 **and** condition2.
 
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
 
 
 `@possible_answers`
@@ -1194,12 +921,6 @@ set_options(visible_tables = ['films'])
 ```
 
 
-`@sample_code`
-
-```{sql}
-
-```
-
 
 ***
 
@@ -1223,6 +944,12 @@ Get the title and release year for films released in the 90s.
 SELECT ___, ___
 FROM ___
 WHERE ___ >= 1990 AND ___ < 2000;
+```
+
+`@sample_code`
+
+```{sql}
+
 ```
 
 `@solution`
@@ -1285,6 +1012,12 @@ SELECT ___, ___
 FROM ___
 WHERE (___ >= 1990 AND ___ < 2000)
 AND (___ = 'French' OR ___ = 'Spanish');
+```
+
+`@sample_code`
+
+```{sql}
+
 ```
 
 `@solution`
@@ -1352,6 +1085,12 @@ FROM ___
 WHERE (___ >= 1990 AND ___ < 2000)
 AND (___ = '___' OR ___ = '___')
 AND ___ > ___;
+```
+
+`@sample_code`
+
+```{sql}
+
 ```
 
 `@solution`
@@ -1435,38 +1174,9 @@ It's important to remember that `BETWEEN` is _inclusive_, meaning the beginning 
 What does the `BETWEEN` keyword do?
 
 
-`@instructions`
-
-
 `@hint`
 Think about looking for values **between** a beginning and end point.
 
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
 
 
 `@possible_answers`
@@ -1507,12 +1217,6 @@ AND nationality = 'USA';
 Take a go at using `BETWEEN` with `AND` on the films data to get the title and release year of all Spanish language films released between 1990 and 2000 (inclusive) with budgets over $100 million. We have broken the problem into smaller steps so that you can build the query as you go along!
 
 
-`@instructions`
-
-
-`@hint`
-
-
 `@pre_exercise_code`
 
 ```{python}
@@ -1520,32 +1224,6 @@ connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -1572,18 +1250,12 @@ FROM ___
 WHERE ___ BETWEEN ___ AND ___;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
 `@sample_code`
 
 ```{sql}
 
 ```
+
 
 
 `@solution`
@@ -1622,11 +1294,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ***
@@ -1652,12 +1319,6 @@ SELECT ___, ___
 FROM ___
 WHERE ___ BETWEEN ___ AND ___
 AND ___ > ___;
-```
-
-`@pre_exercise_code`
-
-```{python}
-
 ```
 
 
@@ -1701,13 +1362,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
-
 ***
 
 
@@ -1733,13 +1387,6 @@ WHERE ___ BETWEEN ___ AND ___
 AND ___ > ___
 AND ___ = '___';
 ```
-
-`@pre_exercise_code`
-
-```{python}
-
-```
-
 
 `@sample_code`
 
@@ -1782,13 +1429,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
-
 ***
 
 
@@ -1814,13 +1454,6 @@ WHERE ___ BETWEEN ___ AND ___
 AND ___ > ___
 AND (___ = '___' OR ___ = '___');
 ```
-
-`@pre_exercise_code`
-
-```{python}
-
-```
-
 
 `@sample_code`
 
@@ -1865,12 +1498,6 @@ Ex().success_msg("Well done! Off to the next filtering operator!")
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ---
 
@@ -1909,11 +1536,6 @@ WHERE age IN (2, 4, 6, 8, 10);
 Try using the `IN` operator yourself!
 
 
-`@instructions`
-
-
-`@hint`
-
 
 `@pre_exercise_code`
 
@@ -1922,32 +1544,6 @@ connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -1974,13 +1570,6 @@ FROM ___
 WHERE release_year IN (___, ___)
 AND ___ > ___;
 ```
-
-`@pre_exercise_code`
-
-```{python}
-
-```
-
 
 `@sample_code`
 
@@ -2025,13 +1614,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
-
 ***
 
 
@@ -2055,13 +1637,6 @@ SELECT ___, ___
 FROM ___
 WHERE ___ IN ('___', '___', '___');
 ```
-
-`@pre_exercise_code`
-
-```{python}
-
-```
-
 
 `@sample_code`
 
@@ -2102,12 +1677,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -2133,19 +1702,11 @@ FROM ___
 WHERE ___ IN ('NC-17', '___');
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
 `@sample_code`
 
 ```{sql}
 
 ```
-
 
 `@solution`
 
@@ -2179,12 +1740,6 @@ Ex().check_correct(
 
 Ex().success_msg("Your SQL vocabulary is growing by the minute!")
 ```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 
@@ -2224,38 +1779,9 @@ WHERE birthdate IS NOT NULL;
 What does `NULL` represent?
 
 
-`@instructions`
-
 
 `@hint`
 Remember, `NULL` represents values which are missing or unknown.
-
-`@pre_exercise_code`
-
-```{python}
-
-```
-
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
 
 
 `@possible_answers`
@@ -2285,12 +1811,6 @@ key: 84411d78ab
 Now that you know what `NULL` is and what it's used for, it's time for some practice!
 
 
-`@instructions`
-
-
-`@hint`
-
-
 `@pre_exercise_code`
 
 ```{python}
@@ -2298,32 +1818,6 @@ connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
 
-
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -2350,11 +1844,6 @@ FROM ___
 WHERE ___ IS NULL;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -2393,11 +1882,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ***
@@ -2424,11 +1908,6 @@ FROM ___
 WHERE ___ ___ ___;
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -2467,11 +1946,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
 
 
 ***
@@ -2497,13 +1971,6 @@ SELECT ___(___)
 FROM ___
 WHERE language ___ ___;
 ```
-
-`@pre_exercise_code`
-
-```{python}
-
-```
-
 
 `@sample_code`
 
@@ -2538,10 +2005,6 @@ Ex().success_msg("Alright! Are you ready for a last type of operator?")
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
 
 
 
@@ -2582,11 +2045,6 @@ You can also use the `NOT LIKE` operator to find records that *don't* match the 
 Got it? Let's practice!
 
 
-`@instructions`
-
-
-`@hint`
-
 
 `@pre_exercise_code`
 
@@ -2596,31 +2054,6 @@ set_options(visible_tables = ['people'])
 ```
 
 
-`@sample_code`
-
-```{sql}
-
-```
-
-
-`@solution`
-
-```{sql}
-
-```
-
-
-`@sct`
-
-```{python}
-
-```
-
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 ***
@@ -2647,11 +2080,6 @@ FROM ___
 WHERE ___ LIKE '___';
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -2690,12 +2118,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
-
-
 
 ***
 
@@ -2721,11 +2143,6 @@ FROM ___
 WHERE ___ ___ '___';
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -2764,10 +2181,6 @@ Ex().check_correct(
 ```
 
 
-`@possible_answers`
-
-
-`@feedback`
 
 
 
@@ -2795,11 +2208,6 @@ FROM ___
 WHERE ___ NOT LIKE '___';
 ```
 
-`@pre_exercise_code`
-
-```{python}
-
-```
 
 
 `@sample_code`
@@ -2839,11 +2247,6 @@ Ex().check_correct(
 Ex().success_msg("This concludes the second chapter of the intro to SQL course. Rush over to chapter 3 if you want to learn more about aggregate functions!")
 ```
 
-
-`@possible_answers`
-
-
-`@feedback`
 
 
 
