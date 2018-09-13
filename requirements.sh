@@ -15,8 +15,3 @@ service postgresql start \
   && cd courses-intro-to-sql \
   && sudo -u postgres psql films < data/films/films.sql \
   && service postgresql stop
-
-# Override installs from sql-shared
-pip3 install jinja2==2.10
-pip3 install protowhat==1.1.2 --no-dependencies
-pip3 install sqlwhat==3.0.0 --no-dependencies
