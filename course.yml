@@ -9,4 +9,6 @@ description: "The role of a data scientist is to turn raw data into actionable i
 programming_language: sql
 difficulty_level: 0
 from: 'postgresql-base-prod:v1.0.0'
+datasets:
+  films.sql: IMDb Film data
 practice_pool_id: 328
