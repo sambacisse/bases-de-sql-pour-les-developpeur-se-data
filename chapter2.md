@@ -1016,7 +1016,7 @@ Ex().check_correct(
         check_edge('from_clause').has_equal_ast(),
         check_edge('where_clause').check_node('BinaryExpr').multi(
             check_edge('left').has_equal_ast(),
-          	check_edge('op').has_equal_ast()
+          	check_edge('op').has_equal_ast(),
             check_edge('right', 0).has_equal_ast(),
             check_edge('right', 1).has_equal_ast()
         )
