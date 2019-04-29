@@ -6,12 +6,11 @@ description: 'This chapter builds on the first by teaching you how to filter tab
 ## Filtering results
 
 ```yaml
-type: PureMultipleChoiceExercise 
+type: PureMultipleChoiceExercise
+key: bfc80ff2e5
 lang: sql
-xp: 50 
-key: bfc80ff2e5   
+xp: 50
 ```
-
 
 Congrats on finishing the first chapter! You now know how to select columns and perform basic counts. This chapter will focus on filtering your results.
 
@@ -45,7 +44,6 @@ FROM films
 WHERE release_year > 2000;
 ```
 
-
 `@hint`
 If you're stuck, refer to the list of comparison operators above!
 
@@ -66,12 +64,11 @@ If you're stuck, refer to the list of comparison operators above!
 ## Simple filtering of numeric values
 
 ```yaml
-type: BulletExercise 
+type: BulletExercise
+key: b90db25f34
 lang: sql
-xp: 100 
-key: b90db25f34   
+xp: 100
 ```
-
 
 As you learned in the previous exercise, the `WHERE` clause can also be used to filter numeric records, such as years or ages.
 
@@ -85,28 +82,19 @@ WHERE budget > 10000;
 
 Now it's your turn to use the `WHERE` clause to filter numeric values!
 
-
 `@pre_exercise_code`
-
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 35 
-key: 8a4615ada8   
+type: NormalExercise
+key: 8a4615ada8
+xp: 35
 ```
-
-
-
-
 
 `@instructions`
 Get all details for all films released in 2016.
@@ -119,23 +107,18 @@ WHERE ___ = ___;
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT *
 FROM films
 WHERE release_year = 2016;
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -153,21 +136,13 @@ Ex().check_correct(
 )
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 35 
-key: 5e6e1c74c6   
+type: NormalExercise
+key: 5e6e1c74c6
+xp: 35
 ```
-
-
-
-
 
 `@instructions`
 Get the number of films released before 2000.
@@ -180,23 +155,18 @@ WHERE ___ < ___;
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT COUNT(*)
 FROM films
 WHERE release_year < 2000;
 ```
 
-
 `@sct`
-
 ```{python}
 cnt_msg = "Are you using `COUNT(*)`?"
 Ex().check_correct(
@@ -209,21 +179,13 @@ Ex().check_correct(
 )
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 30 
-key: d66f3d41b7   
+type: NormalExercise
+key: d66f3d41b7
+xp: 30
 ```
-
-
-
-
 
 `@instructions`
 Get the title and release year of films released after 2000.
@@ -236,23 +198,18 @@ WHERE ___ > ___;
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title, release_year
 FROM films
 WHERE release_year > 2000;
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -269,19 +226,16 @@ check_all_columns().has_equal_value()
 Ex().success_msg("Great job! After filtering of numeric values, it's time to explore filtering of text!")
 ```
 
-
-
 ---
 
 ## Simple filtering of text
 
 ```yaml
-type: BulletExercise 
+type: BulletExercise
+key: b90db25f33
 lang: sql
-xp: 100 
-key: b90db25f33   
+xp: 100
 ```
-
 
 Remember, the `WHERE` clause can also be used to filter text results, such as names or countries.
 
@@ -297,28 +251,19 @@ Now it's your turn to practice using `WHERE` with text values!
 
 **Important: in PostgreSQL (the version of SQL we're using), you must use single quotes with `WHERE`.**
 
-
 `@pre_exercise_code`
-
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
 
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 25 
-key: b645308dcd   
+type: NormalExercise
+key: b645308dcd
+xp: 25
 ```
-
-
-
-
 
 `@instructions`
 Get all details for all French language films.
@@ -331,23 +276,18 @@ WHERE ___ = '___';
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT *
 FROM films
 WHERE language = 'French';
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -365,21 +305,13 @@ Ex().check_correct(
 )
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 25 
-key: 051f6fb8ec   
+type: NormalExercise
+key: 051f6fb8ec
+xp: 25
 ```
-
-
-
-
 
 `@instructions`
 Get the name and birth date of the person born on November 11th, 1974. Remember to use ISO date format (`'1974-11-11'`)!
@@ -392,23 +324,18 @@ WHERE ___ = '___';
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT name, birthdate
 FROM people
 WHERE birthdate = '1974-11-11';
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -423,21 +350,13 @@ Ex().check_correct(
 check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 25 
-key: 7b872a3af0   
+type: NormalExercise
+key: 7b872a3af0
+xp: 25
 ```
-
-
-
-
 
 `@instructions`
 Get the number of Hindi language films.
@@ -450,23 +369,18 @@ WHERE ___ = '___';
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT COUNT(*)
 FROM films
 WHERE language = 'Hindi';
 ```
 
-
 `@sct`
-
 ```{python}
 cnt_msg = "Are you using `COUNT(*)`?"
 Ex().check_correct(
@@ -479,21 +393,13 @@ Ex().check_correct(
 )
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 25 
-key: 2c87504f11   
+type: NormalExercise
+key: 2c87504f11
+xp: 25
 ```
-
-
-
-
 
 `@instructions`
 Get all details for all films with an R certification.
@@ -506,23 +412,18 @@ WHERE ___ = '___';
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT *
 FROM films
 WHERE certification = 'R';
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -542,19 +443,16 @@ Ex().check_correct(
 Ex().success_msg("Wonderful! Let's look at combining different conditions now!")
 ```
 
-
-
 ---
 
 ## WHERE AND
 
 ```yaml
-type: BulletExercise 
+type: BulletExercise
+key: 5bda32d7c8
 lang: sql
-xp: 100 
-key: 5bda32d7c8   
+xp: 100
 ```
-
 
 Often, you'll want to select data based on multiple conditions. You can build up your `WHERE` queries by combining multiple conditions with the `AND` keyword.
 
@@ -579,28 +477,19 @@ WHERE release_year > 1994 AND < 2000;
 
 You can add as many `AND` conditions as you need!
 
-
 `@pre_exercise_code`
-
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 35 
-key: 7ccf93b215   
+type: NormalExercise
+key: 7ccf93b215
+xp: 35
 ```
-
-
-
-
 
 `@instructions`
 Get the title and release year for all Spanish language films released before 2000.
@@ -614,14 +503,11 @@ AND ___ = '___';
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title, release_year
 FROM films
@@ -629,9 +515,7 @@ WHERE release_year < 2000
 AND language = 'Spanish';
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -649,21 +533,13 @@ Ex().check_correct(
 Ex().check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 35 
-key: e703c95e46   
+type: NormalExercise
+key: e703c95e46
+xp: 35
 ```
-
-
-
-
 
 `@instructions`
 Get all details for Spanish language films released after 2000.
@@ -677,14 +553,11 @@ AND ___ = '___';
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT *
 FROM films
@@ -692,9 +565,7 @@ WHERE release_year > 2000
 AND language = 'Spanish';
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -715,21 +586,13 @@ Ex().check_correct(
 )
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 30 
-key: 7f2ba5c82f   
+type: NormalExercise
+key: 7f2ba5c82f
+xp: 30
 ```
-
-
-
-
 
 `@instructions`
 Get all details for Spanish language films released after 2000, but before 2010.
@@ -744,14 +607,11 @@ AND ___ = '___';
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT *
 FROM films
@@ -760,9 +620,7 @@ AND release_year < 2010
 AND language = 'Spanish';
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -786,19 +644,16 @@ Ex().check_correct(
 Ex().success_msg("Great work! Being able to combine conditions with `AND` will prove to be very useful if you only want your query to return a specific subset of records!")
 ```
 
-
-
 ---
 
 ## WHERE AND OR
 
 ```yaml
-type: PureMultipleChoiceExercise 
+type: PureMultipleChoiceExercise
+key: 227814cb5d
 lang: sql
-xp: 50 
-key: 227814cb5d   
+xp: 50
 ```
-
 
 What if you want to select rows based on multiple conditions where some but not _all_ of the conditions need to be met? For this, SQL has the `OR` operator.
 
@@ -833,7 +688,6 @@ Otherwise, due to SQL's precedence rules, you may not get the results you're exp
 <hr>
 What does the `OR` operator do?
 
-
 `@hint`
 Think about records that meet condition1 **and** condition2.
 
@@ -852,12 +706,11 @@ Think about records that meet condition1 **and** condition2.
 ## WHERE AND OR (2)
 
 ```yaml
-type: TabExercise 
+type: TabExercise
+key: ecc1838fc7
 lang: sql
-xp: 100 
-key: ecc1838fc7   
+xp: 100
 ```
-
 
 You now know how to select rows that meet __some__ but not __all__ conditions by combining `AND` and `OR`.
 
@@ -876,28 +729,19 @@ Now you'll write a query to get the title and release year of films released in 
 
 It looks like a lot, but you can build the query up one step at a time to get comfortable with the underlying concept in each step. Let's go!
 
-
 `@pre_exercise_code`
-
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 35 
-key: 510b387baa   
+type: NormalExercise
+key: 510b387baa
+xp: 35
 ```
-
-
-
-
 
 `@instructions`
 Get the title and release year for films released in the 90s.
@@ -910,23 +754,18 @@ WHERE ___ >= 1990 AND ___ < 2000;
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title, release_year
 FROM films
 WHERE release_year >= 1990 AND release_year < 2000;
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -944,21 +783,13 @@ Ex().check_correct(
 Ex().check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 35 
-key: 969ed73542   
+type: NormalExercise
+key: 969ed73542
+xp: 35
 ```
-
-
-
-
 
 `@instructions`
 Now, build on your query to filter the records to only include French or Spanish language films.
@@ -972,14 +803,11 @@ AND (___ = 'French' OR ___ = 'Spanish');
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title, release_year
 FROM films
@@ -987,9 +815,7 @@ WHERE (release_year >= 1990 AND release_year < 2000)
 AND (language = 'French' OR language = 'Spanish');
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -1011,21 +837,13 @@ Ex().check_correct(
 Ex().check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 30 
-key: d961856c7a   
+type: NormalExercise
+key: d961856c7a
+xp: 30
 ```
-
-
-
-
 
 `@instructions`
 Finally, restrict the query to only return films that took in more than $2M gross.
@@ -1040,14 +858,11 @@ AND ___ > ___;
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title, release_year
 FROM films
@@ -1056,9 +871,7 @@ AND (language = 'French' OR language = 'Spanish')
 AND gross > 2000000;
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -1083,19 +896,16 @@ check_all_columns().has_equal_value()
 Ex().success_msg("That was pretty involved!")
 ```
 
-
-
 ---
 
 ## BETWEEN
 
 ```yaml
-type: PureMultipleChoiceExercise 
+type: PureMultipleChoiceExercise
+key: a1827199e2
 lang: sql
-xp: 50 
-key: a1827199e2   
+xp: 50
 ```
-
 
 As you've learned, you can use the following query to get titles of all films released in and between 1994 and 2000:
 
@@ -1120,7 +930,6 @@ It's important to remember that `BETWEEN` is _inclusive_, meaning the beginning 
 <hr>
 What does the `BETWEEN` keyword do?
 
-
 `@hint`
 Think about looking for values **between** a beginning and end point.
 
@@ -1141,12 +950,11 @@ Think about looking for values **between** a beginning and end point.
 ## BETWEEN (2)
 
 ```yaml
-type: TabExercise 
+type: TabExercise
+key: 9c11f67712
 lang: sql
-xp: 100 
-key: 9c11f67712   
+xp: 100
 ```
-
 
 Similar to the `WHERE` clause, the `BETWEEN` clause can be used with multiple `AND` and `OR` operators, so you can build up your queries and make them even more powerful!
 
@@ -1161,28 +969,19 @@ AND nationality = 'USA';
 
 Take a go at using `BETWEEN` with `AND` on the films data to get the title and release year of all Spanish language films released between 1990 and 2000 (inclusive) with budgets over $100 million. We have broken the problem into smaller steps so that you can build the query as you go along!
 
-
 `@pre_exercise_code`
-
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 25 
-key: 9252da136b   
+type: NormalExercise
+key: 9252da136b
+xp: 25
 ```
-
-
-
-
 
 `@instructions`
 Get the title and release year of all films released between 1990 and 2000 (inclusive).
@@ -1195,31 +994,29 @@ WHERE ___ BETWEEN ___ AND ___;
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title, release_year
 FROM films
 WHERE release_year BETWEEN 1990 AND 2000;
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
+      	check_edge('target_list', 0).has_equal_ast(),
+      	check_edge('target_list', 1).has_equal_ast(),
         check_edge('from_clause').has_equal_ast(),
-        check_edge('where_clause').multi(
+        check_edge('where_clause').check_node('BinaryExpr').multi(
             check_edge('left').has_equal_ast(),
+          	check_edge('op').has_equal_ast(),
             check_edge('right', 0).has_equal_ast(),
             check_edge('right', 1).has_equal_ast()
         )
@@ -1230,21 +1027,13 @@ Ex().check_correct(
 Ex().check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 25 
-key: d21a4bec02   
+type: NormalExercise
+key: d21a4bec02
+xp: 25
 ```
-
-
-
-
 
 `@instructions`
 Now, build on your previous query to select only films that have budgets over $100 million.
@@ -1258,14 +1047,11 @@ AND ___ > ___;
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title, release_year
 FROM films
@@ -1273,16 +1059,29 @@ WHERE release_year BETWEEN 1990 AND 2000
 AND budget > 100000000;
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
+      	check_edge('target_list', 0).has_equal_ast(),
+      	check_edge('target_list', 1).has_equal_ast(),
         check_edge('from_clause').has_equal_ast(),
-        check_edge('where_clause').has_equal_ast(sql='budget > 100000000')
+        check_edge('where_clause').multi(
+        	check_node('BinaryExpr').multi(
+            	check_edge('left').has_equal_ast(),
+                check_edge('op').has_equal_ast(),
+                check_edge('right', 0).check_node('BinaryExpr').multi(
+                	check_edge('left').has_equal_ast(),
+                    check_edge('op').has_equal_ast(),
+                    check_edge('right').has_equal_ast()
+                ),
+              	check_edge('right', 1).has_equal_ast()
+            ),
+          	check_edge('op').has_equal_ast(),
+          	check_edge('right').has_equal_ast()
+        )
     )
 )
 
@@ -1290,21 +1089,13 @@ Ex().check_correct(
 Ex().check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 25 
-key: 9087bf33ac   
+type: NormalExercise
+key: 9087bf33ac
+xp: 25
 ```
-
-
-
-
 
 `@instructions`
 Now restrict the query to only return Spanish language films.
@@ -1319,14 +1110,11 @@ AND ___ = '___';
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title, release_year
 FROM films
@@ -1335,16 +1123,37 @@ AND budget > 100000000
 AND language = 'Spanish';
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
+      	check_edge('target_list', 0).has_equal_ast(),
+      	check_edge('target_list', 1).has_equal_ast(),
         check_edge('from_clause').has_equal_ast(),
-        check_edge('where_clause').has_equal_ast(sql="language = 'Spanish'")
+        check_edge('where_clause').multi(
+        	check_node('BinaryExpr').multi(
+            	check_edge('left').has_equal_ast(),
+                check_edge('op').has_equal_ast(),
+                check_edge('right', 0).check_node('BinaryExpr').multi(
+                	check_edge('left').multi(
+                      	check_edge('left').has_equal_ast(),
+                        check_edge('op').has_equal_ast(),
+                        check_edge('right').has_equal_ast()
+                    ),
+                    check_edge('op').has_equal_ast(),
+                    check_edge('right').multi(
+                    	check_edge('left').has_equal_ast(),
+                        check_edge('op').has_equal_ast(),
+                        check_edge('right').has_equal_ast()
+                    )
+                ),
+              	check_edge('right', 1).has_equal_ast()
+            ),
+          	check_edge('op').has_equal_ast(),
+          	check_edge('right').has_equal_ast()
+        )
     )
 )
 
@@ -1352,21 +1161,13 @@ Ex().check_correct(
 Ex().check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 25 
-key: 73d020dfab   
+type: NormalExercise
+key: 73d020dfab
+xp: 25
 ```
-
-
-
-
 
 `@instructions`
 Finally, modify to your previous query to include all Spanish language *or* French language films with the same criteria as before. Don't forget your parentheses!
@@ -1381,14 +1182,11 @@ AND (___ = '___' OR ___ = '___');
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title, release_year
 FROM films
@@ -1397,16 +1195,54 @@ AND budget > 100000000
 AND (language = 'Spanish' OR language = 'French');
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
     has_nrows(),
     check_node('SelectStmt').multi(
+      	check_edge('target_list', 0).has_equal_ast(),
+      	check_edge('target_list', 1).has_equal_ast(),
         check_edge('from_clause').has_equal_ast(),
-        check_edge('where_clause').has_equal_ast(sql="language = 'French'")
+        check_edge('where_clause').multi(
+        	check_node('BinaryExpr').multi(
+            	check_edge('left').has_equal_ast(),
+                check_edge('op').has_equal_ast(),
+                check_edge('right', 0).check_node('BinaryExpr').multi(
+                	check_edge('left').multi(
+                      	check_edge('left').has_equal_ast(),
+                        check_edge('op').has_equal_ast(),
+                        check_edge('right').has_equal_ast()
+                    ),
+                    check_edge('op').has_equal_ast(),
+                    check_edge('right').multi(
+                    	check_edge('left').has_equal_ast(),
+                        check_edge('op').has_equal_ast(),
+                        check_edge('right').has_equal_ast()
+                    )
+                ),
+              	check_edge('right', 1).multi(
+            	check_edge('left').has_equal_ast(),
+                check_edge('op').has_equal_ast(),
+                check_edge('right', 1).check_node('BinaryExpr').multi(
+                	check_edge('left').multi(
+                      	check_edge('left').has_equal_ast(),
+                        check_edge('op').has_equal_ast(),
+                        check_edge('right').has_equal_ast()
+                    ),
+                    check_edge('op').has_equal_ast(),
+                    check_edge('right').multi(
+                    	check_edge('left').has_equal_ast(),
+                        check_edge('op').has_equal_ast(),
+                        check_edge('right').has_equal_ast()
+                    )
+                ),
+              	check_edge('right', 1).has_equal_ast()
+            )
+            ),
+          	check_edge('op').has_equal_ast(),
+          	check_edge('right').has_equal_ast()
+        )
     )
 )
 
@@ -1416,19 +1252,16 @@ Ex().check_all_columns().has_equal_value()
 Ex().success_msg("Well done! Off to the next filtering operator!")
 ```
 
-
-
 ---
 
 ## WHERE IN
 
 ```yaml
-type: BulletExercise 
+type: BulletExercise
+key: 4fc7e638f8
 lang: sql
-xp: 100 
-key: 4fc7e638f8   
+xp: 100
 ```
-
 
 As you've seen, `WHERE` is very useful for filtering results. However, if you want to filter based on many conditions, `WHERE` can get unwieldy. For example:
 
@@ -1454,28 +1287,19 @@ WHERE age IN (2, 4, 6, 8, 10);
 
 Try using the `IN` operator yourself!
 
-
 `@pre_exercise_code`
-
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films'])
 ```
 
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 35 
-key: dc7674d358   
+type: NormalExercise
+key: dc7674d358
+xp: 35
 ```
-
-
-
-
 
 `@instructions`
 Get the title and release year of all films released in 1990 or 2000 that were longer than two hours. Remember, duration is in minutes!
@@ -1489,14 +1313,11 @@ AND ___ > ___;
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title, release_year
 FROM films
@@ -1504,9 +1325,7 @@ WHERE release_year IN (1990, 2000)
 AND duration > 120;
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -1524,21 +1343,13 @@ Ex().check_correct(
 Ex().check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 35 
-key: 3a84c097d2   
+type: NormalExercise
+key: 3a84c097d2
+xp: 35
 ```
-
-
-
-
 
 `@instructions`
 Get the title and language of all films which were in English, Spanish, or French.
@@ -1551,23 +1362,18 @@ WHERE ___ IN ('___', '___', '___');
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title, language
 FROM films
 WHERE language IN ('English', 'Spanish', 'French');
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -1582,21 +1388,13 @@ Ex().check_correct(
 Ex().check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 30 
-key: 3c947b0d2d   
+type: NormalExercise
+key: 3c947b0d2d
+xp: 30
 ```
-
-
-
-
 
 `@instructions`
 Get the title and certification of all films with an NC-17 or R certification.
@@ -1609,23 +1407,18 @@ WHERE ___ IN ('NC-17', '___');
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title, certification
 FROM films
 WHERE certification IN ('NC-17', 'R');
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -1642,19 +1435,16 @@ Ex().check_all_columns().has_equal_value()
 Ex().success_msg("Your SQL vocabulary is growing by the minute!")
 ```
 
-
-
 ---
 
 ## Introduction to NULL and IS NULL
 
 ```yaml
-type: PureMultipleChoiceExercise 
+type: PureMultipleChoiceExercise
+key: 5cf67b42b3
 lang: sql
-xp: 50 
-key: 5cf67b42b3   
+xp: 50
 ```
-
 
 In SQL, `NULL` represents a missing or unknown value. You can check for `NULL` values using the expression `IS NULL`. For example, to count the number of missing birth dates in the `people` table:
 
@@ -1679,7 +1469,6 @@ WHERE birthdate IS NOT NULL;
 <hr>
 What does `NULL` represent?
 
-
 `@hint`
 Remember, `NULL` represents values which are missing or unknown.
 
@@ -1700,37 +1489,27 @@ Remember, `NULL` represents values which are missing or unknown.
 ## NULL and IS NULL
 
 ```yaml
-type: BulletExercise 
+type: BulletExercise
+key: 84411d78ab
 lang: sql
-xp: 100 
-key: 84411d78ab   
+xp: 100
 ```
-
 
 Now that you know what `NULL` is and what it's used for, it's time for some practice!
 
-
 `@pre_exercise_code`
-
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['films', 'people'])
 ```
 
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 35 
-key: 3c646ada87   
+type: NormalExercise
+key: 3c646ada87
+xp: 35
 ```
-
-
-
-
 
 `@instructions`
 Get the names of people who are still alive, i.e. whose death date is missing.
@@ -1743,23 +1522,18 @@ WHERE ___ IS NULL;
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT name
 FROM people
 WHERE deathdate IS NULL;
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -1774,21 +1548,13 @@ Ex().check_correct(
 Ex().check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 35 
-key: 3c646ada89   
+type: NormalExercise
+key: 3c646ada89
+xp: 35
 ```
-
-
-
-
 
 `@instructions`
 Get the title of every film which doesn't have a budget associated with it.
@@ -1801,23 +1567,18 @@ WHERE ___ ___ ___;
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT title
 FROM films
 WHERE budget IS NULL;
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -1832,21 +1593,13 @@ Ex().check_correct(
 Ex().check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 30 
-key: 3c646ada88   
+type: NormalExercise
+key: 3c646ada88
+xp: 30
 ```
-
-
-
-
 
 `@instructions`
 Get the number of films which don't have a language associated with them.
@@ -1859,23 +1612,18 @@ WHERE language ___ ___;
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT COUNT(*)
 FROM films
 WHERE language IS NULL;
 ```
 
-
 `@sct`
-
 ```{python}
 cnt_msg = "Are you using `COUNT(*)`?"
 Ex().check_correct(
@@ -1890,19 +1638,16 @@ Ex().check_correct(
 Ex().success_msg("Alright! Are you ready for a last type of operator?")
 ```
 
-
-
 ---
 
 ## LIKE and NOT LIKE
 
 ```yaml
-type: BulletExercise 
+type: BulletExercise
+key: 84411d78ac
 lang: sql
-xp: 100 
-key: 84411d78ac   
+xp: 100
 ```
-
 
 As you've seen, the `WHERE` clause can be used to filter text data. However, so far you've only been able to filter by specifying the exact text you're interested in. In the real world, often you'll want to search for a *pattern* rather than a specific text string.
 
@@ -1928,28 +1673,19 @@ You can also use the `NOT LIKE` operator to find records that *don't* match the 
 
 Got it? Let's practice!
 
-
 `@pre_exercise_code`
-
 ```{python}
 connect('postgresql', 'films')
 set_options(visible_tables = ['people'])
 ```
 
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 35 
-key: 9e3c3ef68f   
+type: NormalExercise
+key: 9e3c3ef68f
+xp: 35
 ```
-
-
-
-
 
 `@instructions`
 Get the names of all people whose names begin with 'B'. The pattern you need is `'B%'`.
@@ -1962,23 +1698,18 @@ WHERE ___ LIKE '___';
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT name
 FROM people
 WHERE name LIKE 'B%';
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -1993,21 +1724,13 @@ Ex().check_correct(
 check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 35 
-key: 606b667e1c   
+type: NormalExercise
+key: 606b667e1c
+xp: 35
 ```
-
-
-
-
 
 `@instructions`
 Get the names of people whose names have 'r' as the second letter. The pattern you need is `'_r%'`.
@@ -2020,23 +1743,18 @@ WHERE ___ ___ '___';
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT name
 FROM people
 WHERE name LIKE '_r%';
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -2051,21 +1769,13 @@ Ex().check_correct(
 Ex().check_all_columns().has_equal_value()
 ```
 
-
-
 ***
 
-
-
 ```yaml
-type: NormalExercise 
-xp: 30 
-key: 2e4f49a528   
+type: NormalExercise
+key: 2e4f49a528
+xp: 30
 ```
-
-
-
-
 
 `@instructions`
 Get the names of people whose names don't start with A. The pattern you need is `'A%'`.
@@ -2078,23 +1788,18 @@ WHERE ___ NOT LIKE '___';
 ```
 
 `@sample_code`
-
 ```{sql}
 
 ```
 
-
 `@solution`
-
 ```{sql}
 SELECT name
 FROM people
 WHERE name NOT LIKE 'A%';
 ```
 
-
 `@sct`
-
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
@@ -2110,6 +1815,3 @@ Ex().check_all_columns().has_equal_value()
 
 Ex().success_msg("This concludes the second chapter of the intro to SQL course. Rush over to chapter 3 if you want to learn more about aggregate functions!")
 ```
-
-
-
