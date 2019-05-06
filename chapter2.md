@@ -1014,7 +1014,7 @@ Ex().check_correct(
       	check_edge('target_list', 0).has_equal_ast(),
       	check_edge('target_list', 1).has_equal_ast(),
         check_edge('from_clause').has_equal_ast(),
-        check_edge('where_clause').check_node('BinaryExpr').multi(
+        check_edge('where_clause').multi(
             check_edge('left').has_equal_ast(),
           	check_edge('op').has_equal_ast(),
             check_edge('right', 0).has_equal_ast(),
@@ -1069,10 +1069,10 @@ Ex().check_correct(
       	check_edge('target_list', 1).has_equal_ast(),
         check_edge('from_clause').has_equal_ast(),
         check_edge('where_clause').multi(
-        	check_node('BinaryExpr').multi(
+        	check_edge('left').multi(
             	check_edge('left').has_equal_ast(),
                 check_edge('op').has_equal_ast(),
-                check_edge('right', 0).check_node('BinaryExpr').multi(
+                check_edge('right', 0).multi(
                 	check_edge('left').has_equal_ast(),
                     check_edge('op').has_equal_ast(),
                     check_edge('right').has_equal_ast()
@@ -1084,6 +1084,7 @@ Ex().check_correct(
         )
     )
 )
+
 
 # Next check if right columns were included
 Ex().check_all_columns().has_equal_value()
@@ -1133,10 +1134,10 @@ Ex().check_correct(
       	check_edge('target_list', 1).has_equal_ast(),
         check_edge('from_clause').has_equal_ast(),
         check_edge('where_clause').multi(
-        	check_node('BinaryExpr').multi(
+        	check_edge('left').multi(
             	check_edge('left').has_equal_ast(),
                 check_edge('op').has_equal_ast(),
-                check_edge('right', 0).check_node('BinaryExpr').multi(
+                check_edge('right', 0).multi(
                 	check_edge('left').multi(
                       	check_edge('left').has_equal_ast(),
                         check_edge('op').has_equal_ast(),
@@ -1199,51 +1200,42 @@ AND (language = 'Spanish' OR language = 'French');
 ```{python}
 # First check if the WHERE clause was correct
 Ex().check_correct(
-    has_nrows(),
-    check_node('SelectStmt').multi(
-      	check_edge('target_list', 0).has_equal_ast(),
-      	check_edge('target_list', 1).has_equal_ast(),
-        check_edge('from_clause').has_equal_ast(),
-        check_edge('where_clause').multi(
-        	check_node('BinaryExpr').multi(
-            	check_edge('left').has_equal_ast(),
-                check_edge('op').has_equal_ast(),
-                check_edge('right', 0).check_node('BinaryExpr').multi(
-                	check_edge('left').multi(
-                      	check_edge('left').has_equal_ast(),
-                        check_edge('op').has_equal_ast(),
-                        check_edge('right').has_equal_ast()
-                    ),
-                    check_edge('op').has_equal_ast(),
-                    check_edge('right').multi(
-                    	check_edge('left').has_equal_ast(),
-                        check_edge('op').has_equal_ast(),
-                        check_edge('right').has_equal_ast()
-                    )
-                ),
-              	check_edge('right', 1).multi(
-            	check_edge('left').has_equal_ast(),
-                check_edge('op').has_equal_ast(),
-                check_edge('right', 1).check_node('BinaryExpr').multi(
-                	check_edge('left').multi(
-                      	check_edge('left').has_equal_ast(),
-                        check_edge('op').has_equal_ast(),
-                        check_edge('right').has_equal_ast()
-                    ),
-                    check_edge('op').has_equal_ast(),
-                    check_edge('right').multi(
-                    	check_edge('left').has_equal_ast(),
-                        check_edge('op').has_equal_ast(),
-                        check_edge('right').has_equal_ast()
-                    )
-                ),
-              	check_edge('right', 1).has_equal_ast()
-            )
-            ),
-          	check_edge('op').has_equal_ast(),
-          	check_edge('right').has_equal_ast()
+  has_nrows(),
+  check_node('SelectStmt').multi(
+    check_edge('target_list', 0).has_equal_ast(),
+    check_edge('target_list', 1).has_equal_ast(),
+    check_edge('from_clause').has_equal_ast(),
+    check_edge('where_clause').multi(
+      check_edge('left').has_equal_ast(),
+      check_edge('op').has_equal_ast(),
+      check_edge('right', 0).multi(
+        check_edge('left').multi(
+          check_edge('left').has_equal_ast(),
+          check_edge('op').has_equal_ast(),
+          check_edge('right').has_equal_ast()
+        ),
+        check_edge('op').has_equal_ast(),
+        check_edge('right').multi(
+          check_edge('left').has_equal_ast(),
+          check_edge('op').has_equal_ast(),
+          check_edge('right').has_equal_ast()
         )
+      ),
+      check_edge('right', 1).check_node("BinaryExpr").multi(
+        check_edge('left').multi(
+          check_edge('left').has_equal_ast(),
+          check_edge('op').has_equal_ast(),
+          check_edge('right', 0).has_equal_ast()
+        ),
+        check_edge('op').has_equal_ast(),
+        check_edge('right').multi(
+          check_edge('left').has_equal_ast(),
+          check_edge('op').has_equal_ast(),
+          check_edge('right', 0).has_equal_ast()
+        )
+      )
     )
+  )
 )
 
 # Next check if right columns were included
