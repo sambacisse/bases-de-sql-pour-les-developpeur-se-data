@@ -94,11 +94,6 @@ Run the code in the editor and look at the query result tab under the editor!
 ```{python}
 connect('postgresql', 'films')
 ```
-`@sample_code`
-
-```{sql}
-SELECT name FROM people;
-```
 
 `@sct`
 ```{python}
