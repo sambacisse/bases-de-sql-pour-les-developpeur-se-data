@@ -120,7 +120,7 @@ xp: 100
 skills: 1
 ```
 
-If you submit the code to the right, you'll see that you get two types of errors.
+If you submit the code to the right by clicking **Submit Answer**, you'll see that you get two types of errors.
 
 _SQL_ errors are shown below the editor. These are errors returned by the _SQL_ engine. You should see:
 
