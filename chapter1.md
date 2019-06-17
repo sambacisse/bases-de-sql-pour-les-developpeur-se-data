@@ -175,7 +175,7 @@ xp: 100
 skills: 1
 ```
 
-Another new feature we're introducing is the *bullet exercise*, which allows you to easily practice a new concept through repetition. Check it out below!
+
 
 `@pre_exercise_code`
 ```{python}
