@@ -314,7 +314,7 @@ The table of employees might look something like this:
 How many fields does the employees table above contain?
 
 `@hint`
-Remember that in database lingo, a column is called a *field*. How many fields does the table contain?
+
 
 `@possible_answers`
 - 1
