@@ -9,7 +9,6 @@ description: >-
   PostgreSQL, MySQL, SQL Server, and Oracle. This course teaches you everything
   you need to know to begin working with databases today!
 programming_language: sql
-difficulty_level: 0
 from: 'postgresql-base-prod:v1.0.0'
 datasets:
   films.sql: IMDb Film data
