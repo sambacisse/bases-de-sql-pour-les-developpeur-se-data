@@ -161,7 +161,7 @@ AS result;
 
 `@sct`
 ```{sql}
-Ex().has_code(r'SELECT|select', incorrect_msg="Alright, now go ahead and fix your code by including a `SELECT`.")
+Ex().has_code(r'SELECT|select|Select', incorrect_msg="Alright, now go ahead and fix your code by including a `SELECT`.")
 
 Ex().check_column('result').has_equal_value()
 
