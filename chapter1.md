@@ -344,6 +344,8 @@ lang: sql
 xp: 100
 ```
 
+https://youtu.be/f93sYcdhg8Y
+
 While SQL can be used to create and modify databases, the focus of this course will be *querying* databases. A *query* is a request for data from a database table (or combination of tables). Querying is an essential skill for a data scientist, since the data you need for your analyses will often live in databases.
 
 In SQL, you can select data from a table using a `SELECT` statement. For example, the following query selects the `name` column from the `people` table:
