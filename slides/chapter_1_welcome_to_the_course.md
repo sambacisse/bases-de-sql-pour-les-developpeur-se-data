@@ -18,8 +18,8 @@ key: 7ad662bca6
 ```
 
 `@lower_third`
-name: Nick Carchedi
-title: Instructor
+name: Samba Cisse
+title: Coach Data
 
 `@script`
 Hi, and welcome to Introduction to SQL for Data Science!
